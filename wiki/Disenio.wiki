@@ -1,4 +1,4 @@
-#summary Todo lo del diseño iría acá.
+#summary Fase 4: Diseño
 #labels Disenio
 
 = Entregables definidos para la etapa =
