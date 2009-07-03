@@ -1,5 +1,5 @@
-#summary Todo lo del análisis iría acá.
 #labels Analisis
+#Fecha de finalización planificada: 15/06/09
 
 = Tareas =
 
