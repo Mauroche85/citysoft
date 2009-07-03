@@ -3,22 +3,13 @@
 
 _Fecha de finalización planificada: 03/07/09_
 
-= Entregables definidos para la etapa =
+= Tareas =
 
-  * Diagrama de clases. [DiagramaDeClases]
 
-  * Diagramas de secuencia
-    * [UML_COLAB_SEQ_ABM_operadores ¿ABM operadores?] (falta mucho)
-    * [UML_COLAB_SEQ_ABM_clientes ¿ABM clientes?] (falta poquito)
-    * [UML_COLAB_SEQ_ABM_clientes ¿ABM taxis?] (falta nada)
+= Entregables =
 
-  * Diagramas de colaboración
-    * [UML_COLAB_ABM_operadores ¿ABM operadores?] (falta mucho)
-    * [UML_COLAB_ABM_clientes ¿ABM clientes?] (falta poquito)
-    * [UML_COLAB_ABM_clientes ¿ABM taxis?] (falta nada)
-
-= Minutas de reunión de los viernes =
-  * Por ahora ninguna
-
-= Información extra =
-*Podes poner algun comentario. Tipo "Yo tomo tal tarea". Como si fuera un foro o mail.*
+ * Diagrama de Componentes
+ * Diagrama de Clases
+ * Especificación de los Módulos del Sistema (Casos de Uso)
+ * Diagrama de Secuencia
+ * Diseño de Interfaces
