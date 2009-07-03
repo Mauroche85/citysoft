@@ -1,5 +1,5 @@
 #summary Página de inicio del proyecto.
-#labels acv
+#labels Featured
 
 = Introduction =
 
