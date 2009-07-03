@@ -2,10 +2,10 @@
 
 = Entregables definidos para la etapa =
 
-* Diagramas de CU
- * ABM operadores?
-  * ABM clientes?
-   * ABM taxis?
+ * Diagramas de CU
+  * ABM operadores?
+   * ABM clientes?
+    * ABM taxis?
 
 
 = Entregables terminados =
