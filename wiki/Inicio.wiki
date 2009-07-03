@@ -6,9 +6,8 @@ Esta página sirve para organizar jerárquicamente todo lo que hacemos. Debemos 
 
 = Ejemplos de edición =
 
-Para ver el código, ir a la barrita de arriba, opción "edit".
+Para ver el código, ir a la barrita de arriba, opción "Edit this page".
 Acá tenemos una lista:
   * Texto en *negrita* o _cursva_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
-
