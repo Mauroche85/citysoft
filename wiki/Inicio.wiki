@@ -1,0 +1,13 @@
+#summary Página de inicio del proyecto.
+
+= Introduction = (se edita como `= Introducción =`)
+
+Esta página sirve para organizar jerárquicamente todo lo que hacemos. Debemos tener una entrada por cada etapa. Cada etapa tendría una entrada por cada reunion de los viernes. O sino, podemos acá directamente la lista de todas las reuniones. Yo de todas maneras dividiría las reuniones por *fase*, tipo "proyecto, análisis, diseño, etc". Creo que son los elementos de primer nivel del GANTT.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
