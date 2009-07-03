@@ -1,9 +1,7 @@
 #summary Todo lo del análisis iría acá.
 #labels Analisis
 
-= Análisis
-
-== Tareas ==
+= Tareas =
 
  * Realizar el análisis preliminar de requerimientos
  * Realizar la descripción de requerimientos funcionales
@@ -31,7 +29,7 @@
  * Realizar el Análisis y planificación de riesgos
  * Realizar reestimación de la fase Diseño
 
-== Entregables ==
+= Entregables =
 
-== Información extra ==
+= Información extra =
 *Podes poner algun comentario. Tipo "Yo tomo tal tarea". Como si fuera un foro o mail.*
