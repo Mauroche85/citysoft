@@ -2,7 +2,7 @@
 
 = Entregables definidos para la etapa =
 
-  * Falta? poquito. Diagramas de CU
-    * Falta? mucho. __[ABM_operadores ¿ABM operadores?]
-    * Falta? poquito. [ABM_clientes ¿ABM clientes?]
-    * Falta? nada. ___[ABM_clientes ¿ABM taxis?]
+  * Diagramas de CU
+    * [ABM_operadores ¿ABM operadores?] (falta mucho)
+    * [ABM_clientes ¿ABM clientes?] (falta poquito)
+    * [ABM_clientes ¿ABM taxis?] (falta nada)
