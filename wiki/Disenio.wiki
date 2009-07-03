@@ -1,4 +1,5 @@
 #summary Todo lo del diseño iría acá.
+#labels Disenio
 
 = Entregables definidos para la etapa =
 
