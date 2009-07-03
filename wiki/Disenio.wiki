@@ -1,6 +1,8 @@
 #summary Fase 4: Diseño
 #labels Disenio
 
+_Fecha de finalización planificada: 03/07/09_
+
 = Entregables definidos para la etapa =
 
   * Diagrama de clases. [DiagramaDeClases]
