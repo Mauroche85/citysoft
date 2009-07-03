@@ -3,7 +3,7 @@
 = Entregables definidos para la etapa =
 
 * Diagramas de CU
- * ABM operadores?
+ ABM operadores?
  * ABM clientes?
  * ABM taxis?
 
