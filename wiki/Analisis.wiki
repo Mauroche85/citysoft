@@ -13,7 +13,5 @@
 = Minutas de reunión de los viernes =
   * Por ahora ninguna
 
-
-
 = Información extra =
 *Podes poner algun comentario. Tipo "Yo tomo tal tarea". Como si fuera un foro o mail.*
