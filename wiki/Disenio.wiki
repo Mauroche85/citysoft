@@ -2,7 +2,14 @@
 
 = Entregables definidos para la etapa =
 
-  * Diagramas de CU
+  * Diagrama de clases. [DiagramaDeClases]
+
+  * Diagramas de secuencia
+    * [ABM_operadores ¿ABM operadores?] (falta mucho)
+    * [ABM_clientes ¿ABM clientes?] (falta poquito)
+    * [ABM_clientes ¿ABM taxis?] (falta nada)
+
+  * Diagramas de colaboración
     * [ABM_operadores ¿ABM operadores?] (falta mucho)
     * [ABM_clientes ¿ABM clientes?] (falta poquito)
     * [ABM_clientes ¿ABM taxis?] (falta nada)
