@@ -11,3 +11,9 @@ Acá tenemos una lista:
   * Texto en *negrita* o _cursva_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
+
+= Etapas =
+
+  * [Analisis]
+  * [Disenio] (no acepta la ñ en nombres de página)
+  * [Desarrollo]
