@@ -2,6 +2,8 @@
 
 = Entregables definidos para la etapa =
 
+  * Documentos
+    * [http://citysoft.googlecode.com/files/Infraestructura%20Tecnológica%20v1.0.doc Documento de infraestructura tecnológica]
   * Casos de uso
     * [UML_CU_ABM_operadores ¿ABM operadores?] (falta mucho)
     * [UML_CU_ABM_clientes ¿ABM clientes?] (falta poquito)
