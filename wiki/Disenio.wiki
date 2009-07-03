@@ -1,0 +1,13 @@
+#summary Todo lo del diseño iría acá.
+
+= Entregables definidos para la etapa =
+
+  * Diagramas de CU
+  ** ABM operadores?
+  ** ABM clientes?
+  ** ABM taxis?
+
+
+= Entregables terminados =
+
+  * [ABM_operadores ABM de operadores]
