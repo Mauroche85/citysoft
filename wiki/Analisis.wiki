@@ -36,7 +36,3 @@
  * Especificaciòn de Infraestructura de Comunicaciones
  * Documentos de Análisis de los Módulos del Sistema (Casos de Uso)
  * Diagrama Entidad-Relación
-
-
-= Información extra =
-*Podes poner algun comentario. Tipo "Yo tomo tal tarea". Como si fuera un foro o mail.*
