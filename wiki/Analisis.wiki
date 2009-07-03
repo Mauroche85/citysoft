@@ -1,5 +1,7 @@
+#summary Fase 3: Análisis
 #labels Analisis
-#Fecha de finalización planificada: 15/06/09
+
+_Fecha de finalización planificada: 15/06/09_
 
 = Tareas =
 
