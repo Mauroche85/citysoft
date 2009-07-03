@@ -1,4 +1,5 @@
 #summary Todo lo del análisis iría acá.
+#labels Analisis
 
 = Entregables definidos para la etapa =
 
