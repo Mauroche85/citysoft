@@ -1,0 +1,8 @@
+#summary Todo lo del análisis iría acá.
+
+= Entregables definidos para la etapa =
+
+  * Casos de uso
+    * [CU_ABM_operadores ¿ABM operadores?] (falta mucho)
+    * [CU_ABM_clientes ¿ABM clientes?] (falta poquito)
+    * [CU_ABM_clientes ¿ABM taxis?] (falta nada)
