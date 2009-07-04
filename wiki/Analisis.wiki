@@ -37,4 +37,4 @@ _Fecha de finalización planificada: 15/06/09_
  * Especificación de Infraestructura Tecnológica
  * Especificaciòn de Infraestructura de Comunicaciones
  * Documentos de Análisis de los Módulos del Sistema (Casos de Uso)
- * Diagrama Entidad-Relación
+ * [http://citysoft.googlecode.com/files/Diagrama%20Entidad-Relacion.doc Diagrama Entidad-Relación]
