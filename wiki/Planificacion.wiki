@@ -1,13 +1,27 @@
-#summary One-sentence summary of this page.
+#summary Fase 2: Planificación
 
-= Introduction =
+_Fecha de finalización planificada: 29/05/09_
 
-Add your content here.
+= Tareas =
+
+ * Determinar los riesgos
+ * Elaborar la Matriz de Riesgos
+ * Determinar el plan de Comunicaciones
+ * Elaborar la Matriz de Comunicaciones
+ * Definir los Entregables del Proyecto
+ * Elaborar la WBS
+ * Planificar las tareas
+ * Elaborar el Cronograma de trabajo (GANTT)
+ * Determinar las Responsabilidades
+ * Elaborar la Matriz de Asignación de Responsabilidades
+ * Elaborar el Plan de proyecto
 
 
-= Details =
+= Entregables =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+ * Matriz de Riesgos
+ * Matriz de Comunicaciones
+ * WBS
+ * Cronograma de Tareas (GANTT)
+ * Matriz de Asignación de Responsabilidades
+ * Plan de Proyecto
