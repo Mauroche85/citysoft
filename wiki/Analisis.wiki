@@ -17,7 +17,7 @@ _Fecha de finalización planificada: 15/06/09_
  * Confeccionar Casos de Uso para los requerimientos no funcionales
  * Confeccionar el Diagrama Entidad-Relación
  * Especificar la infraestructura tecnológica
-  * "Determinar el Hardware y tecnologías de tracking a utilizar (GPS, Radiofrecuencia, etc)"
+  * Determinar el Hardware y tecnologías de tracking a utilizar (GPS, Radiofrecuencia, etc)
   * Determinar el Hardware y tecnologías de integración de dispositivos en redes a utilizar (GPS + INTERNET)
  * Especificar la infraestructura tecnológica para el sistema WEB
   * Determinar la tecnología de Base de datos a utilizar
