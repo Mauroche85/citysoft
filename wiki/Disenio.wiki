@@ -5,6 +5,25 @@ _Fecha de finalización planificada: 03/07/09_
 
 = Tareas =
 
+ * Realizar el Diseño de la arquitectura del sistema
+ * Confeccionar el Diagrama de Componentes
+ * Realizar el Diseño del modelo lógico y físico de la base de datos
+ * Confeccionar el Diagrama de Clases
+ * Realizar el Diseño funcional y técnico de la solución por módulo
+  * Especificar Casos de uso ABM vehiculos
+  * Especificar Casos de uso ABM de operadores
+  * Especificar Casos de uso ABM de clientes
+  * Especificar Casos de uso Modulo de Reservas
+  * Especificar Casos de uso Modulo de Seguimiento
+ * Realizar el Diseño de Interfaces
+  * Diseñar Interfaces de ABM de Operadores
+  * Diseñar Interfaces de ABM de Vehículos
+  * Diseñar Interfaces de ABM de Clientes
+  * Diseñar Interfaces de Modulo de Seguimiento 
+  * Diseñar Interfaces de Modulo de Reservas
+ * Realizar el Análisis y planificación de riesgos
+ * Realizar reestimación de la fase Desarrollo
+
 
 = Entregables =
 
