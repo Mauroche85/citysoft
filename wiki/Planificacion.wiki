@@ -25,4 +25,4 @@ _Fecha de finalización planificada: 29/05/09_
  * WBS
  * Cronograma de Tareas (GANTT)
  * Matriz de Asignación de Responsabilidades
- * Plan de Proyecto
+ * [http://citysoft.googlecode.com/files/Doc_Gral_%20Proyecto.doc Plan de Proyecto]
