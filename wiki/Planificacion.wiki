@@ -1,4 +1,5 @@
 #summary Fase 2: Planificación
+#labels Planificacion
 
 _Fecha de finalización planificada: 29/05/09_
 
