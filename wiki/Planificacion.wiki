@@ -20,7 +20,7 @@ _Fecha de finalización planificada: 29/05/09_
 
 = Entregables =
 
- * Matriz de Riesgos
+ * [http://citysoft.googlecode.com/files/Matriz%20de%20riesgos.doc Matriz de Riesgos]
  * [http://citysoft.googlecode.com/files/Matriz_Comunicaciones.doc Matriz de Comunicaciones]
  * [http://citysoft.googlecode.com/files/Work%20breakdown%20structure.doc WBS]
  * [http://citysoft.googlecode.com/files/Planificacion_ultimo.mpp Cronograma de Tareas (GANTT)]
