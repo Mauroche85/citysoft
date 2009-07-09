@@ -34,7 +34,7 @@ _Fecha de finalización planificada: 15/06/09_
 
 = Entregables =
 
- * [http://citysoft.googlecode.com/files/Infraestructura%20tecnologica.doc Especificación de Infraestructura Tecnológica]
- * [http://citysoft.googlecode.com/files/Infraestructura%20tecnologica.doc Especificaciòn de Infraestructura de Comunicaciones (Idem anterior)]
+ * [http://citysoft.googlecode.com/files/Infraestructura%20Tecnológica%20v1.0.doc Especificación de Infraestructura Tecnológica]
+ * [http://citysoft.googlecode.com/files/Infraestructura%20Tecnológica%20v1.0.doc Especificaciòn de Infraestructura de Comunicaciones (Idem anterior)]
  * [http://citysoft.googlecode.com/files/Caso_de%20Uso.doc Documentos de Análisis de los Módulos del Sistema (Casos de Uso)]
  * [http://citysoft.googlecode.com/files/Diagrama%20Entidad-Relacion.doc Diagrama Entidad-Relación]
