@@ -28,7 +28,8 @@ _Fecha de finalización planificada: 03/07/09_
 = Entregables =
 
  * Especificación de los Módulos del Sistema (Casos de Uso)
- * [http://citysoft.googlecode.com/files/Diagrama%20de%20clases%20v0.5.jpg Diagrama de Clases]
+ * [http://citysoft.googlecode.com/files/Diagrama%20de%20clases%20v1.jpg Diagrama de Clases (jpg)]
+ * [http://citysoft.googlecode.com/files/Diagramas.eap Diagrama de Clases (EA project)]
  * Diagramas de Componentes
  * Diagramas de Secuencia
  * Diseño de Interfaces
