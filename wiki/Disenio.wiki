@@ -27,9 +27,13 @@ _Fecha de finalización planificada: 03/07/09_
 
 = Entregables =
 
- * Especificación de los Módulos del Sistema (Casos de Uso)
- * [http://citysoft.googlecode.com/files/Diagrama%20de%20clases%20v1.jpg Diagrama de Clases (jpg)]
- * [http://citysoft.googlecode.com/files/Diagramas.eap Diagrama de Clases (EA project)]
- * Diagramas de Componentes
- * Diagramas de Secuencia
+ * [http://citysoft.googlecode.com/files/Caso_de%20Uso_v5.doc Especificación de los Módulos del Sistema (Casos de Uso)]
+ * Diagramas en JPG
+   * [http://citysoft.googlecode.com/files/Diagrama%20de%20clases%20v1.jpg Diagrama de Clases (jpg)]
+   * Diagramas de Secuencia
+   * Diagramas de Componentes
+   * Diagramas de Actividades
+ * Diagramas originales (archivo de proyecto EA)
+   * [http://citysoft.googlecode.com/files/Diagramas.eap Sólo clases]
+   * [http://citysoft.googlecode.com/files/GestionDeTaxis.eap Clases y Secuencia]
  * Diseño de Interfaces
