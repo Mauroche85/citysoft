@@ -1,0 +1,19 @@
+#summary Fase 5: Capacitación
+#labels Capacitacion
+
+_Fecha de finalización planificada: 10/07/09_
+
+= Tareas =
+
+ * Obtener Capacitación en UML
+ * Obtener Capacitación en tecnología de Redes seleccionada
+ * Obtener Capacitación en tecnología de Tracking seleccionada
+ * Obtener Capacitación en Desarrollo
+
+
+= Entregables =
+
+ * Personal Capacitado en UML
+ * Personal Capacitado en Redes
+ * Personal Capacitado en Tracking
+ * Personal Capacitado en Desarrollo
