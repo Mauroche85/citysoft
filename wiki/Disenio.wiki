@@ -28,19 +28,19 @@ _Fecha de finalización planificada: 03/07/09_
 = Entregables =
 
  * [http://citysoft.googlecode.com/files/Caso_de%20Uso_v5.doc Especificación de los Módulos del Sistema (Casos de Uso)]
- * Diagramas en JPG
+ * Diagramas en JPG o WORD
    * [http://citysoft.googlecode.com/files/Diagrama%20de%20clases%20v1.jpg Diagrama de Clases (jpg)]
    * Diagramas de Secuencia
    * Diagramas de Componentes
    * Diagramas de Actividades
- * Diseño de Interfaces
+   * Diseño de Interfaces
  * [http://citysoft.googlecode.com/files/GestionDeTaxis.eap Originales, diagramas (archivo de proyecto EA)]
-   * Interfaces: falta
-   * Casos de uso: hecho
-   * Clases: hecho
-   * Secuencias administrativas: hecho
-   * Secuencias primarias: falta
-   * Colaboraciones administrativas: falta
-   * Colaboraciones primarias: falta
-   * Actividades: falta
-   * Componentes: falta
+   * Casos de uso: ENTREGADO
+   * Clases: ACTUALIZAR, asignado ADL
+   * Secuencias administrativas: ENTREGADO
+   * Secuencias primarias: FALTA, asignado ADL
+   * Colaboraciones administrativas: FALTA, <font color=FF0000>sin asignar</font>
+   * Colaboraciones primarias: FALTA, <font color=FF0000>sin asignar</font>
+   * Estados: FALTA, asignado HG
+   * Componentes: FALTA, asignado GD
+   * Interfaces: FALTA, asignado HG
