@@ -33,7 +33,14 @@ _Fecha de finalización planificada: 03/07/09_
    * Diagramas de Secuencia
    * Diagramas de Componentes
    * Diagramas de Actividades
- * Diagramas originales (archivo de proyecto EA)
-   * [http://citysoft.googlecode.com/files/Diagramas.eap Sólo clases]
-   * [http://citysoft.googlecode.com/files/GestionDeTaxis.eap Clases y Secuencia]
  * Diseño de Interfaces
+ * [http://citysoft.googlecode.com/files/GestionDeTaxis.eap Originales, diagramas (archivo de proyecto EA)]
+   * Interfaces: falta
+   * Casos de uso: hecho
+   * Clases: hecho
+   * Secuencias administrativas: hecho
+   * Secuencias primarias: falta
+   * Colaboraciones administrativas: falta
+   * Colaboraciones primarias: falta
+   * Actividades: falta
+   * Componentes: falta
