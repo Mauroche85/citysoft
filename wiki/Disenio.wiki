@@ -35,12 +35,12 @@ _Fecha de finalización planificada: 03/07/09_
    * Diagramas de Actividades
    * Diseño de Interfaces
  * [http://citysoft.googlecode.com/files/GestionDeTaxis.eap Originales, diagramas (archivo de proyecto EA)]
-   * Casos de uso: <font color=#00FF00>ENTREGADO</font>
-   * Clases: ACTUALIZAR, asignado ADL
+   * Casos de uso: <font color=0000FF>ENTREGADO</font>
+   * Clases: <font color=0000FF>ACTUALIZAR, asignado ADL</font>
    * Secuencias administrativas: <font color=00FF00>ENTREGADO</font>
-   * Secuencias primarias: <font color=FFFF00>FALTA, asignado ADL</font>
+   * Secuencias primarias: <font color=777700>FALTA, asignado ADL</font>
    * Colaboraciones administrativas: <font color=FF0000>FALTA, sin asignar</font>
    * Colaboraciones primarias: <font color=FF0000>FALTA, sin asignar</font>
-   * Estados: <font color=FFFF00>FALTA, asignado HG</font>
-   * Componentes: <font color=FFFF00>FALTA, asignado GD</font>
-   * Interfaces: <font color=FFFF00>FALTA, asignado HG</font>
+   * Estados: <font color=777700>FALTA, asignado HG</font>
+   * Componentes: <font color=777700>FALTA, asignado GD</font>
+   * Interfaces: <font color=777700>FALTA, asignado HG</font>
