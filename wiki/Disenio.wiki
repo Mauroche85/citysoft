@@ -43,8 +43,8 @@ _Fecha de finalización planificada: 03/07/09_
    * Clases: <font color=0000FF>ACTUALIZAR, asignado ADL</font>
    * Secuencias administrativas: <font color=0000FF> ENTREGADO </font>
    * Secuencias primarias: <font color=777700>FALTA, asignado ADL</font>
-   * Colaboraciones administrativas: <font color=777700>FALTA, asignado GD</font>
-   * Colaboraciones primarias: <font color=777700>FALTA, asignado GD</font>
-   * Estados: <font color=777700>FALTA, asignado HG</font>
-   * Componentes: <font color=777700>FALTA, asignado GD</font>
-   * Interfaces: <font color=777700>FALTA, asignado HG</font>
+   * Colaboraciones administrativas: <font color=777700>FALTA, asignado GDO</font>
+   * Colaboraciones primarias: <font color=777700>FALTA, asignado GDO</font>
+   * Estados: <font color=777700>FALTA, asignado HGA</font>
+   * Componentes: <font color=777700>FALTA, asignado ADL</font>
+   * Interfaces: <font color=777700>FALTA, asignado HGA</font>
