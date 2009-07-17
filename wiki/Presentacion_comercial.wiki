@@ -15,4 +15,4 @@ _Fecha de finalización planificada: 20/07/09_
 
 = Details =
 
- * Presentación comercial en público<font color=FF0000>FALTA, sin asignar</font>
+ * Presentación comercial en público. <font color=FF0000>FALTA, sin asignar</font>
