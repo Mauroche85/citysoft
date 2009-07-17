@@ -46,5 +46,5 @@ _Fecha de finalización planificada: 03/07/09_
    * Colaboraciones administrativas: <font color=FF0000>FALTA, asignado GAD/NIQ</font>
    * Colaboraciones primarias: <font color=FF0000>FALTA, asignado GAD/NIQ</font>
    * Estados: <font color=AAAA00>EN PROCESO, asignado HRG</font>
-   * Componentes: <font color=FF0000>FALTA, asignado GAD</font>
+   * Componentes: <font color=0000FF>TERMINADO, asignado GAD</font>
    * Interfaces: <font color=FF0000>FALTA, asignado HRG</font>
