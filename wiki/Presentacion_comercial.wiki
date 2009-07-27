@@ -13,6 +13,10 @@ _Fecha de finalización planificada: 20/07/09_
  * Realizar Edición y terminación de la presentación
 
 
-= Details =
+= Tareas ocultas al proyecto =
+
+ * [presentacion_comercial_brainstorming Brainstorming <font color=0000FF>HECHO, asignado ADL</font>]
+
+= Entregables =
 
  * Presentación comercial en público. <font color=FF0000>FALTA, sin asignar</font>
