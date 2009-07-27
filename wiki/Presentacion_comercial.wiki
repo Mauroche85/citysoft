@@ -15,7 +15,7 @@ _Fecha de finalización planificada: 20/07/09_
 
 = Tareas ocultas al proyecto =
 
- * [presentacion_comercial_brainstorming Brainstorming <font color=0000FF>HECHO, asignado ADL</font>]
+ * [presentacion_comercial_brainstorming Brainstorming] <font color=0000FF>HECHO, asignado ADL</font>
 
 = Entregables =
 
