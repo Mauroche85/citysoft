@@ -1,0 +1,8 @@
+<window use="ar.edu.utn.frba.proyecto.citysoft.controller.Login"
+	width="80%" id="win" title="Login" border="normal">
+	<label value="Usuario" />
+	<textbox id="txtUsuario" type="text" />
+	<label value="Password" />
+	<textbox id="txtPassword" type="password" />
+	<button label="btnAutenticar" onClick="win.login();" />
+</window>
