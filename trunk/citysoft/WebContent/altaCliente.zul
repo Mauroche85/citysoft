@@ -1,0 +1,50 @@
+<?page title="Alta Cliente" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="winAltaClente" title="Alta Cliente" border="normal"
+		mode="overlapped" width="400px" height="200px" sizable="true">
+		<borderlayout>
+			<center>
+				<grid width="300">
+					<columns>
+						<column></column>
+						<column></column>
+					</columns>
+					<rows>
+						<row>
+							<label value="Nombre y Apellido:" />
+							<textbox name="nombreApellido" />
+						</row>
+						<row>
+							<label value="Tipo de Documento:" />
+							<combobox ><comboitem label="DNI"/><comboitem label="LE"/></combobox>
+						</row>
+						<row>
+							<label value="Número" />
+							<textbox name=""/>
+						</row>
+						<row>
+							<label value="Dirección:" />
+							<textbox />
+						</row>
+						<row>
+							<label value="Localidad:" />
+							<textbox />
+						</row>
+						<row>
+							<label value="Teléfono:" />
+							<textbox />
+						</row>
+					</rows>
+
+				</grid>
+			</center>
+			<east>
+				<vbox align="center">
+					<button label="Aceptar" onClick="" />
+					<button label="Cancelar" onClick="" />
+				</vbox>
+			</east>
+		</borderlayout>
+
+	</window>
+</zk>
