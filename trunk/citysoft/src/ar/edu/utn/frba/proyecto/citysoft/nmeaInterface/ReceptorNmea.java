@@ -14,7 +14,7 @@ import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
 public class ReceptorNmea implements Runnable {
 
 	private static final String MONITOR_HOSTNAME = "localhost";
-	private static final int MONITOR_PORT = 2222;
+	private static final int MONITOR_PORT = 2221;
 
 	// **************************************
 	// ** Execution
