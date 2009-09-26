@@ -1,0 +1,28 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+<menubar>
+	<menu label="Clientes">
+		<menupopup>
+			<menuitem label="Alta"><attribute name="onClick">Executions.createComponents("altaCliente.zul",null,null);</attribute></menuitem>
+			<menuitem label="Baja" />
+			<menuitem label="Modificación" />
+		</menupopup>
+	</menu>
+	<menu label="Conductores">
+		<menupopup>
+			<menuitem label="Alta" />
+			<menuitem label="Baja" />
+			<menuitem label="Modificación" />
+		</menupopup>
+	</menu>
+		<menu label="Vehiculos">
+		<menupopup>
+			<menuitem label="Alta" />
+			<menuitem label="Baja" />
+			<menuitem label="Modificación" />
+		</menupopup>
+	</menu>
+	<menuitem label="Operador" />
+</menubar>
+</zk>

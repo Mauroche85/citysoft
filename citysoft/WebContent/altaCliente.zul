@@ -1,7 +1,7 @@
 <?page title="Alta Cliente" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window id="winAltaClente" title="Alta Cliente" border="normal"
-		mode="overlapped" width="400px" height="200px" sizable="true">
+	<window id="winAltaCliente" title="Alta Cliente" border="normal"
+		mode="modal" width="400px" height="210px" sizable="false" closable="true">
 		<borderlayout>
 			<center>
 				<grid width="300">
@@ -41,7 +41,7 @@
 			<east>
 				<vbox align="center">
 					<button label="Aceptar" onClick="" />
-					<button label="Cancelar" onClick="" />
+					<button label="Cancelar" onClick="winAltaCliente.detach()" />
 				</vbox>
 			</east>
 		</borderlayout>
