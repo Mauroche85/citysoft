@@ -1,0 +1,115 @@
+<?page title="Taxi Follower" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+
+<window id="winOperador" title="Interfaz Operador" border="normal"
+	mode="modal" width="98%" height="98%" sizable="true" closable="true">
+
+	<borderlayout height="100%">
+	
+		<north>Barra de botones</north>
+	
+		<!-- ******************************** -->
+		<!-- ********** GOOGLE MAP ********** -->
+		<center flex="true"></center>
+	
+		<!-- *********************************************** -->
+		<!-- ********** LISTA DE PEDIDOS SEGUIDOS ********** -->
+		<east>
+			<vbox>
+				<listbox id="listViajes" width="200px">
+					<listhead>
+						<listheader label="Viajes en curso" sort="auto" />
+					</listhead>
+					<listitem>
+						<listcell>
+							<label value="34768" />
+						</listcell>
+					</listitem>
+					<listitem>
+						<listcell>
+							<label value="54334" />
+						</listcell>
+					</listitem>
+					<listitem>
+						<listcell>
+							<label value="95746" />
+						</listcell>
+					</listitem>
+					<listitem>
+						<listcell>
+							<label value="73659" />
+						</listcell>
+					</listitem>
+					<listitem>
+						<listcell>
+							<label value="93265" />
+						</listcell>
+					</listitem>
+				</listbox>
+				<listbox id="listTaxisLibres" width="200px">
+					<listhead>
+						<listheader label="Taxis Libres" sort="auto" />
+					</listhead>
+					<listitem>
+						<listcell>
+							<label value="34768" />
+						</listcell>
+					</listitem>
+					<listitem>
+						<listcell>
+							<label value="54334" />
+						</listcell>
+					</listitem>
+					<listitem>
+						<listcell>
+							<label value="95746" />
+						</listcell>
+					</listitem>
+					<listitem>
+						<listcell>
+							<label value="73659" />
+						</listcell>
+					</listitem>
+					<listitem>
+						<listcell>
+							<label value="93265" />
+						</listcell>
+					</listitem>
+				</listbox>
+				<listbox id="listPedidosPend" width="200px">
+					<listhead>
+						<listheader label="Pedidos Pendientes"
+							sort="auto" />
+					</listhead>
+					<listitem>
+						<listcell>
+							<label value="34768" />
+						</listcell>
+					</listitem>
+					<listitem>
+						<listcell>
+							<label value="54334" />
+						</listcell>
+					</listitem>
+					<listitem>
+						<listcell>
+							<label value="95746" />
+						</listcell>
+					</listitem>
+					<listitem>
+						<listcell>
+							<label value="73659" />
+						</listcell>
+					</listitem>
+					<listitem>
+						<listcell>
+							<label value="93265" />
+						</listcell>
+					</listitem>
+				</listbox>
+			</vbox>
+		</east>
+	</borderlayout>
+
+</window>
+
