@@ -1,28 +1,25 @@
-<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?page title="GTTR: Gestión de Taxis en Tiempo Real" contentType="text/html;charset=UTF-8"?>
 <zk>
 
-<menubar>
+<menubar > 
 	<menu label="Clientes">
 		<menupopup>
+			<menuitem label="Listado" />
 			<menuitem label="Alta"><attribute name="onClick">Executions.createComponents("altaCliente.zul",null,null);</attribute></menuitem>
-			<menuitem label="Baja" />
-			<menuitem label="Modificación" />
 		</menupopup>
 	</menu>
 	<menu label="Conductores">
 		<menupopup>
+			<menuitem label="Listado" />
 			<menuitem label="Alta" />
-			<menuitem label="Baja" />
-			<menuitem label="Modificación" />
 		</menupopup>
 	</menu>
-		<menu label="Vehiculos">
+	<menu label="Vehiculos">
 		<menupopup>
+			<menuitem label="Listado" />
 			<menuitem label="Alta" />
-			<menuitem label="Baja" />
-			<menuitem label="Modificación" />
 		</menupopup>
 	</menu>
-	<menuitem label="Operador" />
+	<menuitem label="Operador"><attribute name="onClick">Executions.createComponents("interfazOperador.zul",null,null);</attribute></menuitem>
 </menubar>
 </zk>

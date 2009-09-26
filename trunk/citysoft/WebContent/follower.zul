@@ -2,7 +2,7 @@
 <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
 
 <window id="winFollower" title="Follower" border="normal"
-	mode="overlapped" width="95%" height="95%" sizable="true">
+	mode="modal" width="95%" height="95%" sizable="true">
 
 	<!-- tutaxi.com.ar? src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA" -->
 	<script
