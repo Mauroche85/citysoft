@@ -1,0 +1,37 @@
+<?page title="GTTR - Gestion de Taxis en tiempo real" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="Bienvenido" border="normal">
+		<tabbox>
+			<tabs>
+				<tab label="Mi viaje actual" selected="true" />
+				<tab id="tab2" label="Mi GTTR" />
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<label value="Código de Viaje:" />
+					<combobox>
+						<comboitem label="1" />
+						<comboitem label="2" />
+					</combobox>
+
+				</tabpanel>
+				<tabpanel fulfill="tab2.onSelect">
+					<tabbox width="100%" orient="vertical">
+						<tabs width="20%">
+							<tab label="Solicitar viaje nuevo" />
+							<tab label="Mis viajes anteriores" />
+						</tabs>
+						<tabpanels>
+							<tabpanel>Aca tiene que aparecer el menu de nuevo viaje</tabpanel>
+							<tabpanel>Aca se tiene que mostrar el historial de viajes</tabpanel>
+						</tabpanels>
+					</tabbox>
+
+
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+
+
+	</window>
+</zk>
