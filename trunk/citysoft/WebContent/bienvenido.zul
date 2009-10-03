@@ -30,8 +30,7 @@
 									title="Viaje Nuevo" border="normal" width="320px">
 
 									<window id="winDatosViaje"
-										title="Mi Viaje" border="normal"
-										width="305px">
+										title="Mi Viaje" border="normal" width="305px">
 										<grid width="300">
 											<columns>
 												<column></column>
@@ -68,8 +67,7 @@
 
 
 									<window id="winOrigenViaje"
-										title="Desde" border="normal"
-										width="305px">
+										title="Desde" border="normal" width="305px">
 
 										<grid width="300">
 											<columns>
@@ -113,8 +111,7 @@
 									</window>
 
 									<window id="winDestinoViaje"
-										title="Hasta" border="normal"
-										width="305px">
+										title="Hasta" border="normal" width="305px">
 
 										<grid width="300">
 											<columns>
@@ -156,10 +153,11 @@
 										</grid>
 
 									</window>
-				<hbox align="center">
-					<button label="Aceptar" onClick="" />
-					<button label="Cancelar"  />
-				</hbox>
+									<hbox align="center">
+										<button label="Aceptar"
+											onClick="" />
+										<button label="Cancelar" />
+									</hbox>
 
 
 
@@ -167,8 +165,53 @@
 
 							</tabpanel>
 							<tabpanel>
-								Aca se tiene que mostrar el historial de
-								viajes
+								<listbox id="listViajesAnteriores"
+									width="200px" height="25%">
+									<listhead>
+										<listheader
+											label="Viajes anteriores" sort="auto" />
+									</listhead>
+									<listitem>
+										<listcell
+											context="menuContextViajesAnteriores">
+											<label value="34768" />
+										</listcell>
+									</listitem>
+									<listitem>
+										<listcell
+											context="menuContextViajesAnteriores">
+											<label value="54334" />
+										</listcell>
+									</listitem>
+									<listitem>
+										<listcell
+											context="menuContextViajesAnteriores">
+											<label value="95746" />
+										</listcell>
+									</listitem>
+									<listitem>
+										<listcell
+											context="menuContextViajesAnteriores">
+											<label value="73659" />
+										</listcell>
+									</listitem>
+									<listitem>
+										<listcell
+											context="menuContextViajesAnteriores">
+											<label value="93265" />
+										</listcell>
+									</listitem>
+								</listbox>
+
+								<menupopup
+									id="menuContextViajesAnteriores">
+									<menuitem
+										label="Mostrar Detalles">
+										<attribute name="onClick">
+	Executions.createComponents("detallesViajeAnterior.zul", null, null);
+</attribute>
+									</menuitem>
+								</menupopup>
 							</tabpanel>
 						</tabpanels>
 					</tabbox>
