@@ -1,16 +1,16 @@
 <?page title="Listado de Clientes" contentType="text/html;charset=UTF-8"?>
 <zk>
 <window id="winListadoCliente" title="Listado de Clientes" border="normal"
-		mode="modal" width="700px" height="210px" sizable="false" closable="true">
-		<borderlayout>
+		mode="modal" width="950px" height="210px" sizable="false" closable="true" contentStyle="overflow:auto" >
+	<borderlayout>
 			<center>
 				<grid>
 					<columns>
-						<column width="250" label="Nombre y Apellido"/>
+						<column width="50" label="Nombre y Apellido"/>
 						<column width="50" label="Tipo" align="center"/>
 						<column width="90" label="Documento" align="center"/>
-						<column width="70" label="Modificación" align="center"/>
-						<column width="70" label="Baja" align="center"/>
+						<column width="20" label="Modificación" align="center"/>
+						<column width="20" label="Baja" align="center"/>
 					</columns>
 					<rows>
 						<row><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
@@ -21,14 +21,14 @@
 						<row><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
 						<row><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
 						<row><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
+						<row><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
+						<row><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
 					</rows>
-
 				</grid>
 			</center>
 			<east>
 				
 			</east>
 		</borderlayout>
-
-	</window>
+	</window> 
 </zk>
