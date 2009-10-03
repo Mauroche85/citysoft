@@ -4,7 +4,7 @@
 <menubar > 
 	<menu label="Clientes">
 		<menupopup>
-			<menuitem label="Listado" />
+			<menuitem label="Listado"><attribute name="onClick">Executions.createComponents("listadoCliente.zul",null,null);</attribute></menuitem>
 			<menuitem label="Alta"><attribute name="onClick">Executions.createComponents("altaCliente.zul",null,null);</attribute></menuitem>
 		</menupopup>
 	</menu>
