@@ -1,7 +1,7 @@
 package ar.edu.utn.frba.proyecto.citysoft.config;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ArchivoDeConfiguracion {
@@ -35,7 +35,9 @@ public class ArchivoDeConfiguracion {
 	private void InicializarConfiguracion() {
 		this.properties = new Properties();
 		try {
-			properties.load(new FileInputStream(ARCHIVO_CONFIGURACION));
+			InputStream input = getClass().getClassLoader().getResourceAsStream(
+					ARCHIVO_CONFIGURACION);
+			properties.load(input);
 		} catch (IOException e) {
 			throw new RuntimeException("Error leyendo archivo de configuracion", e);
 		}
