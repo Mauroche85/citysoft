@@ -12,11 +12,11 @@
 					<rows>
 						<row>
 							<label value="Nro. Pedido Pendiente:" />
-							<textbox name="pedidoPendiente" />
+							<textbox id="pedidoPendiente" />
 						</row>
 						<row>
 							<label value="Id de Taxi:" />
-							<textbox name="idTaxi" />
+							<textbox id="idTaxi" />
 						</row>
 					</rows>
 

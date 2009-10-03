@@ -13,7 +13,7 @@
 					<rows>
 						<row>
 							<label value="Pedido Pendiente:" />
-							<textbox name="pedidoPendiente" />
+							<textbox id="pedidoPendiente" />
 						</row>
 					</rows>
 
