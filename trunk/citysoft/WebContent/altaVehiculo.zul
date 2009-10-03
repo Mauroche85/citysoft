@@ -1,0 +1,55 @@
+<?page title="Alta Vehiculo" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="winAltaVehiculo" title="Alta Vehiculo" border="normal"
+		mode="modal" width="400px" height="240px" sizable="false" closable="true">
+		<borderlayout>
+			<center>
+				<grid width="300">
+					<columns>
+						<column></column>
+						<column></column>
+					</columns>
+					<rows>
+						<row>
+							<label value="Nombre y Apellido del titular:" />
+							<textbox name="nombreApellido" />
+						</row>
+						<row>
+							<label value="Tipo de Documento:" />
+							<combobox ><comboitem label="DNI"/><comboitem label="LE"/></combobox>
+						</row>
+						<row>
+							<label value="Número" />
+							<textbox name=""/>
+						</row>
+						<row>
+							<label value="Patente:" />
+							<textbox />
+						</row>
+						<row>
+							<label value="Marca y modelo:" />
+							<textbox />
+						</row>
+						<row>
+							<label value="N° póliza de seguro:" />
+							<textbox />
+						</row>
+						<row>
+							<label value="Tipo de Contrato:" />
+							<combobox ><comboitem label="DNI"/><comboitem label="LE"/></combobox>
+						</row>
+						
+					</rows>
+
+				</grid>
+			</center>
+			<east>
+				<vbox align="center">
+					<button label="Aceptar" onClick="" />
+					<button label="Cancelar" onClick="winAltaCliente.detach()" />
+				</vbox>
+			</east>
+		</borderlayout>
+
+	</window>
+</zk>
