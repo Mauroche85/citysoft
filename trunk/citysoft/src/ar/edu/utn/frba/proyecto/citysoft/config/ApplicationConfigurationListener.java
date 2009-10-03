@@ -3,20 +3,28 @@ package ar.edu.utn.frba.proyecto.citysoft.config;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
 import ar.edu.utn.frba.proyecto.citysoft.nmeaInterface.ReceptorNmea;
 
 public class ApplicationConfigurationListener implements ServletContextListener {
 
 	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {
+		ContextoAplicacion.getInstance().cerrarDd();
 	}
 
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
-		// TODO mantener la configuración actualizada
+		ArchivoDeConfiguracion config = ArchivoDeConfiguracion.getInstance();
 
-		// Levantamos el lote de objetos inicial
-		AmbienteDeDesarrollo.getInstance().cargar();
+		// Para poblar la base de datos, la primera vez que se ejecuta!
+		if (config.getPoblarBase())
+			AmbienteDeDesarrollo.getInstance().crearAmbiente();
+
+		ContextoAplicacion.getInstance().abrirDb();
+		// inicializo la central de taxis
+		CentralTaxis.getInstance().initialize();
+
 		// Por úlitmo, inicializamos el actualizador de posicionamiento
 		new Thread(new ReceptorNmea()).start();
 	}
