@@ -1,34 +1,36 @@
 <?page title="Listado de Conductores" contentType="text/html;charset=UTF-8"?>
 <zk>
 
-<window id="winListadoConductor" title="Listado de Conductores" border="normal"
-		mode="modal" width="850px" height="210px" sizable="false" closable="true" style="overflow:scroll">
-	<borderlayout>
+	<window id="winListadoConductor" title="Listado de Conductores"
+		border="normal" mode="modal" width="1000px" height="210px"
+		sizable="false" closable="true">
+		<borderlayout>
 			<center>
 				<grid>
 					<columns>
-						<column width="10%" label="Legajo" align="center"/>
-						<column width="35%" label="Nombre y Apellido"/>
-						<column width="5%" label="Tipo" align="center"/>
-						<column width="15%" label="Documento" align="center"/>
-						<column width="15%" label="Tipo Empleado" align="center"/>
-						<column width="10%" label="Modificación" align="center"/>
-						<column width="10%" label="Baja" align="center"/>
+						<column width="100px" label="Legajo" align="center" />
+						<column width="150px" label="Apellido" />
+						<column width="150px" label="Nombre" />
+						<column width="100px" label="Tipo" align="center" />
+						<column width="100px" label="Documento" align="center" />
+						<column width="100px" label="Tipo Empleado" align="center" />
+						<column width="100px" label="Modificación" align="center" />
+						<column width="100px" label="Baja" align="center" />
 					</columns>
 					<rows>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
+						<row>
+							<label>1234567</label>
+							<label>Donadia</label>
+							<label>Gabriel</label>
+							<label>DNI</label>
+							<label>42986473</label>
+							<label>Permanente</label>
+							<image src="images/tag_blue.png" />
+							<image src="images/delete.png" />
+						</row>
 					</rows>
 				</grid>
 			</center>
-	</borderlayout>
-</window> 
+		</borderlayout>
+	</window>
 </zk>

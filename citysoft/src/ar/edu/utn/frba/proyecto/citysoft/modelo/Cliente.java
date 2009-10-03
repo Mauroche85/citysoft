@@ -8,7 +8,8 @@ import java.util.Collection;
  * @version 1.0
  * @created 23-Jul-2009 10:54:49 p.m.
  */
-public class Cliente extends Persona implements ObjetoDeDominio {
+public class Cliente extends Persona implements ObjetoDeDominio,
+		Comparable<Cliente> {
 
 	private String nombreUsuario;
 	private int idCliente;
@@ -49,6 +50,13 @@ public class Cliente extends Persona implements ObjetoDeDominio {
 
 	public void setViajeEnCurso(Viaje viajeEnCurso) {
 		this.viajeEnCurso = viajeEnCurso;
+	}
+
+	public int compareTo(Cliente theOther) {
+		int thisId = this.idCliente;
+		int theOtherId = theOther.idCliente;
+		// Esto nos lo choriceamos de Integer!!!
+		return (thisId < theOtherId ? -1 : (thisId == theOtherId ? 0 : 1));
 	}
 
 }
