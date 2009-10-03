@@ -12,7 +12,7 @@
 					<rows>
 						<row>
 							<label value="Id de Taxi:" />
-							<textbox name="idTaxi" />
+							<textbox id="idTaxi" />
 						</row>
 					</rows>
 
