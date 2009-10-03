@@ -174,30 +174,52 @@
 									<listitem>
 										<listcell
 											context="menuContextViajesAnteriores">
-											<label value="34768" />
-										</listcell>
-									</listitem>
-									<listitem>
-										<listcell
-											context="menuContextViajesAnteriores">
+											<attribute name="onRightClick">
+	pageScope.put("valor", "54334");
+</attribute>
 											<label value="54334" />
 										</listcell>
 									</listitem>
 									<listitem>
 										<listcell
 											context="menuContextViajesAnteriores">
+
+
+
+											<attribute name="onRightClick">
+	pageScope.put("valor", "34768");
+</attribute>
+
+											<label value="34768" />
+										</listcell>
+									</listitem>
+									<listitem>
+										<listcell
+											context="menuContextViajesAnteriores">
+											<attribute name="onRightClick">
+	pageScope.put("valor", "95746");
+</attribute>
+
 											<label value="95746" />
 										</listcell>
 									</listitem>
 									<listitem>
 										<listcell
 											context="menuContextViajesAnteriores">
+											<attribute name="onRightClick">
+	pageScope.put("valor", "73659");
+</attribute>
+
 											<label value="73659" />
 										</listcell>
 									</listitem>
 									<listitem>
 										<listcell
 											context="menuContextViajesAnteriores">
+											<attribute name="onRightClick">
+	pageScope.put("valor", "93265");
+</attribute>
+
 											<label value="93265" />
 										</listcell>
 									</listitem>
@@ -208,7 +230,12 @@
 									<menuitem
 										label="Mostrar Detalles">
 										<attribute name="onClick">
-	Executions.createComponents("detallesViajeAnterior.zul", null, null);
+<!-- 	Executions.createComponents("detallesViajeAnterior.zul", null, null);
+ -->
+							Component h = Executions.createComponents("detallesViajeAnterior.zul", null, null);
+							h.getFellow("idViaje").setValue(page.getAttribute("valor"));
+
+
 </attribute>
 									</menuitem>
 								</menupopup>
