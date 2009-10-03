@@ -37,7 +37,7 @@ public class CentralTaxis implements ObjetoDeDominio {
 	}
 
 	public void terminate() {
-		thiz = null;
+		thiz = new CentralTaxis();
 	}
 
 	// **************************************
