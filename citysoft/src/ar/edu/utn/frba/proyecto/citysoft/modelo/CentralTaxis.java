@@ -1,10 +1,11 @@
 package ar.edu.utn.frba.proyecto.citysoft.modelo;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
+
+import ar.edu.utn.frba.proyecto.citysoft.modelo.persistencia.ColeccionPersistente;
 
 public class CentralTaxis implements ObjetoDeDominio {
 
@@ -22,13 +23,31 @@ public class CentralTaxis implements ObjetoDeDominio {
 	}
 
 	// **************************************
+	// ** Initialization
+	// **************************************
+
+	/**
+	 * Para que carge de la DB todos los datos
+	 */
+	public void initialize() {
+		this.taxis = new ColeccionPersistente<Taxi>(Taxi.class);
+		this.conductores = new ColeccionPersistente<Conductor>(Conductor.class);
+		this.clientes = new ColeccionPersistente<Cliente>(Cliente.class);
+		this.viajes = new ColeccionPersistente<Viaje>(Viaje.class);
+	}
+
+	public void terminate() {
+		thiz = null;
+	}
+
+	// **************************************
 	// ** Attributes
 	// **************************************
 
-	private Collection<Taxi> taxis = new ArrayList<Taxi>();
-	private Collection<Conductor> conductores = new ArrayList<Conductor>();
-	private Collection<Cliente> clientes = new ArrayList<Cliente>();
-	private Collection<Viaje> viajes = new ArrayList<Viaje>();
+	private Collection<Taxi> taxis;
+	private Collection<Conductor> conductores;
+	private Collection<Cliente> clientes;
+	private Collection<Viaje> viajes;
 
 	// **************************************
 	// ** Accessors

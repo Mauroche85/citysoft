@@ -3,6 +3,7 @@ package ar.edu.utn.frba.proyecto.citysoft.config;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.Lote;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.LoteDeClientes;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.LoteDeConductoresTaxisYViajes;
@@ -40,7 +41,8 @@ public class AmbienteDeDesarrollo {
 	// ***************************************
 
 	private void configure() {
-		// TODO: Ir completando con los sucesivos lotes
+		// TODO mantener la configuración actualizada. Ir completando con los
+		// sucesivos lotes
 		this.lotes.add(new LoteDeClientes());
 		this.lotes.add(new LoteDeConductoresTaxisYViajes());
 	}
@@ -53,6 +55,15 @@ public class AmbienteDeDesarrollo {
 		for (Lote lote : this.lotes) {
 			lote.cargar();
 		}
+	}
+
+	public void crearAmbiente() {
+		ContextoAplicacion.getInstance().abrirDb();
+		ContextoAplicacion.getInstance().borrarDb();
+		CentralTaxis.getInstance().initialize();
+		AmbienteDeDesarrollo.getInstance().cargar();
+		ContextoAplicacion.getInstance().cerrarDd();
+		CentralTaxis.getInstance().terminate();
 	}
 
 }
