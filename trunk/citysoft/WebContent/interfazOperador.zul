@@ -5,31 +5,51 @@
 	mode="modal" width="98%" height="98%" sizable="true" closable="true">
 
 	<borderlayout width="100%" height="100%">
-	
+
 		<north>
 			<toolbar>
 				<toolbarbutton label="Activar Taxi">
-					<attribute name="onClick">Executions.createComponents("activarTaxi.zul",null,null);</attribute>
-				</toolbarbutton><space /><space />
+					<attribute name="onClick">
+	Executions.createComponents("activarTaxi.zul", null, null);
+</attribute>
+				</toolbarbutton>
+				<space />
+				<space />
 				<toolbarbutton label="Desactivar Taxi">
-					<attribute name="onClick">Executions.createComponents("desactivarTaxi.zul",null,null);</attribute>
-				</toolbarbutton><space /><space />
+					<attribute name="onClick">
+	Executions.createComponents("desactivarTaxi.zul", null, null);
+</attribute>
+				</toolbarbutton>
+				<space />
+				<space />
 				<toolbarbutton label="Asigna Taxi">
-					<attribute name="onClick">Executions.createComponents("asignarTaxi.zul",null,null);</attribute>
-				</toolbarbutton><space /><space />
+					<attribute name="onClick">
+	Executions.createComponents("asignarTaxi.zul", null, null);
+</attribute>
+				</toolbarbutton>
+				<space />
+				<space />
 				<toolbarbutton label="Liberar Taxi">
-					<attribute name="onClick">Executions.createComponents("liberarTaxi.zul",null,null);</attribute>
-				</toolbarbutton><space /><space />
+					<attribute name="onClick">
+	Executions.createComponents("liberarTaxi.zul", null, null);
+</attribute>
+				</toolbarbutton>
+				<space />
+				<space />
 				<toolbarbutton label="Cancelar Pedido">
-					<attribute name="onClick">Executions.createComponents("cancelarPedido.zul",null,null);</attribute>
-				</toolbarbutton><space /><space />
+					<attribute name="onClick">
+	Executions.createComponents("cancelarPedido.zul", null, null);
+</attribute>
+				</toolbarbutton>
+				<space />
+				<space />
 			</toolbar>
 		</north>
-	
+
 		<!-- ******************************** -->
 		<!-- ********** GOOGLE MAP ********** -->
 		<center flex="true"></center>
-	
+
 		<!-- *********************************************** -->
 		<!-- ********** LISTA DE PEDIDOS SEGUIDOS ********** -->
 		<east>
@@ -64,15 +84,18 @@
 						</listcell>
 					</listitem>
 				</listbox>
-				
+
 				<menupopup id="menuContextViajes">
-					<menuitem label="Liberar Taxi" >
-						<attribute name="onClick">Executions.createComponents("liberarTaxi.zul",null,null);</attribute>
+					<menuitem label="Liberar Taxi">
+						<attribute name="onClick">
+	Executions.createComponents("liberarTaxi.zul", null, null);
+</attribute>
 					</menuitem>
 				</menupopup>
-				
-				
-				<listbox id="listTaxisLibres" width="200px" height="25%">
+
+
+				<listbox id="listTaxisLibres" width="200px"
+					height="25%">
 					<listhead>
 						<listheader label="Taxis Libres" sort="auto" />
 					</listhead>
@@ -102,17 +125,22 @@
 						</listcell>
 					</listitem>
 				</listbox>
-				
+
 				<menupopup id="menuContextLibre">
-					<menuitem label="Asignar Taxi" >
-						<attribute name="onClick">Executions.createComponents("asignarTaxi.zul",null,null);</attribute>
+					<menuitem label="Asignar Taxi">
+						<attribute name="onClick">
+	Executions.createComponents("asignarTaxi.zul", null, null);
+</attribute>
 					</menuitem>
 					<menuitem label="Desactivar Taxi">
-						<attribute name="onClick">Executions.createComponents("desactivarTaxi.zul",null,null);</attribute>
+						<attribute name="onClick">
+	Executions.createComponents("desactivarTaxi.zul", null, null);
+</attribute>
 					</menuitem>
 				</menupopup>
-				
-				<listbox id="listPedidosPend" width="200px" height="25%">
+
+				<listbox id="listPedidosPend" width="200px"
+					height="25%">
 					<listhead>
 						<listheader label="Pedidos Pendientes"
 							sort="auto" />
@@ -143,17 +171,22 @@
 						</listcell>
 					</listitem>
 				</listbox>
-	
+
 				<menupopup id="menuContextPendientes">
-					<menuitem label="Asignar Taxi" >
-							<attribute name="onClick">Executions.createComponents("asignarTaxi.zul",null,null);</attribute>
+					<menuitem label="Asignar Taxi">
+						<attribute name="onClick">
+	Executions.createComponents("asignarTaxi.zul", null, null);
+</attribute>
 					</menuitem>
-					<menuitem label="Cancelar Pedido"  >
-						<attribute name="onClick">Executions.createComponents("cancelarPedido.zul",null,null);</attribute>
+					<menuitem label="Cancelar Pedido">
+						<attribute name="onClick">
+	Executions.createComponents("cancelarPedido.zul", null, null);
+</attribute>
 					</menuitem>
 				</menupopup>
-	
-				<listbox id="listTaxisDesactivados" width="200px" height="25%">
+
+				<listbox id="listTaxisDesactivados" width="200px"
+					height="25%">
 					<listhead>
 						<listheader label="Taxis Desactivados"
 							sort="auto" />
@@ -180,21 +213,27 @@
 					</listitem>
 					<listitem>
 						<listcell context="menuContextDesactivados">
+							<attribute name="onRightClick">
+	pageScope.put("valor", 13243);
+	System.out.println("Estmaos guardando el valor: " + pageScope.get("valor"));
+</attribute>
 							<label value="13243" />
 						</listcell>
 					</listitem>
 				</listbox>
-				
+
 				<menupopup id="menuContextDesactivados">
-					<menuitem label="Activar Taxi" >
-						<attribute name="onClick">Executions.createComponents("activarTaxi.zul",null,null);</attribute>
+					<menuitem label="Activar Taxi">
+						<attribute name="onClick">
+	System.out.println("valor recibido: " + page.getAttribute("valor"));
+	Executions.createComponents("activarTaxi.zul", null, null);
+</attribute>
 					</menuitem>
 				</menupopup>
-				
-				
+
+
 			</vbox>
 		</east>
 	</borderlayout>
 
 </window>
-
