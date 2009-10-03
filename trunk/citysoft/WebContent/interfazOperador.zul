@@ -1,12 +1,30 @@
-<?page title="Taxi Follower" ?>
+<?page title="Interfaz Operador" ?>
 <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
 
 <window id="winOperador" title="Interfaz Operador" border="normal"
 	mode="modal" width="98%" height="98%" sizable="true" closable="true">
 
-	<borderlayout height="100%">
+	<borderlayout width="100%" height="100%">
 	
-		<north>Barra de botones</north>
+		<north>
+			<toolbar>
+				<toolbarbutton label="Activar Taxi">
+					<attribute name="onClick">Executions.createComponents("activarTaxi.zul",null,null);</attribute>
+				</toolbarbutton><space /><space />
+				<toolbarbutton label="Desactivar Taxi">
+					<attribute name="onClick">Executions.createComponents("desactivarTaxi.zul",null,null);</attribute>
+				</toolbarbutton><space /><space />
+				<toolbarbutton label="Asigna Taxi">
+					<attribute name="onClick">Executions.createComponents("asignarTaxi.zul",null,null);</attribute>
+				</toolbarbutton><space /><space />
+				<toolbarbutton label="Liberar Taxi">
+					<attribute name="onClick">Executions.createComponents("liberarTaxi.zul",null,null);</attribute>
+				</toolbarbutton><space /><space />
+				<toolbarbutton label="Cancelar Pedido">
+					<attribute name="onClick">Executions.createComponents("cancelarPedido.zul",null,null);</attribute>
+				</toolbarbutton><space /><space />
+			</toolbar>
+		</north>
 	
 		<!-- ******************************** -->
 		<!-- ********** GOOGLE MAP ********** -->
@@ -15,98 +33,165 @@
 		<!-- *********************************************** -->
 		<!-- ********** LISTA DE PEDIDOS SEGUIDOS ********** -->
 		<east>
-			<vbox>
-				<listbox id="listViajes" width="200px">
+			<vbox height="100%">
+				<listbox id="listViajes" width="200px" height="25%">
 					<listhead>
 						<listheader label="Viajes en curso" sort="auto" />
 					</listhead>
 					<listitem>
-						<listcell>
+						<listcell context="menuContextViajes">
 							<label value="34768" />
 						</listcell>
 					</listitem>
 					<listitem>
-						<listcell>
+						<listcell context="menuContextViajes">
 							<label value="54334" />
 						</listcell>
 					</listitem>
 					<listitem>
-						<listcell>
+						<listcell context="menuContextViajes">
 							<label value="95746" />
 						</listcell>
 					</listitem>
 					<listitem>
-						<listcell>
+						<listcell context="menuContextViajes">
 							<label value="73659" />
 						</listcell>
 					</listitem>
 					<listitem>
-						<listcell>
+						<listcell context="menuContextViajes">
 							<label value="93265" />
 						</listcell>
 					</listitem>
 				</listbox>
-				<listbox id="listTaxisLibres" width="200px">
+				
+				<menupopup id="menuContextViajes">
+					<menuitem label="Liberar Taxi" >
+						<attribute name="onClick">Executions.createComponents("liberarTaxi.zul",null,null);</attribute>
+					</menuitem>
+				</menupopup>
+				
+				
+				<listbox id="listTaxisLibres" width="200px" height="25%">
 					<listhead>
 						<listheader label="Taxis Libres" sort="auto" />
 					</listhead>
 					<listitem>
-						<listcell>
+						<listcell context="menuContextLibre">
 							<label value="34768" />
 						</listcell>
 					</listitem>
 					<listitem>
-						<listcell>
+						<listcell context="menuContextLibre">
 							<label value="54334" />
 						</listcell>
 					</listitem>
 					<listitem>
-						<listcell>
+						<listcell context="menuContextLibre">
 							<label value="95746" />
 						</listcell>
 					</listitem>
 					<listitem>
-						<listcell>
+						<listcell context="menuContextLibre">
 							<label value="73659" />
 						</listcell>
 					</listitem>
 					<listitem>
-						<listcell>
+						<listcell context="menuContextLibre">
 							<label value="93265" />
 						</listcell>
 					</listitem>
 				</listbox>
-				<listbox id="listPedidosPend" width="200px">
+				
+				<menupopup id="menuContextLibre">
+					<menuitem label="Asignar Taxi" >
+						<attribute name="onClick">Executions.createComponents("asignarTaxi.zul",null,null);</attribute>
+					</menuitem>
+					<menuitem label="Desactivar Taxi">
+						<attribute name="onClick">Executions.createComponents("desactivarTaxi.zul",null,null);</attribute>
+					</menuitem>
+				</menupopup>
+				
+				<listbox id="listPedidosPend" width="200px" height="25%">
 					<listhead>
 						<listheader label="Pedidos Pendientes"
 							sort="auto" />
 					</listhead>
 					<listitem>
-						<listcell>
+						<listcell context="menuContextPendientes">
 							<label value="34768" />
 						</listcell>
 					</listitem>
 					<listitem>
-						<listcell>
+						<listcell context="menuContextPendientes">
 							<label value="54334" />
 						</listcell>
 					</listitem>
 					<listitem>
-						<listcell>
+						<listcell context="menuContextPendientes">
 							<label value="95746" />
 						</listcell>
 					</listitem>
 					<listitem>
-						<listcell>
+						<listcell context="menuContextPendientes">
 							<label value="73659" />
 						</listcell>
 					</listitem>
 					<listitem>
-						<listcell>
+						<listcell context="menuContextPendientes">
 							<label value="93265" />
 						</listcell>
 					</listitem>
 				</listbox>
+	
+				<menupopup id="menuContextPendientes">
+					<menuitem label="Asignar Taxi" >
+							<attribute name="onClick">Executions.createComponents("asignarTaxi.zul",null,null);</attribute>
+					</menuitem>
+					<menuitem label="Cancelar Pedido"  >
+						<attribute name="onClick">Executions.createComponents("cancelarPedido.zul",null,null);</attribute>
+					</menuitem>
+				</menupopup>
+	
+				<listbox id="listTaxisDesactivados" width="200px" height="25%">
+					<listhead>
+						<listheader label="Taxis Desactivados"
+							sort="auto" />
+					</listhead>
+					<listitem>
+						<listcell context="menuContextDesactivados">
+							<label value="42454" />
+						</listcell>
+					</listitem>
+					<listitem>
+						<listcell context="menuContextDesactivados">
+							<label value="24523" />
+						</listcell>
+					</listitem>
+					<listitem>
+						<listcell context="menuContextDesactivados">
+							<label value="65445" />
+						</listcell>
+					</listitem>
+					<listitem>
+						<listcell context="menuContextDesactivados">
+							<label value="76476" />
+						</listcell>
+					</listitem>
+					<listitem>
+						<listcell context="menuContextDesactivados">
+							<label value="13243" />
+						</listcell>
+					</listitem>
+				</listbox>
+				
+				<menupopup id="menuContextDesactivados">
+					<menuitem label="Activar Taxi" >
+						<attribute name="onClick">Executions.createComponents("activarTaxi.zul",null,null);</attribute>
+					</menuitem>
+				</menupopup>
+				
+				
 			</vbox>
 		</east>
 	</borderlayout>
