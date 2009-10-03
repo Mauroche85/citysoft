@@ -1,6 +1,7 @@
-<?page title="Listado de Clientes" contentType="text/html;charset=UTF-8"?>
+<?page title="Listado de Conductores" contentType="text/html;charset=UTF-8"?>
 <zk>
-<window id="winListadoCliente" title="Listado de Clientes" border="normal"
+
+<window id="winListadoConductor" title="Listado de Conductores" border="normal"
 		mode="modal" width="850px" height="210px" sizable="false" closable="true" style="overflow:scroll">
 	<borderlayout>
 			<center>

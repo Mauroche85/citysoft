@@ -10,7 +10,7 @@
 	</menu>
 	<menu label="Conductores">
 		<menupopup>
-			<menuitem label="Listado" />
+			<menuitem label="Listado"><attribute name="onClick">Executions.createComponents("listadoConductor.zul",null,null);</attribute></menuitem>
 			<menuitem label="Alta" />
 		</menupopup>
 	</menu>
