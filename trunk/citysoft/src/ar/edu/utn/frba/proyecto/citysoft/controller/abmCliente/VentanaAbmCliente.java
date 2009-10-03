@@ -26,6 +26,7 @@ public class VentanaAbmCliente extends Window {
 		// **************************************
 
 		Cliente c = new Cliente();
+		c.setIdCliente(888);
 		c.setApellido(txtApellido.getValue());
 		c.setNombre(txtNombres.getValue());
 		// TODO Agregar el tipo del documento al cliente
