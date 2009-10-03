@@ -7,24 +7,25 @@
 			<center>
 				<grid>
 					<columns>
-						<column width="15%" label="Legajo" align="center"/>
-						<column width="40%" label="Nombre y Apellido"/>
+						<column width="10%" label="Legajo" align="center"/>
+						<column width="35%" label="Nombre y Apellido"/>
 						<column width="5%" label="Tipo" align="center"/>
-						<column width="20%" label="Documento" align="center"/>
+						<column width="15%" label="Documento" align="center"/>
+						<column width="15%" label="Tipo Empleado" align="center"/>
 						<column width="10%" label="Modificación" align="center"/>
 						<column width="10%" label="Baja" align="center"/>
 					</columns>
 					<rows>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
-						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
+						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
+						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
+						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
+						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
+						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
+						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
+						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
+						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
+						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
+						<row><label>1234567</label><label>Gabriel Donadia</label><label>DNI</label><label>42986473</label><label>Permanente</label><image src="images/tag_blue.png"/><image src="images/delete.png"/></row>
 					</rows>
 				</grid>
 			</center>
