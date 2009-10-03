@@ -16,7 +16,7 @@
 	</menu>
 	<menu label="Vehiculos">
 		<menupopup>
-			<menuitem label="Listado" />
+			<menuitem label="Listado"><attribute name="onClick">Executions.createComponents("listadoVehiculo.zul",null,null);</attribute></menuitem>
 			<menuitem label="Alta" />
 		</menupopup>
 	</menu>
