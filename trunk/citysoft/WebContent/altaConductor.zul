@@ -1,7 +1,7 @@
 <?page title="Alta Conductor" contentType="text/html;charset=UTF-8"?>
 <zk>
 	<window id="winAltaConductor" title="Alta Conductor" border="normal"
-		mode="modal" width="400px" height="240px" sizable="false" closable="true">
+		mode="modal" width="420px" height="240px" sizable="false" closable="true">
 		<borderlayout>
 			<center>
 				<grid width="300">
@@ -12,7 +12,7 @@
 					<rows>
 						<row>
 							<label value="Nombre y Apellido:" />
-							<textbox name="nombreApellido" />
+							<textbox id="nombreApellido" />
 						</row>
 						<row>
 							<label value="Tipo de Documento:" />
@@ -20,27 +20,25 @@
 						</row>
 						<row>
 							<label value="Número" />
-							<textbox name=""/>
+							<textbox id="numDoc"/>
 						</row>
 						<row>
 							<label value="Dirección:" />
-							<textbox />
+							<textbox id="direccion" />
 						</row>
 						<row>
 							<label value="Localidad:" />
-							<textbox />
+							<textbox id="localidad" />
 						</row>
 						<row>
 							<label value="Teléfono:" />
-							<textbox />
+							<textbox id="telefono"/>
 						</row>
 						<row>
 							<label value="Tipo de Empleado:" />
 							<combobox ><comboitem label="DNI"/><comboitem label="LE"/></combobox>
-						</row>
-						
+						</row>						
 					</rows>
-
 				</grid>
 			</center>
 			<east>

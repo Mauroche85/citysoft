@@ -1,0 +1,69 @@
+<?page title="Modificación Conductor" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="winModifConductor" title="Modificación Conductor" border="normal"
+		mode="modal" width="420px" height="360px" sizable="false" closable="true">
+		<borderlayout>
+			<center>
+				<grid width="300">
+					<columns>
+						<column></column>
+						<column></column>
+					</columns>
+					<rows>
+						<row>
+							<label value="N° de legajo:" />
+							<textbox id="numLegajo" />
+						</row>
+						<row>
+							<label value="Estado" />
+							<textbox id="estado" />
+						</row>
+						<row>
+							<label value="Nombre y Apellido:" />
+							<textbox id="nombreApellido" />
+						</row>
+						<row>
+							<label value="Dirección:" />
+							<textbox id="direccion" />
+						</row>
+						<row>
+							<label value="Localidad:" />
+							<textbox id="localidad" />
+						</row>
+						<row>
+							<label value="Teléfono:" />
+							<textbox id="telefono" />
+						</row>
+						<row>
+							<label value="Tipo de Empleado:" />
+							<combobox ><comboitem label="DNI"/><comboitem label="LE"/></combobox>
+						</row>
+						<row>
+							<label value="Tipo de Documento:" />
+							<combobox ><comboitem label="DNI"/><comboitem label="LE"/></combobox>
+						</row>
+						<row>
+							<label value="Número" />
+							<textbox id="numDoc"/>
+						</row>
+						<row>
+							<label value="Fecha de alta" />
+							<textbox id="fecAlta" />
+						</row>
+						<row>
+							<label value="Fecha de ult. modificación" />
+							<textbox id="fecUltModif" />
+						</row>						
+					</rows>
+				</grid>
+			</center>
+			<east>
+				<vbox align="center">
+					<button label="Aceptar" onClick="" />
+					<button label="Cancelar" onClick="winAltaCliente.detach()" />
+				</vbox>
+			</east>
+		</borderlayout>
+
+	</window>
+</zk>
