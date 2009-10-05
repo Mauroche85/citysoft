@@ -1,7 +1,7 @@
 <?page title="Modificación Conductor" contentType="text/html;charset=UTF-8"?>
 <zk>
 	<window id="winModificaciónConductor" title="Modificación Conductor" border="normal"
-		mode="modal" width="420px" height="360px" sizable="false"
+		mode="modal" width="420px" height="380px" sizable="false"
 		closable="true"
 		use="ar.edu.utn.frba.proyecto.citysoft.controller.abmConductor.VentanaAbmConductor">
 		<borderlayout>

@@ -1,55 +1,66 @@
-<?page title="Alta Vehiculo" contentType="text/html;charset=UTF-8"?>
+<?page title="Alta Vehículo" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window id="winAltaVehiculo" title="Alta Vehiculo" border="normal"
-		mode="modal" width="400px" height="240px" sizable="false" closable="true">
+	<window id="winAltaVehiculo" title="Alta Vehículo" border="normal"
+		mode="modal" width="420px" height="290px" sizable="false"
+		closable="true"
+		use="ar.edu.utn.frba.proyecto.citysoft.controller.abmVehiculo.VentanaAbmVehiculo">
 		<borderlayout>
 			<center>
 				<grid width="300">
-					<columns>
-						<column></column>
-						<column></column>
-					</columns>
 					<rows>
 						<row>
-							<label value="Nombre y Apellido del titular:" />
-							<textbox name="nombreApellido" />
+							<label value="Nombres del titular:" />
+							<textbox id="txtNombres" />
+						</row>
+						<row>
+							<label value="Apellido del titular:" />
+							<textbox id="txtApellido" />
 						</row>
 						<row>
 							<label value="Tipo de Documento:" />
-							<combobox ><comboitem label="DNI"/><comboitem label="LE"/></combobox>
+							<combobox id="cmbTipoDoc">
+								<comboitem label="DNI" />
+								<comboitem label="LE" />
+							</combobox>
 						</row>
 						<row>
 							<label value="Número" />
-							<textbox name=""/>
+							<intbox id="intNroDoc" />
 						</row>
 						<row>
 							<label value="Patente:" />
-							<textbox />
+							<textbox id="txtPatente" />
 						</row>
 						<row>
-							<label value="Marca y modelo:" />
-							<textbox />
+							<label value="Marca:" />
+							<textbox id="txtMarca" />
+						</row>
+						<row>
+							<label value="Modelo:" />
+							<textbox id="txtModelo" />
 						</row>
 						<row>
 							<label value="N° póliza de seguro:" />
-							<textbox />
+							<intbox id="txtPoliza" />
 						</row>
 						<row>
-							<label value="Tipo de Contrato:" />
-							<combobox ><comboitem label="DNI"/><comboitem label="LE"/></combobox>
-						</row>
-						
+							<label value="Tipo de vehículo:" />
+							<combobox id="cmbTipoVeh">
+								<comboitem label="Contratado" />
+								<comboitem label="Propio" />
+							</combobox>
+						</row>						
 					</rows>
-
 				</grid>
 			</center>
 			<east>
 				<vbox align="center">
-					<button label="Aceptar" onClick="" />
-					<button label="Cancelar" onClick="winAltaCliente.detach()" />
+					<button label="Aceptar"
+						onClick="winAltaVehiculo.altaVehiculo();" />
+					<button label="Cancelar"
+						onClick="winAltaVehiculo.detach();" />
 				</vbox>
 			</east>
 		</borderlayout>
-
 	</window>
 </zk>
