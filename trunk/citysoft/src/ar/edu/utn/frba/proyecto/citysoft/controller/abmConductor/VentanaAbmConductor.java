@@ -10,6 +10,8 @@ import ar.edu.utn.frba.proyecto.citysoft.modelo.Conductor;
 
 public class VentanaAbmConductor extends Window {
 
+	private static int i = 900;
+
 	public void altaConductor() {
 		Textbox txtNombres = (Textbox) this.getFellow("txtNombres");
 		Textbox txtApellido = (Textbox) this.getFellow("txtApellido");
@@ -26,7 +28,7 @@ public class VentanaAbmConductor extends Window {
 		// **************************************
 
 		Conductor c = new Conductor();
-		c.setIdConductor(888);
+		c.setIdConductor(999);
 		c.setApellido(txtApellido.getValue());
 		c.setNombre(txtNombres.getValue());
 		// TODO Agregar el tipo del documento al conductor
@@ -38,7 +40,6 @@ public class VentanaAbmConductor extends Window {
 		// **************************************
 		// ** Guardo el conductor en la central!!!!
 		// **************************************
-
 		CentralTaxis.getInstance().addConductor(c);
 	}
 

@@ -32,8 +32,15 @@ import ar.edu.utn.frba.proyecto.citysoft.modelo.ObjetoDeDominio;
  */
 public interface Lote {
 
+	/**
+	 * Devuelve una lista de elementos
+	 */
 	List<ObjetoDeDominio> getLote();
 
+	/**
+	 * Carga en la central de taxis la lista de elementos en sus colecciones
+	 * correspondientes
+	 */
 	public void cargar();
 
 }

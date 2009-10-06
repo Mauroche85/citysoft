@@ -1,32 +1,32 @@
 <?page title="Listado de Clientes" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="winListadoCliente"?>
 
 <zk>
-	<window id="winListadoCliente" title="Listado de Clientes"
-		border="normal"
+	<window id="winListadoCliente" title="Listado de Clientes" border="normal"
 		use="ar.edu.utn.frba.proyecto.citysoft.controller.listadoCliente.VentanaListadoClientes"
-		mode="modal" width="900px" height="210px" sizable="false"
-		closable="true">
+		mode="modal" width="900px" height="210px" sizable="false" closable="true">
 		<borderlayout>
 			<center>
 				<grid model="@{winListadoCliente.getListaClientes}">
 					<columns>
 						<column width="100px" label="Legajo" align="center" />
 						<column width="150px" label="Apellido" />
-						<column width="150px" label="Nombre" />
-						<column width="100px" label="Tipo" align="center" />
+						<column width="150px" label="Nombres" />
 						<column width="150px" label="Documento" align="center" />
 						<column width="100px" label="Modificación" align="center" />
 						<column width="100px" label="Baja" align="center" />
 					</columns>
 					<rows>
 						<row self="@{each=cli}">
-							<label>1234567</label>
+							<label value="@{cli.idCliente.toString}"></label>
 							<label value="@{cli.apellido}"></label>
 							<label value="@{cli.nombre}"></label>
-							<label>DNI</label>
-							<label>42986473</label>
+							<label value="@{cli.dni}" />
 							<image src="images/tag_blue.png" />
-							<image src="images/delete.png" />
+							<image src="images/delete.png" idCliente="@{cli.idCliente}"
+								use="ar.edu.utn.frba.proyecto.citysoft.controller.listadoConductores.ImagenEliminarCliente"
+								onClick="winListadoCliente.delete(self.getIdCliente());">
+							</image>
 						</row>
 					</rows>
 				</grid>

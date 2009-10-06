@@ -1,26 +1,40 @@
 <?page title="GTTR: Gestión de Taxis en Tiempo Real" contentType="text/html;charset=UTF-8"?>
-<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
 
 <zk>
-<menubar > 
-	<menu label="Clientes">
-		<menupopup>
-			<menuitem label="Listado"><attribute name="onClick">Executions.createComponents("listadoCliente.zul",null,null);</attribute></menuitem>
-			<menuitem label="Alta"><attribute name="onClick">Executions.createComponents("altaCliente.zul",null,null);</attribute></menuitem>
-		</menupopup>
-	</menu>
-	<menu label="Conductores">
-		<menupopup>
-			<menuitem label="Listado"><attribute name="onClick">Executions.createComponents("listadoConductor.zul",null,null);</attribute></menuitem>
-			<menuitem label="Alta" />
-		</menupopup>
-	</menu>
-	<menu label="Vehiculos">
-		<menupopup>
-			<menuitem label="Listado"><attribute name="onClick">Executions.createComponents("listadoVehiculo.zul",null,null);</attribute></menuitem>
-			<menuitem label="Alta" />
-		</menupopup>
-	</menu>
-	<menuitem label="Operador"><attribute name="onClick">Executions.createComponents("interfazOperador.zul",null,null);</attribute></menuitem>
-</menubar>
+	<menubar>
+		<menu label="Clientes">
+			<menupopup>
+				<menuitem label="Listado"><attribute name="onClick">
+	Executions.createComponents("listadoCliente.zul", null, null);
+</attribute>
+				</menuitem>
+				<menuitem label="Alta"><attribute name="onClick">
+	Executions.createComponents("altaCliente.zul", null, null);
+</attribute>
+				</menuitem>
+			</menupopup>
+		</menu>
+		<menu label="Conductores">
+			<menupopup>
+				<menuitem label="Listado"><attribute name="onClick">
+	Executions.createComponents("listadoConductor.zul", null, null);
+</attribute>
+				</menuitem>
+				<menuitem label="Alta" />
+			</menupopup>
+		</menu>
+		<menu label="Vehiculos">
+			<menupopup>
+				<menuitem label="Listado"><attribute name="onClick">
+	Executions.createComponents("listadoVehiculo.zul", null, null);
+</attribute>
+				</menuitem>
+				<menuitem label="Alta" />
+			</menupopup>
+		</menu>
+		<menuitem label="Operador"><attribute name="onClick">
+	Executions.createComponents("interfazOperador.zul", null, null);
+</attribute>
+		</menuitem>
+	</menubar>
 </zk>

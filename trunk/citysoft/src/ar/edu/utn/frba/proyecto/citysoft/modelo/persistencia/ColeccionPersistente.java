@@ -37,30 +37,19 @@ public class ColeccionPersistente<E> implements Collection<E> {
 	private ObjectContainer db;
 
 	// **************************************
-	// ** Helpers internos
-	// **************************************
-
-	private ObjectContainer getDb() {
-		if (this.db == null) {
-			this.db = ContextoAplicacion.getInstance().obtenerDb();
-		}
-		return this.db;
-	}
-
-	// **************************************
 	// ** Interface
 	// **************************************
 
 	@Override
 	public boolean add(E e) {
-		getDb().store(e);
+		guardarEnDb(e);
 		return this.l.add(e);
 	}
 
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
 		for (Iterator<? extends E> it = c.iterator(); it.hasNext();) {
-			getDb().store(it.next());
+			guardarEnDb(it.next());
 		}
 		return this.l.addAll(c);
 	}
@@ -68,7 +57,7 @@ public class ColeccionPersistente<E> implements Collection<E> {
 	@Override
 	public void clear() {
 		for (Iterator<E> it = this.l.iterator(); it.hasNext();) {
-			getDb().delete(it.next());
+			borrarDeDb(it.next());
 		}
 		this.l.clear();
 	}
@@ -93,16 +82,18 @@ public class ColeccionPersistente<E> implements Collection<E> {
 		return l.iterator();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean remove(Object o) {
-		getDb().delete(o);
+		borrarDeDb((E) o);
 		return this.l.remove(o);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean removeAll(Collection<?> c) {
 		for (Iterator<?> it = c.iterator(); it.hasNext();) {
-			getDb().delete(c);
+			borrarDeDb((E) it.next());
 		}
 		return this.l.removeAll(c);
 	}
@@ -128,6 +119,27 @@ public class ColeccionPersistente<E> implements Collection<E> {
 	@Override
 	public <T> T[] toArray(T[] a) {
 		return this.l.toArray(a);
+	}
+
+	// **************************************
+	// ** HELPERS
+	// **************************************
+
+	private ObjectContainer getDb() {
+		if (this.db == null) {
+			this.db = ContextoAplicacion.getInstance().obtenerDb();
+		}
+		return this.db;
+	}
+
+	private void guardarEnDb(E e) {
+		getDb().store(e);
+		getDb().commit();
+	}
+
+	private void borrarDeDb(E e) {
+		getDb().delete(e);
+		getDb().commit();
 	}
 
 }
