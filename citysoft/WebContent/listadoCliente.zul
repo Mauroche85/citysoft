@@ -7,7 +7,8 @@
 		mode="modal" width="900px" height="210px" sizable="false" closable="true">
 		<borderlayout>
 			<center>
-				<grid model="@{winListadoCliente.getListaClientes}">
+				<grid id="grid"
+					model="@{winListadoCliente.getListaClientes, load-after='self.onChange'}">
 					<columns>
 						<column width="100px" label="Legajo" align="center" />
 						<column width="150px" label="Apellido" />
