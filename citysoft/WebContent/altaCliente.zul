@@ -1,13 +1,17 @@
 <?page title="Alta Cliente" contentType="text/html;charset=UTF-8"?>
+
 <zk>
-	<window id="winAltaCliente" title="Alta Cliente" border="normal"
-		mode="modal" width="420px" height="240px" sizable="false"
-		closable="true"
+	<window id="winAltaCliente" title="Alta Cliente" border="normal" mode="modal" width="420px"
+		height="240px" sizable="false" closable="true"
 		use="ar.edu.utn.frba.proyecto.citysoft.controller.abmCliente.VentanaAbmCliente">
 		<borderlayout>
 			<center>
 				<grid width="300">
 					<rows>
+						<row>
+							<label value="Legajo:" />
+							<intbox id="intLegajo" />
+						</row>
 						<row>
 							<label value="Nombres:" />
 							<textbox id="txtNombres" />
@@ -16,15 +20,15 @@
 							<label value="Apellido:" />
 							<textbox id="txtApellido" />
 						</row>
-						<row>
+						<!-- row>
 							<label value="Tipo de Documento:" />
 							<combobox id="cmbTipoDoc">
-								<comboitem label="DNI" />
-								<comboitem label="LE" />
+							<comboitem label="DNI" />
+							<comboitem label="LE" />
 							</combobox>
-						</row>
+							</row -->
 						<row>
-							<label value="Número" />
+							<label value="Número documento:" />
 							<intbox id="intNroDoc" />
 						</row>
 						<row>
@@ -45,10 +49,8 @@
 			</center>
 			<east>
 				<vbox align="center">
-					<button label="Aceptar"
-						onClick="winAltaCliente.altaCliente();" />
-					<button label="Cancelar"
-						onClick="winAltaCliente.detach();" />
+					<button label="Aceptar" onClick="winAltaCliente.altaCliente();" />
+					<button label="Cancelar" onClick="winAltaCliente.detach();" />
 				</vbox>
 			</east>
 		</borderlayout>

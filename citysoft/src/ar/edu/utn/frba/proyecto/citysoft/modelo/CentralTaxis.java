@@ -61,6 +61,10 @@ public class CentralTaxis implements ObjetoDeDominio {
 		this.taxis.add(taxi);
 	}
 
+	public void updateTaxi(Taxi taxi) {
+		this.taxis.add(taxi);
+	}
+
 	public Collection<Conductor> getConductores() {
 		return conductores;
 	}
@@ -69,11 +73,19 @@ public class CentralTaxis implements ObjetoDeDominio {
 		this.conductores.add(conductor);
 	}
 
+	public void updateConductor(Conductor conductor) {
+		this.conductores.add(conductor);
+	}
+
 	public Collection<Cliente> getClientes() {
 		return clientes;
 	}
 
 	public void addCliente(Cliente cliente) {
+		this.clientes.add(cliente);
+	}
+
+	public void updateCliente(Cliente cliente) {
 		this.clientes.add(cliente);
 	}
 
@@ -96,6 +108,17 @@ public class CentralTaxis implements ObjetoDeDominio {
 			public boolean evaluate(Object arg0) {
 				Cliente c = (Cliente) arg0;
 				return c.getNombreUsuario().equals(usuario);
+			}
+		});
+	}
+
+	public Cliente getClientePorId(final int idCliente) {
+		// TODO: que pasa si no lo encuentra??? devuelve null???
+		return (Cliente) CollectionUtils.find(this.clientes, new Predicate() {
+			@Override
+			public boolean evaluate(Object arg0) {
+				Cliente c = (Cliente) arg0;
+				return c.getIdCliente() == idCliente;
 			}
 		});
 	}

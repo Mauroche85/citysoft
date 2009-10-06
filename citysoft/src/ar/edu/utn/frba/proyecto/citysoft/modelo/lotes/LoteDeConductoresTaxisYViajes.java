@@ -17,29 +17,24 @@ public class LoteDeConductoresTaxisYViajes implements Lote {
 	@Override
 	public List<ObjetoDeDominio> getLote() {
 		List<ObjetoDeDominio> list = new ArrayList<ObjetoDeDominio>();
-		// TODO completar con taxis de prueba
-		return list;
-	}
+		Conductor c;
 
-	public void cargar() {
 		// **************************************
-		// ** TAXI DEL CONDUCTOR JORGE URETA Y SU VIAJE
+		// ** TAXI DEL CONDUCTOR JORGE URETTA Y SU VIAJE
 		// **************************************
-		Conductor c = buildConductor("Ureta", "Jorge");
-		Taxi t = buildTaxi(1, "TAXI01");
+		c = buildConductor(111, "Uretta", "Jorge", 10111000, "Quintino Bocayuva 615", "4911-1000");
+		Taxi t = buildTaxi(1, "TAXI01", "Renault", "19", "JUT 111", "El vehiculo de Jorge Uretta");
 		Viaje v = buildViaje(1);
 		c.setTaxi(t);
 		t.addViaje(v);
 		t.setViajeEnCurso(v);
-		CentralTaxis.getInstance().addConductor(c);
-		CentralTaxis.getInstance().addTaxi(t);
-		CentralTaxis.getInstance().addViaje(v);
+		list.add(c);
 
 		// **************************************
 		// ** TAXI DEL CONDUCTOR MARIO LEMIAUX Y SU VIAJE
 		// **************************************
-		c = buildConductor("Mario", "Lemiaux");
-		t = buildTaxi(2, "TAXI02");
+		c = buildConductor(222, "Mario", "Lemiaux", 10222000, "Slapshot 3", "4922-2000");
+		t = buildTaxi(2, "TAXI02", "Bauer", "Vapor XXX", "VAP 030", "El vehiculo de Mario Lemiaux");
 		v = buildViaje(2);
 		c.setTaxi(t);
 		t.addViaje(v);
@@ -47,19 +42,60 @@ public class LoteDeConductoresTaxisYViajes implements Lote {
 		CentralTaxis.getInstance().addConductor(c);
 		CentralTaxis.getInstance().addTaxi(t);
 		CentralTaxis.getInstance().addViaje(v);
+		list.add(c);
+
+		// **************************************
+		// ** TAXI DEL CONDUCTOR GUILLERMO MARIMON Y SU VIAJE
+		// **************************************
+		c = buildConductor(333, "Marimon", "Guillermo", 10333000, "Bañeros 3", "4933-3000");
+		t = buildTaxi(3, "TAXI03", "Fiat", "128", "GUI 333", "El vehiculo de Guillermo Marimon");
+		v = buildViaje(3);
+		c.setTaxi(t);
+		t.addViaje(v);
+		t.setViajeEnCurso(v);
+		CentralTaxis.getInstance().addConductor(c);
+		CentralTaxis.getInstance().addTaxi(t);
+		CentralTaxis.getInstance().addViaje(v);
+		list.add(c);
+
+		return list;
 	}
 
-	private Conductor buildConductor(String apellido, String nombre) {
+	public void cargar() {
+		for (ObjetoDeDominio objetoDominio : getLote()) {
+			Conductor c = (Conductor) objetoDominio;
+			CentralTaxis.getInstance().addConductor(c);
+			CentralTaxis.getInstance().addTaxi(c.getTaxi());
+			CentralTaxis.getInstance().addViaje(c.getTaxi().getViajeEnCurso());
+		}
+	}
+
+	// **************************************
+	// ** Helpers
+	// **************************************
+
+	private Conductor buildConductor(int idConductor, String apellido, String nombre, int dni,
+			String dir, String tel) {
 		Conductor c = new Conductor();
+		c.setIdConductor(idConductor);
 		c.setApellido(apellido);
 		c.setNombre(nombre);
+		c.setDni(dni);
+		c.setDireccion(dir);
+		c.setLocalidad("Capital Federal");
+		c.setTelefono(tel);
 		return c;
 	}
 
-	private Taxi buildTaxi(int idTaxi, String trackerId) {
+	private Taxi buildTaxi(int idTaxi, String trackerId, String marca, String modelo, String patente,
+			String detalle) {
 		Taxi t = new Taxi();
 		t.setIdTaxi(idTaxi);
 		t.setIdTracker(trackerId);
+		t.setMarca(marca);
+		t.setModelo(modelo);
+		t.setPatente(patente);
+		t.setDetalle(detalle);
 		return t;
 	}
 

@@ -6,6 +6,7 @@ public abstract class Persona implements ObjetoDeDominio {
 	private String apellido;
 	private int dni;
 	private String direccion;
+	private String localidad;
 	private String telefono;
 
 	// **************************************
@@ -42,6 +43,14 @@ public abstract class Persona implements ObjetoDeDominio {
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+
+	public String getLocalidad() {
+		return localidad;
+	}
+
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
 	}
 
 	public String getTelefono() {
