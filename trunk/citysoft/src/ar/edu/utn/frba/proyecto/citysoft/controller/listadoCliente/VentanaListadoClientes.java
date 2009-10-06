@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Window;
 
 import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
@@ -25,6 +27,12 @@ public class VentanaListadoClientes extends Window {
 	public void delete(int legajo) {
 		Cliente c = CentralTaxis.getInstance().getClientePorId(legajo);
 		CentralTaxis.getInstance().getClientes().remove(c);
+		this.refrescarTabla();
+	}
+
+	public void refrescarTabla() {
+		Event event = new Event(Events.ON_CHANGE, this.getFellow("grid"));
+		Events.sendEvent(event);
 	}
 
 }
