@@ -1,6 +1,7 @@
 <?page title="GTTR: Gestión de Taxis en Tiempo Real" contentType="text/html;charset=UTF-8"?>
-<zk>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
 
+<zk>
 <menubar > 
 	<menu label="Clientes">
 		<menupopup>
