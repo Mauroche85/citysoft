@@ -1,8 +1,8 @@
 <?page title="Taxi Follower" ?>
 <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
 
-<window id="winFollower" title="Follower" border="normal"
-	mode="modal" width="95%" height="95%" sizable="true">
+<window id="winFollower" title="Follower" border="normal" mode="modal" width="95%" height="95%"
+	sizable="true">
 
 	<!-- tutaxi.com.ar? src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA" -->
 	<script
@@ -15,8 +15,7 @@
 			<div>
 				<label value="Número de viaje" />
 				<intbox id="txtIdViaje" />
-				<button id="btnSeguir" label="Seguir"
-					onClick="self.seguir();"
+				<button id="btnSeguir" label="Seguir" onClick="self.seguir();"
 					use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.FollowButton" />
 				<separator orient="horizontal" />
 			</div>
@@ -25,17 +24,16 @@
 		<!-- ********** GOOGLE MAP ********** -->
 		<center flex="true">
 			<gmaps id="gmap"
-				use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.FollowerMap"
-				showZoomCtrl="true" showOverviewCtrl="true" showTypeCtrl="true">
+				use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.FollowerMap" showZoomCtrl="true"
+				showOverviewCtrl="true" showTypeCtrl="true">
 			</gmaps>
 		</center>
 		<!-- *********************************************** -->
 		<!-- ********** LISTA DE PEDIDOS SEGUIDOS ********** -->
 		<east>
 			<listbox id="listPedidosSeguidos"
-				use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.ListaSeguimientos"
-				width="200px" height="100%" vflex="true"
-				model="@{gmap.taxisSet, load-after='listPedidosSeguidos.onChange'}">
+				use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.ListaSeguimientos" width="200px"
+				height="100%" vflex="true" model="@{gmap.taxisSet, load-after='listPedidosSeguidos.onChange'}">
 				<listhead>
 					<listheader label="Viajes en mapa" sort="auto" />
 				</listhead>
@@ -45,22 +43,20 @@
 					<listcell>
 						<label value="Viaje" />
 						<label value="@{taxi.viajeEnCurso.idViaje}" />
-						<image src="images/pin.png" align="absbottom"
-							visible="false" />
+						<image src="images/pin.png" align="absbottom" visible="false" />
 					</listcell>
 					<listcell>
 						<image
 							use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.ImagenRemoverTaxiSeguido"
-							src="images/cross.png" align="absbottom"
-							onClick="self.removerTaxi();" />
+							src="images/cross.png" align="absbottom" onClick="self.removerTaxi();" />
 					</listcell>
 				</listitem>
 			</listbox>
 		</east>
 	</borderlayout>
 
-	<timer id="t"
-		use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.FollowerTimer"
+	<!-- Esto lo usamos para actualizar el mapa cada medio segundo -->
+	<timer id="t" use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.FollowerTimer"
 		onTimer="self.ring();" repeats="true" delay="500" running="true" />
 </window>
 
