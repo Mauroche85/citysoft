@@ -9,7 +9,7 @@
 </attribute>
 				</menuitem>
 				<menuitem label="Alta"><attribute name="onClick">
-	Executions.createComponents("altaCliente.zul", null, null);
+	Executions.createComponents("altaCliente.zul", null, null).abrirAlta();
 </attribute>
 				</menuitem>
 			</menupopup>
@@ -34,6 +34,10 @@
 		</menu>
 		<menuitem label="Operador"><attribute name="onClick">
 	Executions.createComponents("interfazOperador.zul", null, null);
+</attribute>
+		</menuitem>
+		<menuitem label="Resetear base"><attribute name="onClick">
+	ar.edu.utn.frba.proyecto.citysoft.config.AmbienteDeDesarrollo.getInstance().borrarYPoblarBase();
 </attribute>
 		</menuitem>
 	</menubar>

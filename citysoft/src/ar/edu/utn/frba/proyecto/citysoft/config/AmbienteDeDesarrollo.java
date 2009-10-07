@@ -59,11 +59,15 @@ public class AmbienteDeDesarrollo {
 
 	public void crearAmbiente() {
 		ContextoAplicacion.getInstance().abrirDb();
+		borrarYPoblarBase();
+		ContextoAplicacion.getInstance().cerrarDd();
+		CentralTaxis.getInstance().terminate();
+	}
+
+	public void borrarYPoblarBase() {
 		ContextoAplicacion.getInstance().borrarDb();
 		CentralTaxis.getInstance().initialize();
 		AmbienteDeDesarrollo.getInstance().cargar();
-		ContextoAplicacion.getInstance().cerrarDd();
-		CentralTaxis.getInstance().terminate();
 	}
 
 }

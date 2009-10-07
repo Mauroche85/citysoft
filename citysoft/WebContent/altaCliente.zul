@@ -41,7 +41,7 @@
 						</row>
 						<row>
 							<label value="Teléfono:" />
-							<intbox id="intTelefono" />
+							<textbox id="txtTelefono" />
 						</row>
 					</rows>
 
@@ -49,8 +49,12 @@
 			</center>
 			<east>
 				<vbox align="center">
-					<button label="Aceptar" onClick="winAltaCliente.altaCliente();" />
-					<button label="Cancelar" onClick="winAltaCliente.detach();" />
+					<button label="Aceptar" id="btnGuardarAlta" onClick="winAltaCliente.altaCliente();" />
+					<button label="Aceptar" id="btnGuardarModif" onClick="winAltaCliente.modifCliente();" />
+					<button label="Cancelar" id="btnCancelar" onClick="winAltaCliente.cerrar();" />
+					<button label="Modificar" id="btnModificar" onClick="winAltaCliente.abrirModificacion();" />
+					<button label="Eliminar" id="btnEliminar" onClick="winAltaCliente.eliminarCliente();" />
+					<button label="Cerrar" id="btnCerrar" onClick="winAltaCliente.cerrar();" />
 				</vbox>
 			</east>
 		</borderlayout>

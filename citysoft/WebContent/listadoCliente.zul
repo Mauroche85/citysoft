@@ -23,10 +23,13 @@
 							<label value="@{cli.apellido}"></label>
 							<label value="@{cli.nombre}"></label>
 							<label value="@{cli.dni}" />
-							<image src="images/tag_blue.png" />
-							<image src="images/delete.png" idCliente="@{cli.idCliente}"
-								use="ar.edu.utn.frba.proyecto.citysoft.controller.listadoConductores.ImagenEliminarCliente"
-								onClick="winListadoCliente.delete(self.getIdCliente());">
+							<image src="images/tag_blue.png" idNegocio="@{cli.idCliente}"
+								use="ar.edu.utn.frba.proyecto.citysoft.controller.ImagenConIdDeNegocio"
+								onClick="winListadoCliente.modificar(self.getIdNegocio());">
+							</image>
+							<image src="images/delete.png" idNegocio="@{cli.idCliente}"
+								use="ar.edu.utn.frba.proyecto.citysoft.controller.ImagenConIdDeNegocio"
+								onClick="winListadoCliente.eliminar(self.getIdNegocio());">
 							</image>
 						</row>
 					</rows>
