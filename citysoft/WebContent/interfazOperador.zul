@@ -1,20 +1,27 @@
 <?page title="Interfaz Operador" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
 
 <window id="winOperador" title="Interfaz Operador" border="normal"
 	mode="modal" width="98%" height="98%" sizable="true" closable="true">
+
+	<!-- tutaxi.com.ar? src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA" -->
+	<script
+		src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhRzdWSuvxlSxMx33aEXsRZiewAFIxTyvaaXezhKd2-vbxqrWx_80Qz4dg"
+		type="text/javascript">
+	</script>
 
 	<borderlayout width="100%" height="100%">
 
 		<north>
 			<toolbar>
-				<toolbarbutton label="Activar Taxi">
+				<toolbarbutton label="Activar Taxi" image="images/tag_blue.png">
 					<attribute name="onClick">
 	Executions.createComponents("activarTaxi.zul", null, null);
 </attribute>
 				</toolbarbutton>
 				<space />
 				<space />
-				<toolbarbutton label="Desactivar Taxi">
+				<toolbarbutton label="Desactivar Taxi" image="images/plug.png">
 					<attribute name="onClick">
 	Executions.createComponents("desactivarTaxi.zul", null, null);
 </attribute>
@@ -47,25 +54,40 @@
 
 		<!-- ******************************** -->
 		<!-- ********** GOOGLE MAP ********** -->
-		<center flex="true"></center>
+		<center flex="true">
+			<gmaps id="gmap"
+				use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.FollowerMap" showZoomCtrl="true"
+				showOverviewCtrl="true" showTypeCtrl="true">
+			</gmaps>
+		</center>
 
 		<!-- *********************************************** -->
-		<!-- ********** LISTA DE PEDIDOS SEGUIDOS ********** -->
-		<east width="200px">
-			<vbox width="200px">
-				<columnlayout width="200px">
+		<east width="150px">
+			<vbox width="150px">
+				<columnlayout width="150px">
 					<columnchildren style="padding: 5px">
 						<panel title="Viajes en curso"
 							style="margin-bottom:10p" border="normal" collapsible="true">
 							<panelchildren>
 								<listbox id="listViajes">
 									<listitem>
+										<listcell>
+											<hbox widths="60px" align="center">
+												<label value="Todos" />
+												<checkbox />
+											</hbox>
+										</listcell>
+									</listitem>
+									<listitem>
 										<listcell
 											context="menuContextViajes">
 											<attribute name="onRightClick">
 	pageScope.put("valor", "34768");
 </attribute>
-											<label value="34768" />
+											<hbox widths="60px" align="center">
+												<label value="34768" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 									<listitem>
@@ -74,7 +96,10 @@
 											<attribute name="onRightClick">
 	pageScope.put("valor", "54334");
 </attribute>
-											<label value="54334" />
+											<hbox widths="60px" align="center">
+												<label value="54334" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 									<listitem>
@@ -83,7 +108,10 @@
 											<attribute name="onRightClick">
 	pageScope.put("valor", "95746");
 </attribute>
-											<label value="95746" />
+											<hbox widths="60px" align="center">
+												<label value="95746" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 									<listitem>
@@ -92,7 +120,10 @@
 											<attribute name="onRightClick">
 	pageScope.put("valor", "73659");
 </attribute>
-											<label value="73659" />
+											<hbox widths="60px" align="center">
+												<label value="73659" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 									<listitem>
@@ -101,7 +132,10 @@
 											<attribute name="onRightClick">
 	pageScope.put("valor", "93265");
 </attribute>
-											<label value="93265" />
+											<hbox widths="60px" align="center">
+												<label value="93265" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 								</listbox>
@@ -124,14 +158,24 @@
 							<panelchildren>
 
 								<listbox id="listTaxisLibres">
-
+									<listitem>
+										<listcell>
+											<hbox widths="60px" align="center">
+												<label value="Todos" />
+												<checkbox />
+											</hbox>
+										</listcell>
+									</listitem>
 									<listitem>
 										<listcell
 											context="menuContextLibre">
 											<attribute name="onRightClick">
 	pageScope.put("valor", "34768");
 </attribute>
-											<label value="34768" />
+											<hbox widths="60px" align="center">
+												<label value="34768" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 									<listitem>
@@ -140,7 +184,10 @@
 											<attribute name="onRightClick">
 	pageScope.put("valor", "54334");
 </attribute>
-											<label value="54334" />
+											<hbox widths="60px" align="center">
+												<label value="54334" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 									<listitem>
@@ -149,7 +196,10 @@
 											<attribute name="onRightClick">
 	pageScope.put("valor", "95746");
 </attribute>
-											<label value="95746" />
+											<hbox widths="60px" align="center">
+												<label value="95746" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 									<listitem>
@@ -158,7 +208,10 @@
 											<attribute name="onRightClick">
 	pageScope.put("valor", "73659");
 </attribute>
-											<label value="73659" />
+											<hbox widths="60px" align="center">
+												<label value="73659" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 									<listitem>
@@ -167,7 +220,10 @@
 											<attribute name="onRightClick">
 	pageScope.put("valor", "93265");
 </attribute>
-											<label value="93265" />
+											<hbox widths="60px" align="center">
+												<label value="93265" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 								</listbox>
@@ -196,14 +252,24 @@
 							<panelchildren>
 
 								<listbox id="listPedidosPend">
-
+									<listitem>
+										<listcell>
+											<hbox widths="60px" align="center">
+												<label value="Todos" />
+												<checkbox />
+											</hbox>
+										</listcell>
+									</listitem>
 									<listitem>
 										<listcell
 											context="menuContextPendientes">
 											<attribute name="onRightClick">
 	pageScope.put("valor", "34768");
 </attribute>
-											<label value="34768" />
+											<hbox widths="60px" align="center">
+												<label value="34768" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 									<listitem>
@@ -212,7 +278,10 @@
 											<attribute name="onRightClick">
 	pageScope.put("valor", "54334");
 </attribute>
-											<label value="54334" />
+											<hbox widths="60px" align="center">
+												<label value="54334" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 									<listitem>
@@ -221,7 +290,10 @@
 											<attribute name="onRightClick">
 	pageScope.put("valor", "95746");
 </attribute>
-											<label value="95746" />
+											<hbox widths="60px" align="center">
+												<label value="95746" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 									<listitem>
@@ -230,7 +302,10 @@
 											<attribute name="onRightClick">
 	pageScope.put("valor", "73659");
 </attribute>
-											<label value="73659" />
+											<hbox widths="60px" align="center">
+												<label value="73659" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 									<listitem>
@@ -239,7 +314,10 @@
 											<attribute name="onRightClick">
 	pageScope.put("valor", "93265");
 </attribute>
-											<label value="93265" />
+											<hbox widths="60px" align="center">
+												<label value="93265" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 								</listbox>
@@ -262,34 +340,54 @@
 							</panelchildren>
 						</panel>
 
-						<panel title="Taxis Desactivados"
+						<panel title="Taxis Desact."
 							style="margin-bottom:10p" border="normal" collapsible="true">
 
 							<panelchildren>
 
 								<listbox id="listTaxisDesactivados">
 									<listitem>
-										<listcell
-											context="menuContextDesactivados">
-											<label value="42454" />
+										<listcell>
+											<hbox widths="60px" align="center">
+												<label value="Todos" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 									<listitem>
 										<listcell
 											context="menuContextDesactivados">
-											<label value="24523" />
+											<hbox widths="60px" align="center">
+												<label value="52345" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 									<listitem>
 										<listcell
 											context="menuContextDesactivados">
-											<label value="65445" />
+											<hbox widths="60px" align="center">
+												<label value="46575" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 									<listitem>
 										<listcell
 											context="menuContextDesactivados">
-											<label value="76476" />
+											<hbox widths="60px" align="center">
+												<label value="43245" />
+												<checkbox />
+											</hbox>
+										</listcell>
+									</listitem>
+									<listitem>
+										<listcell
+											context="menuContextDesactivados">
+											<hbox widths="60px" align="center">
+												<label value="54328" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 									<listitem>
@@ -297,7 +395,10 @@
 											context="menuContextDesactivados">
 											<!-- Otra manera de hacerlo:
 												custom-attributes idTaxiDesactivado="13243" / -->
-											<label value="13243" />
+											<hbox widths="60px" align="center">
+												<label value="13243" />
+												<checkbox />
+											</hbox>
 										</listcell>
 									</listitem>
 								</listbox>
@@ -326,4 +427,7 @@
 		</east>
 	</borderlayout>
 
+	<!-- Esto lo usamos para actualizar el mapa cada medio segundo -->
+	<timer id="t" use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.FollowerTimer"
+		onTimer="self.ring();" repeats="true" delay="500" running="true" />
 </window>
