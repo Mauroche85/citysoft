@@ -30,6 +30,7 @@ public class CentralTaxis implements ObjetoDeDominio {
 	 * Para que carge de la DB todos los datos
 	 */
 	public void initialize() {
+		this.generadorDeIds = GeneradorDeIds.getInstance();
 		this.taxis = new ColeccionPersistente<Taxi>(Taxi.class);
 		this.conductores = new ColeccionPersistente<Conductor>(Conductor.class);
 		this.clientes = new ColeccionPersistente<Cliente>(Cliente.class);
@@ -44,6 +45,7 @@ public class CentralTaxis implements ObjetoDeDominio {
 	// ** Attributes
 	// **************************************
 
+	private GeneradorDeIds generadorDeIds;
 	private Collection<Taxi> taxis;
 	private Collection<Conductor> conductores;
 	private Collection<Cliente> clientes;
@@ -144,8 +146,7 @@ public class CentralTaxis implements ObjetoDeDominio {
 			}
 		});
 	}
-	
-	
+
 	public Taxi getTaxiPorTrackerId(final String idTracker) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
 		return (Taxi) CollectionUtils.find(this.taxis, new Predicate() {
@@ -157,28 +158,17 @@ public class CentralTaxis implements ObjetoDeDominio {
 		});
 	}
 
-	public Taxi getTaxi(final String idTaxi) {
-		// TODO: que pasa si no lo encuentra??? devuelve null???
-		return (Taxi) CollectionUtils.find(this.taxis, new Predicate() {
-			@Override
-			public boolean evaluate(Object arg0) {
-				Taxi t = (Taxi) arg0;
-				return t.getIdTaxi() == idTaxi;
-			}
-		});
-	}
-
-	public Taxi getTaxiPorId(final String idTaxi) {
+	public Taxi getTaxiPorPatente(final String patente) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
 		return (Taxi) CollectionUtils.find(this.taxis, new Predicate() {
 			@Override
 			public boolean evaluate(Object arg0) {
 				Taxi c = (Taxi) arg0;
-				return c.getIdTaxi() == idTaxi;
+				return c.getPatente().equals(patente);
 			}
 		});
 	}
-		
+
 	public Viaje getViaje(final int idViaje) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
 		return (Viaje) CollectionUtils.find(this.viajes, new Predicate() {

@@ -8,14 +8,14 @@ public class ImagenRemoverTaxiSeguido extends Image {
 
 	public void removerTaxi() {
 		FollowerMap gmap = (FollowerMap) getFellow(FollowerWindowComponents.GMAP);
-		gmap.quitarGmark(getIdTaxi());
+		gmap.quitarGmark(getPatente());
 		// Esto es para que se actualice la lista de taxis seguidos
 		FollowerWindowUtils.dispararCambiosEnLista(this);
 	}
 
-	private int getIdTaxi() {
+	private String getPatente() {
 		ItemDeListaSeguimiento item = (ItemDeListaSeguimiento) this.getParent().getParent();
-		return item.getIdTaxi();
+		return (String) item.getValue();
 	}
 
 }

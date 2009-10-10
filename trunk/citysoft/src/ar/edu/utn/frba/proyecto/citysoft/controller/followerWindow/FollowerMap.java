@@ -41,10 +41,8 @@ public class FollowerMap extends Gmaps implements FollowerWindowComponents {
 	public void actualizarVista() {
 		for (Taxi taxi : this.taxisEnSeguimiento.keySet()) {
 			Gmarker gm = this.taxisEnSeguimiento.get(taxi);
-			if (taxi.getIdTaxi() % 2 == 0)
-				gm.setIconImage("images/taxiOcupadoMarker.png");
-			else
-				gm.setIconImage("images/taxiMarker.png");
+			// gm.setIconImage("images/taxiOcupadoMarker.png");
+			gm.setIconImage("images/taxiMarker.png");
 			actualizarMarker(gm, taxi);
 		}
 	}
@@ -69,7 +67,7 @@ public class FollowerMap extends Gmaps implements FollowerWindowComponents {
 	public void agregarGmark(Taxi taxi) {
 		// 1. Creo y configuro el marker
 		Gmarker gm = new Gmarker();
-		gm.setId(GMARK_PREFIX + taxi.getIdTaxi());
+		gm.setId(GMARK_PREFIX + taxi.getPatente());
 		gm.setIconImage("images/taxiMarker.png");
 		gm.setDraggable(null);
 		gm.setLat(taxi.getUltimoTrack().getCoordenadas().getLatitud());
@@ -84,8 +82,8 @@ public class FollowerMap extends Gmaps implements FollowerWindowComponents {
 		this.setLng(ultimasCoordenadas.getLongitud());
 	}
 
-	public void quitarGmark(int idTaxi) {
-		Taxi taxi = CentralTaxis.getInstance().getTaxi(idTaxi);
+	public void quitarGmark(String patente) {
+		Taxi taxi = CentralTaxis.getInstance().getTaxiPorPatente(patente);
 		Gmarker gm = this.taxisEnSeguimiento.remove(taxi);
 		this.removeChild(gm);
 	}

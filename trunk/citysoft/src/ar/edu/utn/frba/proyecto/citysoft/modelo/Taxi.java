@@ -13,11 +13,10 @@ import java.util.TreeSet;
  */
 public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 
-	private String idTaxi;
+	private String patente;
 	private String idTracker;
 	private String marca;
 	private String modelo;
-	private String patente;
 	private String detalle;
 	private Conductor conductor;
 	private Collection<Viaje> viajes = new ArrayList<Viaje>();
@@ -28,17 +27,16 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 	private int dni;
 	private String poliza;
 
-
 	// **************************************
 	// ** Accessors
 	// **************************************
 
-	public String getIdTaxi() {
-		return idTaxi;
+	public String getPatente() {
+		return patente;
 	}
 
-	public void setIdTaxi(String idTaxi) {
-		this.idTaxi = idTaxi;
+	public void setPatente(String patente) {
+		this.patente = patente;
 	}
 
 	public String getIdTracker() {
@@ -63,14 +61,6 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
-	}
-
-	public String getPatente() {
-		return patente;
-	}
-
-	public void setPatente(String patente) {
-		this.patente = patente;
 	}
 
 	public String getDetalle() {
@@ -113,7 +103,7 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 	public void setViajeEnCurso(Viaje viajeEnCurso) {
 		this.viajeEnCurso = viajeEnCurso;
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -145,8 +135,7 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 	public void setPoliza(String poliza) {
 		this.poliza = poliza;
 	}
-		
-	
+
 	// **************************************
 	// ** Execution
 	// **************************************
@@ -167,7 +156,7 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 
 	@Override
 	public int compareTo(Taxi theOtherTaxi) {
-		return this.idTaxi.compareTo(theOtherTaxi.idTaxi);
+		return this.patente.compareTo(theOtherTaxi.patente);
 	}
 
 }

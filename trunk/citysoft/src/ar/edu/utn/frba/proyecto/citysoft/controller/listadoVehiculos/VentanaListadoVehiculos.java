@@ -29,7 +29,7 @@ public class VentanaListadoVehiculos extends Window {
 	}
 
 	public void eliminar(String patente) {
-		Taxi c = CentralTaxis.getInstance().getTaxiPorId(patente);
+		Taxi c = CentralTaxis.getInstance().getTaxiPorPatente(patente);
 		CentralTaxis.getInstance().getTaxis().remove(c);
 		this.refrescarTabla();
 	}
