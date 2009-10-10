@@ -21,9 +21,9 @@ public class ImagenConIdDeNegocio extends Image {
 	// ** EJECUCION
 	// **************************************
 
-	public int idNegocio;
+	public Object idNegocio;
 
-	public int getIdNegocio() {
+	public Object getIdNegocio() {
 		return this.idNegocio;
 	}
 
