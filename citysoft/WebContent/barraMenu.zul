@@ -2,37 +2,37 @@
 
 <zk>
 	<menubar>
-		<menu label="Clientes">
+		<menu label="Clientes" image="images/group.png">
 			<menupopup>
-				<menuitem label="Listado"><attribute name="onClick">
+				<menuitem label="Listado" image="images/application_view_columns.png"><attribute name="onClick">
 	Executions.createComponents("listadoCliente.zul", null, null);
 </attribute>
 				</menuitem>
-				<menuitem label="Alta"><attribute name="onClick">
+				<menuitem label="Alta" image="images/add.png"><attribute name="onClick">
 	Executions.createComponents("altaCliente.zul", null, null).abrirAlta();
 </attribute>
 				</menuitem>
 			</menupopup>
 		</menu>
-		<menu label="Conductores">
+		<menu label="Conductores" image="images/user.png">
 			<menupopup>
-				<menuitem label="Listado"><attribute name="onClick">
+				<menuitem label="Listado" image="images/application_view_columns.png"><attribute name="onClick">
 	Executions.createComponents("listadoConductor.zul", null, null);
 </attribute>
 				</menuitem>
-				<menuitem label="Alta" />
+				<menuitem label="Alta" image="images/add.png"></menuitem>
 			</menupopup>
 		</menu>
-		<menu label="Vehiculos">
+		<menu label="Vehiculos" image="images/car.png">
 			<menupopup>
-				<menuitem label="Listado"><attribute name="onClick">
+				<menuitem label="Listado" image="images/application_view_columns.png"><attribute name="onClick">
 	Executions.createComponents("listadoVehiculo.zul", null, null);
 </attribute>
 				</menuitem>
-				<menuitem label="Alta" />
+				<menuitem label="Alta" image="images/add.png"></menuitem>
 			</menupopup>
 		</menu>
-		<menuitem label="Operador"><attribute name="onClick">
+		<menuitem label="Operador" image="images/user_business.png"><attribute name="onClick">
 	Executions.createComponents("interfazOperador.zul", null, null);
 </attribute>
 		</menuitem>
