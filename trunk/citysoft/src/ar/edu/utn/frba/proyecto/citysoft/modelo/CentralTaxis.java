@@ -123,6 +123,29 @@ public class CentralTaxis implements ObjetoDeDominio {
 		});
 	}
 
+	public Conductor getConductor(final String usuario) {
+		// TODO: que pasa si no lo encuentra??? devuelve null???
+		return (Conductor) CollectionUtils.find(this.conductores, new Predicate() {
+			@Override
+			public boolean evaluate(Object arg0) {
+				Conductor c = (Conductor) arg0;
+				return c.getNombreUsuario().equals(usuario);
+			}
+		});
+	}
+
+	public Conductor getConductorPorId(final int idConductor) {
+		// TODO: que pasa si no lo encuentra??? devuelve null???
+		return (Conductor) CollectionUtils.find(this.conductores, new Predicate() {
+			@Override
+			public boolean evaluate(Object arg0) {
+				Conductor c = (Conductor) arg0;
+				return c.getIdConductor() == idConductor;
+			}
+		});
+	}
+	
+	
 	public Taxi getTaxiPorTrackerId(final String idTracker) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
 		return (Taxi) CollectionUtils.find(this.taxis, new Predicate() {

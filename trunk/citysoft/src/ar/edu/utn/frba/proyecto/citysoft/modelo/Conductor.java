@@ -1,11 +1,17 @@
 package ar.edu.utn.frba.proyecto.citysoft.modelo;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 /**
+ * @author Hernan
  * @version 1.0
- * @created 23-Jul-2009 10:54:50 p.m.
+ * @created 10-Oct-2009 2:28:49 p.m.
  */
+
 public class Conductor extends Persona implements ObjetoDeDominio, Comparable<Conductor> {
 
+	private String nombreUsuario;
 	private int idConductor;
 	private Taxi taxi;
 
@@ -13,6 +19,14 @@ public class Conductor extends Persona implements ObjetoDeDominio, Comparable<Co
 	// ** Accessors
 	// **************************************
 
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public void setNombreUsuario(String nombre) {
+		this.nombreUsuario = nombre;
+	}
+	
 	public int getIdConductor() {
 		return idConductor;
 	}
