@@ -62,7 +62,7 @@
 		</center>
 
 		<!-- *********************************************** -->
-		<east width="150px" autoscroll="true">
+		<east width="150px">
 			<vbox width="150px">
 				<columnlayout width="150px">
 					<columnchildren style="padding: 5px">
