@@ -157,7 +157,7 @@ public class CentralTaxis implements ObjetoDeDominio {
 		});
 	}
 
-	public Taxi getTaxi(final int idTaxi) {
+	public Taxi getTaxi(final String idTaxi) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
 		return (Taxi) CollectionUtils.find(this.taxis, new Predicate() {
 			@Override
@@ -168,7 +168,7 @@ public class CentralTaxis implements ObjetoDeDominio {
 		});
 	}
 
-	public Taxi getTaxiPorId(final int idTaxi) {
+	public Taxi getTaxiPorId(final String idTaxi) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
 		return (Taxi) CollectionUtils.find(this.taxis, new Predicate() {
 			@Override

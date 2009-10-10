@@ -42,8 +42,8 @@ public class VentanaAbmVehiculo extends Window {
 		return (Textbox) this.getFellow("txtNombres");
 	}
 
-	private Intbox elemPatente() {
-		return (Intbox) this.getFellow("intPatente");
+	private Textbox elemPatente() {
+		return (Textbox) this.getFellow("txtPatente");
 	}
 
 	// **************************************
@@ -88,7 +88,7 @@ public class VentanaAbmVehiculo extends Window {
 		elemCancelar().setVisible(true);
 	}
 
-	public void abrirDetalle(int idVehiculo) {
+	public void abrirDetalle(String idVehiculo) {
 		// Primero deshabilitamos los campos
 		elemPatente().setReadonly(true);
 		elemNombres().setReadonly(true);
@@ -130,7 +130,7 @@ public class VentanaAbmVehiculo extends Window {
 		this.setVisible(true);
 	}
 
-	public void abrirModificacion(int idVehiculo) {
+	public void abrirModificacion(String idVehiculo) {
 		traerDetalleVehiculo(idVehiculo);
 		this.abrirModificacion();
 	}
@@ -189,7 +189,7 @@ public class VentanaAbmVehiculo extends Window {
 	}
 
 	public void eliminarTaxi() {
-		int idVehiculo = elemPatente().intValue();
+		String idVehiculo = elemPatente().getValue();
 		Taxi c = CentralTaxis.getInstance().getTaxiPorId(idVehiculo);
 		CentralTaxis.getInstance().getTaxis().remove(c);
 		this.cerrar();
@@ -199,7 +199,7 @@ public class VentanaAbmVehiculo extends Window {
 	// ** HELPERS
 	// **************************************
 
-	private void traerDetalleVehiculo(int idVehiculo) {
+	private void traerDetalleVehiculo(String idVehiculo) {
 		Taxi c = CentralTaxis.getInstance().getTaxiPorId(idVehiculo);
 		elemPatente().setValue(idVehiculo);
 		elemNombres().setValue(c.getNombre());
