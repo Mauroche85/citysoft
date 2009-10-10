@@ -9,6 +9,10 @@
 				<grid width="300">
 					<rows>
 						<row>
+							<label value="Legajo:" />
+							<intbox id="intLegajo" />
+						</row>
+						<row>
 							<label value="Nombres:" />
 							<textbox id="txtNombres" />
 						</row>
@@ -16,15 +20,15 @@
 							<label value="Apellido:" />
 							<textbox id="txtApellido" />
 						</row>
-						<row>
+						<!-- row>
 							<label value="Tipo de Documento:" />
 							<combobox id="cmbTipoDoc">
-								<comboitem label="DNI" />
-								<comboitem label="LE" />
+							<comboitem label="DNI" />
+							<comboitem label="LE" />
 							</combobox>
-						</row>
+							</row -->
 						<row>
-							<label value="Número" />
+							<label value="Número documento:" />
 							<intbox id="intNroDoc" />
 						</row>
 						<row>
@@ -37,24 +41,19 @@
 						</row>
 						<row>
 							<label value="Teléfono:" />
-							<intbox id="intTelefono" />
+							<textbox id="txtTelefono" />
 						</row>
-						<row>
-							<label value="Tipo de Empleado:" />
-							<combobox id="cmbTipoEmp">
-								<comboitem label="Contratado" />
-								<comboitem label="Efectivo" />
-							</combobox>
-						</row>						
 					</rows>
 				</grid>
 			</center>
 			<east>
 				<vbox align="center">
-					<button label="Aceptar"
-						onClick="winAltaConductor.altaConductor();" />
-					<button label="Cancelar"
-						onClick="winAltaConductor.detach();" />
+					<button label="Aceptar" id="btnGuardarAlta" onClick="winAltaConductor.altaConductor();" />
+					<button label="Aceptar" id="btnGuardarModif" onClick="winAltaConductor.modifConductor();" />
+					<button label="Cancelar" id="btnCancelar" onClick="winAltaConductor.cerrar();" />
+					<button label="Modificar" id="btnModificar" onClick="winAltaConductor.abrirModificacion();" />
+					<button label="Eliminar" id="btnEliminar" onClick="winAltaConductor.eliminarConductor();" />
+					<button label="Cerrar" id="btnCerrar" onClick="winAltaConductor.cerrar();" />
 				</vbox>
 			</east>
 		</borderlayout>
