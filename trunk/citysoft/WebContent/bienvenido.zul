@@ -1,20 +1,68 @@
 <?page title="GTTR - Gestion de Taxis en tiempo real" contentType="text/html;charset=UTF-8"?>
 <zk>
 	<window title="Bienvenido gedonadia" border="normal">
+
+
+
+
 		<tabbox>
 			<tabs>
 				<tab label="Mi viaje actual" selected="true" />
 				<tab id="tab2" label="Mi GTTR" />
 			</tabs>
 			<tabpanels>
-				<tabpanel>
-					<label value="Código de Viaje:" />
-					<combobox>
-						<comboitem label="1" />
-						<comboitem label="2" />
-					</combobox>
-					<separator />
-					Usted no posee viajes asignados
+				<tabpanel height="500px">
+					<window id="viajeActual" title="Mi viaje actual"
+						border="normal" width="100%" height="100%">
+						<label value="Código de Viaje:" />
+						<combobox>
+							<comboitem label="1" />
+							<comboitem label="2" />
+						</combobox>
+						<window id="viajeActualMapa" title="Mapa"
+							border="normal" width="100%" height="83%">
+
+
+						</window>
+						<window id="winDatosViajeActual"
+							title="Detalles del viaje" border="normal" width="100%">
+							<grid>
+								<columns>
+									<column></column>
+									<column></column>
+									<column></column>
+									<column></column>
+									<column></column>
+									<column></column>
+								</columns>
+								<rows>
+									<row>
+										<label
+											value="Hora de solicitud:" />
+										<timebox name="stOrigenHora" />
+										<label
+											value="Persona Referente:" />
+										<textbox
+											name="stOrigenReferente" />
+										<label value="Observaciones:" />
+										<textbox
+											name="stOrigenObservaciones" />
+									</row>
+								</rows>
+
+
+							</grid>
+
+
+
+						</window>
+
+
+
+
+
+					</window>
+
 				</tabpanel>
 				<tabpanel fulfill="tab2.onSelect">
 					<tabbox width="100%" height="460px"
@@ -232,10 +280,9 @@
 										<attribute name="onClick">
 <!-- 	Executions.createComponents("detallesViajeAnterior.zul", null, null);
  -->
-							Component h = Executions.createComponents("detallesViajeAnterior.zul", null, null);
-							h.getFellow("idViaje").setValue(page.getAttribute("valor"));
-
-
+	Component h = Executions.createComponents("detallesViajeAnterior.zul",
+			null, null);
+	h.getFellow("idViaje").setValue(page.getAttribute("valor"));
 </attribute>
 									</menuitem>
 								</menupopup>
