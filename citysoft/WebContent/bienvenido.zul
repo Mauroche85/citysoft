@@ -106,6 +106,9 @@
 													<column></column>
 													<column></column>
 												</columns>
+
+
+
 												<rows>
 													<row>
 														<label
@@ -120,12 +123,9 @@
 															name="stOrigenReferente" />
 													</row>
 
-													<row>
-														<label
-															value="Observaciones:" />
-														<textbox
-															name="stOrigenObservaciones" />
-													</row>
+
+
+
 
 													<row>
 														<label
@@ -135,13 +135,13 @@
 													</row>
 													<row>
 														<label
-															value="Altura:" />
+															value="Altura Origen:" />
 														<textbox
 															name="stOrigenAltura" />
 													</row>
 													<row>
 														<label
-															value="Piso y Departamento:" />
+															value="Piso y Departamento Origen:" />
 														<textbox
 															name="stOrigenPisoDepto" />
 													</row>
@@ -149,32 +149,32 @@
 
 													<row>
 														<label
-															value="Localidad:" />
+															value="Localidad Origen:" />
 														<textbox
 															name="stOrigenLocalidad" />
 													</row>
 													<row>
 														<label
-															value="Provincia:" />
+															value="Provincia Origen:" />
 														<textbox
 															name="stOrigenProvincia" />
 													</row>
 
 													<row>
 														<label
-															value="Calle:" />
+															value="Calle Destino:" />
 														<textbox
 															name="stDestinoCalle" />
 													</row>
 													<row>
 														<label
-															value="Altura:" />
+															value="Altura Destino:" />
 														<textbox
 															name="stDestinoAltura" />
 													</row>
 													<row>
 														<label
-															value="Piso y Departamento:" />
+															value="Piso y Departamento Destino:" />
 														<textbox
 															name="stDestinoPisoDepto" />
 													</row>
@@ -182,17 +182,23 @@
 
 													<row>
 														<label
-															value="Localidad:" />
+															value="Localidad Destino:" />
 														<textbox
 															name="stDestinoLocalidad" />
 													</row>
 													<row>
 														<label
-															value="Provincia:" />
+															value="Provincia Destino:" />
 														<textbox
 															name="stDestinoProvincia" />
 													</row>
 
+													<row>
+														<label
+															value="Observaciones / Comentarios:" />
+														<textbox
+															name="stOrigenObservaciones" rows="4"/>
+													</row>
 
 
 
