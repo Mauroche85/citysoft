@@ -4,7 +4,8 @@
 	<menubar>
 		<menu label="Clientes" image="images/group.png">
 			<menupopup>
-				<menuitem label="Listado" image="images/application_view_columns.png"><attribute name="onClick">
+				<menuitem label="Listado"
+					image="images/application_view_columns.png"><attribute name="onClick">
 	Executions.createComponents("listadoCliente.zul", null, null);
 </attribute>
 				</menuitem>
@@ -16,28 +17,38 @@
 		</menu>
 		<menu label="Conductores" image="images/user.png">
 			<menupopup>
-				<menuitem label="Listado" image="images/application_view_columns.png"><attribute name="onClick">
+				<menuitem label="Listado"
+					image="images/application_view_columns.png"><attribute name="onClick">
 	Executions.createComponents("listadoConductor.zul", null, null);
 </attribute>
 				</menuitem>
-				<menuitem label="Alta" image="images/add.png"></menuitem>
+				<menuitem label="Alta" image="images/add.png"><attribute name="onClick">
+	Executions.createComponents("altaConductor.zul", null, null).abrirAlta();
+</attribute>
+				</menuitem>
 			</menupopup>
 		</menu>
 		<menu label="Vehiculos" image="images/car.png">
 			<menupopup>
-				<menuitem label="Listado" image="images/application_view_columns.png"><attribute name="onClick">
+				<menuitem label="Listado"
+					image="images/application_view_columns.png"><attribute name="onClick">
 	Executions.createComponents("listadoVehiculo.zul", null, null);
 </attribute>
 				</menuitem>
-				<menuitem label="Alta" image="images/add.png"></menuitem>
+				<menuitem label="Alta" image="images/add.png"><attribute name="onClick">
+	Executions.createComponents("altaVehiculo.zul", null, null).abrirAlta();
+</attribute>
+				</menuitem>
 			</menupopup>
 		</menu>
 		<menuitem label="Operador" image="images/user_business.png"><attribute name="onClick">
 	Executions.createComponents("interfazOperador.zul", null, null);
 </attribute>
 		</menuitem>
-		<menuitem label="Resetear base" image="images/arrow_refresh.png"><attribute name="onClick">
-	ar.edu.utn.frba.proyecto.citysoft.config.AmbienteDeDesarrollo.getInstance().borrarYPoblarBase();
+		<menuitem label="Resetear base"
+			image="images/arrow_refresh.png"><attribute name="onClick">
+	ar.edu.utn.frba.proyecto.citysoft.config.AmbienteDeDesarrollo.getInstance()
+			.borrarYPoblarBase();
 </attribute>
 		</menuitem>
 	</menubar>
