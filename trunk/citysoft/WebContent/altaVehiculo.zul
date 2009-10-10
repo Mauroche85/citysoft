@@ -10,7 +10,7 @@
 					<rows>
 						<row>
 							<label value="Patente:" />
-							<intbox id="intPatente" />
+							<textbox id="txtPatente" />
 						</row>
 						<row>
 							<label value="Nombres:" />
