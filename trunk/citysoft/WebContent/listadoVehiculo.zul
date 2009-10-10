@@ -1,36 +1,53 @@
 <?page title="Listado de Vehiculos" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="winListadoVehiculos"?>
+
 <zk>
-	<window id="winListadoVehiculos" title="Listado de Vehiculos" border="normal" mode="modal"
+	<window id="winListadoVehiculos" title="Listado de Vehiculos"
+		border="normal" mode="modal"
 		use="ar.edu.utn.frba.proyecto.citysoft.controller.listadoVehiculos.VentanaListadoVehiculos"
 		width="1000px" height="210px" sizable="false" closable="true">
-	<borderlayout>
+		<borderlayout>
 			<center>
-				<grid>
+				<grid id="grid"
+					model="@{winListadoVehiculos.getListaVehiculos, load-after='self.onChange'}">
 					<columns>
-						<column width="100px" label="Vehiculo" align="center"/>
-						<column width="100px" label="Titular"/>
-						<column width="100px" label="Patente" align="center"/>
-						<column width="100px" label="Marca" align="center"/>
-						<column width="100px" label="Modelo" align="center"/>
-						<column width="100px" label="Contrato" align="center"/>
-						<column width="100px" label="Modificación" align="center"/>
-						<column width="100px" label="Baja" align="center"/>
+						<column width="100px" label="Vehiculo"
+							align="center" />
+						<column width="100px" label="Titular"
+							align="center" />
+						<column width="100px" label="Patente"
+							align="center" />
+						<column width="100px" label="Marca"
+							align="center" />
+						<column width="100px" label="Modelo"
+							align="center" />
+						<column width="100px" label="Contrato"
+							align="center" />
+						<column width="100px" label="Modificación"
+							align="center" />
+						<column width="100px" label="Baja"
+							align="center" />
 					</columns>
 					<rows>
 						<row self="@{each=c}">
-							<label value="@{c.idVehiculo.toString}"></label>
+							<label value="@{c.idTaxi.toString}"></label>
 							<label value="@{c.apellido}"></label>
-							<label value="@{c.nombre}"></label>
 							<label value="@{c.dni}"></label>
 							<label value="@{c.marca}"></label>
 							<label value="@{c.modelo}"></label>
 							<label value="@{c.poliza}"></label>
-							<image src="images/tag_blue.png" />
-							<image src="images/delete.png" />
+							<image src="images/tag_blue.png"
+								idNegocio="@{c.idTaxi}"
+								use="ar.edu.utn.frba.proyecto.citysoft.controller.ImagenConIdDeNegocio"
+								onClick="winListadoVehiculos.modificar(self.getIdNegocio());" />
+							<image src="images/delete.png"
+								idNegocio="@{c.idTaxi}"
+								use="ar.edu.utn.frba.proyecto.citysoft.controller.ImagenConIdDeNegocio"
+								onClick="winListadoVehiculos.eliminar(self.getIdNegocio());" />
 						</row>
 					</rows>
 				</grid>
 			</center>
-	</borderlayout>
-</window> 
+		</borderlayout>
+	</window>
 </zk>
