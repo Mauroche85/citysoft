@@ -1,35 +1,39 @@
-<?page title="Alta Vehículo" contentType="text/html;charset=UTF-8"?>
+<?page title="Alta Vehiculo" contentType="text/html;charset=UTF-8"?>
+
 <zk>
-	<window id="winAltaVehiculo" title="Alta Vehículo" border="normal"
-		mode="modal" width="420px" height="290px" sizable="false"
-		closable="true"
+	<window id="winAltaVehiculo" title="Alta Vehiculo" border="normal" mode="modal" width="420px"
+		height="240px" sizable="false" closable="true"
 		use="ar.edu.utn.frba.proyecto.citysoft.controller.abmVehiculo.VentanaAbmVehiculo">
 		<borderlayout>
 			<center>
 				<grid width="300">
 					<rows>
 						<row>
-							<label value="Nombres del titular:" />
+							<label value="Patente:" />
+							<intbox id="intPatente" />
+						</row>
+						<row>
+							<label value="Nombres:" />
 							<textbox id="txtNombres" />
 						</row>
 						<row>
-							<label value="Apellido del titular:" />
+							<label value="Apellido:" />
 							<textbox id="txtApellido" />
 						</row>
-						<row>
+						<!-- row>
 							<label value="Tipo de Documento:" />
 							<combobox id="cmbTipoDoc">
-								<comboitem label="DNI" />
-								<comboitem label="LE" />
+							<comboitem label="DNI" />
+							<comboitem label="LE" />
 							</combobox>
-						</row>
+							</row -->
 						<row>
-							<label value="Número" />
+							<label value="Número documento:" />
 							<intbox id="intNroDoc" />
 						</row>
 						<row>
-							<label value="Patente:" />
-							<textbox id="txtPatente" />
+							<label value="Poliza:" />
+							<textbox id="txtPoliza" />
 						</row>
 						<row>
 							<label value="Marca:" />
@@ -39,28 +43,21 @@
 							<label value="Modelo:" />
 							<textbox id="txtModelo" />
 						</row>
-						<row>
-							<label value="N° póliza de seguro:" />
-							<intbox id="txtPoliza" />
-						</row>
-						<row>
-							<label value="Tipo de vehículo:" />
-							<combobox id="cmbTipoVeh">
-								<comboitem label="Contratado" />
-								<comboitem label="Propio" />
-							</combobox>
-						</row>						
 					</rows>
+
 				</grid>
 			</center>
 			<east>
 				<vbox align="center">
-					<button label="Aceptar"
-						onClick="winAltaVehiculo.altaVehiculo();" />
-					<button label="Cancelar"
-						onClick="winAltaVehiculo.detach();" />
+					<button label="Aceptar" id="btnGuardarAlta" onClick="winAltaVehiculo.altaTaxi();" />
+					<button label="Aceptar" id="btnGuardarModif" onClick="winAltaVehiculo.modifTaxi();" />
+					<button label="Cancelar" id="btnCancelar" onClick="winAltaVehiculo.cerrar();" />
+					<button label="Modificar" id="btnModificar" onClick="winAltaVehiculo.abrirModificacion();" />
+					<button label="Eliminar" id="btnEliminar" onClick="winAltaVehiculo.eliminarTaxi();" />
+					<button label="Cerrar" id="btnCerrar" onClick="winAltaVehiculo.cerrar();" />
 				</vbox>
 			</east>
 		</borderlayout>
+
 	</window>
 </zk>
