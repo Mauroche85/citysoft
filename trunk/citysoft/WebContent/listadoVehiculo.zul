@@ -39,11 +39,11 @@
 							<image src="images/tag_blue.png"
 								idNegocio="@{c.idTaxi}"
 								use="ar.edu.utn.frba.proyecto.citysoft.controller.ImagenConIdDeNegocio"
-								onClick="winListadoVehiculos.modificar(self.getIdNegocio());" />
+								onClick="winListadoVehiculos.modificar((String) self.getIdNegocio());" />
 							<image src="images/delete.png"
 								idNegocio="@{c.idTaxi}"
 								use="ar.edu.utn.frba.proyecto.citysoft.controller.ImagenConIdDeNegocio"
-								onClick="winListadoVehiculos.eliminar(self.getIdNegocio());" />
+								onClick="winListadoVehiculos.eliminar((String) self.getIdNegocio());" />
 						</row>
 					</rows>
 				</grid>
