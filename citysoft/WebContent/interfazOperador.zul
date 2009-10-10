@@ -2,7 +2,8 @@
 <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
 
 <window id="winOperador" title="Interfaz Operador" border="normal"
-	mode="modal" width="98%" height="98%" sizable="true" closable="true">
+	mode="modal" use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.VentanaInterfazOperador"
+	width="98%" height="98%" sizable="true" closable="true">
 
 	<!-- tutaxi.com.ar? src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA" -->
 	<script
@@ -360,7 +361,7 @@
 
 							<panelchildren>
 
-								<listbox id="listTaxisDesactivados">
+								<listbox id="listTaxisDesactivados" model="@{winOperador.getListaVehiculosDesactivados, load-after='self.onChange'}">
 									<listitem>
 										<listcell>
 											<hbox widths="60px" align="center">
@@ -368,50 +369,13 @@
 												<checkbox />
 											</hbox>
 										</listcell>
-									</listitem>
-									<listitem>
+									</listitem >
+									
+									<listitem self="@{each=t}">
 										<listcell
 											context="menuContextDesactivados">
 											<hbox widths="60px" align="center">
-												<label value="52345" />
-												<checkbox />
-											</hbox>
-										</listcell>
-									</listitem>
-									<listitem>
-										<listcell
-											context="menuContextDesactivados">
-											<hbox widths="60px" align="center">
-												<label value="46575" />
-												<checkbox />
-											</hbox>
-										</listcell>
-									</listitem>
-									<listitem>
-										<listcell
-											context="menuContextDesactivados">
-											<hbox widths="60px" align="center">
-												<label value="43245" />
-												<checkbox />
-											</hbox>
-										</listcell>
-									</listitem>
-									<listitem>
-										<listcell
-											context="menuContextDesactivados">
-											<hbox widths="60px" align="center">
-												<label value="54328" />
-												<checkbox />
-											</hbox>
-										</listcell>
-									</listitem>
-									<listitem>
-										<listcell
-											context="menuContextDesactivados">
-											<!-- Otra manera de hacerlo:
-												custom-attributes idTaxiDesactivado="13243" / -->
-											<hbox widths="60px" align="center">
-												<label value="13243" />
+												<label value="@{t.patente}" />
 												<checkbox />
 											</hbox>
 										</listcell>
