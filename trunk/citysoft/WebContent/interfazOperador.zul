@@ -146,7 +146,7 @@
 								</listbox>
 
 								<menupopup id="menuContextViajes">
-									<menuitem label="Liberar Taxi">
+									<menuitem label="Liberar Taxi" image="images/link_break.png">
 										<attribute name="onClick">
 	Component h = Executions.createComponents("liberarTaxi.zul", null, null);
 	h.getFellow("idTaxi").setValue(page.getAttribute("valor"));
@@ -239,13 +239,13 @@
 								</listbox>
 
 								<menupopup id="menuContextLibre">
-									<menuitem label="Asignar Taxi">
+									<menuitem label="Asignar Taxi" image="images/link.png">
 										<attribute name="onClick">
 	Component h = Executions.createComponents("asignarTaxi.zul", null, null);
 	h.getFellow("idTaxi").setValue(page.getAttribute("valor"));
 </attribute>
 									</menuitem>
-									<menuitem label="Desactivar Taxi">
+									<menuitem label="Desactivar Taxi" image="images/unplug.png">
 										<attribute name="onClick">
 	Component h = Executions.createComponents("desactivarTaxi.zul", null, null);
 	h.getFellow("idTaxi").setValue(page.getAttribute("valor"));
@@ -338,13 +338,13 @@
 								</listbox>
 
 								<menupopup id="menuContextPendientes">
-									<menuitem label="Asignar Taxi">
+									<menuitem label="Asignar Taxi" image="images/link.png">
 										<attribute name="onClick">
 	Component h = Executions.createComponents("asignarTaxi.zul", null, null);
 	h.getFellow("pedidoPendiente").setValue(page.getAttribute("valor"));
 </attribute>
 									</menuitem>
-									<menuitem label="Cancelar Pedido">
+									<menuitem label="Cancelar Pedido" image="images/cancel.png">
 										<attribute name="onClick">
 	Component h = Executions.createComponents("cancelarPedido.zul", null, null);
 	h.getFellow("pedidoPendiente").setValue(page.getAttribute("valor"));
@@ -424,7 +424,7 @@
 	if (event.isOpen())
 		self.setAttribute("quienAbrioElPopup", event.getReference().getFirstChild().getValue());
 </attribute>
-									<menuitem label="Activar Taxi">
+									<menuitem label="Activar Taxi" image="images/plug.png">
 										<attribute name="onClick">
 	Component h = Executions.createComponents("activarTaxi.zul", null, null);
 	h.getFellow("idTaxi").setValue(self.getParent().getAttribute("quienAbrioElPopup"));
