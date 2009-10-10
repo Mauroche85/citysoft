@@ -422,7 +422,7 @@
 									id="menuContextDesactivados">
 									<attribute name="onOpen">
 	if (event.isOpen())
-		self.setAttribute("quienAbrioElPopup", event.getReference().getFirstChild().getValue());
+		self.setAttribute("quienAbrioElPopup", event.getReference().getFirstChild().getFirstChild().getValue());
 </attribute>
 									<menuitem label="Activar Taxi" image="images/plug.png">
 										<attribute name="onClick">
