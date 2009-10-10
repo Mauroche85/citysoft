@@ -36,7 +36,7 @@
 	Executions.createComponents("interfazOperador.zul", null, null);
 </attribute>
 		</menuitem>
-		<menuitem label="Resetear base"><attribute name="onClick">
+		<menuitem label="Resetear base" image="images/arrow_refresh.png"><attribute name="onClick">
 	ar.edu.utn.frba.proyecto.citysoft.config.AmbienteDeDesarrollo.getInstance().borrarYPoblarBase();
 </attribute>
 		</menuitem>
