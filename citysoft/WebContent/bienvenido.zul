@@ -86,7 +86,7 @@
 
 								<window id="winNuevoViaje"
 									title="Viaje Nuevo" border="normal" width="100%"
-									height="500">
+									height="500" use="ar.edu.utn.frba.proyecto.citysoft.controller.bienvenidaCliente.pedidosCliente" >
 									<!-- tutaxi.com.ar? src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA" -->
 									<script
 										src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhRzdWSuvxlSxMx33aEXsRZiewAFIxTyvaaXezhKd2-vbxqrWx_80Qz4dg"
@@ -114,13 +114,13 @@
 														<label
 															value="Hora de solicitud:" />
 														<timebox
-															name="stOrigenHora" />
+															id="stOrigenHora" />
 													</row>
 													<row>
 														<label
 															value="Persona Referente:" />
 														<textbox
-															name="stOrigenReferente" />
+															id="stOrigenReferente" />
 													</row>
 
 
@@ -131,19 +131,19 @@
 														<label
 															value="Calle Origen:" />
 														<textbox
-															name="stOrigenCalle" />
+															id="stOrigenCalle" />
 													</row>
 													<row>
 														<label
 															value="Altura Origen:" />
 														<textbox
-															name="stOrigenAltura" />
+															id="stOrigenAltura" />
 													</row>
 													<row>
 														<label
 															value="Piso y Departamento Origen:" />
 														<textbox
-															name="stOrigenPisoDepto" />
+															id="stOrigenPisoDepto" />
 													</row>
 
 
@@ -151,32 +151,32 @@
 														<label
 															value="Localidad Origen:" />
 														<textbox
-															name="stOrigenLocalidad" />
+															id="stOrigenLocalidad" />
 													</row>
 													<row>
 														<label
 															value="Provincia Origen:" />
 														<textbox
-															name="stOrigenProvincia" />
+															id="stOrigenProvincia" />
 													</row>
 
 													<row>
 														<label
 															value="Calle Destino:" />
 														<textbox
-															name="stDestinoCalle" />
+															id="stDestinoCalle" />
 													</row>
 													<row>
 														<label
 															value="Altura Destino:" />
 														<textbox
-															name="stDestinoAltura" />
+															id="stDestinoAltura" />
 													</row>
 													<row>
 														<label
 															value="Piso y Departamento Destino:" />
 														<textbox
-															name="stDestinoPisoDepto" />
+															id="stDestinoPisoDepto" />
 													</row>
 
 
@@ -184,20 +184,20 @@
 														<label
 															value="Localidad Destino:" />
 														<textbox
-															name="stDestinoLocalidad" />
+															id="stDestinoLocalidad" />
 													</row>
 													<row>
 														<label
 															value="Provincia Destino:" />
 														<textbox
-															name="stDestinoProvincia" />
+															id="stDestinoProvincia" />
 													</row>
 
 													<row>
 														<label
 															value="Observaciones / Comentarios:" />
 														<textbox
-															name="stOrigenObservaciones" rows="4"/>
+															id="stOrigenObservaciones" rows="4" />
 													</row>
 
 
@@ -231,8 +231,12 @@
 
 
 											<hbox align="center">
-												<button label="Aceptar"
-													onClick="" />
+												<button
+													label="Aceptar">
+													<attribute name="onClick">
+winNuevoViaje.addViaje();
+</attribute>
+												</button>
 												<button
 													label="Cancelar" />
 											</hbox>
