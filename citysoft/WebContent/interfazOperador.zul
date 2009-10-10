@@ -62,7 +62,7 @@
 		</center>
 
 		<!-- *********************************************** -->
-		<east width="150px">
+		<east width="150px" autoscroll="true">
 			<vbox width="150px">
 				<columnlayout width="150px">
 					<columnchildren style="padding: 5px">
@@ -256,7 +256,7 @@
 							</panelchildren>
 						</panel>
 
-						<panel title="Asignar Taxi"
+						<panel title="Pedidos Pend."
 							style="margin-bottom:10p" border="normal" collapsible="true">
 
 							<panelchildren>
