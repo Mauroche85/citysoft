@@ -14,35 +14,35 @@
 
 		<north>
 			<toolbar>
-				<toolbarbutton label="Activar Taxi" image="images/tag_blue.png">
+				<toolbarbutton label="Activar Taxi" image="images/plug.png">
 					<attribute name="onClick">
 	Executions.createComponents("activarTaxi.zul", null, null);
 </attribute>
 				</toolbarbutton>
 				<space />
 				<space />
-				<toolbarbutton label="Desactivar Taxi" image="images/plug.png">
+				<toolbarbutton label="Desactivar Taxi" image="images/unplug.png">
 					<attribute name="onClick">
 	Executions.createComponents("desactivarTaxi.zul", null, null);
 </attribute>
 				</toolbarbutton>
 				<space />
 				<space />
-				<toolbarbutton label="Asigna Taxi">
+				<toolbarbutton label="Asigna Taxi" image="images/link.png">
 					<attribute name="onClick">
 	Executions.createComponents("asignarTaxi.zul", null, null);
 </attribute>
 				</toolbarbutton>
 				<space />
 				<space />
-				<toolbarbutton label="Liberar Taxi">
+				<toolbarbutton label="Liberar Taxi" image="images/link_break.png">
 					<attribute name="onClick">
 	Executions.createComponents("liberarTaxi.zul", null, null);
 </attribute>
 				</toolbarbutton>
 				<space />
 				<space />
-				<toolbarbutton label="Cancelar Pedido">
+				<toolbarbutton label="Cancelar Pedido" image="images/cancel.png"> 
 					<attribute name="onClick">
 	Executions.createComponents("cancelarPedido.zul", null, null);
 </attribute>
