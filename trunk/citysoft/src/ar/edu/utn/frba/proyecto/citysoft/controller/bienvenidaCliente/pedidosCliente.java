@@ -5,6 +5,7 @@ import org.zkoss.zul.api.Textbox;
 import org.zkoss.zul.api.Timebox;
 
 import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.GeneradorDeIds;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 
 public class pedidosCliente extends Window {
@@ -28,8 +29,10 @@ public class pedidosCliente extends Window {
 		 * crear pedido
 		 */
 		Viaje v = new Viaje();
-//		v.setCliente(cliente) hay que asignarle un cliente!!
-//		v.setIdViaje(idViaje) hay que obtener el id de viaje!!!
+		// v.setCliente(cliente) hay que asignarle un cliente!!
+		// v.setIdViaje(idViaje) hay que obtener el id de viaje!!!
+		int idViaje = CentralTaxis.getInstance().getGeneradorDeIds().getProximoIdViaje();
+		v.setIdViaje(idViaje);
 		v.setHoraPedido((tbOrigenHora.getValue()));
 		v.setOrigenReferente(txtOrigenReferente.getValue());
 		v.setOrigenCalle(txtOrigenCalle.getValue());
@@ -37,24 +40,21 @@ public class pedidosCliente extends Window {
 		v.setOrigenPisoDepto(txtOrigenPisoDepto.getValue());
 		v.setOrigenLocalidad(txtOrigenLocalidad.getValue());
 		v.setOrigenProvincia(txtOrigenProvincia.getValue());
-		v.setDestinoCalle(txtDestinoCalle.getValue()); 
+		v.setDestinoCalle(txtDestinoCalle.getValue());
 		v.setDestinoAltura(txtDestinoAltura.getValue());
 		v.setDestinoPisoDepto(txtDestinoPisoDepto.getValue());
 		v.setDestinoLocalidad(txtDestinoLocalidad.getValue());
 		v.setDestinoProvincia(txtDestinoProvincia.getValue());
-		v.setOrigenObservaciones(txtOrigenObservaciones.getValue()); 
-		 
+		v.setOrigenObservaciones(txtOrigenObservaciones.getValue());
+
 		CentralTaxis.getInstance().addViaje(v);
-		
-		
+
 		/*		
 
 	*/
-		
-		
-		
+
 		System.out.println("la hora es: " + tbOrigenHora.getValue());
-		System.out.println("la hora es: " + txtOrigenReferente.getValue());		
+		System.out.println("id de viaje: " + idViaje);
 	}
 
 }
