@@ -14,6 +14,7 @@ public class GeneradorDeIds {
 
 	private int idCliente;
 	private int idConductor;
+	private int idViaje;
 
 	// **************************************
 	// ** Constructor
@@ -23,13 +24,17 @@ public class GeneradorDeIds {
 		ObjectSet<GeneradorDeIds> set = getDb().query(GeneradorDeIds.class);
 		if (set.hasNext()) {
 			return set.next();
-		} else
-			return new GeneradorDeIds();
+		} else {
+			GeneradorDeIds generadorDeIds = new GeneradorDeIds();
+			getDb().store(generadorDeIds);
+			return generadorDeIds;
+		}
 	}
 
 	private GeneradorDeIds() {
 		this.idCliente = 1;
 		this.idConductor = 1;
+		this.idViaje = 1;
 		getDb().store(this);
 	}
 
@@ -37,12 +42,22 @@ public class GeneradorDeIds {
 	// ** Accessors
 	// **************************************
 
+	public int getProximoIdViaje() {
+		int i = this.idViaje++;
+		getDb().store(this);
+		return i;
+	}
+
 	public int getProximoIdCliente() {
-		return this.idCliente++;
+		int i = this.idCliente++;
+		getDb().store(this);
+		return i;
 	}
 
 	public int getProximoIdConductor() {
-		return this.idConductor;
+		int idConductor2 = this.idConductor++;
+		getDb().store(this);
+		return idConductor2;
 	}
 
 	// **************************************
