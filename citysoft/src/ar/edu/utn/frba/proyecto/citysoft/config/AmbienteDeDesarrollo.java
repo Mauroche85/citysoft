@@ -7,6 +7,7 @@ import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.Lote;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.LoteDeClientes;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.LoteDeConductoresTaxisYViajes;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.LoteDeTaxisDesactivados;
 
 /**
  * Ver el javadoc de {@link Lote}.
@@ -45,6 +46,7 @@ public class AmbienteDeDesarrollo {
 		// sucesivos lotes
 		this.lotes.add(new LoteDeClientes());
 		this.lotes.add(new LoteDeConductoresTaxisYViajes());
+		this.lotes.add(new LoteDeTaxisDesactivados());
 	}
 
 	// ***************************************
