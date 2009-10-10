@@ -1,0 +1,309 @@
+<?page title="GTTR - Gestion de Taxis en tiempo real" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="Bienvenido gedonadia" border="normal">
+
+
+
+
+		<tabbox>
+			<tabs>
+				<tab label="Mi viaje actual" selected="true" />
+				<tab id="tab2" label="Mi GTTR" />
+			</tabs>
+			<tabpanels>
+				<tabpanel height="500px">
+					<window id="viajeActual" title="Mi viaje actual"
+						border="normal" width="100%" height="100%">
+						<label value="Código de Viaje:" />
+						<combobox>
+							<comboitem label="1" />
+							<comboitem label="2" />
+						</combobox>
+						<window id="viajeActualMapa" title="Mapa"
+							border="normal" width="100%" height="83%">
+	<!-- tutaxi.com.ar? src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA" -->
+	<script
+		src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhRzdWSuvxlSxMx33aEXsRZiewAFIxTyvaaXezhKd2-vbxqrWx_80Qz4dg"
+		type="text/javascript">
+	</script>
+			<gmaps id="gmap"
+				use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.FollowerMap" showZoomCtrl="true"
+				showOverviewCtrl="true" showTypeCtrl="true">
+			</gmaps>
+
+
+						</window>
+						<window id="winDatosViajeActual"
+							title="Detalles del viaje" border="normal" width="100%">
+							<grid>
+								<columns>
+									<column></column>
+									<column></column>
+									<column></column>
+									<column></column>
+									<column></column>
+									<column></column>
+								</columns>
+								<rows>
+									<row>
+										<label
+											value="Hora de solicitud:" />
+										<timebox name="stOrigenHora" />
+										<label
+											value="Persona Referente:" />
+										<textbox
+											name="stOrigenReferente" />
+										<label value="Observaciones:" />
+										<textbox
+											name="stOrigenObservaciones" />
+									</row>
+								</rows>
+
+
+							</grid>
+
+
+
+						</window>
+
+
+
+
+
+					</window>
+
+				</tabpanel>
+				<tabpanel fulfill="tab2.onSelect">
+					<tabbox width="100%" height="460px"
+						orient="vertical">
+						<tabs width="20%">
+							<tab label="Solicitar viaje nuevo" />
+							<tab label="Mis viajes anteriores" />
+						</tabs>
+						<tabpanels>
+							<tabpanel height="460px">
+
+								<window id="winNuevoViaje"
+									title="Viaje Nuevo" border="normal" width="320px">
+
+									<window id="winDatosViaje"
+										title="Mi Viaje" border="normal" width="305px">
+										<grid width="300">
+											<columns>
+												<column></column>
+												<column></column>
+											</columns>
+											<rows>
+												<row>
+													<label
+														value="Hora de solicitud:" />
+													<timebox
+														name="stOrigenHora" />
+												</row>
+												<row>
+													<label
+														value="Persona Referente:" />
+													<textbox
+														name="stOrigenReferente" />
+												</row>
+
+												<row>
+													<label
+														value="Observaciones:" />
+													<textbox
+														name="stOrigenObservaciones" />
+												</row>
+											</rows>
+
+
+										</grid>
+
+
+
+									</window>
+
+
+									<window id="winOrigenViaje"
+										title="Desde" border="normal" width="305px">
+
+										<grid width="300">
+											<columns>
+												<column></column>
+												<column></column>
+											</columns>
+											<rows>
+												<row>
+													<label
+														value="Calle Origen:" />
+													<textbox
+														name="stOrigenCalle" />
+												</row>
+												<row>
+													<label
+														value="Altura:" />
+													<textbox
+														name="stOrigenAltura" />
+												</row>
+												<row>
+													<label
+														value="Piso y Departamento:" />
+													<textbox
+														name="stOrigenPisoDepto" />
+												</row>
+
+
+												<row>
+													<label
+														value="Localidad:" />
+													<textbox
+														name="stOrigenLocalidad" />
+												</row>
+
+
+
+											</rows>
+
+										</grid>
+
+									</window>
+
+									<window id="winDestinoViaje"
+										title="Hasta" border="normal" width="305px">
+
+										<grid width="300">
+											<columns>
+												<column></column>
+												<column></column>
+											</columns>
+											<rows>
+												<row>
+													<label
+														value="Calle:" />
+													<textbox
+														name="stDestinoCalle" />
+												</row>
+												<row>
+													<label
+														value="Altura:" />
+													<textbox
+														name="stDestinoAltura" />
+												</row>
+												<row>
+													<label
+														value="Piso y Departamento:" />
+													<textbox
+														name="stDestinoPisoDepto" />
+												</row>
+
+
+												<row>
+													<label
+														value="Localidad:" />
+													<textbox
+														name="stDestinoLocalidad" />
+												</row>
+
+
+
+											</rows>
+
+										</grid>
+
+									</window>
+									<hbox align="center">
+										<button label="Aceptar"
+											onClick="" />
+										<button label="Cancelar" />
+									</hbox>
+
+
+
+								</window>
+
+							</tabpanel>
+							<tabpanel>
+								<listbox id="listViajesAnteriores"
+									width="200px" height="25%">
+									<listhead>
+										<listheader
+											label="Viajes anteriores" sort="auto" />
+									</listhead>
+									<listitem>
+										<listcell
+											context="menuContextViajesAnteriores">
+											<attribute name="onRightClick">
+	pageScope.put("valor", "54334");
+</attribute>
+											<label value="54334" />
+										</listcell>
+									</listitem>
+									<listitem>
+										<listcell
+											context="menuContextViajesAnteriores">
+
+
+
+											<attribute name="onRightClick">
+	pageScope.put("valor", "34768");
+</attribute>
+
+											<label value="34768" />
+										</listcell>
+									</listitem>
+									<listitem>
+										<listcell
+											context="menuContextViajesAnteriores">
+											<attribute name="onRightClick">
+	pageScope.put("valor", "95746");
+</attribute>
+
+											<label value="95746" />
+										</listcell>
+									</listitem>
+									<listitem>
+										<listcell
+											context="menuContextViajesAnteriores">
+											<attribute name="onRightClick">
+	pageScope.put("valor", "73659");
+</attribute>
+
+											<label value="73659" />
+										</listcell>
+									</listitem>
+									<listitem>
+										<listcell
+											context="menuContextViajesAnteriores">
+											<attribute name="onRightClick">
+	pageScope.put("valor", "93265");
+</attribute>
+
+											<label value="93265" />
+										</listcell>
+									</listitem>
+								</listbox>
+
+								<menupopup
+									id="menuContextViajesAnteriores">
+									<menuitem
+										label="Mostrar Detalles">
+										<attribute name="onClick">
+<!-- 	Executions.createComponents("detallesViajeAnterior.zul", null, null);
+ -->
+	Component h = Executions.createComponents("detallesViajeAnterior.zul",
+			null, null);
+	h.getFellow("idViaje").setValue(page.getAttribute("valor"));
+</attribute>
+									</menuitem>
+								</menupopup>
+							</tabpanel>
+						</tabpanels>
+					</tabbox>
+
+
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+
+
+	</window>
+</zk>
