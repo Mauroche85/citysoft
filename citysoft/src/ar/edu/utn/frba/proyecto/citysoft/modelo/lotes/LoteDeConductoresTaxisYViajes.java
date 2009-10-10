@@ -96,6 +96,7 @@ public class LoteDeConductoresTaxisYViajes implements Lote {
 		t.setModelo(modelo);
 		t.setPatente(patente);
 		t.setDetalle(detalle);
+		t.setActivado(true);
 		return t;
 	}
 
