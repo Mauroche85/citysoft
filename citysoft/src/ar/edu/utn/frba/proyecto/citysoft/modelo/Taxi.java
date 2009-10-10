@@ -23,6 +23,11 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 	private Collection<Viaje> viajes = new ArrayList<Viaje>();
 	private SortedSet<Track> tracks = new TreeSet<Track>();
 	private Viaje viajeEnCurso;
+	private String nombre;
+	private String apellido;
+	private int dni;
+	private String poliza;
+
 
 	// **************************************
 	// ** Accessors
@@ -108,7 +113,40 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 	public void setViajeEnCurso(Viaje viajeEnCurso) {
 		this.viajeEnCurso = viajeEnCurso;
 	}
+	
+	public String getNombre() {
+		return nombre;
+	}
 
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public int getDni() {
+		return dni;
+	}
+
+	public void setDni(int dni) {
+		this.dni = dni;
+	}
+
+	public String getPoliza() {
+		return poliza;
+	}
+
+	public void setPoliza(String poliza) {
+		this.poliza = poliza;
+	}
+		
+	
 	// **************************************
 	// ** Execution
 	// **************************************

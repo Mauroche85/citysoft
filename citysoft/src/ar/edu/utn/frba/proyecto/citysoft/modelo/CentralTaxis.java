@@ -168,6 +168,17 @@ public class CentralTaxis implements ObjetoDeDominio {
 		});
 	}
 
+	public Taxi getTaxiPorId(final int idTaxi) {
+		// TODO: que pasa si no lo encuentra??? devuelve null???
+		return (Taxi) CollectionUtils.find(this.taxis, new Predicate() {
+			@Override
+			public boolean evaluate(Object arg0) {
+				Taxi c = (Taxi) arg0;
+				return c.getIdTaxi() == idTaxi;
+			}
+		});
+	}
+		
 	public Viaje getViaje(final int idViaje) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
 		return (Viaje) CollectionUtils.find(this.viajes, new Predicate() {
