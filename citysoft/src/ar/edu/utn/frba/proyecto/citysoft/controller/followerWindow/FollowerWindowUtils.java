@@ -25,7 +25,8 @@ public class FollowerWindowUtils {
 		Listbox listbox = obtenerComponenteListaDeSeguimiento(unComponente);
 		ItemDeListaSeguimiento item = (ItemDeListaSeguimiento) listbox.getSelectedItemApi();
 		if (item != null) {
-			Taxi taxiSeleccionado = CentralTaxis.getInstance().getTaxi(item.getIdTaxi());
+			Taxi taxiSeleccionado = CentralTaxis.getInstance().getTaxiPorPatente(
+					(String) item.getValue());
 			return taxiSeleccionado.equals(t);
 		} else
 			return false;
