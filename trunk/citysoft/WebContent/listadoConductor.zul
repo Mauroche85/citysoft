@@ -24,8 +24,14 @@
 							<label value="@{c.nombre}"></label>
 							<label value="@{c.dni}"></label>
 							<label>Permanente (*)</label>
-							<image src="images/tag_blue.png" />
-							<image src="images/delete.png" />
+							<image src="images/tag_blue.png" idNegocio="@{cli.idConductor}"
+								use="ar.edu.utn.frba.proyecto.citysoft.controller.ImagenConIdDeNegocio"
+								onClick="winListadoConductores.modificar(self.getIdNegocio());">
+							</image>
+							<image src="images/delete.png" idNegocio="@{cli.idConductor}"
+								use="ar.edu.utn.frba.proyecto.citysoft.controller.ImagenConIdDeNegocio"
+								onClick="winListadoConductor.eliminar(self.getIdNegocio());">
+							</image>		
 						</row>
 					</rows>
 				</grid>
