@@ -22,6 +22,7 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 	private Collection<Viaje> viajes = new ArrayList<Viaje>();
 	private SortedSet<Track> tracks = new TreeSet<Track>();
 	private Viaje viajeEnCurso;
+	private Boolean activado;
 	private String nombre;
 	private String apellido;
 	private int dni;
@@ -102,6 +103,14 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 
 	public void setViajeEnCurso(Viaje viajeEnCurso) {
 		this.viajeEnCurso = viajeEnCurso;
+	}
+	
+	public Boolean getActivado() {
+		return activado;
+	}
+
+	public void setActivado(Boolean activado) {
+		this.activado = activado;
 	}
 
 	public String getNombre() {
