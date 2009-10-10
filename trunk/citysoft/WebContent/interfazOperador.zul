@@ -87,6 +87,7 @@
 											<hbox widths="60px" align="center">
 												<label value="34768" />
 												<checkbox />
+												<image src="images/target.png"/>
 											</hbox>
 										</listcell>
 									</listitem>
@@ -99,6 +100,7 @@
 											<hbox widths="60px" align="center">
 												<label value="54334" />
 												<checkbox />
+												<image src="images/cancel.png"/>
 											</hbox>
 										</listcell>
 									</listitem>
@@ -111,6 +113,7 @@
 											<hbox widths="60px" align="center">
 												<label value="95746" />
 												<checkbox />
+												<image src="images/target.png"/>
 											</hbox>
 										</listcell>
 									</listitem>
@@ -123,6 +126,7 @@
 											<hbox widths="60px" align="center">
 												<label value="73659" />
 												<checkbox />
+												<image src="images/target.png"/>
 											</hbox>
 										</listcell>
 									</listitem>
@@ -135,6 +139,7 @@
 											<hbox widths="60px" align="center">
 												<label value="93265" />
 												<checkbox />
+												<image src="images/target.png"/>
 											</hbox>
 										</listcell>
 									</listitem>
@@ -175,6 +180,7 @@
 											<hbox widths="60px" align="center">
 												<label value="34768" />
 												<checkbox />
+												<image src="images/target.png"/>
 											</hbox>
 										</listcell>
 									</listitem>
@@ -187,6 +193,7 @@
 											<hbox widths="60px" align="center">
 												<label value="54334" />
 												<checkbox />
+												<image src="images/target.png"/>
 											</hbox>
 										</listcell>
 									</listitem>
@@ -199,6 +206,7 @@
 											<hbox widths="60px" align="center">
 												<label value="95746" />
 												<checkbox />
+												<image src="images/target.png"/>
 											</hbox>
 										</listcell>
 									</listitem>
@@ -211,6 +219,7 @@
 											<hbox widths="60px" align="center">
 												<label value="73659" />
 												<checkbox />
+												<image src="images/target.png"/>
 											</hbox>
 										</listcell>
 									</listitem>
@@ -223,6 +232,7 @@
 											<hbox widths="60px" align="center">
 												<label value="93265" />
 												<checkbox />
+												<image src="images/target.png"/>
 											</hbox>
 										</listcell>
 									</listitem>
@@ -269,6 +279,7 @@
 											<hbox widths="60px" align="center">
 												<label value="34768" />
 												<checkbox />
+												<image src="images/target.png"/>
 											</hbox>
 										</listcell>
 									</listitem>
@@ -281,6 +292,7 @@
 											<hbox widths="60px" align="center">
 												<label value="54334" />
 												<checkbox />
+												<image src="images/target.png"/>
 											</hbox>
 										</listcell>
 									</listitem>
@@ -293,6 +305,7 @@
 											<hbox widths="60px" align="center">
 												<label value="95746" />
 												<checkbox />
+												<image src="images/target.png"/>
 											</hbox>
 										</listcell>
 									</listitem>
@@ -305,6 +318,7 @@
 											<hbox widths="60px" align="center">
 												<label value="73659" />
 												<checkbox />
+												<image src="images/target.png"/>
 											</hbox>
 										</listcell>
 									</listitem>
@@ -317,6 +331,7 @@
 											<hbox widths="60px" align="center">
 												<label value="93265" />
 												<checkbox />
+												<image src="images/target.png"/>
 											</hbox>
 										</listcell>
 									</listitem>
