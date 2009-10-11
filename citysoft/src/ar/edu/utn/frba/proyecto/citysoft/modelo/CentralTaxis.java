@@ -30,7 +30,7 @@ public class CentralTaxis implements ObjetoDeDominio {
 	 * Para que carge de la DB todos los datos
 	 */
 	public void initialize() {
-		this.generadorDeIds = GeneradorDeIds.getInstance();
+		this.setGeneradorDeIds(GeneradorDeIds.getInstance());
 		this.taxis = new ColeccionPersistente<Taxi>(Taxi.class);
 		this.conductores = new ColeccionPersistente<Conductor>(Conductor.class);
 		this.clientes = new ColeccionPersistente<Cliente>(Cliente.class);
@@ -190,6 +190,14 @@ public class CentralTaxis implements ObjetoDeDominio {
 				return v.getIdViaje() == idViaje;
 			}
 		});
+	}
+
+	public void setGeneradorDeIds(GeneradorDeIds generadorDeIds) {
+		this.generadorDeIds = generadorDeIds;
+	}
+
+	public GeneradorDeIds getGeneradorDeIds() {
+		return generadorDeIds;
 	}
 
 }
