@@ -7,7 +7,8 @@
 		width="1000px" height="210px" sizable="false" closable="true">
 		<borderlayout>
 			<center>
-				<grid model="@{winListadoConductores.getListaConductores}">
+				<grid id="grid"
+				model="@{winListadoConductores.getListaConductores,load-after='self.onChange'}">
 					<columns>
 						<column width="100px" label="Legajo" align="center" />
 						<column width="150px" label="Apellido" />
@@ -24,13 +25,12 @@
 							<label value="@{c.nombre}"></label>
 							<label value="@{c.dni}"></label>
 							<label>Permanente (*)</label>
-							<image src="images/tag_blue.png" idNegocio="@{cli.idConductor}"
+							<image src="images/tag_blue.png" idNegocio="@{c.idConductor}"
 								use="ar.edu.utn.frba.proyecto.citysoft.controller.ImagenConIdDeNegocio"
-								onClick="winListadoConductores.modificar(self.getIdNegocio());">
-							</image>
-							<image src="images/delete.png" idNegocio="@{cli.idConductor}"
+								onClick="winListadoConductores.modificar(self.getIdNegocio());" />
+							<image src="images/delete.png" idNegocio="@{c.idConductor}"
 								use="ar.edu.utn.frba.proyecto.citysoft.controller.ImagenConIdDeNegocio"
-								onClick="winListadoConductor.eliminar(self.getIdNegocio());">
+								onClick="winListadoConductores.eliminar(self.getIdNegocio());">
 							</image>		
 						</row>
 					</rows>
