@@ -55,9 +55,9 @@ public class GeneradorDeIds {
 	}
 
 	public int getProximoIdConductor() {
-		int idConductor2 = this.idConductor++;
+		int i = this.idConductor++;
 		getDb().store(this);
-		return idConductor2;
+		return i;
 	}
 
 	// **************************************
