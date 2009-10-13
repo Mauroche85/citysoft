@@ -28,17 +28,17 @@ public class VentanaListadoVehiculos extends Window {
 		return lista;
 	}
 
-	public void eliminar(String patente) {
-		Taxi c = CentralTaxis.getInstance().getTaxiPorPatente(patente);
+	public void eliminar(int idVehiculo) {
+		Taxi c = CentralTaxis.getInstance().getTaxiPorIdVehiculo(idVehiculo);
 		CentralTaxis.getInstance().getTaxis().remove(c);
 		this.refrescarTabla();
 	}
 
-	public void modificar(String patente) {
+	public void modificar(int idVehiculo) {
 		Component componenteAbmVehiculo = Executions.createComponents("altaVehiculo.zul", null, null);
 		VentanaAbmVehiculo win = (VentanaAbmVehiculo) componenteAbmVehiculo.getFellow("winAltaVehiculo");
 		win.addEventListener(Events.ON_CLOSE, new OnCloseRefrescarTabla(this));
-		win.abrirModificacion(patente);
+		win.abrirModificacion(idVehiculo);
 	}
 
 	public void refrescarTabla() {

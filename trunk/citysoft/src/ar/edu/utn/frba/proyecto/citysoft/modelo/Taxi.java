@@ -13,6 +13,8 @@ import java.util.TreeSet;
  */
 public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 
+	private int idVehiculo;
+	private String nombreUsuario;
 	private String patente;
 	private String idTracker;
 	private String marca;
@@ -32,6 +34,14 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 	// ** Accessors
 	// **************************************
 
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public void setNombreUsuario(String nombre) {
+		this.nombreUsuario = nombre;
+	}
+	
 	public String getPatente() {
 		return patente;
 	}
@@ -145,6 +155,15 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 		this.poliza = poliza;
 	}
 
+	public int getIdVehiculo() {
+		return idVehiculo;
+	}
+
+	public void setIdVehiculo(int idVehiculo) {
+		this.idVehiculo = idVehiculo;
+	}
+
+	
 	// **************************************
 	// ** Execution
 	// **************************************
@@ -163,9 +182,20 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 		this.tracks.add(t);
 	}
 
-	@Override
+/*	@Override
 	public int compareTo(Taxi theOtherTaxi) {
 		return this.patente.compareTo(theOtherTaxi.patente);
+	}*/
+
+
+	@Override
+	public int compareTo(Taxi theOther) {
+		int thisId = this.idVehiculo;
+		int theOtherId = theOther.idVehiculo;
+		// Esto nos lo choriceamos de Integer!!!
+		return (thisId < theOtherId ? -1 : (thisId == theOtherId ? 0 : 1));
 	}
 
+	
 }
+
