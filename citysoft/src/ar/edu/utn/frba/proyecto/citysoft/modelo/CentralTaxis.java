@@ -170,17 +170,29 @@ public class CentralTaxis implements ObjetoDeDominio {
 		});
 	}
 
-	public Taxi getTaxiPorPatente(final String patente) {
+	public Taxi getTaxi(final String usuario) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
 		return (Taxi) CollectionUtils.find(this.taxis, new Predicate() {
 			@Override
 			public boolean evaluate(Object arg0) {
 				Taxi c = (Taxi) arg0;
-				return c.getPatente().equals(patente);
+				return c.getNombreUsuario().equals(usuario);
 			}
 		});
 	}
-
+	
+	public Taxi getTaxiPorIdVehiculo(final int idVehiculo) {
+		// TODO: que pasa si no lo encuentra??? devuelve null???
+		return (Taxi) CollectionUtils.find(this.taxis, new Predicate() {
+			@Override
+			public boolean evaluate(Object arg0) {
+				Taxi c = (Taxi) arg0;
+/*				return c.getPatente().equals(patente);*/
+				return c.getIdVehiculo() == idVehiculo;
+			}
+		});
+	}
+	
 	public Viaje getViaje(final int idViaje) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
 		return (Viaje) CollectionUtils.find(this.viajes, new Predicate() {

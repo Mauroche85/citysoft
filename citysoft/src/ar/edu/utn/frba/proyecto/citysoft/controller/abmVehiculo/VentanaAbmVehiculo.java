@@ -18,6 +18,10 @@ public class VentanaAbmVehiculo extends Window {
 	// ** ELEMENTOS
 	// **************************************
 
+	private Intbox elemIdVehiculo() {
+		return (Intbox) this.getFellow("intIdVehiculo");
+	}
+
 	private Textbox elemPoliza() {
 		return (Textbox) this.getFellow("txtPoliza");
 	}
@@ -88,8 +92,9 @@ public class VentanaAbmVehiculo extends Window {
 		elemCancelar().setVisible(true);
 	}
 
-	public void abrirDetalle(String idVehiculo) {
+	public void abrirDetalle(int idVehiculo) {
 		// Primero deshabilitamos los campos
+		elemIdVehiculo().setReadonly(true);
 		elemPatente().setReadonly(true);
 		elemNombres().setReadonly(true);
 		elemApellido().setReadonly(true);
@@ -112,6 +117,7 @@ public class VentanaAbmVehiculo extends Window {
 
 	public void abrirModificacion() {
 		// Habilitamos los campos pertientes
+		elemIdVehiculo().setReadonly(true);
 		elemPatente().setReadonly(true);
 		elemNombres().setReadonly(false);
 		elemApellido().setReadonly(false);
@@ -130,7 +136,7 @@ public class VentanaAbmVehiculo extends Window {
 		this.setVisible(true);
 	}
 
-	public void abrirModificacion(String idVehiculo) {
+	public void abrirModificacion(int idVehiculo) {
 		traerDetalleVehiculo(idVehiculo);
 		this.abrirModificacion();
 	}
@@ -153,6 +159,7 @@ public class VentanaAbmVehiculo extends Window {
 	public void altaTaxi() {
 		// Creo el taxi!!!
 		Taxi c = new Taxi();
+		c.setIdVehiculo(elemIdVehiculo().getValue());
 		c.setPatente(elemPatente().getValue());
 		c.setApellido(elemApellido().getValue());
 		c.setNombre(elemNombres().getValue());
@@ -171,8 +178,8 @@ public class VentanaAbmVehiculo extends Window {
 
 	public void modifTaxi() {
 		// Creo el taxi!!!
-		Taxi c = CentralTaxis.getInstance().getTaxiPorPatente(elemPatente().getValue());
-
+		Taxi c = CentralTaxis.getInstance().getTaxiPorIdVehiculo(elemIdVehiculo().getValue());
+		c.setPatente(elemPatente().getValue());
 		c.setApellido(elemApellido().getValue());
 		c.setNombre(elemNombres().getValue());
 		// c.setTipoDocumento(elemTipoDocumento().getValue());
@@ -189,8 +196,8 @@ public class VentanaAbmVehiculo extends Window {
 	}
 
 	public void eliminarTaxi() {
-		String idVehiculo = elemPatente().getValue();
-		Taxi c = CentralTaxis.getInstance().getTaxiPorPatente(idVehiculo);
+		int idVehiculo = elemIdVehiculo().getValue();
+		Taxi c = CentralTaxis.getInstance().getTaxiPorIdVehiculo(idVehiculo);
 		CentralTaxis.getInstance().getTaxis().remove(c);
 		this.cerrar();
 	}
@@ -199,9 +206,10 @@ public class VentanaAbmVehiculo extends Window {
 	// ** HELPERS
 	// **************************************
 
-	private void traerDetalleVehiculo(String idVehiculo) {
-		Taxi c = CentralTaxis.getInstance().getTaxiPorPatente(idVehiculo);
-		elemPatente().setValue(idVehiculo);
+	private void traerDetalleVehiculo(int idVehiculo) {
+		Taxi c = CentralTaxis.getInstance().getTaxiPorIdVehiculo(idVehiculo);
+		elemIdVehiculo().setValue(idVehiculo);
+		elemPatente().setValue(c.getPatente());
 		elemNombres().setValue(c.getNombre());
 		elemApellido().setValue(c.getApellido());
 		elemNroDocumento().setValue(c.getDni());
