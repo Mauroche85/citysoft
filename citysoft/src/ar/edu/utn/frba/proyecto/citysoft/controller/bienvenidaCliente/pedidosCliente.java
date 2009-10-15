@@ -12,6 +12,46 @@ import com.blogspot.unserializableone.GCoder;
 
 public class pedidosCliente extends Window {
 
+	public void previewViaje() {
+		Textbox txtOrigenCalle = (Textbox) this.getFellow("stOrigenCalle");
+		Textbox txtOrigenAltura = (Textbox) this.getFellow("stOrigenAltura");
+		Textbox txtOrigenProvincia = (Textbox) this.getFellow("stOrigenProvincia");
+		Textbox txtDestinoCalle = (Textbox) this.getFellow("stDestinoCalle");
+		Textbox txtDestinoAltura = (Textbox) this.getFellow("stDestinoAltura");
+		Textbox txtDestinoProvincia = (Textbox) this.getFellow("stDestinoProvincia");
+
+		String gOrigen = new String();
+
+		GAddress gaOrigen = new GAddress();
+		gOrigen = txtOrigenCalle.getValue() + " " + txtOrigenAltura.getValue() + ", "
+				+ txtOrigenProvincia.getValue() + ", Argentina";
+			try {
+				gaOrigen = GCoder.geocode(gOrigen);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		double origenLatitud = gaOrigen.getLat();
+		double origenLongitud = gaOrigen.getLng();
+			
+		String gDestino = new String();
+
+		GAddress gaDestino = new GAddress();
+		gDestino = txtDestinoCalle.getValue() + " " + txtDestinoAltura.getValue() + ", "
+				+ txtDestinoProvincia.getValue() + ", Argentina";
+			try {
+				gaDestino = GCoder.geocode(gDestino);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		double destinoLatitud = gaDestino.getLat();
+		double destinoLongitud = gaDestino.getLng();
+
+		System.out.println("Coord origen: " + origenLatitud + " " + origenLongitud);		
+	}
+	
 	public void addViaje() {
 		Timebox tbOrigenHora = (Timebox) this.getFellow("stOrigenHora");
 		Textbox txtOrigenReferente = (Textbox) this.getFellow("stOrigenReferente");
@@ -51,26 +91,46 @@ public class pedidosCliente extends Window {
 
 		String gOrigen = new String();
 
-		GAddress gaResultado = new GAddress();
-
+		GAddress gaOrigen = new GAddress();
 		gOrigen = txtOrigenCalle.getValue() + " " + txtOrigenAltura.getValue() + ", "
 				+ txtOrigenProvincia.getValue() + ", Argentina";
-		try {
-			gaResultado = GCoder.geocode(gOrigen);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			try {
+				gaOrigen = GCoder.geocode(gOrigen);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    v.setOrigenLatitud(gaOrigen.getLat());
+	    v.setOrigenLongitud(gaOrigen.getLng());
+			
+		String gDestino = new String();
 
+		GAddress gaDestino = new GAddress();
+		gDestino = txtDestinoCalle.getValue() + " " + txtDestinoAltura.getValue() + ", "
+				+ txtDestinoProvincia.getValue() + ", Argentina";
+			try {
+				gaDestino = GCoder.geocode(gDestino);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    v.setDestinoLatitud(gaDestino.getLat());
+	    v.setDestinoLongitud(gaDestino.getLng());
+			
+		
+			
+			
+			
+			
 		CentralTaxis.getInstance().addViaje(v);
 
 		/*		
 
 	*/
 
-		System.out.println("la hora es: " + tbOrigenHora.getValue());
+
 		System.out.println("id de viaje: " + idViaje);
-		System.out.println("dire origen: " + gOrigen);
+	//	System.out.println("dire origen: " + gaResultado);
 
 	}
 
