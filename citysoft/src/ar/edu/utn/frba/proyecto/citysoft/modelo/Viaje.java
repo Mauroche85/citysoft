@@ -2,14 +2,21 @@ package ar.edu.utn.frba.proyecto.citysoft.modelo;
 
 import java.util.Date;
 
-import org.zkoss.zul.api.Textbox;
-import org.zkoss.zul.api.Timebox;
-
 /**
  * @version 1.0
  * @created 23-Jul-2009 10:54:53 p.m.
  */
-public class Viaje implements ObjetoDeDominio {
+public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
+
+	public static final String ESTADO_PENDIENTE = "PENDIENTE";
+	public static final String ESTADO_ASIGNADO = "ASIGNADO";
+	public static final String ESTADO_TRANSPORTANDO = "TRANSPORTANDO";
+	public static final String ESTADO_CANCELADO = "CANCELADO";
+	public static final String ESTADO_COMPLETADO = "COMPLETADO";
+
+	// **************************************
+	// ** Attributes
+	// **************************************
 
 	private int idViaje;
 	private Taxi taxi;
@@ -17,8 +24,8 @@ public class Viaje implements ObjetoDeDominio {
 	private int horaEstimadaInicio;
 	private int horaRealInicio;
 	private int horaArriboDestino;
-	//agregados para almacenar viajes pedidos por UI (GD)
-	private Date horaPedido; 
+	// agregados para almacenar viajes pedidos por UI (GD)
+	private Date horaPedido;
 	private String origenReferente;
 	private String origenCalle;
 	private String origenAltura;
@@ -31,13 +38,20 @@ public class Viaje implements ObjetoDeDominio {
 	private String destinoLocalidad;
 	private String destinoProvincia;
 	private String origenObservaciones;
+	private String estado;
 	private double origenLatitud;
 	private double origenLongitud;
 	private double destinoLatitud;
 	private double destinoLongitud;
-	
-	
-		
+
+	// **************************************
+	// ** Constructor(s)
+	// **************************************
+
+	public Viaje() {
+		this.estado = ESTADO_PENDIENTE;
+	}
+
 	// **************************************
 	// ** Accessors
 	// **************************************
@@ -226,5 +240,62 @@ public class Viaje implements ObjetoDeDominio {
 		return destinoLongitud;
 	}
 
+	// **************************************
+	// ** Preguntas
+	// **************************************
+
+	public boolean estaPendiente() {
+		return this.estado.equals(ESTADO_PENDIENTE);
+	}
+
+	public boolean estaAsignado() {
+		return this.estado.equals(ESTADO_ASIGNADO);
+	}
+
+	public boolean estaTransportando() {
+		return this.estado.equals(ESTADO_TRANSPORTANDO);
+	}
+
+	public boolean fueCancelado() {
+		return this.estado.equals(ESTADO_CANCELADO);
+	}
+
+	public boolean fueCompletado() {
+		return this.estado.equals(ESTADO_COMPLETADO);
+	}
+
+	// **************************************
+	// ** Ejecucion
+	// **************************************
+
+	public void asignar(Taxi t) {
+		validarViajePendiente();
+		this.taxi = t;
+		t.setViajeEnCurso(this);
+		this.estado = ESTADO_ASIGNADO;
+	}
+
+	// **************************************
+	// ** Helpers
+	// **************************************
+
+	public void validarViajePendiente() {
+		if (!this.estado.equals(ESTADO_PENDIENTE)) {
+			throw new RuntimeException("No se asignar un viaje que no está pendiente (" + this.estado
+					+ ")");
+		}
+	}
+
+	// **************************************
+	// ** Interfaces
+	// **************************************
+
+	@Override
+	public int compareTo(Viaje theOther) {
+		int thisId = this.idViaje;
+		int theOtherId = theOther.idViaje;
+		// Esto nos lo choriceamos de Integer!!!
+		return (thisId < theOtherId ? -1 : (thisId == theOtherId ? 0 : 1));
+	}
 
 }

@@ -4,30 +4,131 @@ import java.util.Collection;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Window;
+import org.zkoss.zul.api.Menupopup;
+import org.zkoss.zul.api.Textbox;
 
 import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 
 public class VentanaInterfazOperador extends Window {
 
+	private static final long serialVersionUID = -6715263410797692543L;
+
 	// **************************************
-	// ** EJECUCION
+	// ** MODELOS
 	// **************************************
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6715263410797692543L;
+	public Collection<Viaje> getListaViajesEnCurso() {
+		SortedSet<Viaje> lista = new TreeSet<Viaje>(CentralTaxis.getInstance().getViajesEnCurso());
+		return lista;
+	}
+
+	public Collection<Taxi> getListaVehiculosLibres() {
+		SortedSet<Taxi> lista = new TreeSet<Taxi>(CentralTaxis.getInstance().getTaxisLibres());
+		return lista;
+	}
+
+	public Collection<Viaje> getListaPedidosPendientes() {
+		SortedSet<Viaje> lista = new TreeSet<Viaje>(CentralTaxis.getInstance().getViajesPendientes());
+		return lista;
+	}
 
 	public Collection<Taxi> getListaVehiculosDesactivados() {
 		SortedSet<Taxi> lista = new TreeSet<Taxi>(CentralTaxis.getInstance().getTaxisDesactivados());
 		return lista;
 	}
-	
-	public Collection<Taxi> getListaVehiculosLibres() {
-		SortedSet<Taxi> lista = new TreeSet<Taxi>(CentralTaxis.getInstance().getTaxisLibres());
-		return lista;
+
+	// **************************************
+	// ** ACCIONES SOBRE LISTAS
+	// **************************************
+
+	public void abrirFinalizacionDeViaje(Menupopup popup) {
+		// TODO la liberacion es la finalizcion del viaje. Ir por ese lado
+		Window win = (Window) Executions.createComponents("liberarTaxi.zul", null, null);
+		agregarRefrescoAlCierre(win);
+		((Textbox) win.getFellow("idTaxi"))
+				.setValue((String) popup.getAttribute("quienAbrioElPopup"));
 	}
-	
+
+	public void abrirAsignacionPorTaxiLibre(Menupopup popup) {
+		VentanitaAsignacionTaxi win = (VentanitaAsignacionTaxi) Executions.createComponents(
+				"asignarTaxi.zul", null, null);
+		agregarRefrescoAlCierre(win);
+		win.elemPatente().setValue((String) popup.getAttribute("quienAbrioElPopup"));
+	}
+
+	public void abrirAsignacionPorViaje(Menupopup popup) {
+		VentanitaAsignacionTaxi win = (VentanitaAsignacionTaxi) Executions.createComponents(
+				"asignarTaxi.zul", null, null);
+		agregarRefrescoAlCierre(win);
+		win.elemViaje().setValue((String) popup.getAttribute("quienAbrioElPopup"));
+	}
+
+	public void abrirCancelacionViaje(Menupopup popup) {
+		// TODO hacer que esto funcione
+		Window win = (Window) Executions.createComponents("cancelarPedido.zul", null, null);
+		agregarRefrescoAlCierre(win);
+		((Textbox) win.getFellow("pedidoPendiente")).setValue((String) popup
+				.getAttribute("quienAbrioElPopup"));
+	}
+
+	public void abrirActivacionTaxi(Menupopup popup) {
+		ActivarDesactivarTaxi win = (ActivarDesactivarTaxi) Executions.createComponents(
+				"activarTaxi.zul", null, null);
+		agregarRefrescoAlCierre(win);
+		win.elemIdTaxi().setValue((String) popup.getAttribute("quienAbrioElPopup"));
+	}
+
+	public void abrirDesactivacionTaxi(Menupopup popup) {
+		ActivarDesactivarTaxi win = (ActivarDesactivarTaxi) Executions.createComponents(
+				"desactivarTaxi.zul", null, null);
+		agregarRefrescoAlCierre(win);
+		win.elemIdTaxi().setValue((String) popup.getAttribute("quienAbrioElPopup"));
+	}
+
+	// **************************************
+	// ** Helpers
+	// **************************************
+
+	/**
+	 * Esta funcion es la encargada de agregar a la nueva ventana, la rutina que
+	 * manda a refrescar la interfaz del operador a activarse en cuanto se
+	 * cierre la nueva ventana en cuestion.
+	 * 
+	 * Sirve, por ejemplo, para decir que cuando cierren la ventana
+	 * "desactivar taxi", entonces debe refrescarse la interfaz del operador. El
+	 * resultado, es que se actualizan las listas.
+	 */
+	private void agregarRefrescoAlCierre(Window win) {
+		win.addEventListener(Events.ON_CLOSE, new OnCloseRefrescarVentana(this));
+	}
+
+	// **************************************
+	// ** INNER CLASS. ¿¿¿Servirá para extenderla hacia afuera???
+	// **************************************
+
+	private class OnCloseRefrescarVentana implements EventListener {
+		private VentanaInterfazOperador win;
+
+		public OnCloseRefrescarVentana(VentanaInterfazOperador win) {
+			this.win = win;
+		}
+
+		@Override
+		public void onEvent(Event event) throws Exception {
+			this.refrescarVentana();
+		}
+
+		public void refrescarVentana() {
+			Event event = new Event(Events.ON_CHANGE, this.win);
+			Events.sendEvent(event);
+		}
+	}
+
 }

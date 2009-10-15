@@ -14,24 +14,39 @@ import java.util.TreeSet;
 public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 
 	private int idVehiculo;
+	// Datos del titular
 	private String nombreUsuario;
+	private String nombre;
+	private String apellido;
+	private int dni;
+	// Informacion del vehículo
 	private String patente;
+	private String poliza;
 	private String idTracker;
 	private String marca;
 	private String modelo;
 	private String detalle;
 	private Conductor conductor;
+	// Estado del vehículo
 	private Collection<Viaje> viajes = new ArrayList<Viaje>();
 	private SortedSet<Track> tracks = new TreeSet<Track>();
 	private Viaje viajeEnCurso;
 	private Boolean activado;
-	private String nombre;
-	private String apellido;
-	private int dni;
-	private String poliza;
 
 	// **************************************
 	// ** Accessors
+	// **************************************
+
+	public int getIdVehiculo() {
+		return idVehiculo;
+	}
+
+	public void setIdVehiculo(int idVehiculo) {
+		this.idVehiculo = idVehiculo;
+	}
+
+	// **************************************
+	// ** Accessors - DATOS DEL TITULAR
 	// **************************************
 
 	public String getNombreUsuario() {
@@ -41,13 +56,49 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 	public void setNombreUsuario(String nombre) {
 		this.nombreUsuario = nombre;
 	}
-	
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public int getDni() {
+		return dni;
+	}
+
+	public void setDni(int dni) {
+		this.dni = dni;
+	}
+
+	// **************************************
+	// ** Accessors - INFORMACION DEL VEHICULO
+	// **************************************
+
 	public String getPatente() {
 		return patente;
 	}
 
 	public void setPatente(String patente) {
 		this.patente = patente;
+	}
+
+	public String getPoliza() {
+		return poliza;
+	}
+
+	public void setPoliza(String poliza) {
+		this.poliza = poliza;
 	}
 
 	public String getIdTracker() {
@@ -90,6 +141,10 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 		this.conductor = conductor;
 	}
 
+	// **************************************
+	// ** Accessors - ESTADO DEL VEHICULO
+	// **************************************
+
 	public Collection<Viaje> getViajes() {
 		return viajes;
 	}
@@ -111,10 +166,17 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 		return viajeEnCurso;
 	}
 
+	/**
+	 * Para asignar un taxi a un viaje, no se debe llamar a este metodo, sino
+	 * recurrir a {@link Viaje#asignar(Taxi)}
+	 */
 	public void setViajeEnCurso(Viaje viajeEnCurso) {
+		validarTaxiActivo();
+		validarTaxiLibre();
 		this.viajeEnCurso = viajeEnCurso;
+		this.viajes.add(viajeEnCurso);
 	}
-	
+
 	public Boolean getActivado() {
 		return activado;
 	}
@@ -123,47 +185,6 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 		this.activado = activado;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getApellido() {
-		return apellido;
-	}
-
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-
-	public int getDni() {
-		return dni;
-	}
-
-	public void setDni(int dni) {
-		this.dni = dni;
-	}
-
-	public String getPoliza() {
-		return poliza;
-	}
-
-	public void setPoliza(String poliza) {
-		this.poliza = poliza;
-	}
-
-	public int getIdVehiculo() {
-		return idVehiculo;
-	}
-
-	public void setIdVehiculo(int idVehiculo) {
-		this.idVehiculo = idVehiculo;
-	}
-
-	
 	// **************************************
 	// ** Execution
 	// **************************************
@@ -182,11 +203,15 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 		this.tracks.add(t);
 	}
 
-/*	@Override
-	public int compareTo(Taxi theOtherTaxi) {
-		return this.patente.compareTo(theOtherTaxi.patente);
-	}*/
+	public boolean estoyLibre() {
+		validarTaxiActivo();
+		return this.getViajeEnCurso() == null;
+	}
 
+	/*
+	 * @Override public int compareTo(Taxi theOtherTaxi) { return
+	 * this.patente.compareTo(theOtherTaxi.patente); }
+	 */
 
 	@Override
 	public int compareTo(Taxi theOther) {
@@ -196,6 +221,21 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 		return (thisId < theOtherId ? -1 : (thisId == theOtherId ? 0 : 1));
 	}
 
-	
-}
+	// **************************************
+	// ** Helpers
+	// **************************************
 
+	public void validarTaxiActivo() {
+		if (!this.activado) {
+			throw new RuntimeException(
+					"No se le puede asignar viaje a un vehículo que no está en actividad");
+		}
+	}
+
+	public void validarTaxiLibre() {
+		if (!estoyLibre()) {
+			throw new RuntimeException("No se puede asignar viaje a un vehículo asignado u ocupado");
+		}
+	}
+
+}

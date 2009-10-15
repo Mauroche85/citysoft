@@ -77,66 +77,22 @@
 						<panel title="Viajes en curso" style="margin-bottom:10p" border="normal"
 							collapsible="true">
 							<panelchildren>
-								<listbox id="listViajes">
-									<listitem height="20px">
+								<listbox id="listViajes"
+									model="@{winOperador.getListaViajesEnCurso, load-after='winOperador.onChange'}">
+									<listitem self="@{each=v}" height="20px">
 										<listcell context="menuContextViajes">
 											<hbox widths="60px" align="center">
-												<label value="34768" />
-												<checkbox />
-												<radio />
-											</hbox>
-										</listcell>
-									</listitem>
-									<listitem height="20px">
-										<listcell context="menuContextViajes">
-											<hbox widths="60px" align="center">
-												<label value="54334" />
-												<checkbox />
-												<radio />
-											</hbox>
-										</listcell>
-									</listitem>
-									<listitem height="20px">
-										<listcell context="menuContextViajes">
-											<hbox widths="60px" align="center">
-												<label value="95746" />
-												<checkbox />
-												<radio />
-											</hbox>
-										</listcell>
-									</listitem>
-									<listitem height="20px">
-										<listcell context="menuContextViajes">
-											<hbox widths="60px" align="center">
-												<label value="73659" />
-												<checkbox />
-												<radio />
-											</hbox>
-										</listcell>
-									</listitem>
-									<listitem height="20px">
-										<listcell context="menuContextViajes">
-											<hbox widths="60px" align="center">
-												<label value="93265" />
+												<label value="@{v.idViaje}" />
 												<checkbox />
 												<radio />
 											</hbox>
 										</listcell>
 									</listitem>
 								</listbox>
-								<menupopup id="menuContextViajes">
-									<attribute name="onOpen">
-	if (event.isOpen())
-		self.setAttribute("quienAbrioElPopup", event.getReference()
-				.getFirstChild().getFirstChild().getValue());
-</attribute>
-									<menuitem label="Liberar Taxi" image="images/link_break.png">
-										<attribute name="onClick">
-	Component h = Executions.createComponents("liberarTaxi.zul", null, null);
-	h.getFellow("idTaxi").setValue(
-			self.getParent().getAttribute("quienAbrioElPopup"));
-</attribute>
-									</menuitem>
+								<menupopup id="menuContextViajes"
+									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
+									<menuitem label="Liberar Taxi" image="images/link_break.png"
+										onClick="winOperador.abrirFinalizacionDeViaje((Menupopup) self.getParent());" />
 								</menupopup>
 							</panelchildren>
 						</panel>
@@ -145,7 +101,7 @@
 							collapsible="true">
 							<panelchildren>
 								<listbox id="listTaxisLibres"
-									model="@{winOperador.getListaVehiculosLibres, load-after='self.onChange'}">
+									model="@{winOperador.getListaVehiculosLibres, load-after='winOperador.onChange'}">
 									<listitem self="@{each=tl}" height="20px">
 										<listcell context="menuContextLibre">
 											<hbox widths="60px" align="center">
@@ -156,28 +112,12 @@
 										</listcell>
 									</listitem>
 								</listbox>
-
-								<menupopup id="menuContextLibre">
-									<attribute name="onOpen">
-	if (event.isOpen())
-		self.setAttribute("quienAbrioElPopup", event.getReference()
-				.getFirstChild().getFirstChild().getValue());
-</attribute>
-									<menuitem label="Asignar Taxi" image="images/link.png">
-										<attribute name="onClick">
-	Component h = Executions.createComponents("asignarTaxi.zul", null, null);
-	h.getFellow("idTaxi").setValue(
-			self.getParent().getAttribute("quienAbrioElPopup"));
-</attribute>
-									</menuitem>
-
-									<menuitem label="Desactivar Taxi" image="images/unplug.png">
-										<attribute name="onClick">
-	Component h = Executions.createComponents("desactivarTaxi.zul", null, null);
-	h.getFellow("idTaxi").setValue(
-			self.getParent().getAttribute("quienAbrioElPopup"));
-</attribute>
-									</menuitem>
+								<menupopup id="menuContextLibre"
+									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
+									<menuitem label="Asignar Taxi" image="images/link.png"
+										onClick="winOperador.abrirAsignacionPorTaxiLibre((Menupopup) self.getParent());" />
+									<menuitem label="Desactivar Taxi" image="images/unplug.png"
+										onClick="winOperador.abrirDesactivacionTaxi((Menupopup) self.getParent());" />
 								</menupopup>
 							</panelchildren>
 						</panel>
@@ -185,73 +125,24 @@
 						<panel title="Pedidos Pend." style="margin-bottom:10p" border="normal"
 							collapsible="true">
 							<panelchildren>
-								<listbox id="listPedidosPend">
-									<listitem height="20px">
+								<listbox id="listPedidosPend"
+									model="@{winOperador.getListaPedidosPendientes, load-after='winOperador.onChange'}">
+									<listitem self="@{each=v}" height="20px">
 										<listcell context="menuContextPendientes">
 											<hbox widths="60px" align="center">
-												<label value="34768" />
-												<checkbox />
-												<radio />
-											</hbox>
-										</listcell>
-									</listitem>
-									<listitem height="20px">
-										<listcell context="menuContextPendientes">
-											<hbox widths="60px" align="center">
-												<label value="54334" />
-												<checkbox />
-												<radio />
-											</hbox>
-										</listcell>
-									</listitem>
-									<listitem height="20px">
-										<listcell context="menuContextPendientes">
-											<hbox widths="60px" align="center">
-												<label value="95746" />
-												<checkbox />
-												<radio />
-											</hbox>
-										</listcell>
-									</listitem>
-									<listitem height="20px">
-										<listcell context="menuContextPendientes">
-											<hbox widths="60px" align="center">
-												<label value="73659" />
-												<checkbox />
-												<radio />
-											</hbox>
-										</listcell>
-									</listitem>
-									<listitem height="20px">
-										<listcell context="menuContextPendientes">
-											<hbox widths="60px" align="center">
-												<label value="93265" />
+												<label value="@{v.idViaje}" />
 												<checkbox />
 												<radio />
 											</hbox>
 										</listcell>
 									</listitem>
 								</listbox>
-								<menupopup id="menuContextPendientes">
-									<attribute name="onOpen">
-	if (event.isOpen())
-		self.setAttribute("quienAbrioElPopup", event.getReference()
-				.getFirstChild().getFirstChild().getValue());
-</attribute>
-									<menuitem label="Asignar Taxi" image="images/link.png">
-										<attribute name="onClick">
-	Component h = Executions.createComponents("asignarTaxi.zul", null, null);
-	h.getFellow("idTaxi").setValue(
-			self.getParent().getAttribute("quienAbrioElPopup"));
-</attribute>
-									</menuitem>
-									<menuitem label="Cancelar Pedido" image="images/cancel.png">
-										<attribute name="onClick">
-	Component h = Executions.createComponents("cancelarPedido.zul", null, null);
-	h.getFellow("pedidoPendiente").setValue(
-			self.getParent().getAttribute("quienAbrioElPopup"));
-</attribute>
-									</menuitem>
+								<menupopup id="menuContextPendientes"
+									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
+									<menuitem label="Asignar Taxi" image="images/link.png"
+										onClick="winOperador.abrirAsignacionPorViaje((Menupopup) self.getParent());" />
+									<menuitem label="Cancelar Pedido" image="images/cancel.png"
+										onClick="winOperador.abrirCancelacionViaje((Menupopup) self.getParent());" />
 								</menupopup>
 							</panelchildren>
 						</panel>
@@ -260,7 +151,7 @@
 							collapsible="true">
 							<panelchildren>
 								<listbox id="listTaxisDesactivados"
-									model="@{winOperador.getListaVehiculosDesactivados, load-after='self.onChange'}">
+									model="@{winOperador.getListaVehiculosDesactivados, load-after='winOperador.onChange'}">
 									<listitem self="@{each=t}" height="20px">
 										<listcell context="menuContextDesactivados">
 											<hbox widths="60px" align="center">
@@ -269,19 +160,10 @@
 										</listcell>
 									</listitem>
 								</listbox>
-								<menupopup id="menuContextDesactivados">
-									<attribute name="onOpen">
-	if (event.isOpen())
-		self.setAttribute("quienAbrioElPopup", event.getReference()
-				.getFirstChild().getFirstChild().getValue());
-</attribute>
-									<menuitem label="Activar Taxi" image="images/plug.png">
-										<attribute name="onClick">
-	Component h = Executions.createComponents("activarTaxi.zul", null, null);
-	h.getFellow("idTaxi").setValue(
-			self.getParent().getAttribute("quienAbrioElPopup"));
-</attribute>
-									</menuitem>
+								<menupopup id="menuContextDesactivados"
+									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
+									<menuitem label="Activar Taxi" image="images/plug.png"
+										onClick="winOperador.abrirActivacionTaxi((Menupopup) self.getParent());" />
 								</menupopup>
 							</panelchildren>
 						</panel>
@@ -293,7 +175,8 @@
 		</east>
 	</borderlayout>
 
-	<!-- Esto lo usamos para actualizar el mapa cada medio segundo -->
-	<timer id="t" use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.FollowerTimer"
-		onTimer="self.ring();" repeats="true" delay="500" running="true" />
+	<!-- Esto lo usamos para que se actualicen los pedidos -->
+	<timer id="t"
+		use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.InterfazOperadorTimer"
+		onTimer="self.ring();" repeats="true" delay="5000" running="true" />
 </window>
