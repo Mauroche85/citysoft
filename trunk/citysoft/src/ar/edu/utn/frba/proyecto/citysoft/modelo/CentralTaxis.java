@@ -70,7 +70,7 @@ public class CentralTaxis implements ObjetoDeDominio {
 			}
 		});
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public Collection<Taxi> getTaxisLibres() {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
@@ -117,6 +117,30 @@ public class CentralTaxis implements ObjetoDeDominio {
 
 	public Collection<Viaje> getViajes() {
 		return viajes;
+	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<Viaje> getViajesEnCurso() {
+		// TODO: que pasa si no lo encuentra??? devuelve null???
+		return (Collection<Viaje>) CollectionUtils.select(this.viajes, new Predicate() {
+			@Override
+			public boolean evaluate(Object arg0) {
+				Viaje v = (Viaje) arg0;
+				return v.estaAsignado() || v.estaTransportando();
+			}
+		});
+	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<Viaje> getViajesPendientes() {
+		// TODO: que pasa si no lo encuentra??? devuelve null???
+		return (Collection<Viaje>) CollectionUtils.select(this.viajes, new Predicate() {
+			@Override
+			public boolean evaluate(Object arg0) {
+				Viaje v = (Viaje) arg0;
+				return v.estaPendiente();
+			}
+		});
 	}
 
 	public void addViaje(Viaje viaje) {
@@ -192,7 +216,7 @@ public class CentralTaxis implements ObjetoDeDominio {
 			}
 		});
 	}
-	
+
 	public Taxi getTaxiPorIdVehiculo(final int idVehiculo) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
 		return (Taxi) CollectionUtils.find(this.taxis, new Predicate() {
@@ -203,7 +227,7 @@ public class CentralTaxis implements ObjetoDeDominio {
 			}
 		});
 	}
-	
+
 	public Taxi getTaxiPorPatente(final String patente) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
 		return (Taxi) CollectionUtils.find(this.taxis, new Predicate() {
@@ -214,7 +238,7 @@ public class CentralTaxis implements ObjetoDeDominio {
 			}
 		});
 	}
-	
+
 	public Viaje getViaje(final int idViaje) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
 		return (Viaje) CollectionUtils.find(this.viajes, new Predicate() {

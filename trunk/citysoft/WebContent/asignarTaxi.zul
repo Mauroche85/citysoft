@@ -1,6 +1,7 @@
 <?page title="Asignar Taxi" contentType="text/html;charset=UTF-8"?>
 <zk>
 	<window id="winAsignarTaxi" title="Asignar Taxi" border="normal"
+		use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.VentanitaAsignacionTaxi"
 		mode="modal" width="400px" height="100px" sizable="false" closable="true">
 		<borderlayout>
 			<center>

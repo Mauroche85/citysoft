@@ -26,8 +26,7 @@ public class LoteDeConductoresTaxisYViajes implements Lote {
 		Taxi t = buildTaxi("TAXI01", "Renault", "19", "JUT 111", "El vehiculo de Jorge Uretta");
 		Viaje v = buildViaje(1);
 		c.setTaxi(t);
-		t.addViaje(v);
-		t.setViajeEnCurso(v);
+		v.asignar(t);
 		list.add(c);
 
 		// **************************************
@@ -37,8 +36,7 @@ public class LoteDeConductoresTaxisYViajes implements Lote {
 		t = buildTaxi("TAXI02", "Bauer", "Vapor XXX", "VAP 030", "El vehiculo de Mario Lemiaux");
 		v = buildViaje(2);
 		c.setTaxi(t);
-		t.addViaje(v);
-		t.setViajeEnCurso(v);
+		v.asignar(t);
 		CentralTaxis.getInstance().addConductor(c);
 		CentralTaxis.getInstance().addTaxi(t);
 		CentralTaxis.getInstance().addViaje(v);
@@ -51,8 +49,7 @@ public class LoteDeConductoresTaxisYViajes implements Lote {
 		t = buildTaxi("TAXI03", "Fiat", "128", "GUI 333", "El vehiculo de Guillermo Marimon");
 		v = buildViaje(3);
 		c.setTaxi(t);
-		t.addViaje(v);
-		t.setViajeEnCurso(v);
+		v.asignar(t);
 		CentralTaxis.getInstance().addConductor(c);
 		CentralTaxis.getInstance().addTaxi(t);
 		CentralTaxis.getInstance().addViaje(v);
