@@ -70,6 +70,18 @@ public class CentralTaxis implements ObjetoDeDominio {
 			}
 		});
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Collection<Taxi> getTaxisLibres() {
+		// TODO: que pasa si no lo encuentra??? devuelve null???
+		return (Collection<Taxi>) CollectionUtils.select(this.taxis, new Predicate() {
+			@Override
+			public boolean evaluate(Object arg0) {
+				Taxi t = (Taxi) arg0;
+				return t.getActivado();
+			}
+		});
+	}
 
 	public void addTaxi(Taxi taxi) {
 		this.taxis.add(taxi);

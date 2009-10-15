@@ -25,4 +25,9 @@ public class VentanaInterfazOperador extends Window {
 		return lista;
 	}
 	
+	public Collection<Taxi> getListaVehiculosLibres() {
+		SortedSet<Taxi> lista = new TreeSet<Taxi>(CentralTaxis.getInstance().getTaxisLibres());
+		return lista;
+	}
+	
 }

@@ -71,20 +71,17 @@
 							style="margin-bottom:10p" border="normal" collapsible="true">
 							<panelchildren>
 								<listbox id="listViajes">
-									<listitem>
+									<!-- listitem>
 										<listcell>
 											<hbox widths="60px" align="center">
 												<label value="Todos" />
 												<checkbox />
 											</hbox>
 										</listcell>
-									</listitem>
+									</listitem -->
 									<listitem>
 										<listcell
 											context="menuContextViajes">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "34768");
-</attribute>
 											<hbox widths="60px" align="center">
 												<label value="34768" />
 												<checkbox />
@@ -95,9 +92,6 @@
 									<listitem>
 										<listcell
 											context="menuContextViajes">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "54334");
-</attribute>
 											<hbox widths="60px" align="center">
 												<label value="54334" />
 												<checkbox />
@@ -108,9 +102,6 @@
 									<listitem>
 										<listcell
 											context="menuContextViajes">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "95746");
-</attribute>
 											<hbox widths="60px" align="center">
 												<label value="95746" />
 												<checkbox />
@@ -121,9 +112,6 @@
 									<listitem>
 										<listcell
 											context="menuContextViajes">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "73659");
-</attribute>
 											<hbox widths="60px" align="center">
 												<label value="73659" />
 												<checkbox />
@@ -134,9 +122,6 @@
 									<listitem>
 										<listcell
 											context="menuContextViajes">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "93265");
-</attribute>
 											<hbox widths="60px" align="center">
 												<label value="93265" />
 												<checkbox />
@@ -145,12 +130,17 @@
 										</listcell>
 									</listitem>
 								</listbox>
-
-								<menupopup id="menuContextViajes">
+								
+								<menupopup
+									id="menuContextViajes">
+									<attribute name="onOpen">
+	if (event.isOpen())
+		self.setAttribute("quienAbrioElPopup", event.getReference().getFirstChild().getFirstChild().getValue());
+</attribute>
 									<menuitem label="Liberar Taxi" image="images/link_break.png">
 										<attribute name="onClick">
 	Component h = Executions.createComponents("liberarTaxi.zul", null, null);
-	h.getFellow("idTaxi").setValue(page.getAttribute("valor"));
+	h.getFellow("idTaxi").setValue(self.getParent().getAttribute("quienAbrioElPopup"));
 </attribute>
 									</menuitem>
 								</menupopup>
@@ -162,76 +152,21 @@
 							style="margin-bottom:10p" border="normal" collapsible="true">
 
 							<panelchildren>
-
-								<listbox id="listTaxisLibres">
-									<listitem>
+									
+								<listbox id="listTaxisLibres" model="@{winOperador.getListaVehiculosLibres, load-after='self.onChange'}">
+									<!-- listitem>
 										<listcell>
 											<hbox widths="60px" align="center">
 												<label value="Todos" />
 												<checkbox />
 											</hbox>
 										</listcell>
-									</listitem>
-									<listitem>
+									</listitem -->
+									<listitem self="@{each=tl}">
 										<listcell
 											context="menuContextLibre">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "34768");
-</attribute>
 											<hbox widths="60px" align="center">
-												<label value="34768" />
-												<checkbox />
-												<image src="images/target.png"/>
-											</hbox>
-										</listcell>
-									</listitem>
-									<listitem>
-										<listcell
-											context="menuContextLibre">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "54334");
-</attribute>
-											<hbox widths="60px" align="center">
-												<label value="54334" />
-												<checkbox />
-												<image src="images/target.png"/>
-											</hbox>
-										</listcell>
-									</listitem>
-									<listitem>
-										<listcell
-											context="menuContextLibre">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "95746");
-</attribute>
-											<hbox widths="60px" align="center">
-												<label value="95746" />
-												<checkbox />
-												<image src="images/target.png"/>
-											</hbox>
-										</listcell>
-									</listitem>
-									<listitem>
-										<listcell
-											context="menuContextLibre">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "73659");
-</attribute>
-											<hbox widths="60px" align="center">
-												<label value="73659" />
-												<checkbox />
-												<image src="images/target.png"/>
-											</hbox>
-										</listcell>
-									</listitem>
-									<listitem>
-										<listcell
-											context="menuContextLibre">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "93265");
-</attribute>
-											<hbox widths="60px" align="center">
-												<label value="93265" />
+												<label value="@{tl.patente}" />
 												<checkbox />
 												<image src="images/target.png"/>
 											</hbox>
@@ -240,16 +175,21 @@
 								</listbox>
 
 								<menupopup id="menuContextLibre">
+									<attribute name="onOpen">
+	if (event.isOpen())
+		self.setAttribute("quienAbrioElPopup", event.getReference().getFirstChild().getFirstChild().getValue());
+</attribute>
 									<menuitem label="Asignar Taxi" image="images/link.png">
 										<attribute name="onClick">
 	Component h = Executions.createComponents("asignarTaxi.zul", null, null);
-	h.getFellow("idTaxi").setValue(page.getAttribute("valor"));
+	h.getFellow("idTaxi").setValue(self.getParent().getAttribute("quienAbrioElPopup"));
 </attribute>
 									</menuitem>
+
 									<menuitem label="Desactivar Taxi" image="images/unplug.png">
 										<attribute name="onClick">
 	Component h = Executions.createComponents("desactivarTaxi.zul", null, null);
-	h.getFellow("idTaxi").setValue(page.getAttribute("valor"));
+	h.getFellow("idTaxi").setValue(self.getParent().getAttribute("quienAbrioElPopup"));
 </attribute>
 									</menuitem>
 								</menupopup>
@@ -263,20 +203,17 @@
 							<panelchildren>
 
 								<listbox id="listPedidosPend">
-									<listitem>
+									<!-- listitem>
 										<listcell>
 											<hbox widths="60px" align="center">
 												<label value="Todos" />
 												<checkbox />
 											</hbox>
 										</listcell>
-									</listitem>
+									</listitem -->
 									<listitem>
 										<listcell
 											context="menuContextPendientes">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "34768");
-</attribute>
 											<hbox widths="60px" align="center">
 												<label value="34768" />
 												<checkbox />
@@ -287,9 +224,6 @@
 									<listitem>
 										<listcell
 											context="menuContextPendientes">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "54334");
-</attribute>
 											<hbox widths="60px" align="center">
 												<label value="54334" />
 												<checkbox />
@@ -300,9 +234,6 @@
 									<listitem>
 										<listcell
 											context="menuContextPendientes">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "95746");
-</attribute>
 											<hbox widths="60px" align="center">
 												<label value="95746" />
 												<checkbox />
@@ -313,9 +244,6 @@
 									<listitem>
 										<listcell
 											context="menuContextPendientes">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "73659");
-</attribute>
 											<hbox widths="60px" align="center">
 												<label value="73659" />
 												<checkbox />
@@ -326,9 +254,6 @@
 									<listitem>
 										<listcell
 											context="menuContextPendientes">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "93265");
-</attribute>
 											<hbox widths="60px" align="center">
 												<label value="93265" />
 												<checkbox />
@@ -337,18 +262,23 @@
 										</listcell>
 									</listitem>
 								</listbox>
-
+								
 								<menupopup id="menuContextPendientes">
+									<attribute name="onOpen">
+	if (event.isOpen())
+		self.setAttribute("quienAbrioElPopup", event.getReference().getFirstChild().getFirstChild().getValue());
+</attribute>
 									<menuitem label="Asignar Taxi" image="images/link.png">
 										<attribute name="onClick">
 	Component h = Executions.createComponents("asignarTaxi.zul", null, null);
-	h.getFellow("pedidoPendiente").setValue(page.getAttribute("valor"));
+	h.getFellow("idTaxi").setValue(self.getParent().getAttribute("quienAbrioElPopup"));
 </attribute>
 									</menuitem>
+
 									<menuitem label="Cancelar Pedido" image="images/cancel.png">
 										<attribute name="onClick">
 	Component h = Executions.createComponents("cancelarPedido.zul", null, null);
-	h.getFellow("pedidoPendiente").setValue(page.getAttribute("valor"));
+	h.getFellow("pedidoPendiente").setValue(self.getParent().getAttribute("quienAbrioElPopup"));
 </attribute>
 									</menuitem>
 								</menupopup>
@@ -362,15 +292,14 @@
 							<panelchildren>
 
 								<listbox id="listTaxisDesactivados" model="@{winOperador.getListaVehiculosDesactivados, load-after='self.onChange'}">
-									<listitem>
+									<!-- listitem>
 										<listcell>
 											<hbox widths="60px" align="center">
 												<label value="Todos" />
 												<checkbox />
 											</hbox>
 										</listcell>
-									</listitem >
-									
+									</listitem -->
 									<listitem self="@{each=t}">
 										<listcell
 											context="menuContextDesactivados">
