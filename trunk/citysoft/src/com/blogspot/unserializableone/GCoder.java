@@ -47,7 +47,7 @@ public class GCoder {
 			String[] keys = query.split("\\.");
 			Object r = queryHelper(jo, keys[0]);
 			for (int i = 1; i < keys.length; i++) {
-				r = queryHelper(jo.fromObject(r), keys[i]);
+				r = queryHelper(JSONObject.fromObject(r), keys[i]);
 			}
 			return r;
 		} catch (JSONException e) {
@@ -69,5 +69,9 @@ public class GCoder {
 	public static void main(String[] args) throws Exception {
 		System.out.println(GCoder.geocode("650 Townsend st, San Francsico, CA"));
 		System.out.println(GCoder.geocode("94103"));
+		System.out
+				.println(GCoder.geocode("peña 2700 capital federal cdad. autonoma de buenos aires"));
+		System.out.println(GCoder
+				.geocode("2700 peña, capital federal, ciudad autonoma de buenos aires, argentina"));
 	}
 }

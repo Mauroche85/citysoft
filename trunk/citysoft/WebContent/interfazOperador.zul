@@ -1,13 +1,13 @@
 <?page title="Interfaz Operador" ?>
 <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
 
-<window id="winOperador" title="Interfaz Operador" border="normal"
-	mode="modal" use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.VentanaInterfazOperador"
+<window id="winOperador" title="Interfaz Operador" border="normal" mode="modal"
+	use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.VentanaInterfazOperador"
 	width="98%" height="98%" sizable="true" closable="true">
 
-	<!-- tutaxi.com.ar? src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA" -->
-	<script
-		src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhRzdWSuvxlSxMx33aEXsRZiewAFIxTyvaaXezhKd2-vbxqrWx_80Qz4dg"
+	<!-- tutaxi.com.ar? sigaesetaxi.com.ar? src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA" -->
+	<!-- citysoft.dyndns.org: src="ABQIAAAAxPbpriJFATP1kV4Jfg7FrhRzdWSuvxlSxMx33aEXsRZiewAFIxTyvaaXezhKd2-vbxqrWx_80Qz4dg" -->
+	<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;"
 		type="text/javascript">
 	</script>
 
@@ -43,14 +43,14 @@
 				</toolbarbutton>
 				<space />
 				<space />
-				<toolbarbutton label="Cancelar Pedido" image="images/cancel.png"> 
+				<toolbarbutton label="Cancelar Pedido" image="images/cancel.png">
 					<attribute name="onClick">
 	Executions.createComponents("cancelarPedido.zul", null, null);
 </attribute>
 				</toolbarbutton>
 				<space />
 				<space />
-				<toolbarbutton label="Viaje Nuevo" image="images/add.png"> 
+				<toolbarbutton label="Viaje Nuevo" image="images/add.png">
 					<attribute name="onClick">
 	Executions.createComponents("viajeNuevo.zul", null, null);
 </attribute>
@@ -65,7 +65,7 @@
 		<center flex="true">
 			<gmaps id="gmap"
 				use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.FollowerMap" showZoomCtrl="true"
-				showOverviewCtrl="true" showTypeCtrl="true">
+				showOverviewCtrl="true" showTypeCtrl="true" lng="-58.42024" lat="-34.59856" zoom="15">
 			</gmaps>
 		</center>
 
@@ -74,13 +74,12 @@
 			<vbox width="150px">
 				<columnlayout width="150px">
 					<columnchildren style="padding: 5px">
-						<panel title="Viajes en curso"
-							style="margin-bottom:10p" border="normal" collapsible="true">
+						<panel title="Viajes en curso" style="margin-bottom:10p" border="normal"
+							collapsible="true">
 							<panelchildren>
 								<listbox id="listViajes">
 									<listitem height="20px">
-										<listcell
-											context="menuContextViajes">
+										<listcell context="menuContextViajes">
 											<hbox widths="60px" align="center">
 												<label value="34768" />
 												<checkbox />
@@ -89,8 +88,7 @@
 										</listcell>
 									</listitem>
 									<listitem height="20px">
-										<listcell
-											context="menuContextViajes">
+										<listcell context="menuContextViajes">
 											<hbox widths="60px" align="center">
 												<label value="54334" />
 												<checkbox />
@@ -99,8 +97,7 @@
 										</listcell>
 									</listitem>
 									<listitem height="20px">
-										<listcell
-											context="menuContextViajes">
+										<listcell context="menuContextViajes">
 											<hbox widths="60px" align="center">
 												<label value="95746" />
 												<checkbox />
@@ -108,9 +105,8 @@
 											</hbox>
 										</listcell>
 									</listitem>
-									<listitem  height="20px">
-										<listcell
-											context="menuContextViajes">
+									<listitem height="20px">
+										<listcell context="menuContextViajes">
 											<hbox widths="60px" align="center">
 												<label value="73659" />
 												<checkbox />
@@ -118,9 +114,8 @@
 											</hbox>
 										</listcell>
 									</listitem>
-									<listitem  height="20px">
-										<listcell
-											context="menuContextViajes">
+									<listitem height="20px">
+										<listcell context="menuContextViajes">
 											<hbox widths="60px" align="center">
 												<label value="93265" />
 												<checkbox />
@@ -129,33 +124,30 @@
 										</listcell>
 									</listitem>
 								</listbox>
-								
-								<menupopup
-									id="menuContextViajes">
+								<menupopup id="menuContextViajes">
 									<attribute name="onOpen">
 	if (event.isOpen())
-		self.setAttribute("quienAbrioElPopup", event.getReference().getFirstChild().getFirstChild().getValue());
+		self.setAttribute("quienAbrioElPopup", event.getReference()
+				.getFirstChild().getFirstChild().getValue());
 </attribute>
 									<menuitem label="Liberar Taxi" image="images/link_break.png">
 										<attribute name="onClick">
 	Component h = Executions.createComponents("liberarTaxi.zul", null, null);
-	h.getFellow("idTaxi").setValue(self.getParent().getAttribute("quienAbrioElPopup"));
+	h.getFellow("idTaxi").setValue(
+			self.getParent().getAttribute("quienAbrioElPopup"));
 </attribute>
 									</menuitem>
 								</menupopup>
-
 							</panelchildren>
 						</panel>
 
-						<panel title="Taxis Libres"
-							style="margin-bottom:10p" border="normal" collapsible="true">
-
+						<panel title="Taxis Libres" style="margin-bottom:10p" border="normal"
+							collapsible="true">
 							<panelchildren>
-									
-								<listbox id="listTaxisLibres" model="@{winOperador.getListaVehiculosLibres, load-after='self.onChange'}">
-									<listitem self="@{each=tl}"  height="20px">
-										<listcell
-											context="menuContextLibre">
+								<listbox id="listTaxisLibres"
+									model="@{winOperador.getListaVehiculosLibres, load-after='self.onChange'}">
+									<listitem self="@{each=tl}" height="20px">
+										<listcell context="menuContextLibre">
 											<hbox widths="60px" align="center">
 												<label value="@{tl.patente}" />
 												<checkbox />
@@ -168,35 +160,34 @@
 								<menupopup id="menuContextLibre">
 									<attribute name="onOpen">
 	if (event.isOpen())
-		self.setAttribute("quienAbrioElPopup", event.getReference().getFirstChild().getFirstChild().getValue());
+		self.setAttribute("quienAbrioElPopup", event.getReference()
+				.getFirstChild().getFirstChild().getValue());
 </attribute>
 									<menuitem label="Asignar Taxi" image="images/link.png">
 										<attribute name="onClick">
 	Component h = Executions.createComponents("asignarTaxi.zul", null, null);
-	h.getFellow("idTaxi").setValue(self.getParent().getAttribute("quienAbrioElPopup"));
+	h.getFellow("idTaxi").setValue(
+			self.getParent().getAttribute("quienAbrioElPopup"));
 </attribute>
 									</menuitem>
 
 									<menuitem label="Desactivar Taxi" image="images/unplug.png">
 										<attribute name="onClick">
 	Component h = Executions.createComponents("desactivarTaxi.zul", null, null);
-	h.getFellow("idTaxi").setValue(self.getParent().getAttribute("quienAbrioElPopup"));
+	h.getFellow("idTaxi").setValue(
+			self.getParent().getAttribute("quienAbrioElPopup"));
 </attribute>
 									</menuitem>
 								</menupopup>
-
 							</panelchildren>
 						</panel>
 
-						<panel title="Pedidos Pend."
-							style="margin-bottom:10p" border="normal" collapsible="true">
-
+						<panel title="Pedidos Pend." style="margin-bottom:10p" border="normal"
+							collapsible="true">
 							<panelchildren>
-
 								<listbox id="listPedidosPend">
-									<listitem  height="20px">
-										<listcell
-											context="menuContextPendientes">
+									<listitem height="20px">
+										<listcell context="menuContextPendientes">
 											<hbox widths="60px" align="center">
 												<label value="34768" />
 												<checkbox />
@@ -204,9 +195,8 @@
 											</hbox>
 										</listcell>
 									</listitem>
-									<listitem  height="20px">
-										<listcell
-											context="menuContextPendientes">
+									<listitem height="20px">
+										<listcell context="menuContextPendientes">
 											<hbox widths="60px" align="center">
 												<label value="54334" />
 												<checkbox />
@@ -214,9 +204,8 @@
 											</hbox>
 										</listcell>
 									</listitem>
-									<listitem  height="20px">
-										<listcell
-											context="menuContextPendientes">
+									<listitem height="20px">
+										<listcell context="menuContextPendientes">
 											<hbox widths="60px" align="center">
 												<label value="95746" />
 												<checkbox />
@@ -224,9 +213,8 @@
 											</hbox>
 										</listcell>
 									</listitem>
-									<listitem  height="20px">
-										<listcell
-											context="menuContextPendientes">
+									<listitem height="20px">
+										<listcell context="menuContextPendientes">
 											<hbox widths="60px" align="center">
 												<label value="73659" />
 												<checkbox />
@@ -234,9 +222,8 @@
 											</hbox>
 										</listcell>
 									</listitem>
-									<listitem  height="20px">
-										<listcell
-											context="menuContextPendientes">
+									<listitem height="20px">
+										<listcell context="menuContextPendientes">
 											<hbox widths="60px" align="center">
 												<label value="93265" />
 												<checkbox />
@@ -245,64 +232,61 @@
 										</listcell>
 									</listitem>
 								</listbox>
-								
 								<menupopup id="menuContextPendientes">
 									<attribute name="onOpen">
 	if (event.isOpen())
-		self.setAttribute("quienAbrioElPopup", event.getReference().getFirstChild().getFirstChild().getValue());
+		self.setAttribute("quienAbrioElPopup", event.getReference()
+				.getFirstChild().getFirstChild().getValue());
 </attribute>
 									<menuitem label="Asignar Taxi" image="images/link.png">
 										<attribute name="onClick">
 	Component h = Executions.createComponents("asignarTaxi.zul", null, null);
-	h.getFellow("idTaxi").setValue(self.getParent().getAttribute("quienAbrioElPopup"));
+	h.getFellow("idTaxi").setValue(
+			self.getParent().getAttribute("quienAbrioElPopup"));
 </attribute>
 									</menuitem>
-
 									<menuitem label="Cancelar Pedido" image="images/cancel.png">
 										<attribute name="onClick">
 	Component h = Executions.createComponents("cancelarPedido.zul", null, null);
-	h.getFellow("pedidoPendiente").setValue(self.getParent().getAttribute("quienAbrioElPopup"));
+	h.getFellow("pedidoPendiente").setValue(
+			self.getParent().getAttribute("quienAbrioElPopup"));
 </attribute>
 									</menuitem>
 								</menupopup>
-
 							</panelchildren>
 						</panel>
 
-						<panel title="Taxis Desact."
-							style="margin-bottom:10p" border="normal" collapsible="true">
-
+						<panel title="Taxis Desact." style="margin-bottom:10p" border="normal"
+							collapsible="true">
 							<panelchildren>
-
-								<listbox id="listTaxisDesactivados" model="@{winOperador.getListaVehiculosDesactivados, load-after='self.onChange'}">
+								<listbox id="listTaxisDesactivados"
+									model="@{winOperador.getListaVehiculosDesactivados, load-after='self.onChange'}">
 									<listitem self="@{each=t}" height="20px">
-										<listcell
-											context="menuContextDesactivados">
+										<listcell context="menuContextDesactivados">
 											<hbox widths="60px" align="center">
 												<label value="@{t.patente}" />
 											</hbox>
 										</listcell>
 									</listitem>
 								</listbox>
-
-								<menupopup
-									id="menuContextDesactivados">
+								<menupopup id="menuContextDesactivados">
 									<attribute name="onOpen">
 	if (event.isOpen())
-		self.setAttribute("quienAbrioElPopup", event.getReference().getFirstChild().getFirstChild().getValue());
+		self.setAttribute("quienAbrioElPopup", event.getReference()
+				.getFirstChild().getFirstChild().getValue());
 </attribute>
 									<menuitem label="Activar Taxi" image="images/plug.png">
 										<attribute name="onClick">
 	Component h = Executions.createComponents("activarTaxi.zul", null, null);
-	h.getFellow("idTaxi").setValue(self.getParent().getAttribute("quienAbrioElPopup"));
+	h.getFellow("idTaxi").setValue(
+			self.getParent().getAttribute("quienAbrioElPopup"));
 </attribute>
 									</menuitem>
 								</menupopup>
-
 							</panelchildren>
 						</panel>
-					</columnchildren>
 
+					</columnchildren>
 				</columnlayout>
 
 			</vbox>
