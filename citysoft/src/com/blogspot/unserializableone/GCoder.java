@@ -12,7 +12,7 @@ import org.apache.commons.io.IOUtils;
 
 public class GCoder {
 	private static final String URL = "http://maps.google.com/maps/geo?output=json";
-	private static final String DEFAULT_KEY = "YOUR_GOOGLE_API_KEY";
+	private static final String DEFAULT_KEY = "ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA";
 
 	public static GAddress geocode(String address, String key) throws Exception {
 		URL url = new URL(URL + "&q=" + URLEncoder.encode(address, "UTF-8") + "&key=" + key);
@@ -67,7 +67,7 @@ public class GCoder {
 	}
 
 	public static void main(String[] args) throws Exception {
-		System.out.println(GCoder.geocode("650 Townsend st, San Francsico, CA"));
+		System.out.println(GCoder.geocode("28 275, Mercedes, Buenos Aires, Argentina"));
 		System.out.println(GCoder.geocode("94103"));
 		System.out
 				.println(GCoder.geocode("peña 2700 capital federal cdad. autonoma de buenos aires"));

@@ -31,7 +31,10 @@ public class Viaje implements ObjetoDeDominio {
 	private String destinoLocalidad;
 	private String destinoProvincia;
 	private String origenObservaciones;
-	
+	private double origenLatitud;
+	private double origenLongitud;
+	private double destinoLatitud;
+	private double destinoLongitud;
 	
 	
 		
@@ -190,5 +193,38 @@ public class Viaje implements ObjetoDeDominio {
 	public void setOrigenObservaciones(String origenObservaciones) {
 		this.origenObservaciones = origenObservaciones;
 	}
+
+	public void setOrigenLatitud(double origenLatitud) {
+		this.origenLatitud = origenLatitud;
+	}
+
+	public double getOrigenLatitud() {
+		return origenLatitud;
+	}
+
+	public void setOrigenLongitud(double origenLongitud) {
+		this.origenLongitud = origenLongitud;
+	}
+
+	public double getOrigenLongitud() {
+		return origenLongitud;
+	}
+
+	public void setDestinoLatitud(double destinoLatitud) {
+		this.destinoLatitud = destinoLatitud;
+	}
+
+	public double getDestinoLatitud() {
+		return destinoLatitud;
+	}
+
+	public void setDestinoLongitud(double destinoLongitud) {
+		this.destinoLongitud = destinoLongitud;
+	}
+
+	public double getDestinoLongitud() {
+		return destinoLongitud;
+	}
+
 
 }
