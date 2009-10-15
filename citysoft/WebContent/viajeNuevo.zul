@@ -1,0 +1,126 @@
+<?page title="Viaje nuevo" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+		
+<window id="winNuevoViaje" title="Viaje Nuevo" border="normal"
+	mode="modal" use="ar.edu.utn.frba.proyecto.citysoft.controller.bienvenidaCliente.pedidosCliente"
+	width="80%" height="85%" sizable="true" closable="true">
+		
+		<!-- tutaxi.com.ar? src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA" -->
+		<script
+			src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhRzdWSuvxlSxMx33aEXsRZiewAFIxTyvaaXezhKd2-vbxqrWx_80Qz4dg"
+			type="text/javascript">
+		</script>
+
+		<borderlayout width="100%" height="100%">
+			<north>
+				Por favor, ingrese los datos del viaje nuevo
+
+			</north>
+			<west width="300px">
+				<grid width="300px">
+					<columns>
+						<column></column>
+						<column></column>
+					</columns>
+
+					<rows>
+						<row>
+							<label value="Cliente:" />
+							<textbox id="stCliente" />
+						</row>
+						
+						<row>
+							<label value="Hora de solicitud:" />
+							<timebox id="stOrigenHora" />
+						</row>
+						
+						<row>
+							<label value="Persona Referente:" />
+							<textbox id="stOrigenReferente" />
+						</row>
+
+						<row>
+							<label value="Calle Origen:" />
+							<textbox id="stOrigenCalle" />
+						</row>
+						
+						<row>
+							<label value="Altura Origen:" />
+							<textbox id="stOrigenAltura" />
+						</row>
+						
+						<row>
+							<label value="Piso y Departamento Origen:" />
+							<textbox id="stOrigenPisoDepto" />
+						</row>
+
+
+						<row>
+							<label value="Localidad Origen:" />
+							<textbox id="stOrigenLocalidad" />
+						</row>
+						
+						<row>
+							<label value="Provincia Origen:" />
+							<textbox id="stOrigenProvincia" />
+						</row>
+
+						<row>
+							<label value="Calle Destino:" />
+							<textbox id="stDestinoCalle" />
+						</row>
+						
+						<row>
+							<label value="Altura Destino:" />
+							<textbox id="stDestinoAltura" />
+						</row>
+						
+						<row>
+							<label value="Piso y Departamento Destino:" />
+							<textbox id="stDestinoPisoDepto" />
+						</row>
+
+
+						<row>
+							<label value="Localidad Destino:" />
+							<textbox id="stDestinoLocalidad" />
+						</row>
+						
+						<row>
+							<label value="Provincia Destino:" />
+							<textbox id="stDestinoProvincia" />
+						</row>
+
+						<row>
+							<label value="Observaciones / Comentarios:" />
+							<textbox id="stOrigenObservaciones"
+								rows="4" />
+						</row>
+
+					</rows>
+
+				</grid>
+
+			</west>
+			<center>
+				<gmaps id="gmapPedido"
+					use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.FollowerMap"
+					showZoomCtrl="true" showOverviewCtrl="true" showTypeCtrl="true">
+				</gmaps>
+			</center>
+
+			<south>
+				<hbox align="center">
+					<button label="Aceptar">
+						<attribute name="onClick">
+	winNuevoViaje.addViaje();
+</attribute>
+					</button>
+					<button label="Cancelar" onClick="winNuevoViaje.detach()" />
+				</hbox>
+			</south>
+
+		</borderlayout>
+	</window>
+</zk>
