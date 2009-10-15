@@ -10,9 +10,7 @@ import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 import com.blogspot.unserializableone.GAddress;
 import com.blogspot.unserializableone.GCoder;
 
-
 public class pedidosCliente extends Window {
-
 
 	public void addViaje() {
 		Timebox tbOrigenHora = (Timebox) this.getFellow("stOrigenHora");
@@ -50,21 +48,20 @@ public class pedidosCliente extends Window {
 		v.setDestinoLocalidad(txtDestinoLocalidad.getValue());
 		v.setDestinoProvincia(txtDestinoProvincia.getValue());
 		v.setOrigenObservaciones(txtOrigenObservaciones.getValue());
-		
+
 		String gOrigen = new String();
-		
+
 		GAddress gaResultado = new GAddress();
-		
-		
-		gOrigen = txtOrigenCalle.getValue() + ", " +txtOrigenAltura.getValue()+", "+txtOrigenLocalidad.getValue()+", " + txtOrigenProvincia.getValue() + ", Argentina";
+
+		gOrigen = txtOrigenCalle.getValue() + " " + txtOrigenAltura.getValue() + ", "
+				+ txtOrigenProvincia.getValue() + ", Argentina";
 		try {
 			gaResultado = GCoder.geocode(gOrigen);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 		CentralTaxis.getInstance().addViaje(v);
 
 		/*		
@@ -74,7 +71,7 @@ public class pedidosCliente extends Window {
 		System.out.println("la hora es: " + tbOrigenHora.getValue());
 		System.out.println("id de viaje: " + idViaje);
 		System.out.println("dire origen: " + gOrigen);
-	
+
 	}
 
 }
