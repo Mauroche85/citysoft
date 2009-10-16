@@ -54,8 +54,16 @@ public class pedidosCliente extends Window {
 		System.out.println("Coord origen: " + origenLatitud + " " + origenLongitud);
 
 		Gmaps map = (Gmaps) this.getFellow("gmapPedido");
+		
 		map.setLat(origenLatitud);
-		map.setLng(origenLongitud);
+		map.setLng(destinoLongitud);
+		
+		/*
+		
+		map.setLat((origenLatitud+destinoLatitud)/2);
+		map.setLng((origenLongitud+destinoLongitud)/2);
+		map.setZoom(10);
+		*/
 		Gmarker gm = new Gmarker();
 		gm.setId("previewOrigen");
 		gm.setIconImage("images/markerHouse.png");
@@ -63,6 +71,17 @@ public class pedidosCliente extends Window {
 		gm.setLat(origenLatitud);
 		gm.setLng(origenLongitud);
 		gm.setParent(map);
+	//gd
+		Gmarker gmDestino = new Gmarker();
+		gmDestino.setId("previewDestino");
+		gmDestino.setIconImage("images/markerHouse.png");
+		gmDestino.setDraggable(null);
+		gmDestino.setLat(destinoLatitud);
+		gmDestino.setLng(destinoLongitud);
+		gmDestino.setParent(map);
+
+	
+	
 	}
 
 	public void addViaje() {
