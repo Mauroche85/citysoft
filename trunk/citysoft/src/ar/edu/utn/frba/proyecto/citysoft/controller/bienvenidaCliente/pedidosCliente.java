@@ -1,5 +1,7 @@
 package ar.edu.utn.frba.proyecto.citysoft.controller.bienvenidaCliente;
 
+import org.zkoss.gmaps.Gmaps;
+import org.zkoss.gmaps.Gmarker;
 import org.zkoss.zul.Window;
 import org.zkoss.zul.api.Textbox;
 import org.zkoss.zul.api.Timebox;
@@ -25,33 +27,44 @@ public class pedidosCliente extends Window {
 		GAddress gaOrigen = new GAddress();
 		gOrigen = txtOrigenCalle.getValue() + " " + txtOrigenAltura.getValue() + ", "
 				+ txtOrigenProvincia.getValue() + ", Argentina";
-			try {
-				gaOrigen = GCoder.geocode(gOrigen);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+		try {
+			gaOrigen = GCoder.geocode(gOrigen);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		double origenLatitud = gaOrigen.getLat();
 		double origenLongitud = gaOrigen.getLng();
-			
+
 		String gDestino = new String();
 
 		GAddress gaDestino = new GAddress();
 		gDestino = txtDestinoCalle.getValue() + " " + txtDestinoAltura.getValue() + ", "
 				+ txtDestinoProvincia.getValue() + ", Argentina";
-			try {
-				gaDestino = GCoder.geocode(gDestino);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		try {
+			gaDestino = GCoder.geocode(gDestino);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		double destinoLatitud = gaDestino.getLat();
 		double destinoLongitud = gaDestino.getLng();
 
-		System.out.println("Coord origen: " + origenLatitud + " " + origenLongitud);		
+		System.out.println("Coord origen: " + origenLatitud + " " + origenLongitud);
+
+		Gmaps map = (Gmaps) this.getFellow("gmapPedido");
+		map.setLat(origenLatitud);
+		map.setLng(origenLongitud);
+		Gmarker gm = new Gmarker();
+		gm.setId("previewOrigen");
+		gm.setIconImage("images/markerHouse.png");
+		gm.setDraggable(null);
+		gm.setLat(origenLatitud);
+		gm.setLng(origenLongitud);
+		gm.setParent(map);
 	}
-	
+
 	public void addViaje() {
 		Timebox tbOrigenHora = (Timebox) this.getFellow("stOrigenHora");
 		Textbox txtOrigenReferente = (Textbox) this.getFellow("stOrigenReferente");
@@ -94,43 +107,37 @@ public class pedidosCliente extends Window {
 		GAddress gaOrigen = new GAddress();
 		gOrigen = txtOrigenCalle.getValue() + " " + txtOrigenAltura.getValue() + ", "
 				+ txtOrigenProvincia.getValue() + ", Argentina";
-			try {
-				gaOrigen = GCoder.geocode(gOrigen);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	    v.setOrigenLatitud(gaOrigen.getLat());
-	    v.setOrigenLongitud(gaOrigen.getLng());
-			
+		try {
+			gaOrigen = GCoder.geocode(gOrigen);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		v.setOrigenLatitud(gaOrigen.getLat());
+		v.setOrigenLongitud(gaOrigen.getLng());
+
 		String gDestino = new String();
 
 		GAddress gaDestino = new GAddress();
 		gDestino = txtDestinoCalle.getValue() + " " + txtDestinoAltura.getValue() + ", "
 				+ txtDestinoProvincia.getValue() + ", Argentina";
-			try {
-				gaDestino = GCoder.geocode(gDestino);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	    v.setDestinoLatitud(gaDestino.getLat());
-	    v.setDestinoLongitud(gaDestino.getLng());
-			
-		
-			
-			
-			
-			
+		try {
+			gaDestino = GCoder.geocode(gDestino);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		v.setDestinoLatitud(gaDestino.getLat());
+		v.setDestinoLongitud(gaDestino.getLng());
+
 		CentralTaxis.getInstance().addViaje(v);
 
 		/*		
 
 	*/
 
-
 		System.out.println("id de viaje: " + idViaje);
-	//	System.out.println("dire origen: " + gaResultado);
+		// System.out.println("dire origen: " + gaResultado);
 
 	}
 
