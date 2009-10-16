@@ -17,6 +17,7 @@ public interface ConstantesInterfazOperador extends ConstantesGeneralesDeVentana
 	// ** COMPONENTES
 	// **************************************
 
+	String COMP__WIN_OPERADOR = "winOperador";
 	String COMP__GMAP_OPERADOR = "gmapOperador";
 
 	// **************************************

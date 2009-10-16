@@ -26,15 +26,25 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 	// ** CENTRO DE MAPA
 	// **************************************
 
+	public Object getMapaCentradoEn() {
+		return this.mapaCentradoEn;
+	}
+
 	public void setMapaCentradoEn(Taxi taxiLibre) {
 		this.mapaCentradoEn = taxiLibre;
+		centrarMapa();
+		VentanaInterfazOperador.refrescarVentana(this);
 	}
 
 	public void setMapaCentradoEn(Viaje viaje) {
 		this.mapaCentradoEn = viaje;
+		centrarMapa();
+		VentanaInterfazOperador.refrescarVentana(this);
 	}
 
 	public void centrarMapa() {
+		if (this.mapaCentradoEn == null)
+			return;
 		if (this.mapaCentradoEn.getClass().isAssignableFrom(Taxi.class)) {
 			Taxi t = (Taxi) this.mapaCentradoEn;
 			setLat(t.getLat());
@@ -61,28 +71,46 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 	public void setViajeSeguido(Viaje v, boolean seguir) {
 		v.validarViajeEnCurso();
 		if (seguir) {
-			this.mapViajesSeguidos.put(v, buildMarker(v));
+			Gmarker marker = buildMarker(v);
+			marker.setParent(this);
+			this.mapViajesSeguidos.put(v, marker);
+			setMapaCentradoEn(v);
 		} else {
-			this.mapViajesSeguidos.remove(v);
+			if (v.equals(this.mapaCentradoEn))
+				this.mapaCentradoEn = null;
+			removeChild(this.mapViajesSeguidos.remove(v));
 		}
+		VentanaInterfazOperador.refrescarVentana(this);
 	}
 
 	public void setTaxiSeguido(Taxi t, boolean seguir) {
 		t.validarTaxiLibre();
 		if (seguir) {
-			this.mapTaxisSeguidos.put(t, buildMarker(t));
+			Gmarker marker = buildMarker(t);
+			marker.setParent(this);
+			this.mapTaxisSeguidos.put(t, marker);
+			setMapaCentradoEn(t);
 		} else {
-			this.mapTaxisSeguidos.remove(t);
+			if (t.equals(this.mapaCentradoEn))
+				this.mapaCentradoEn = null;
+			removeChild(this.mapTaxisSeguidos.remove(t));
 		}
+		VentanaInterfazOperador.refrescarVentana(this);
 	}
 
 	public void setPedidoMarcado(Viaje v, boolean marcar) {
 		v.validarViajePendiente();
 		if (marcar) {
-			this.mapPedidosMarcados.put(v, buildMarker(v));
+			Gmarker marker = buildMarker(v);
+			marker.setParent(this);
+			this.mapPedidosMarcados.put(v, marker);
+			setMapaCentradoEn(v);
 		} else {
-			this.mapPedidosMarcados.remove(v);
+			if (v.equals(this.mapaCentradoEn))
+				this.mapaCentradoEn = null;
+			removeChild(this.mapPedidosMarcados.remove(v));
 		}
+		VentanaInterfazOperador.refrescarVentana(this);
 	}
 
 	// **************************************
@@ -109,6 +137,45 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 	 */
 	public boolean estaMarcadoElPedido(Viaje v) {
 		return this.mapPedidosMarcados.containsKey(v);
+	}
+
+	// **************************************
+	// ** REFRESCAR!!! (Esta es la funcion mas importante)
+	// **************************************
+
+	public void actualizarPosicionMarkers() {
+		// Viajes en curso
+		for (Viaje v : this.mapViajesSeguidos.keySet()) {
+			Gmarker gm = this.mapViajesSeguidos.get(v);
+			actualizarMarker(gm, v);
+		}
+		// Taxis libres
+		for (Taxi t : this.mapTaxisSeguidos.keySet()) {
+			Gmarker gm = this.mapTaxisSeguidos.get(t);
+			actualizarMarker(gm, t);
+		}
+		// Pedidos pendientes
+		for (Viaje v : this.mapPedidosMarcados.keySet()) {
+			Gmarker gm = this.mapPedidosMarcados.get(v);
+			actualizarMarker(gm, v);
+		}
+		// Despues de actualizar todos los markers, recentramos el mapa
+		centrarMapa();
+	}
+
+	private void actualizarMarker(Gmarker gm, Viaje v) {
+		if (v.estaPendiente()) {
+			gm.setLat(v.getOrigenLatitud());
+			gm.setLng(v.getOrigenLongitud());
+		} else {
+			gm.setLat(v.getTaxi().getLat());
+			gm.setLng(v.getTaxi().getLng());
+		}
+	}
+
+	private void actualizarMarker(Gmarker gm, Taxi taxi) {
+		gm.setLat(taxi.getLat());
+		gm.setLng(taxi.getLng());
 	}
 
 	// **************************************

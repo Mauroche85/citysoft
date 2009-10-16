@@ -63,8 +63,10 @@
 		<!-- ******************************** -->
 		<!-- ********** GOOGLE MAP ********** -->
 		<center flex="true">
-			<gmaps id="gmap" showZoomCtrl="true" showOverviewCtrl="true" showTypeCtrl="true"
-				lng="-58.42024" lat="-34.59856" zoom="15">
+			<gmaps id="gmapOperador"
+				use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MapaOperador"
+				showZoomCtrl="true" showOverviewCtrl="true" showTypeCtrl="true" lng="-58.42024" lat="-34.59856"
+				zoom="15">
 			</gmaps>
 		</center>
 
@@ -79,11 +81,16 @@
 								<listbox id="listViajes"
 									model="@{winOperador.getListaViajesEnCurso, load-after='winOperador.onChange'}">
 									<listitem self="@{each=v}" height="20px">
-										<listcell context="menuContextViajes">
+										<listcell context="menuContextViajes" value="@{v}"
+											use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.CeldaQueSabeSiEstaSiendoSeguida">
 											<hbox widths="60px" align="center">
 												<label value="@{v.idViaje}" />
-												<checkbox />
-												<radio />
+												<checkbox
+													checked="@{self.parent.parent.estaSiendoSeguidoElViaje, access='load'}"
+													onCheck="winOperador.elemMapa().setViajeSeguido(self.getParent().getParent().getValue(), self.isChecked());" />
+												<radio
+													checked="@{self.parent.parent.mapaCentradoEnMi, access='load'}"
+													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().getValue());" />
 											</hbox>
 										</listcell>
 									</listitem>
@@ -102,10 +109,13 @@
 								<listbox id="listTaxisLibres"
 									model="@{winOperador.getListaVehiculosLibres, load-after='winOperador.onChange'}">
 									<listitem self="@{each=tl}" height="20px">
-										<listcell context="menuContextLibre">
+										<listcell context="menuContextLibre" value="@{tl}"
+											use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.CeldaQueSabeSiEstaSiendoSeguida">
 											<hbox widths="60px" align="center">
 												<label value="@{tl.patente}" />
-												<checkbox />
+												<checkbox
+													checked="@{self.parent.parent.estaSiendoSeguidoElTaxi, access='load'}"
+													onCheck="winOperador.elemMapa().setViajeSeguido(self.getParent().getParent().getValue(), self.isChecked());" />
 												<radio />
 											</hbox>
 										</listcell>

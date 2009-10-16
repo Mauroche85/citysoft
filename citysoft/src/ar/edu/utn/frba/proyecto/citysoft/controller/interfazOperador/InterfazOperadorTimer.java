@@ -1,7 +1,5 @@
 package ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador;
 
-import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Timer;
 
 public class InterfazOperadorTimer extends Timer {
@@ -18,8 +16,7 @@ public class InterfazOperadorTimer extends Timer {
 		if (this.win == null) {
 			this.win = (VentanaInterfazOperador) this.getParent();
 		}
-		Event event = new Event(Events.ON_CHANGE, this.win);
-		Events.sendEvent(event);
+		VentanaInterfazOperador.refrescarVentana(this);
 	}
 
 }
