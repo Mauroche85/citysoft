@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
@@ -20,11 +21,21 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 
 	private static final long serialVersionUID = -6715263410797692543L;
 
+	public VentanaInterfazOperador() {
+		this.addEventListener(Events.ON_CHANGE, new EventListener() {
+			@Override
+			public void onEvent(Event event) throws Exception {
+				VentanaInterfazOperador winOperador = (VentanaInterfazOperador) event.getTarget();
+				winOperador.elemMapa().actualizarPosicionMarkers();
+			}
+		});
+	}
+
 	// **************************************
 	// ** ELEMENTOS
 	// **************************************
 
-	public MapaOperador getMapa() {
+	public MapaOperador elemMapa() {
 		return (MapaOperador) this.getFellow(COMP__GMAP_OPERADOR);
 	}
 
@@ -137,6 +148,15 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 			Event event = new Event(Events.ON_CHANGE, this.win);
 			Events.sendEvent(event);
 		}
+	}
+
+	// **************************************
+	// ** HELPER PARA REFRESCAR... QUERIDO
+	// **************************************
+
+	public static void refrescarVentana(Component someElement) {
+		Event event = new Event(Events.ON_CHANGE, someElement.getFellow(COMP__WIN_OPERADOR));
+		Events.sendEvent(event);
 	}
 
 }
