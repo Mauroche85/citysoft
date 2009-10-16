@@ -63,9 +63,8 @@
 		<!-- ******************************** -->
 		<!-- ********** GOOGLE MAP ********** -->
 		<center flex="true">
-			<gmaps id="gmap"
-				use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.FollowerMap" showZoomCtrl="true"
-				showOverviewCtrl="true" showTypeCtrl="true" lng="-58.42024" lat="-34.59856" zoom="15">
+			<gmaps id="gmap" showZoomCtrl="true" showOverviewCtrl="true" showTypeCtrl="true"
+				lng="-58.42024" lat="-34.59856" zoom="15">
 			</gmaps>
 		</center>
 
