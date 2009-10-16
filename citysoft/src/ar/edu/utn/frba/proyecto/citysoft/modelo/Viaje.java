@@ -286,6 +286,15 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 		}
 	}
 
+	/**
+	 * Valida que el viaje este ASIGNADO o TRANSPORTANDO
+	 */
+	public void validarViajeEnCurso() {
+		if (!this.estado.equals(ESTADO_ASIGNADO) && !this.estado.equals(ESTADO_TRANSPORTANDO)) {
+			throw new RuntimeException("El viaje debería estar en curso (" + this.estado + ")");
+		}
+	}
+
 	// **************************************
 	// ** Interfaces
 	// **************************************

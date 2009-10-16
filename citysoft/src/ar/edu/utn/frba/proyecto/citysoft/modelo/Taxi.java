@@ -189,6 +189,14 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 	// ** Execution
 	// **************************************
 
+	public double getLat() {
+		return getUltimoTrack().getCoordenadas().getLatitud();
+	}
+
+	public double getLng() {
+		return getUltimoTrack().getCoordenadas().getLongitud();
+	}
+
 	public Track getUltimoTrack() {
 		return this.getTracks().last();
 	}

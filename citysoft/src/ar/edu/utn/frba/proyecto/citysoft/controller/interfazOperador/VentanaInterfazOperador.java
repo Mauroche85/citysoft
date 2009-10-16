@@ -16,9 +16,17 @@ import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 
-public class VentanaInterfazOperador extends Window {
+public class VentanaInterfazOperador extends Window implements ConstantesInterfazOperador {
 
 	private static final long serialVersionUID = -6715263410797692543L;
+
+	// **************************************
+	// ** ELEMENTOS
+	// **************************************
+
+	public MapaOperador getMapa() {
+		return (MapaOperador) this.getFellow(COMP__GMAP_OPERADOR);
+	}
 
 	// **************************************
 	// ** MODELOS
@@ -50,46 +58,46 @@ public class VentanaInterfazOperador extends Window {
 
 	public void abrirFinalizacionDeViaje(Menupopup popup) {
 		// TODO la liberacion es la finalizcion del viaje. Ir por ese lado
-		Window win = (Window) Executions.createComponents("liberarTaxi.zul", null, null);
+		Window win = (Window) Executions.createComponents(ZUL__LIBERAR_TAXI, null, null);
 		agregarRefrescoAlCierre(win);
-		((Textbox) win.getFellow("idTaxi"))
-				.setValue((String) popup.getAttribute("quienAbrioElPopup"));
+		((Textbox) win.getFellow("idTaxi")).setValue((String) popup
+				.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
 	public void abrirAsignacionPorTaxiLibre(Menupopup popup) {
 		VentanitaAsignacionTaxi win = (VentanitaAsignacionTaxi) Executions.createComponents(
-				"asignarTaxi.zul", null, null);
+				ZUL__ASIGNAR_TAXI, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemPatente().setValue((String) popup.getAttribute("quienAbrioElPopup"));
+		win.elemPatente().setValue((String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
 	public void abrirAsignacionPorViaje(Menupopup popup) {
 		VentanitaAsignacionTaxi win = (VentanitaAsignacionTaxi) Executions.createComponents(
-				"asignarTaxi.zul", null, null);
+				ZUL__ASIGNAR_TAXI, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemViaje().setValue((String) popup.getAttribute("quienAbrioElPopup"));
+		win.elemViaje().setValue((String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
 	public void abrirCancelacionViaje(Menupopup popup) {
 		// TODO hacer que esto funcione
-		Window win = (Window) Executions.createComponents("cancelarPedido.zul", null, null);
+		Window win = (Window) Executions.createComponents(ZUL__CANCELAR_PEDIDO, null, null);
 		agregarRefrescoAlCierre(win);
 		((Textbox) win.getFellow("pedidoPendiente")).setValue((String) popup
-				.getAttribute("quienAbrioElPopup"));
+				.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
 	public void abrirActivacionTaxi(Menupopup popup) {
 		ActivarDesactivarTaxi win = (ActivarDesactivarTaxi) Executions.createComponents(
-				"activarTaxi.zul", null, null);
+				ZUL__ACTIVAR_TAXI, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemIdTaxi().setValue((String) popup.getAttribute("quienAbrioElPopup"));
+		win.elemIdTaxi().setValue((String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
 	public void abrirDesactivacionTaxi(Menupopup popup) {
 		ActivarDesactivarTaxi win = (ActivarDesactivarTaxi) Executions.createComponents(
 				"desactivarTaxi.zul", null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemIdTaxi().setValue((String) popup.getAttribute("quienAbrioElPopup"));
+		win.elemIdTaxi().setValue((String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
 	// **************************************
