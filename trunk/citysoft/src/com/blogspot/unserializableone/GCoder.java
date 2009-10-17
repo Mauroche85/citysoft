@@ -38,8 +38,12 @@ public class GCoder {
 		return gaddr;
 	}
 
-	public static GAddress geocode(String address) throws Exception {
-		return geocode(address, DEFAULT_KEY);
+	public static GAddress geocode(String address) {
+		try {
+			return geocode(address, DEFAULT_KEY);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	} /* allow query for json nested objects, ie. Placemark[0].address */
 
 	private static Object query(JSONObject jo, String query) {

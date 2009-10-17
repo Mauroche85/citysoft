@@ -20,80 +20,75 @@ public class pedidosCliente extends Window {
 		Textbox txtOrigenCalle = (Textbox) this.getFellow("stOrigenCalle");
 		Textbox txtOrigenAltura = (Textbox) this.getFellow("stOrigenAltura");
 		Textbox txtOrigenProvincia = (Textbox) this.getFellow("stOrigenProvincia");
+		Textbox txtOrigenPisoDepto = (Textbox) this.getFellow("stOrigenPisoDepto");
 		Textbox txtDestinoCalle = (Textbox) this.getFellow("stDestinoCalle");
 		Textbox txtDestinoAltura = (Textbox) this.getFellow("stDestinoAltura");
 		Textbox txtDestinoProvincia = (Textbox) this.getFellow("stDestinoProvincia");
-		Textbox txtOrigenPisoDepto = (Textbox) this.getFellow("stOrigenPisoDepto");
-		String gOrigen = new String();
+		Textbox txtDestinoPisoDepto = (Textbox) this.getFellow("stDestinoPisoDepto");
 
+		// **************************************
+		// ** Busco cordenadas origen
+		// **************************************
 		GAddress gaOrigen = new GAddress();
-		gOrigen = txtOrigenCalle.getValue() + " " + txtOrigenAltura.getValue() + ", "
+		String gOrigen = txtOrigenCalle.getValue() + " " + txtOrigenAltura.getValue() + ", "
 				+ txtOrigenProvincia.getValue() + ", Argentina";
-		try {
-			gaOrigen = GCoder.geocode(gOrigen);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		gaOrigen = GCoder.geocode(gOrigen);
 		double origenLatitud = gaOrigen.getLat();
 		double origenLongitud = gaOrigen.getLng();
+		System.out.println("Coord origen: " + origenLatitud + " " + origenLongitud);
 
-		String gDestino = new String();
-
+		// **************************************
+		// ** Busco cordenadas destino
+		// **************************************
 		GAddress gaDestino = new GAddress();
-		gDestino = txtDestinoCalle.getValue() + " " + txtDestinoAltura.getValue() + ", "
+		String gDestino = txtDestinoCalle.getValue() + " " + txtDestinoAltura.getValue() + ", "
 				+ txtDestinoProvincia.getValue() + ", Argentina";
-		try {
-			gaDestino = GCoder.geocode(gDestino);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		gaDestino = GCoder.geocode(gDestino);
 		double destinoLatitud = gaDestino.getLat();
 		double destinoLongitud = gaDestino.getLng();
 
-		System.out.println("Coord origen: " + origenLatitud + " " + origenLongitud);
-
-		
-		
+		// **************************************
+		// ** CENTRO MAPA
+		// **************************************
 		Gmaps map = (Gmaps) this.getFellow("gmapPedido");
-		double latCentro = (origenLatitud+destinoLatitud)/2; 
-		double longCentro = (origenLongitud+destinoLongitud)/2;
-		
-		
+		double latCentro = (origenLatitud + destinoLatitud) / 2;
+		double longCentro = (origenLongitud + destinoLongitud) / 2;
+
 		map.setLat(latCentro);
 		map.setLng(longCentro);
-		
 		map.setZoom(11);
 
-//		Gmarker gm = new Gmarker();
-		if (gm.getId()!="previewOrigen"){
+		// **************************************
+		// ** MARKER ORIGEN
+		// **************************************
+		// Gmarker gm = new Gmarker();
+		// No usar operador !=. Podria pasar que "pepe" != "pepe"
+		if (!"previewOrigen".equals(gm.getId())) {
 			gm.setId("previewOrigen");
-			 gm.setIconImage("images/markerHouse.png");
-			 gm.setDraggable(null);
-
-			}
+			gm.setIconImage("images/markerHouse.png");
+			gm.setDraggingEnabled(false);
+		}
 		gm.setLat(origenLatitud);
 		gm.setLng(origenLongitud);
 		gm.setTooltiptext("Origen: " + gOrigen);
-		gm.setParent(map);	
-	//gd
-//		Gmarker gmDestino = new Gmarker();
-		if (gmDestino.getId()!="previewDestino")
-			{
+		gm.setParent(map);
+
+		// **************************************
+		// ** MARKER DESTINO
+		// **************************************
+		// Gmarker gmDestino = new Gmarker();
+		// No usar operador !=. Podria pasar que "pepe" != "pepe"
+		if (!"previewDestino".equals(gmDestino.getId())) {
 			System.out.println("entra");
 			gmDestino.setId("previewDestino");
 			gmDestino.setIconImage("images/markerHouse.png");
-			gmDestino.setDraggable(null);
-
-			}
+			gmDestino.setDraggingEnabled(false);
+		}
 		gmDestino.setLat(destinoLatitud);
 		gmDestino.setLng(destinoLongitud);
 		gmDestino.setTooltiptext("Destino: " + gDestino);
 		gmDestino.setParent(map);
-	
-	
+
 	}
 
 	public void addViaje() {
