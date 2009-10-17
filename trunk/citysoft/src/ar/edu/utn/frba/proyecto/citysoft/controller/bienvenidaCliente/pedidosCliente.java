@@ -111,9 +111,6 @@ public class pedidosCliente extends Window {
 		 */
 		Viaje v = new Viaje();
 		// v.setCliente(cliente) hay que asignarle un cliente!!
-		// v.setIdViaje(idViaje) hay que obtener el id de viaje!!!
-		int idViaje = CentralTaxis.getInstance().getGeneradorDeIds().getProximoIdViaje();
-		v.setIdViaje(idViaje);
 		v.setHoraPedido((tbOrigenHora.getValue()));
 		v.setOrigenReferente(txtOrigenReferente.getValue());
 		v.setOrigenCalle(txtOrigenCalle.getValue());
@@ -162,7 +159,7 @@ public class pedidosCliente extends Window {
 
 	*/
 
-		System.out.println("id de viaje: " + idViaje);
+		System.out.println("id de viaje: " + v.getIdViaje());
 		// System.out.println("dire origen: " + gaResultado);
 
 	}

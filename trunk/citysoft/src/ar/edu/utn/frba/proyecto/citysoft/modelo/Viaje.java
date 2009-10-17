@@ -49,6 +49,7 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	// **************************************
 
 	public Viaje() {
+		this.idViaje = CentralTaxis.getInstance().getGeneradorDeIds().getProximoIdViaje();
 		this.estado = ESTADO_PENDIENTE;
 	}
 
@@ -305,6 +306,11 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 		int theOtherId = theOther.idViaje;
 		// Esto nos lo choriceamos de Integer!!!
 		return (thisId < theOtherId ? -1 : (thisId == theOtherId ? 0 : 1));
+	}
+
+	@Override
+	public String toString() {
+		return "Viaje " + this.getIdViaje() + " - " + this.getTaxi().getPatente();
 	}
 
 }

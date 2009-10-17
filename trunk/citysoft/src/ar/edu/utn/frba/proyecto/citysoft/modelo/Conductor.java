@@ -16,6 +16,14 @@ public class Conductor extends Persona implements ObjetoDeDominio, Comparable<Co
 	private Taxi taxi;
 
 	// **************************************
+	// ** Constructor
+	// **************************************
+
+	public Conductor() {
+		this.idConductor = CentralTaxis.getInstance().getGeneradorDeIds().getProximoIdConductor();
+	}
+
+	// **************************************
 	// ** Accessors
 	// **************************************
 
@@ -26,7 +34,7 @@ public class Conductor extends Persona implements ObjetoDeDominio, Comparable<Co
 	public void setNombreUsuario(String nombre) {
 		this.nombreUsuario = nombre;
 	}
-	
+
 	public int getIdConductor() {
 		return idConductor;
 	}

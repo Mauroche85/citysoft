@@ -34,6 +34,14 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 	private Boolean activado;
 
 	// **************************************
+	// ** Constructor
+	// **************************************
+
+	public Taxi() {
+		this.setIdVehiculo(CentralTaxis.getInstance().getGeneradorDeIds().getProximoIdVehiculo());
+	}
+
+	// **************************************
 	// ** Accessors
 	// **************************************
 
