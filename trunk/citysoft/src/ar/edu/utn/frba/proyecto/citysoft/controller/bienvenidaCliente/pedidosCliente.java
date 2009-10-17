@@ -6,13 +6,14 @@ import org.zkoss.zul.Window;
 import org.zkoss.zul.api.Textbox;
 import org.zkoss.zul.api.Timebox;
 
+import ar.edu.utn.frba.proyecto.citysoft.controller.ConstantesGeneralesDeVentanas;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 
 import com.blogspot.unserializableone.GAddress;
 import com.blogspot.unserializableone.GCoder;
 
-public class pedidosCliente extends Window {
+public class pedidosCliente extends Window implements ConstantesGeneralesDeVentanas {
 	Gmarker gm = new Gmarker();
 	Gmarker gmDestino = new Gmarker();
 
@@ -65,7 +66,7 @@ public class pedidosCliente extends Window {
 		// No usar operador !=. Podria pasar que "pepe" != "pepe"
 		if (!"previewOrigen".equals(gm.getId())) {
 			gm.setId("previewOrigen");
-			gm.setIconImage("images/markerHouse.png");
+			gm.setIconImage(IMAGES__MARKER_HOUSE);
 			gm.setDraggingEnabled(false);
 		}
 		gm.setLat(origenLatitud);
@@ -81,7 +82,7 @@ public class pedidosCliente extends Window {
 		if (!"previewDestino".equals(gmDestino.getId())) {
 			System.out.println("entra");
 			gmDestino.setId("previewDestino");
-			gmDestino.setIconImage("images/markerHouse.png");
+			gmDestino.setIconImage(IMAGES__MARKER_FLAG);
 			gmDestino.setDraggingEnabled(false);
 		}
 		gmDestino.setLat(destinoLatitud);
@@ -106,9 +107,9 @@ public class pedidosCliente extends Window {
 		Textbox txtDestinoProvincia = (Textbox) this.getFellow("stDestinoProvincia");
 		Textbox txtOrigenObservaciones = (Textbox) this.getFellow("stOrigenObservaciones");
 
-		/*
-		 * crear pedido
-		 */
+		// **************************************
+		// ** CREO VIAJE
+		// **************************************
 		Viaje v = new Viaje();
 		// v.setCliente(cliente) hay que asignarle un cliente!!
 		v.setHoraPedido((tbOrigenHora.getValue()));
@@ -125,43 +126,31 @@ public class pedidosCliente extends Window {
 		v.setDestinoProvincia(txtDestinoProvincia.getValue());
 		v.setOrigenObservaciones(txtOrigenObservaciones.getValue());
 
-		String gOrigen = new String();
-
+		// **************************************
+		// ** RESUELVO COORDENADAS ORIGEN
+		// **************************************
 		GAddress gaOrigen = new GAddress();
-		gOrigen = txtOrigenCalle.getValue() + " " + txtOrigenAltura.getValue() + ", "
+		String gOrigen = txtOrigenCalle.getValue() + " " + txtOrigenAltura.getValue() + ", "
 				+ txtOrigenProvincia.getValue() + ", Argentina";
-		try {
-			gaOrigen = GCoder.geocode(gOrigen);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		gaOrigen = GCoder.geocode(gOrigen);
 		v.setOrigenLatitud(gaOrigen.getLat());
 		v.setOrigenLongitud(gaOrigen.getLng());
 
-		String gDestino = new String();
-
+		// **************************************
+		// ** RESUELVO COORDENADAS DESTINO
+		// **************************************
 		GAddress gaDestino = new GAddress();
-		gDestino = txtDestinoCalle.getValue() + " " + txtDestinoAltura.getValue() + ", "
+		String gDestino = txtDestinoCalle.getValue() + " " + txtDestinoAltura.getValue() + ", "
 				+ txtDestinoProvincia.getValue() + ", Argentina";
-		try {
-			gaDestino = GCoder.geocode(gDestino);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		gaDestino = GCoder.geocode(gDestino);
 		v.setDestinoLatitud(gaDestino.getLat());
 		v.setDestinoLongitud(gaDestino.getLng());
 
+		// **************************************
+		// ** GUARDAMOS EL VIAJE EN LA CENTRAL
+		// **************************************
 		CentralTaxis.getInstance().addViaje(v);
-
-		/*		
-
-	*/
-
 		System.out.println("id de viaje: " + v.getIdViaje());
-		// System.out.println("dire origen: " + gaResultado);
-
 	}
 
 }
