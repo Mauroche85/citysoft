@@ -71,9 +71,9 @@
 		</center>
 
 		<!-- *********************************************** -->
-		<east width="150px">
-			<vbox width="150px">
-				<columnlayout width="150px">
+		<east width="200px">
+			<vbox width="200px">
+				<columnlayout width="200px">
 					<columnchildren style="padding: 5px">
 						<panel title="Viajes en curso" style="margin-bottom:10p" border="normal"
 							collapsible="true">
@@ -83,8 +83,8 @@
 									<listitem self="@{each=v}" height="20px">
 										<listcell context="menuContextViajes" value="@{v}"
 											use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.CeldaQueSabeSiEstaSiendoSeguida">
-											<hbox widths="60px" align="center">
-												<label value="@{v.idViaje}" />
+											<hbox widths="130px" align="center">
+												<label value="@{v}" />
 												<checkbox
 													checked="@{self.parent.parent.estaSiendoSeguidoElViaje, access='load'}"
 													onCheck="winOperador.elemMapa().setViajeSeguido(self.getParent().getParent().getValue(), self.isChecked());" />
@@ -111,12 +111,14 @@
 									<listitem self="@{each=tl}" height="20px">
 										<listcell context="menuContextLibre" value="@{tl}"
 											use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.CeldaQueSabeSiEstaSiendoSeguida">
-											<hbox widths="60px" align="center">
+											<hbox widths="130px" align="center">
 												<label value="@{tl.patente}" />
 												<checkbox
 													checked="@{self.parent.parent.estaSiendoSeguidoElTaxi, access='load'}"
-													onCheck="winOperador.elemMapa().setViajeSeguido(self.getParent().getParent().getValue(), self.isChecked());" />
-												<radio />
+													onCheck="winOperador.elemMapa().setTaxiSeguido(self.getParent().getParent().getValue(), self.isChecked());" />
+												<radio
+													checked="@{self.parent.parent.mapaCentradoEnMi, access='load'}"
+													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().getValue());" />
 											</hbox>
 										</listcell>
 									</listitem>
@@ -137,11 +139,16 @@
 								<listbox id="listPedidosPend"
 									model="@{winOperador.getListaPedidosPendientes, load-after='winOperador.onChange'}">
 									<listitem self="@{each=v}" height="20px">
-										<listcell context="menuContextPendientes">
-											<hbox widths="60px" align="center">
+										<listcell context="menuContextPendientes" value="@{v}"
+											use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.CeldaQueSabeSiEstaSiendoSeguida">
+											<hbox widths="130px" align="center">
 												<label value="@{v.idViaje}" />
-												<checkbox />
-												<radio />
+												<checkbox
+													checked="@{self.parent.parent.estaMarcadoElPedido, access='load'}"
+													onCheck="winOperador.elemMapa().setPedidoMarcado(self.getParent().getParent().getValue(), self.isChecked());" />
+												<radio
+													checked="@{self.parent.parent.mapaCentradoEnMi, access='load'}"
+													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().getValue());" />
 											</hbox>
 										</listcell>
 									</listitem>
@@ -163,7 +170,7 @@
 									model="@{winOperador.getListaVehiculosDesactivados, load-after='winOperador.onChange'}">
 									<listitem self="@{each=t}" height="20px">
 										<listcell context="menuContextDesactivados">
-											<hbox widths="60px" align="center">
+											<hbox widths="130px" align="center">
 												<label value="@{t.patente}" />
 											</hbox>
 										</listcell>

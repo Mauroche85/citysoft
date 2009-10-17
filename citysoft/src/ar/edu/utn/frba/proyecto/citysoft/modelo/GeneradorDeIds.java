@@ -14,6 +14,7 @@ public class GeneradorDeIds {
 
 	private int idCliente;
 	private int idConductor;
+	private int idVehiculo;
 	private int idViaje;
 
 	// **************************************
@@ -35,6 +36,7 @@ public class GeneradorDeIds {
 		this.idCliente = 1;
 		this.idConductor = 1;
 		this.idViaje = 1;
+		this.idVehiculo = 1;
 		getDb().store(this);
 	}
 
@@ -56,6 +58,12 @@ public class GeneradorDeIds {
 
 	public int getProximoIdConductor() {
 		int i = this.idConductor++;
+		getDb().store(this);
+		return i;
+	}
+
+	public int getProximoIdVehiculo() {
+		int i = this.idVehiculo++;
 		getDb().store(this);
 		return i;
 	}

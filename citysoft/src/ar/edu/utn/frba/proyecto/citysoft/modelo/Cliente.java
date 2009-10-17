@@ -8,13 +8,20 @@ import java.util.Collection;
  * @version 1.0
  * @created 23-Jul-2009 10:54:49 p.m.
  */
-public class Cliente extends Persona implements ObjetoDeDominio,
-		Comparable<Cliente> {
+public class Cliente extends Persona implements ObjetoDeDominio, Comparable<Cliente> {
 
 	private String nombreUsuario;
 	private int idCliente;
 	private Collection<Viaje> viajes = new ArrayList<Viaje>();
 	private Viaje viajeEnCurso;
+
+	// **************************************
+	// ** Constructor
+	// **************************************
+
+	public Cliente() {
+		this.idCliente = CentralTaxis.getInstance().getGeneradorDeIds().getProximoIdCliente();
+	}
 
 	// **************************************
 	// ** Accessors

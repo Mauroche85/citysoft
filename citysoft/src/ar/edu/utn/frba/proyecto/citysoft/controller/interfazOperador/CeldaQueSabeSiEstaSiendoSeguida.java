@@ -39,6 +39,10 @@ public class CeldaQueSabeSiEstaSiendoSeguida extends Listcell implements Constan
 		return elemMapa().estaSiendoSeguidoElTaxi((Taxi) getValue());
 	}
 
+	public boolean estaMarcadoElPedido() {
+		return elemMapa().estaMarcadoElPedido((Viaje) getValue());
+	}
+
 	// **************************************
 	// ** HELPERS
 	// **************************************

@@ -37,9 +37,6 @@ public class LoteDeConductoresTaxisYViajes implements Lote {
 		v = buildViaje(2);
 		c.setTaxi(t);
 		v.asignar(t);
-		CentralTaxis.getInstance().addConductor(c);
-		CentralTaxis.getInstance().addTaxi(t);
-		CentralTaxis.getInstance().addViaje(v);
 		list.add(c);
 
 		// **************************************
@@ -50,9 +47,6 @@ public class LoteDeConductoresTaxisYViajes implements Lote {
 		v = buildViaje(3);
 		c.setTaxi(t);
 		v.asignar(t);
-		CentralTaxis.getInstance().addConductor(c);
-		CentralTaxis.getInstance().addTaxi(t);
-		CentralTaxis.getInstance().addViaje(v);
 		list.add(c);
 
 		return list;

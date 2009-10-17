@@ -78,7 +78,7 @@ public class CentralTaxis implements ObjetoDeDominio {
 			@Override
 			public boolean evaluate(Object arg0) {
 				Taxi t = (Taxi) arg0;
-				return t.getActivado();
+				return t.getActivado() && t.estoyLibre();
 			}
 		});
 	}
