@@ -13,6 +13,8 @@ import com.blogspot.unserializableone.GAddress;
 import com.blogspot.unserializableone.GCoder;
 
 public class pedidosCliente extends Window {
+	Gmarker gm = new Gmarker();
+	Gmarker gmDestino = new Gmarker();
 
 	public void previewViaje() {
 		Textbox txtOrigenCalle = (Textbox) this.getFellow("stOrigenCalle");
@@ -21,7 +23,7 @@ public class pedidosCliente extends Window {
 		Textbox txtDestinoCalle = (Textbox) this.getFellow("stDestinoCalle");
 		Textbox txtDestinoAltura = (Textbox) this.getFellow("stDestinoAltura");
 		Textbox txtDestinoProvincia = (Textbox) this.getFellow("stDestinoProvincia");
-
+		Textbox txtOrigenPisoDepto = (Textbox) this.getFellow("stOrigenPisoDepto");
 		String gOrigen = new String();
 
 		GAddress gaOrigen = new GAddress();
@@ -53,33 +55,43 @@ public class pedidosCliente extends Window {
 
 		System.out.println("Coord origen: " + origenLatitud + " " + origenLongitud);
 
+		
+		
 		Gmaps map = (Gmaps) this.getFellow("gmapPedido");
+		double latCentro = (origenLatitud+destinoLatitud)/2; 
+		double longCentro = (origenLongitud+destinoLongitud)/2;
 		
-		map.setLat(origenLatitud);
-		map.setLng(destinoLongitud);
 		
-		/*
+		map.setLat(latCentro);
+		map.setLng(longCentro);
 		
-		map.setLat((origenLatitud+destinoLatitud)/2);
-		map.setLng((origenLongitud+destinoLongitud)/2);
-		map.setZoom(10);
-		*/
-		Gmarker gm = new Gmarker();
-		gm.setId("previewOrigen");
-		gm.setIconImage("images/markerHouse.png");
-		gm.setDraggable(null);
+		map.setZoom(11);
+
+//		Gmarker gm = new Gmarker();
+		if (gm.getId()!="previewOrigen"){
+			gm.setId("previewOrigen");
+			 gm.setIconImage("images/markerHouse.png");
+			 gm.setDraggable(null);
+
+			}
 		gm.setLat(origenLatitud);
 		gm.setLng(origenLongitud);
-		gm.setParent(map);
+		gm.setTooltiptext("Origen: " + gOrigen);
+		gm.setParent(map);	
 	//gd
-		Gmarker gmDestino = new Gmarker();
-		gmDestino.setId("previewDestino");
-		gmDestino.setIconImage("images/markerHouse.png");
-		gmDestino.setDraggable(null);
+//		Gmarker gmDestino = new Gmarker();
+		if (gmDestino.getId()!="previewDestino")
+			{
+			System.out.println("entra");
+			gmDestino.setId("previewDestino");
+			gmDestino.setIconImage("images/markerHouse.png");
+			gmDestino.setDraggable(null);
+
+			}
 		gmDestino.setLat(destinoLatitud);
 		gmDestino.setLng(destinoLongitud);
+		gmDestino.setTooltiptext("Destino: " + gDestino);
 		gmDestino.setParent(map);
-
 	
 	
 	}
