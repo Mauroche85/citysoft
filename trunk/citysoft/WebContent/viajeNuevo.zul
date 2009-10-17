@@ -10,9 +10,7 @@
 	</script>
 
 	<borderlayout width="100%" height="100%">
-		<north>
-			Por favor, ingrese los datos del viaje nuevo
-		</north>
+		<north>Por favor, ingrese los datos del viaje nuevo</north>
 		<west width="320px">
 			<grid width="320px">
 				<columns>
@@ -20,6 +18,10 @@
 					<column></column>
 				</columns>
 				<rows>
+					<row>
+						<label value="Id cliente:" />
+						<timebox id="stIdCliente" />
+					</row>
 					<row>
 						<label value="Hora de solicitud:" />
 						<timebox id="stOrigenHora" />
