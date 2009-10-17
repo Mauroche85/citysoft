@@ -1,10 +1,6 @@
 <?page title="GTTR - Gestion de Taxis en tiempo real" contentType="text/html;charset=UTF-8"?>
 <zk>
 	<window title="Bienvenido gedonadia" border="normal">
-
-
-
-
 		<tabbox>
 			<tabs>
 				<tab label="Mi viaje actual" selected="true" />
@@ -12,28 +8,27 @@
 			</tabs>
 			<tabpanels>
 				<tabpanel height="500px">
-					<window id="viajeActual" title="Mi viaje actual" border="normal" width="100%"
-						height="100%">
+					<window id="viajeActual" title="Mi viaje actual"
+						border="normal" width="100%" height="100%">
 						<label value="Código de Viaje:" />
 						<combobox>
 							<comboitem label="1" />
 							<comboitem label="2" />
 						</combobox>
-						<window id="viajeActualMapa" title="Mapa" border="normal" width="100%"
-							height="83%">
+						<window id="viajeActualMapa" title="Mapa"
+							border="normal" width="100%" height="83%">
 							<!-- tutaxi.com.ar? src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA" -->
 							<script
 								src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhRzdWSuvxlSxMx33aEXsRZiewAFIxTyvaaXezhKd2-vbxqrWx_80Qz4dg"
 								type="text/javascript">
 							</script>
-							<gmaps id="gmapViajesAnteriores" showZoomCtrl="true"
-								showOverviewCtrl="true" showTypeCtrl="true" lng="-58.42024" lat="-34.59856" zoom="15">
+							<gmaps id="gmapViajesAnteriores"
+								showZoomCtrl="true" showOverviewCtrl="true" showTypeCtrl="true"
+								lng="-58.42024" lat="-34.59856" zoom="15">
 							</gmaps>
-
-
 						</window>
-						<window id="winDatosViajeActual" title="Detalles del viaje" border="normal"
-							width="100%">
+						<window id="winDatosViajeActual"
+							title="Detalles del viaje" border="normal" width="100%">
 							<grid>
 								<columns>
 									<column></column>
@@ -45,183 +40,45 @@
 								</columns>
 								<rows>
 									<row>
-										<label value="Hora de solicitud:" />
+										<label
+											value="Hora de solicitud:" />
 										<timebox name="stOrigenHora" />
-										<label value="Persona Referente:" />
-										<textbox name="stOrigenReferente" />
+										<label
+											value="Persona Referente:" />
+										<textbox
+											name="stOrigenReferente" />
 										<label value="Observaciones:" />
-										<textbox name="stOrigenObservaciones" />
+										<textbox
+											name="stOrigenObservaciones" />
 									</row>
 								</rows>
-
-
 							</grid>
-
-
-
 						</window>
-
-
-
-
-
 					</window>
-
 				</tabpanel>
+
 				<tabpanel fulfill="tab2.onSelect">
-					<tabbox width="100%" height="500px" orient="vertical">
+					<tabbox width="100%" height="500px"
+						orient="vertical">
 						<tabs width="20%">
 							<tab label="Solicitar viaje nuevo" />
 							<tab label="Mis viajes anteriores" />
 						</tabs>
 						<tabpanels>
 							<tabpanel height="500px">
-
-								<window id="winNuevoViaje" title="Viaje Nuevo" border="normal"
-									width="100%" height="500"
-									use="ar.edu.utn.frba.proyecto.citysoft.controller.bienvenidaCliente.pedidosCliente">
-									<!-- tutaxi.com.ar? src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA" -->
-									<script
-										src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhRzdWSuvxlSxMx33aEXsRZiewAFIxTyvaaXezhKd2-vbxqrWx_80Qz4dg"
-										type="text/javascript">
-									</script>
-
-									<borderlayout width="100%" height="100%">
-										<north>
-											Por favor, ingrese los datos del viaje nuevo
-
-										</north>
-										<west width="320px">
-											<grid width="320px">
-												<columns>
-													<column></column>
-													<column></column>
-												</columns>
-
-
-
-												<rows>
-													<row>
-														<label value="Hora de solicitud:" />
-														<timebox id="stOrigenHora" />
-													</row>
-													<row>
-														<label value="Persona Referente:" />
-														<textbox id="stOrigenReferente" />
-													</row>
-
-
-
-
-
-													<row>
-														<label value="Calle Origen:" />
-														<textbox id="stOrigenCalle" />
-													</row>
-													<row>
-														<label value="Altura Origen:" />
-														<textbox id="stOrigenAltura" />
-													</row>
-													<row>
-														<label value="Piso y Departamento Origen:" />
-														<textbox id="stOrigenPisoDepto" />
-													</row>
-
-
-													<row>
-														<label value="Localidad Origen:" />
-														<textbox id="stOrigenLocalidad"
-															value="Capital Federal" readonly="true" />
-													</row>
-													<row>
-														<label value="Provincia Origen:" />
-														<textbox id="stOrigenProvincia"
-															value="Capital Federal" readonly="true" />
-													</row>
-
-													<row>
-														<label value="Calle Destino:" />
-														<textbox id="stDestinoCalle" />
-													</row>
-													<row>
-														<label value="Altura Destino:" />
-														<textbox id="stDestinoAltura" />
-													</row>
-													<row>
-														<label value="Piso y Departamento Destino:" />
-														<textbox id="stDestinoPisoDepto" />
-													</row>
-
-
-													<row>
-														<label value="Localidad Destino:" />
-														<textbox id="stDestinoLocalidad"
-															value="Capital Federal" readonly="true" />
-													</row>
-													<row>
-														<label value="Provincia Destino:" />
-														<textbox id="stDestinoProvincia"
-															value="Capital Federal" readonly="true" />
-													</row>
-
-													<row>
-														<label value="Observaciones / Comentarios:" />
-														<textbox id="stOrigenObservaciones" rows="4" />
-													</row>
-
-
-
-
-
-
-
-												</rows>
-
-
-											</grid>
-
-
-
-
-										</west>
-										<center>
-											<gmaps id="gmapPedido" showZoomCtrl="true"
-												showOverviewCtrl="true" showTypeCtrl="true" lng="-58.42024" lat="-34.59856" zoom="15">
-											</gmaps>
-
-
-										</center>
-
-
-										<south>
-
-
-
-											<hbox align="center">
-												<button label="Previsualizar">
-													<attribute name="onClick">
-	winNuevoViaje.previewViaje();
-</attribute>
-												</button>
-												<button label="Aceptar">
-													<attribute name="onClick">
-	winNuevoViaje.addViaje();
-</attribute>
-												</button>
-											</hbox>
-										</south>
-
-									</borderlayout>
-								</window>
-
+								<!-- ACA DEBE IR LA INCLUSION -->
+								<include src="viajeNuevo.zul" />
 							</tabpanel>
 							<tabpanel>
-								<listbox id="listViajesAnteriores" width="200px" height="25%">
+								<listbox id="listViajesAnteriores"
+									width="200px" height="25%">
 									<listhead>
-										<listheader label="Viajes anteriores" sort="auto" />
+										<listheader
+											label="Viajes anteriores" sort="auto" />
 									</listhead>
 									<listitem>
-										<listcell context="menuContextViajesAnteriores">
+										<listcell
+											context="menuContextViajesAnteriores">
 											<attribute name="onRightClick">
 	pageScope.put("valor", "54334");
 </attribute>
@@ -229,7 +86,8 @@
 										</listcell>
 									</listitem>
 									<listitem>
-										<listcell context="menuContextViajesAnteriores">
+										<listcell
+											context="menuContextViajesAnteriores">
 
 
 
@@ -241,7 +99,8 @@
 										</listcell>
 									</listitem>
 									<listitem>
-										<listcell context="menuContextViajesAnteriores">
+										<listcell
+											context="menuContextViajesAnteriores">
 											<attribute name="onRightClick">
 	pageScope.put("valor", "95746");
 </attribute>
@@ -250,7 +109,8 @@
 										</listcell>
 									</listitem>
 									<listitem>
-										<listcell context="menuContextViajesAnteriores">
+										<listcell
+											context="menuContextViajesAnteriores">
 											<attribute name="onRightClick">
 	pageScope.put("valor", "73659");
 </attribute>
@@ -259,7 +119,8 @@
 										</listcell>
 									</listitem>
 									<listitem>
-										<listcell context="menuContextViajesAnteriores">
+										<listcell
+											context="menuContextViajesAnteriores">
 											<attribute name="onRightClick">
 	pageScope.put("valor", "93265");
 </attribute>
@@ -269,12 +130,15 @@
 									</listitem>
 								</listbox>
 
-								<menupopup id="menuContextViajesAnteriores">
-									<menuitem label="Mostrar Detalles">
+								<menupopup
+									id="menuContextViajesAnteriores">
+									<menuitem
+										label="Mostrar Detalles">
 										<attribute name="onClick">
 <!-- 	Executions.createComponents("detallesViajeAnterior.zul", null, null);
  -->
-	Component h = Executions.createComponents("detallesViajeAnterior.zul", null, null);
+	Component h = Executions.createComponents("detallesViajeAnterior.zul",
+			null, null);
 	h.getFellow("idViaje").setValue(page.getAttribute("valor"));
 </attribute>
 									</menuitem>
@@ -282,12 +146,8 @@
 							</tabpanel>
 						</tabpanels>
 					</tabbox>
-
-
 				</tabpanel>
 			</tabpanels>
 		</tabbox>
-
-
 	</window>
 </zk>
