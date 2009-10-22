@@ -6,10 +6,12 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
 
-public class AuthenticationFilter implements Filter {
+import ar.edu.utn.frba.proyecto.citysoft.controller.ConstantesGeneralesDeVentanas;
+import ar.edu.utn.frba.proyecto.citysoft.utils.WebUtils;
 
-	// private static final String PAGE_LOGIN = "login.zul";
+public class AuthenticationFilter implements Filter, ConstantesGeneralesDeVentanas {
 
 	@Override
 	public void destroy() {
@@ -18,12 +20,12 @@ public class AuthenticationFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws java.io.IOException, javax.servlet.ServletException {
-		// TODO lograr autenticar...
-		// if (!UserContext.getUserContext().isUsuarioAutenticado()) {
-		// req.getRequestDispatcher(PAGE_LOGIN).forward(req, res);
-		// } else {
-		chain.doFilter(req, res);
-		// }
+		if (!UserContext.getUserContext().isUsuarioAutenticado()) {
+			((HttpServletResponse) res).sendRedirect(WebUtils.getContextPath(req) + ZUL__LOGIN
+					+ "?uri=" + WebUtils.getRequestUri(req));
+		} else {
+			chain.doFilter(req, res);
+		}
 	}
 
 	@Override

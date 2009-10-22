@@ -32,6 +32,7 @@ public class LoteDeClientes implements Lote {
 			String nombre, int dni, String direccion, String telefono) {
 		Cliente cliente = new Cliente();
 		cliente.setNombreUsuario(username);
+		cliente.setPassword("soycalamardo");
 		cliente.setIdCliente(idCliente);
 		// Atributos de persona
 		cliente.setApellido(apellido);

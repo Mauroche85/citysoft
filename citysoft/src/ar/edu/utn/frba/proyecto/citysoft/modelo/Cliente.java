@@ -3,14 +3,18 @@ package ar.edu.utn.frba.proyecto.citysoft.modelo;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import ar.edu.utn.frba.proyecto.citysoft.user.Autenticable;
+
 /**
  * @author Alejandro
  * @version 1.0
  * @created 23-Jul-2009 10:54:49 p.m.
  */
-public class Cliente extends Persona implements ObjetoDeDominio, Comparable<Cliente> {
+public class Cliente extends Persona implements ObjetoDeDominio, Autenticable, Comparable<Cliente> {
 
 	private String nombreUsuario;
+	private String password;
+
 	private int idCliente;
 	private Collection<Viaje> viajes = new ArrayList<Viaje>();
 	private Viaje viajeEnCurso;
@@ -33,6 +37,14 @@ public class Cliente extends Persona implements ObjetoDeDominio, Comparable<Clie
 
 	public void setNombreUsuario(String nombre) {
 		this.nombreUsuario = nombre;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String pass) {
+		this.password = pass;
 	}
 
 	public int getIdCliente() {
