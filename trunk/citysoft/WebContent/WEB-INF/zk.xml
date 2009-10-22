@@ -23,7 +23,7 @@
 	<preference>
 		<name>ThreadLocal</name>
 		<value>
-			ar.edu.utn.frba.proyecto.citysoft.user.UserContext=tlUserContext
+			ar.edu.utn.frba.proyecto.citysoft.user.UserContext=tlUserContext;
 		</value>
 	</preference>
 
