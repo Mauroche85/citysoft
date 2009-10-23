@@ -3,12 +3,18 @@
 	String uri = Executions.getCurrent().getParameter("uri");
 </zscript>
 
-	<window use="ar.edu.utn.frba.proyecto.citysoft.controller.Login" width="80%" id="win"
-		title="Login" border="normal">
-		<label value="Usuario" />
-		<textbox id="txtUsuario" type="text" />
-		<label value="Password" />
-		<textbox id="txtPassword" type="password" />
-		<button label="btnAutenticar" onClick="win.login(uri);" />
+	<window use="ar.edu.utn.frba.proyecto.citysoft.controller.Login"
+		id="win" title="GTTR: Login" mode="modal" width="350px" height="185px" border="normal">
+		<hbox>
+			<image src="images/LogoGTTR.jpg" width="180px" height="150px" />
+			<vbox>
+				<space height="5px"/>
+				<label value="Usuario" />
+				<textbox id="txtUsuario" type="text" />
+				<label value="Password" />
+				<textbox id="txtPassword" type="password" />
+				<button label="Ingresar" onClick="win.login(uri);" />
+			</vbox>
+		</hbox>
 	</window>
 </zk>
