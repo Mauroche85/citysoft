@@ -21,8 +21,11 @@
 				<rows>
 					<row>
 						<label value="Id cliente:" />
+						<!-- combobox model="@{orders}" selectedItem="@{selected}" value="@{selected.orderName}" -->
+	 					<!-- comboitem self="@{each=order}" label="@{order.orderName}" value="@{order.orderNumber}"/ -->
+						<!-- /combobox -->
 						<combobox id="stIdCliente" model="@{winNuevoViaje.getListaClientes, load-after='winNuevoViaje.onChange'}">
-							<comboitem self="@{each=cli}" label="@{cli.nombreUsuario}" value="@{cli.nombreUsuario}" />
+							<comboitem self="@{each=cli}" label="@{cli.nombreUsuario}" />
 						</combobox>
 					</row>
 					<row>
