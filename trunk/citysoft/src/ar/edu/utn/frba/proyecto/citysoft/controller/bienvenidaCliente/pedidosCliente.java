@@ -1,5 +1,9 @@
 package ar.edu.utn.frba.proyecto.citysoft.controller.bienvenidaCliente;
 
+import java.util.Collection;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
 import org.zkoss.gmaps.Gmaps;
 import org.zkoss.gmaps.Gmarker;
 import org.zkoss.zul.Window;
@@ -8,12 +12,18 @@ import org.zkoss.zul.api.Timebox;
 
 import ar.edu.utn.frba.proyecto.citysoft.controller.ConstantesGeneralesDeVentanas;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Cliente;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 
 import com.blogspot.unserializableone.GAddress;
 import com.blogspot.unserializableone.GCoder;
 
 public class pedidosCliente extends Window implements ConstantesGeneralesDeVentanas {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 691719919215219297L;
+	
 	Gmarker gm = new Gmarker();
 	Gmarker gmDestino = new Gmarker();
 
@@ -151,6 +161,11 @@ public class pedidosCliente extends Window implements ConstantesGeneralesDeVenta
 		// **************************************
 		CentralTaxis.getInstance().addViaje(v);
 		System.out.println("id de viaje: " + v.getIdViaje());
+	}
+	
+	public Collection<Cliente> getListaClientes() {
+		SortedSet<Cliente> lista = new TreeSet<Cliente>(CentralTaxis.getInstance().getClientes());
+		return lista;
 	}
 
 }

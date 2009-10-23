@@ -161,6 +161,7 @@ public class CentralTaxis implements ObjetoDeDominio {
 			}
 		});
 	}
+	
 
 	public Cliente getClientePorId(final int idCliente) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???

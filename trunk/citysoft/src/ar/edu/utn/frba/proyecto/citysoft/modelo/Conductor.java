@@ -1,7 +1,5 @@
 package ar.edu.utn.frba.proyecto.citysoft.modelo;
 
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * @author Hernan
