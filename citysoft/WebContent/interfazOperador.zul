@@ -61,8 +61,8 @@
 					<attribute name="onClick">
 	Component win = Executions.createComponents("viajeNuevo.zul", null, null);
 	win.setMode("modal");
-	win.setWidth("80%");
-	win.setHeight("80%");
+	win.setWidth("600px");
+	win.setHeight("525px");
 	win.setClosable(true);
 </attribute>
 				</toolbarbutton>

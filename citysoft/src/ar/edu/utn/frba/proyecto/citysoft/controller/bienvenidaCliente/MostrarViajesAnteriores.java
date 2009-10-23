@@ -9,6 +9,11 @@ import org.zkoss.zul.Listbox;
 //4- Puse la primer letra ("M") en mayuscula. Por convencion, el nomrbe de clases va en may
 class MostrarViajesAnteriores extends Listbox {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1851308538749572900L;
+
 	public void listarTodos() {
 	}
 
