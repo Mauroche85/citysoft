@@ -167,5 +167,7 @@ public class pedidosCliente extends Window implements ConstantesGeneralesDeVenta
 		SortedSet<Cliente> lista = new TreeSet<Cliente>(CentralTaxis.getInstance().getClientes());
 		return lista;
 	}
-
+	
+	
+	
 }
