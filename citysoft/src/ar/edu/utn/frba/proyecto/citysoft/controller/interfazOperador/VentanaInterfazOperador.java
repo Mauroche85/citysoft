@@ -76,17 +76,17 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 	}
 
 	public void abrirAsignacionPorTaxiLibre(Menupopup popup) {
-		VentanitaAsignacionTaxi win = (VentanitaAsignacionTaxi) Executions.createComponents(
+		AsignarLiberarTaxi win = (AsignarLiberarTaxi) Executions.createComponents(
 				ZUL__ASIGNAR_TAXI, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemPatente().setValue((String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
+		win.elemIdTaxi().setValue((String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
 	public void abrirAsignacionPorViaje(Menupopup popup) {
-		VentanitaAsignacionTaxi win = (VentanitaAsignacionTaxi) Executions.createComponents(
+		AsignarLiberarTaxi win = (AsignarLiberarTaxi) Executions.createComponents(
 				ZUL__ASIGNAR_TAXI, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemViaje().setValue((String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
+		win.elemNumPedido().setValue((String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
 	public void abrirCancelacionViaje(Menupopup popup) {

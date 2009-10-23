@@ -220,7 +220,7 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 	}
 
 	public boolean estoyLibre() {
-		validarTaxiActivo();
+		//validarTaxiActivo(); esto esta mal por que hace recursividad
 		return this.getViajeEnCurso() == null;
 	}
 
