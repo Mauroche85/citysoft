@@ -275,6 +275,10 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 		t.setViajeEnCurso(this);
 		this.estado = ESTADO_ASIGNADO;
 	}
+	
+	public void cancelar() {
+		this.estado = ESTADO_CANCELADO;
+	}
 
 	// **************************************
 	// ** Helpers
