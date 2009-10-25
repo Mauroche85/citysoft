@@ -1,6 +1,6 @@
 package ar.edu.utn.frba.proyecto.citysoft.config;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
 
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
@@ -26,7 +26,7 @@ public class LeerBase {
 
 	public void mostrarObjetos() {
 		ObjectContainer db = ContextoAplicacion.getInstance().obtenerDb();
-		ObjectSet<Taxi> query = db.query(Taxi.class);
+		ObjectSet<Vehiculo> query = db.query(Vehiculo.class);
 		while (query.hasNext()) {
 			System.out.println(query.next());
 		}
@@ -38,7 +38,7 @@ public class LeerBase {
 
 	public static void main(String[] args) {
 		ContextoAplicacion.getInstance().abrirDb();
-		// CentralTaxis.getInstance().initialize();
+		// Central.getInstance().initialize();
 		LeerBase.getInstance().mostrarObjetos();
 		ContextoAplicacion.getInstance().cerrarDd();
 	}

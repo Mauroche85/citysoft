@@ -7,7 +7,7 @@ import org.zkoss.zul.Window;
 import org.zkoss.zul.api.Intbox;
 import org.zkoss.zul.api.Textbox;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Conductor;
 
 public class VentanaAbmConductor extends Window {
@@ -163,7 +163,7 @@ public class VentanaAbmConductor extends Window {
 		c.setTelefono(elemTelefono().getValue());
 
 		// Guardo el cliente en la central!!!!
-		CentralTaxis.getInstance().addConductor(c);
+		Central.getInstance().addConductor(c);
 
 		// Cierro la ventana
 		this.cerrar();
@@ -171,7 +171,7 @@ public class VentanaAbmConductor extends Window {
 
 	public void modifConductor() {
 		// Creo el conductor!!!
-		Conductor c = CentralTaxis.getInstance().getConductorPorId(elemLegajo().getValue());
+		Conductor c = Central.getInstance().getConductorPorId(elemLegajo().getValue());
 
 		c.setApellido(elemApellido().getValue());
 		c.setNombre(elemNombres().getValue());
@@ -182,7 +182,7 @@ public class VentanaAbmConductor extends Window {
 		c.setTelefono(elemTelefono().getValue());
 
 		// Actualizo el cliente en la central!!!!
-		CentralTaxis.getInstance().addConductor(c);
+		Central.getInstance().addConductor(c);
 
 		// Cierro la ventana
 		this.cerrar();
@@ -190,8 +190,8 @@ public class VentanaAbmConductor extends Window {
 
 	public void eliminarConductor() {
 		int idConductor = elemLegajo().intValue();
-		Conductor c = CentralTaxis.getInstance().getConductorPorId(idConductor);
-		CentralTaxis.getInstance().getConductores().remove(c);
+		Conductor c = Central.getInstance().getConductorPorId(idConductor);
+		Central.getInstance().getConductores().remove(c);
 		this.cerrar();
 	}
 
@@ -200,7 +200,7 @@ public class VentanaAbmConductor extends Window {
 	// **************************************
 
 	private void traerDetalleConductor(int idConductor) {
-		Conductor c = CentralTaxis.getInstance().getConductorPorId(idConductor);
+		Conductor c = Central.getInstance().getConductorPorId(idConductor);
 		elemLegajo().setValue(idConductor);
 		elemNombres().setValue(c.getNombre());
 		elemApellido().setValue(c.getApellido());

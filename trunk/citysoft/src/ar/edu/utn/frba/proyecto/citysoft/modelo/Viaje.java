@@ -19,7 +19,7 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	// **************************************
 
 	private int idViaje;
-	private Taxi taxi;
+	private Vehiculo vehiculo;
 	private Cliente cliente;
 	private Date horaRequerida;
 	private int horaEstimadaInicio;
@@ -48,7 +48,7 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	// **************************************
 
 	public Viaje() {
-		this.idViaje = CentralTaxis.getInstance().getGeneradorDeIds().getProximoIdViaje();
+		this.idViaje = Central.getInstance().getGeneradorDeIds().getProximoIdViaje();
 		this.estado = ESTADO_PENDIENTE;
 	}
 
@@ -64,12 +64,12 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 		this.idViaje = idViaje;
 	}
 
-	public Taxi getTaxi() {
-		return taxi;
+	public Vehiculo getVehiculo() {
+		return vehiculo;
 	}
 
-	public void setTaxi(Taxi taxi) {
-		this.taxi = taxi;
+	public void setVehiculo(Vehiculo v) {
+		this.vehiculo = v;
 	}
 
 	public Cliente getCliente() {
@@ -268,9 +268,9 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	// ** Ejecucion
 	// **************************************
 
-	public void asignar(Taxi t) {
+	public void asignar(Vehiculo t) {
 		validarViajePendiente();
-		this.taxi = t;
+		this.vehiculo = t;
 		t.setViajeEnCurso(this);
 		this.estado = ESTADO_ASIGNADO;
 	}
@@ -313,7 +313,7 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 
 	@Override
 	public String toString() {
-		return "Viaje " + this.getIdViaje() + " - " + this.getTaxi().getPatente();
+		return "Viaje " + this.getIdViaje() + " - " + this.getVehiculo().getPatente();
 	}
 
 }

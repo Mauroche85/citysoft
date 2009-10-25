@@ -25,7 +25,7 @@ import ar.edu.utn.frba.proyecto.citysoft.modelo.ObjetoDeDominio;
  * inicia la aplicación subimos a memoria todos estos objetos. Este conjunto de
  * objetos con el que se trabajará en desarrollo, puede ser definido en uno o
  * varios lotes también. Podes usar una subclase de lote por cada objeto de
- * dominio (LoteDeTaxis, LoteDeClientes, etc) o podes usar un lote universal
+ * dominio (LoteDeVehiculos, LoteDeClientes, etc) o podes usar un lote universal
  * (LoteDeAplicacion).
  * 
  * @author Alejandro
@@ -38,7 +38,7 @@ public interface Lote {
 	List<ObjetoDeDominio> getLote();
 
 	/**
-	 * Carga en la central de taxis la lista de elementos en sus colecciones
+	 * Carga en la central de vehiculos la lista de elementos en sus colecciones
 	 * correspondientes
 	 */
 	public void cargar();

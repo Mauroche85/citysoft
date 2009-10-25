@@ -7,7 +7,7 @@
 			<center>
 				<grid width="300">
 					<rows>
-					    <row>
+						<row>
 							<label value="Id Vehículo:" />
 							<intbox id="intIdVehiculo" />
 						</row>
@@ -52,11 +52,15 @@
 			</center>
 			<east>
 				<vbox align="center">
-					<button label="Aceptar" id="btnGuardarAlta" onClick="winAltaVehiculo.altaTaxi();" />
-					<button label="Aceptar" id="btnGuardarModif" onClick="winAltaVehiculo.modifTaxi();" />
+					<button label="Aceptar" id="btnGuardarAlta"
+						onClick="winAltaVehiculo.altaVehiculo();" />
+					<button label="Aceptar" id="btnGuardarModif"
+						onClick="winAltaVehiculo.modifVehiculo();" />
 					<button label="Cancelar" id="btnCancelar" onClick="winAltaVehiculo.cerrar();" />
-					<button label="Modificar" id="btnModificar" onClick="winAltaVehiculo.abrirModificacion();" />
-					<button label="Eliminar" id="btnEliminar" onClick="winAltaVehiculo.eliminarTaxi();" />
+					<button label="Modificar" id="btnModificar"
+						onClick="winAltaVehiculo.abrirModificacion();" />
+					<button label="Eliminar" id="btnEliminar"
+						onClick="winAltaVehiculo.eliminarVehiculo();" />
 					<button label="Cerrar" id="btnCerrar" onClick="winAltaVehiculo.cerrar();" />
 				</vbox>
 			</east>

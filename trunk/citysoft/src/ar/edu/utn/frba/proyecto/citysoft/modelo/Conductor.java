@@ -1,6 +1,5 @@
 package ar.edu.utn.frba.proyecto.citysoft.modelo;
 
-
 /**
  * @author Hernan
  * @version 1.0
@@ -11,14 +10,14 @@ public class Conductor extends Persona implements ObjetoDeDominio, Comparable<Co
 
 	private String nombreUsuario;
 	private int idConductor;
-	private Taxi taxi;
+	private Vehiculo vehiculo;
 
 	// **************************************
 	// ** Constructor
 	// **************************************
 
 	public Conductor() {
-		this.idConductor = CentralTaxis.getInstance().getGeneradorDeIds().getProximoIdConductor();
+		this.idConductor = Central.getInstance().getGeneradorDeIds().getProximoIdConductor();
 	}
 
 	// **************************************
@@ -41,12 +40,12 @@ public class Conductor extends Persona implements ObjetoDeDominio, Comparable<Co
 		this.idConductor = idConductor;
 	}
 
-	public Taxi getTaxi() {
-		return taxi;
+	public Vehiculo getVehiculo() {
+		return vehiculo;
 	}
 
-	public void setTaxi(Taxi taxi) {
-		this.taxi = taxi;
+	public void setVehiculo(Vehiculo v) {
+		this.vehiculo = v;
 	}
 
 	public int compareTo(Conductor theOther) {

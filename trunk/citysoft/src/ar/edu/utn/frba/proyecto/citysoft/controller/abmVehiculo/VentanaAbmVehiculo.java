@@ -7,8 +7,8 @@ import org.zkoss.zul.Window;
 import org.zkoss.zul.api.Intbox;
 import org.zkoss.zul.api.Textbox;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
-import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
 
 public class VentanaAbmVehiculo extends Window {
 
@@ -156,9 +156,9 @@ public class VentanaAbmVehiculo extends Window {
 	// ** Ejecucion
 	// **************************************
 
-	public void altaTaxi() {
-		// Creo el taxi!!!
-		Taxi c = new Taxi();
+	public void altaVehiculo() {
+		// Creo el vehiculo!!!
+		Vehiculo c = new Vehiculo();
 		c.setIdVehiculo(elemIdVehiculo().getValue());
 		c.setPatente(elemPatente().getValue());
 		c.setApellido(elemApellido().getValue());
@@ -170,15 +170,15 @@ public class VentanaAbmVehiculo extends Window {
 		c.setModelo(elemModelo().getValue());
 
 		// Guardo el cliente en la central!!!!
-		CentralTaxis.getInstance().addTaxi(c);
+		Central.getInstance().addVehiculo(c);
 
 		// Cierro la ventana
 		this.cerrar();
 	}
 
-	public void modifTaxi() {
-		// Creo el taxi!!!
-		Taxi c = CentralTaxis.getInstance().getTaxiPorIdVehiculo(elemIdVehiculo().getValue());
+	public void modifVehiculo() {
+		// Creo el vehiculo!!!
+		Vehiculo c = Central.getInstance().getVehiculoPorId(elemIdVehiculo().getValue());
 		c.setPatente(elemPatente().getValue());
 		c.setApellido(elemApellido().getValue());
 		c.setNombre(elemNombres().getValue());
@@ -189,16 +189,16 @@ public class VentanaAbmVehiculo extends Window {
 		c.setModelo(elemModelo().getValue());
 
 		// Actualizo el cliente en la central!!!!
-		CentralTaxis.getInstance().addTaxi(c);
+		Central.getInstance().addVehiculo(c);
 
 		// Cierro la ventana
 		this.cerrar();
 	}
 
-	public void eliminarTaxi() {
+	public void eliminarVehiculo() {
 		int idVehiculo = elemIdVehiculo().getValue();
-		Taxi c = CentralTaxis.getInstance().getTaxiPorIdVehiculo(idVehiculo);
-		CentralTaxis.getInstance().getTaxis().remove(c);
+		Vehiculo c = Central.getInstance().getVehiculoPorId(idVehiculo);
+		Central.getInstance().getVehiculos().remove(c);
 		this.cerrar();
 	}
 
@@ -207,7 +207,7 @@ public class VentanaAbmVehiculo extends Window {
 	// **************************************
 
 	private void traerDetalleVehiculo(int idVehiculo) {
-		Taxi c = CentralTaxis.getInstance().getTaxiPorIdVehiculo(idVehiculo);
+		Vehiculo c = Central.getInstance().getVehiculoPorId(idVehiculo);
 		elemIdVehiculo().setValue(idVehiculo);
 		elemPatente().setValue(c.getPatente());
 		elemNombres().setValue(c.getNombre());

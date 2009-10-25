@@ -5,42 +5,41 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Window;
 import org.zkoss.zul.api.Textbox;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
-import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 
-public class AsignarLiberarTaxi extends Window {
+public class AsignarLiberarVehiculo extends Window {
 
 	private static final long serialVersionUID = -30629984537535030L;
 
-	public void asignarTaxi() {
-		Viaje v = CentralTaxis.getInstance().getViaje(
-				Integer.parseInt(elemIdViajePendiente().getValue()));
-		Taxi t = CentralTaxis.getInstance().getTaxiPorPatente(elemIdTaxi().getValue());
+	public void asignarVehiculo() {
+		Viaje v = Central.getInstance().getViaje(Integer.parseInt(elemIdViajePendiente().getValue()));
+		Vehiculo t = Central.getInstance().getVehiculoPorPatente(elemIdVehiculo().getValue());
 
-		// Setea Taxi en el viaje
+		// Setea vehiculo en el viaje
 		v.asignar(t);
 
 		// Cuando se modifica alguna entidad, hay que volverla a agregar en la
-		// central de taxis
-		CentralTaxis.getInstance().addTaxi(t);
-		CentralTaxis.getInstance().addViaje(v);
+		// central
+		Central.getInstance().addVehiculo(t);
+		Central.getInstance().addViaje(v);
 		this.cerrar();
 
 	}
 
-	public void liberarTaxi() {
-		Taxi t = CentralTaxis.getInstance().getTaxiPorPatente(elemIdTaxi().getValue());
+	public void liberarVehiculo() {
+		Vehiculo t = Central.getInstance().getVehiculoPorPatente(elemIdVehiculo().getValue());
 
-		// TODO: hay que trabajar la liberacion de taxi
+		// TODO: hay que trabajar la liberacion de vechiulos
 		// t.setActivado(false); << esto entiendo no es liberacion, sino
 		// desactivacion
 
 		// TODO la liberacion es la finalizcion del viaje. Ir por ese lado
 
 		// Cuando se modifica alguna entidad, hay que volverla a agregar en la
-		// central de taxis
-		CentralTaxis.getInstance().addTaxi(t);
+		// central
+		Central.getInstance().addVehiculo(t);
 		this.cerrar();
 
 	}
@@ -53,8 +52,8 @@ public class AsignarLiberarTaxi extends Window {
 	// ** Helpers
 	// **************************************
 
-	public Textbox elemIdTaxi() {
-		return (Textbox) this.getFellow("idTaxi");
+	public Textbox elemIdVehiculo() {
+		return (Textbox) this.getFellow("idVehiculo");
 	}
 
 	public Textbox elemIdViajePendiente() {

@@ -7,7 +7,7 @@ import org.zkoss.zul.Window;
 import org.zkoss.zul.api.Intbox;
 import org.zkoss.zul.api.Textbox;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Cliente;
 
 public class VentanaAbmCliente extends Window {
@@ -163,7 +163,7 @@ public class VentanaAbmCliente extends Window {
 		c.setTelefono(elemTelefono().getValue());
 
 		// Guardo el cliente en la central!!!!
-		CentralTaxis.getInstance().addCliente(c);
+		Central.getInstance().addCliente(c);
 
 		// Cierro la ventana
 		this.cerrar();
@@ -171,7 +171,7 @@ public class VentanaAbmCliente extends Window {
 
 	public void modifCliente() {
 		// Creo el cliente!!!
-		Cliente c = CentralTaxis.getInstance().getClientePorId(elemLegajo().getValue());
+		Cliente c = Central.getInstance().getClientePorId(elemLegajo().getValue());
 
 		c.setApellido(elemApellido().getValue());
 		c.setNombre(elemNombres().getValue());
@@ -182,7 +182,7 @@ public class VentanaAbmCliente extends Window {
 		c.setTelefono(elemTelefono().getValue());
 
 		// Actualizo el cliente en la central!!!!
-		CentralTaxis.getInstance().addCliente(c);
+		Central.getInstance().addCliente(c);
 
 		// Cierro la ventana
 		this.cerrar();
@@ -190,8 +190,8 @@ public class VentanaAbmCliente extends Window {
 
 	public void eliminarCliente() {
 		int idCliente = elemLegajo().intValue();
-		Cliente c = CentralTaxis.getInstance().getClientePorId(idCliente);
-		CentralTaxis.getInstance().getClientes().remove(c);
+		Cliente c = Central.getInstance().getClientePorId(idCliente);
+		Central.getInstance().getClientes().remove(c);
 		this.cerrar();
 	}
 
@@ -200,7 +200,7 @@ public class VentanaAbmCliente extends Window {
 	// **************************************
 
 	private void traerDetalleCliente(int idCliente) {
-		Cliente c = CentralTaxis.getInstance().getClientePorId(idCliente);
+		Cliente c = Central.getInstance().getClientePorId(idCliente);
 		elemLegajo().setValue(idCliente);
 		elemNombres().setValue(c.getNombre());
 		elemApellido().setValue(c.getApellido());

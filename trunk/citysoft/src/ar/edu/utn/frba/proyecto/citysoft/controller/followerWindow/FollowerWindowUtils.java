@@ -5,13 +5,13 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.api.Listbox;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
-import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
 
 public class FollowerWindowUtils {
 
 	/**
-	 * Dispara el evento onChange en la lista de taxis seguidos, para que se
+	 * Dispara el evento onChange en la lista de vehiculos seguidos, para que se
 	 * refresque. Este método debe dispararse desde los procesos que generan un
 	 * seguimiento o lo eliminan.
 	 */
@@ -21,13 +21,13 @@ public class FollowerWindowUtils {
 		Events.sendEvent(event);
 	}
 
-	public static boolean seguimientoCentradoSobreTaxi(Taxi t, Component unComponente) {
+	public static boolean seguimientoCentradoSobreVehiculo(Vehiculo t, Component unComponente) {
 		Listbox listbox = obtenerComponenteListaDeSeguimiento(unComponente);
 		ItemDeListaSeguimiento item = (ItemDeListaSeguimiento) listbox.getSelectedItemApi();
 		if (item != null) {
-			Taxi taxiSeleccionado = CentralTaxis.getInstance().getTaxiPorPatente(
+			Vehiculo vehiculoSeleccionado = Central.getInstance().getVehiculoPorPatente(
 					(String) item.getValue());
-			return taxiSeleccionado.equals(t);
+			return vehiculoSeleccionado.equals(t);
 		} else
 			return false;
 	}

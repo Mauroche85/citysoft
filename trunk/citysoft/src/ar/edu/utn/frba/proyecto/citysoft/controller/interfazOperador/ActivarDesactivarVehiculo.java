@@ -5,10 +5,10 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Window;
 import org.zkoss.zul.api.Textbox;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
-import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
 
-public class ActivarDesactivarTaxi extends Window {
+public class ActivarDesactivarVehiculo extends Window {
 
 	private static final long serialVersionUID = 7125424930429094431L;
 
@@ -16,22 +16,22 @@ public class ActivarDesactivarTaxi extends Window {
 	// ** EJECUCION
 	// **************************************
 
-	public void activarTaxi() {
-		Taxi t = CentralTaxis.getInstance().getTaxiPorPatente(elemIdTaxi().getValue());
+	public void activarVehiculo() {
+		Vehiculo t = Central.getInstance().getVehiculoPorPatente(elemIdVehiculo().getValue());
 		t.setActivado(true);
 		// Cuando se modifica alguna entidad, hay que volverla a agregar en la
-		// central de taxis
-		CentralTaxis.getInstance().addTaxi(t);
+		// central
+		Central.getInstance().addVehiculo(t);
 		this.cerrar();
 
 	}
 
-	public void desactivarTaxi() {
-		Taxi t = CentralTaxis.getInstance().getTaxiPorPatente(elemIdTaxi().getValue());
+	public void desactivarVehiculo() {
+		Vehiculo t = Central.getInstance().getVehiculoPorPatente(elemIdVehiculo().getValue());
 		t.setActivado(false);
 		// Cuando se modifica alguna entidad, hay que volverla a agregar en la
-		// central de taxis
-		CentralTaxis.getInstance().addTaxi(t);
+		// central
+		Central.getInstance().addVehiculo(t);
 		this.cerrar();
 
 	}
@@ -44,8 +44,8 @@ public class ActivarDesactivarTaxi extends Window {
 	// ** Helpers
 	// **************************************
 
-	public Textbox elemIdTaxi() {
-		return (Textbox) this.getFellow("idTaxi");
+	public Textbox elemIdVehiculo() {
+		return (Textbox) this.getFellow("idVehiculo");
 	}
 
 }

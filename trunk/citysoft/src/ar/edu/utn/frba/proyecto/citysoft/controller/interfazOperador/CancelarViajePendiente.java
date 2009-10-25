@@ -5,7 +5,7 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Window;
 import org.zkoss.zul.api.Textbox;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 
 public class CancelarViajePendiente extends Window {
@@ -13,13 +13,13 @@ public class CancelarViajePendiente extends Window {
 	private static final long serialVersionUID = 7385723048921493133L;
 
 	public void cancelarViajePendiente() {
-		Viaje v = CentralTaxis.getInstance().getViaje(
+		Viaje v = Central.getInstance().getViaje(
 				Integer.parseInt(elemIdViajePendiente().getValue()));
 
 		// Cancela viaje pendiente
 		v.cancelar();
 
-		CentralTaxis.getInstance().addViaje(v);
+		Central.getInstance().addViaje(v);
 		this.cerrar();
 
 	}

@@ -3,14 +3,14 @@ package ar.edu.utn.frba.proyecto.citysoft.modelo.lotes;
 import java.util.ArrayList;
 import java.util.List;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.ObjetoDeDominio;
-import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
 
 /**
  * @author Alejandro Supertramp
  */
-public class LoteDeTaxisDesactivados implements Lote {
+public class LoteDeVehiculosDesactivados implements Lote {
 
 	@Override
 	public List<ObjetoDeDominio> getLote() {
@@ -31,24 +31,24 @@ public class LoteDeTaxisDesactivados implements Lote {
 	@Override
 	public void cargar() {
 		for (ObjetoDeDominio t : getLote()) {
-			CentralTaxis.getInstance().addTaxi((Taxi) t);
+			Central.getInstance().addVehiculo((Vehiculo) t);
 		}
 	}
 
 	private void add(List<ObjetoDeDominio> l, int idVehiculo, String trackerId, String marca,
 			String modelo, String patente, String detalle, Boolean activado) {
 
-		Taxi taxi = new Taxi();
+		Vehiculo v = new Vehiculo();
 
-		taxi.setIdVehiculo(idVehiculo);
-		taxi.setIdTracker(trackerId);
-		taxi.setMarca(marca);
-		taxi.setModelo(modelo);
-		taxi.setPatente(patente);
-		taxi.setDetalle(detalle);
-		taxi.setActivado(activado);
+		v.setIdVehiculo(idVehiculo);
+		v.setIdTracker(trackerId);
+		v.setMarca(marca);
+		v.setModelo(modelo);
+		v.setPatente(patente);
+		v.setDetalle(detalle);
+		v.setActivado(activado);
 
-		l.add(taxi);
+		l.add(v);
 	}
 
 }

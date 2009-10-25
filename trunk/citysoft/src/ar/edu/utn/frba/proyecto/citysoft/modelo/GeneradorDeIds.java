@@ -6,7 +6,7 @@ import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 
 /**
- * Esta clase solo debería ser instanciada por la central de taxis!!!
+ * Esta clase solo debería ser instanciada por la central!!!
  * 
  * @author Alejandro
  */

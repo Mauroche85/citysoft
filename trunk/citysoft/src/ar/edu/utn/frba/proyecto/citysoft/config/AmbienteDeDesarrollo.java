@@ -3,11 +3,11 @@ package ar.edu.utn.frba.proyecto.citysoft.config;
 import java.util.ArrayList;
 import java.util.List;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.Lote;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.LoteDeClientes;
-import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.LoteDeConductoresTaxisYViajes;
-import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.LoteDeTaxisDesactivados;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.LoteDeConductoresVehiculosYViajes;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.LoteDeVehiculosDesactivados;
 
 /**
  * Ver el javadoc de {@link Lote}.
@@ -45,8 +45,8 @@ public class AmbienteDeDesarrollo {
 		// TODO mantener la configuración actualizada. Ir completando con los
 		// sucesivos lotes
 		this.lotes.add(new LoteDeClientes());
-		this.lotes.add(new LoteDeConductoresTaxisYViajes());
-		this.lotes.add(new LoteDeTaxisDesactivados());
+		this.lotes.add(new LoteDeConductoresVehiculosYViajes());
+		this.lotes.add(new LoteDeVehiculosDesactivados());
 	}
 
 	// ***************************************
@@ -63,12 +63,12 @@ public class AmbienteDeDesarrollo {
 		ContextoAplicacion.getInstance().abrirDb();
 		borrarYPoblarBase();
 		ContextoAplicacion.getInstance().cerrarDd();
-		CentralTaxis.getInstance().terminate();
+		Central.getInstance().terminate();
 	}
 
 	public void borrarYPoblarBase() {
 		ContextoAplicacion.getInstance().borrarDb();
-		CentralTaxis.getInstance().initialize();
+		Central.getInstance().initialize();
 		AmbienteDeDesarrollo.getInstance().cargar();
 	}
 

@@ -1,6 +1,6 @@
 package ar.edu.utn.frba.proyecto.citysoft.user;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Cliente;
 
 /**
@@ -70,7 +70,7 @@ public class UserContext {
 		if (this.isUsuarioAutenticado()) {
 			throw new RuntimeException("Ya existe sesión (" + this.getUsername() + ")");
 		} else {
-			Cliente c = CentralTaxis.getInstance().getCliente(usuario);
+			Cliente c = Central.getInstance().getCliente(usuario);
 			if (c == null) {
 				throw new RuntimeException("Usuario inválido (" + usuario + ")");
 			} else if (!password.equals(c.getPassword())) {

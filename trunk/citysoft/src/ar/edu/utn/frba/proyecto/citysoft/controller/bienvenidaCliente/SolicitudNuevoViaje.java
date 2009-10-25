@@ -11,7 +11,7 @@ import org.zkoss.zul.api.Textbox;
 import org.zkoss.zul.api.Timebox;
 
 import ar.edu.utn.frba.proyecto.citysoft.controller.ConstantesGeneralesDeVentanas;
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Cliente;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 
@@ -163,12 +163,12 @@ public class SolicitudNuevoViaje extends Window implements ConstantesGeneralesDe
 		// **************************************
 		// ** GUARDAMOS EL VIAJE EN LA CENTRAL
 		// **************************************
-		CentralTaxis.getInstance().addViaje(v);
+		Central.getInstance().addViaje(v);
 		System.out.println("id de viaje: " + v.getIdViaje());
 	}
 
 	public Collection<Cliente> getListaClientes() {
-		SortedSet<Cliente> lista = new TreeSet<Cliente>(CentralTaxis.getInstance().getClientes());
+		SortedSet<Cliente> lista = new TreeSet<Cliente>(Central.getInstance().getClientes());
 		return lista;
 	}
 

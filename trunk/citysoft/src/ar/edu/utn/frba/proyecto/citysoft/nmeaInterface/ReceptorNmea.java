@@ -8,8 +8,8 @@ import java.net.Socket;
 
 import org.apache.log4j.Logger;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
-import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
 
 public class ReceptorNmea implements Runnable {
 
@@ -59,11 +59,11 @@ public class ReceptorNmea implements Runnable {
 		Logger.getLogger(this.getClass()).debug("Sentencia NMEA recibida: " + nmea);
 		NmeaGeopos pos = NmeaGeoposParser.parse(nmea);
 		// Le hardcodeamos la posicion a JUT
-		Taxi taxi = CentralTaxis.getInstance().getTaxiPorTrackerId("TAXI01");
-		taxi.nuevoTrack(pos.lat, pos.lng);
+		Vehiculo v = Central.getInstance().getVehiculoPorTrackerId("TAXI01");
+		v.nuevoTrack(pos.lat, pos.lng);
 		// Le hardcodeamos una posicion vecina a Lemiaux
-		taxi = CentralTaxis.getInstance().getTaxiPorTrackerId("TAXI02");
-		taxi.nuevoTrack(pos.lat, pos.lng - 0.01);
+		v = Central.getInstance().getVehiculoPorTrackerId("TAXI02");
+		v.nuevoTrack(pos.lat, pos.lng - 0.01);
 	}
 
 }
