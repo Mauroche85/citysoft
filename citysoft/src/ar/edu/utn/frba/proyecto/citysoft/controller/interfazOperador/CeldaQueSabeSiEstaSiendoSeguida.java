@@ -2,11 +2,12 @@ package ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador;
 
 import org.zkoss.zul.Listcell;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 
 /**
- * Esta celda puede representar tanto a un viaje como un taxi, o lo que sea!!!
+ * Esta celda puede representar tanto a un viaje como un vehiculo, o lo que
+ * sea!!!
  */
 public class CeldaQueSabeSiEstaSiendoSeguida extends Listcell implements ConstantesInterfazOperador {
 
@@ -32,10 +33,10 @@ public class CeldaQueSabeSiEstaSiendoSeguida extends Listcell implements Constan
 	}
 
 	/**
-	 * Indica si el map esta siguiendo al taxi represetnado por esta celda
+	 * Indica si el map esta siguiendo al vehiculo represetnado por esta celda
 	 */
-	public boolean estaSiendoSeguidoElTaxi() {
-		return elemMapa().estaSiendoSeguidoElTaxi((Taxi) getValue());
+	public boolean estaSiendoSeguidoElVehiculo() {
+		return elemMapa().estaSiendoSeguidoElVehiculo((Vehiculo) getValue());
 	}
 
 	public boolean estaMarcadoElViajePendiente() {

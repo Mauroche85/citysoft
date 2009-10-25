@@ -1,4 +1,4 @@
-<?page title="Taxi Follower" ?>
+<?page title="Vehiculo Follower" ?>
 <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
 
 <window id="winFollower" title="Follower" border="normal" mode="modal" width="95%" height="95%"
@@ -33,22 +33,23 @@
 		<east>
 			<listbox id="listViajesSeguidos"
 				use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.ListaSeguimientos" width="200px"
-				height="100%" vflex="true" model="@{gmap.taxisSet, load-after='listViajesSeguidos.onChange'}">
+				height="100%" vflex="true"
+				model="@{gmap.vehiculosSet, load-after='listViajesSeguidos.onChange'}">
 				<listhead>
 					<listheader label="Viajes en mapa" sort="auto" />
 				</listhead>
 				<listitem
 					use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.ItemDeListaSeguimiento"
-					self="@{each=taxi}" idTaxi="@{taxi.idTaxi}">
+					self="@{each=v}" idVehiculo="@{v.idVehiculo}">
 					<listcell>
 						<label value="Viaje" />
-						<label value="@{taxi.viajeEnCurso.idViaje}" />
+						<label value="@{v.viajeEnCurso.idViaje}" />
 						<image src="images/pin.png" align="absbottom" visible="false" />
 					</listcell>
 					<listcell>
 						<image
-							use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.ImagenRemoverTaxiSeguido"
-							src="images/cross.png" align="absbottom" onClick="self.removerTaxi();" />
+							use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.ImagenRemoverVehiculoSeguido"
+							src="images/cross.png" align="absbottom" onClick="self.removerVehiculo();" />
 					</listcell>
 				</listitem>
 			</listbox>

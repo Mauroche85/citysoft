@@ -7,18 +7,18 @@ import org.apache.commons.collections.Predicate;
 
 import ar.edu.utn.frba.proyecto.citysoft.modelo.persistencia.ColeccionPersistente;
 
-public class CentralTaxis implements ObjetoDeDominio {
+public class Central implements ObjetoDeDominio {
 
 	// **************************************
 	// ** Constructor(s)
 	// **************************************
 
-	private CentralTaxis() {
+	private Central() {
 	}
 
-	private static CentralTaxis thiz = new CentralTaxis();
+	private static Central thiz = new Central();
 
-	public static CentralTaxis getInstance() {
+	public static Central getInstance() {
 		return thiz;
 	}
 
@@ -31,14 +31,14 @@ public class CentralTaxis implements ObjetoDeDominio {
 	 */
 	public void initialize() {
 		this.setGeneradorDeIds(GeneradorDeIds.getInstance());
-		this.taxis = new ColeccionPersistente<Taxi>(Taxi.class);
+		this.vehiculos = new ColeccionPersistente<Vehiculo>(Vehiculo.class);
 		this.conductores = new ColeccionPersistente<Conductor>(Conductor.class);
 		this.clientes = new ColeccionPersistente<Cliente>(Cliente.class);
 		this.viajes = new ColeccionPersistente<Viaje>(Viaje.class);
 	}
 
 	public void terminate() {
-		thiz = new CentralTaxis();
+		thiz = new Central();
 	}
 
 	// **************************************
@@ -46,7 +46,7 @@ public class CentralTaxis implements ObjetoDeDominio {
 	// **************************************
 
 	private GeneradorDeIds generadorDeIds;
-	private Collection<Taxi> taxis;
+	private Collection<Vehiculo> vehiculos;
 	private Collection<Conductor> conductores;
 	private Collection<Cliente> clientes;
 	private Collection<Viaje> viajes;
@@ -55,40 +55,40 @@ public class CentralTaxis implements ObjetoDeDominio {
 	// ** Accessors
 	// **************************************
 
-	public Collection<Taxi> getTaxis() {
-		return taxis;
+	public Collection<Vehiculo> getVehiculos() {
+		return vehiculos;
 	}
 
 	@SuppressWarnings("unchecked")
-	public Collection<Taxi> getTaxisDesactivados() {
+	public Collection<Vehiculo> getVehiculosDesactivados() {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
-		return (Collection<Taxi>) CollectionUtils.select(this.taxis, new Predicate() {
+		return (Collection<Vehiculo>) CollectionUtils.select(this.vehiculos, new Predicate() {
 			@Override
 			public boolean evaluate(Object arg0) {
-				Taxi t = (Taxi) arg0;
+				Vehiculo t = (Vehiculo) arg0;
 				return !t.getActivado();
 			}
 		});
 	}
 
 	@SuppressWarnings("unchecked")
-	public Collection<Taxi> getTaxisLibres() {
+	public Collection<Vehiculo> getVehiculosLibres() {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
-		return (Collection<Taxi>) CollectionUtils.select(this.taxis, new Predicate() {
+		return (Collection<Vehiculo>) CollectionUtils.select(this.vehiculos, new Predicate() {
 			@Override
 			public boolean evaluate(Object arg0) {
-				Taxi t = (Taxi) arg0;
+				Vehiculo t = (Vehiculo) arg0;
 				return t.getActivado() && t.estoyLibre();
 			}
 		});
 	}
 
-	public void addTaxi(Taxi taxi) {
-		this.taxis.add(taxi);
+	public void addVehiculo(Vehiculo v) {
+		this.vehiculos.add(v);
 	}
 
-	public void updateTaxi(Taxi taxi) {
-		this.taxis.add(taxi);
+	public void updateVehiculo(Vehiculo v) {
+		this.vehiculos.add(v);
 	}
 
 	public Collection<Conductor> getConductores() {
@@ -161,7 +161,6 @@ public class CentralTaxis implements ObjetoDeDominio {
 			}
 		});
 	}
-	
 
 	public Cliente getClientePorId(final int idCliente) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
@@ -196,45 +195,45 @@ public class CentralTaxis implements ObjetoDeDominio {
 		});
 	}
 
-	public Taxi getTaxiPorTrackerId(final String idTracker) {
+	public Vehiculo getVehiculoPorTrackerId(final String idTracker) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
-		return (Taxi) CollectionUtils.find(this.taxis, new Predicate() {
+		return (Vehiculo) CollectionUtils.find(this.vehiculos, new Predicate() {
 			@Override
 			public boolean evaluate(Object arg0) {
-				Taxi t = (Taxi) arg0;
+				Vehiculo t = (Vehiculo) arg0;
 				return t.getIdTracker().equals(idTracker);
 			}
 		});
 	}
 
-	public Taxi getTaxi(final String usuario) {
+	public Vehiculo getVehiculo(final String usuario) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
-		return (Taxi) CollectionUtils.find(this.taxis, new Predicate() {
+		return (Vehiculo) CollectionUtils.find(this.vehiculos, new Predicate() {
 			@Override
 			public boolean evaluate(Object arg0) {
-				Taxi c = (Taxi) arg0;
+				Vehiculo c = (Vehiculo) arg0;
 				return c.getNombreUsuario().equals(usuario);
 			}
 		});
 	}
 
-	public Taxi getTaxiPorIdVehiculo(final int idVehiculo) {
+	public Vehiculo getVehiculoPorId(final int idVehiculo) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
-		return (Taxi) CollectionUtils.find(this.taxis, new Predicate() {
+		return (Vehiculo) CollectionUtils.find(this.vehiculos, new Predicate() {
 			@Override
 			public boolean evaluate(Object arg0) {
-				Taxi c = (Taxi) arg0;
+				Vehiculo c = (Vehiculo) arg0;
 				return c.getIdVehiculo() == idVehiculo;
 			}
 		});
 	}
 
-	public Taxi getTaxiPorPatente(final String patente) {
+	public Vehiculo getVehiculoPorPatente(final String patente) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
-		return (Taxi) CollectionUtils.find(this.taxis, new Predicate() {
+		return (Vehiculo) CollectionUtils.find(this.vehiculos, new Predicate() {
 			@Override
 			public boolean evaluate(Object arg0) {
-				Taxi c = (Taxi) arg0;
+				Vehiculo c = (Vehiculo) arg0;
 				return c.getPatente() == patente;
 			}
 		});

@@ -3,7 +3,7 @@ package ar.edu.utn.frba.proyecto.citysoft.config;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.nmeaInterface.ReceptorNmea;
 
 public class ApplicationConfigurationListener implements ServletContextListener {
@@ -22,8 +22,8 @@ public class ApplicationConfigurationListener implements ServletContextListener 
 			AmbienteDeDesarrollo.getInstance().crearAmbiente();
 
 		ContextoAplicacion.getInstance().abrirDb();
-		// inicializo la central de taxis
-		CentralTaxis.getInstance().initialize();
+		// inicializo la central
+		Central.getInstance().initialize();
 
 		// Por úlitmo, inicializamos el actualizador de posicionamiento
 		new Thread(new ReceptorNmea()).start();

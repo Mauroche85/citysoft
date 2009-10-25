@@ -1,8 +1,8 @@
-<?page title="Activar Taxi" contentType="text/html;charset=UTF-8"?>
+<?page title="Liberar Taxi" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window id="winActivarTaxi" title="Activar Taxi" border="normal" mode="modal" width="400px"
+	<window id="winLiberarTaxi" title="Liberar Taxi" border="normal" mode="modal" width="400px"
 		height="100px" sizable="false" closable="true"
-		use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.ActivarDesactivarTaxi">
+		use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.AsignarLiberarVehiculo">
 		<borderlayout>
 			<center>
 				<grid width="300">
@@ -21,9 +21,9 @@
 			</center>
 			<east>
 				<vbox align="center">
-					<button label="Aceptar" id="btnActivarTaxi"
-						onClick="winActivarTaxi.activarTaxi();" />
-					<button label="Cancelar" onClick="winActivarTaxi.cerrar()" />
+					<button label="Aceptar" id="btnLiberarTaxi"
+						onClick="winLiberarTaxi.liberarTaxi();" />
+					<button label="Cancelar" onClick="winLiberarTaxi.cerrar()" />
 				</vbox>
 			</east>
 		</borderlayout>

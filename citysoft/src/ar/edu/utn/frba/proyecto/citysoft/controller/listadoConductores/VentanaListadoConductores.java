@@ -12,7 +12,7 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Window;
 
 import ar.edu.utn.frba.proyecto.citysoft.controller.abmConductor.VentanaAbmConductor;
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Conductor;
 
 public class VentanaListadoConductores extends Window {
@@ -24,27 +24,31 @@ public class VentanaListadoConductores extends Window {
 	// **************************************
 
 	public Collection<Conductor> getListaConductores() {
-		SortedSet<Conductor> lista = new TreeSet<Conductor>(CentralTaxis.getInstance().getConductores());
+		SortedSet<Conductor> lista = new TreeSet<Conductor>(Central.getInstance().getConductores());
 		return lista;
 	}
 
-/*	public void eliminar(int legajo) {
-		Conductor c = CentralTaxis.getInstance().getConductorPorId(legajo);
-		CentralTaxis.getInstance().getConductores().remove(c);
-		this.refrescarTabla();
-	}*/
+	/*
+	 * public void eliminar(int legajo) { Conductor c =
+	 * Central.getInstance().getConductorPorId(legajo);
+	 * Central.getInstance().getConductores().remove(c); this.refrescarTabla();
+	 * }
+	 */
 
 	public void eliminar(int legajo) {
-		Conductor c = CentralTaxis.getInstance().getConductorPorId(legajo);
-		CentralTaxis.getInstance().getConductores().remove(c);
+		Conductor c = Central.getInstance().getConductorPorId(legajo);
+		Central.getInstance().getConductores().remove(c);
 		this.refrescarTabla();
 	}
-	
-/*	Executions.createComponents("altaCliente.zul", null, null).abrirAlta();	
-	*/
+
+	/*
+	 * Executions.createComponents("altaCliente.zul", null, null).abrirAlta();
+	 */
 	public void modificar(int legajo) {
-		Component componenteAbmConductor = Executions.createComponents("altaConductor.zul", null, null);
-		VentanaAbmConductor win = (VentanaAbmConductor) componenteAbmConductor.getFellow("winAltaConductor");
+		Component componenteAbmConductor = Executions.createComponents("altaConductor.zul", null,
+				null);
+		VentanaAbmConductor win = (VentanaAbmConductor) componenteAbmConductor
+				.getFellow("winAltaConductor");
 		win.addEventListener(Events.ON_CLOSE, new OnCloseRefrescarTabla(this));
 		win.abrirModificacion(legajo);
 	}

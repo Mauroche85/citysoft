@@ -3,16 +3,16 @@ package ar.edu.utn.frba.proyecto.citysoft.modelo.lotes;
 import java.util.ArrayList;
 import java.util.List;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Conductor;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.ObjetoDeDominio;
-import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 
 /**
  * @author Alejandro
  */
-public class LoteDeConductoresTaxisYViajes implements Lote {
+public class LoteDeConductoresVehiculosYViajes implements Lote {
 
 	@Override
 	public List<ObjetoDeDominio> getLote() {
@@ -20,32 +20,33 @@ public class LoteDeConductoresTaxisYViajes implements Lote {
 		Conductor c;
 
 		// **************************************
-		// ** TAXI DEL CONDUCTOR JORGE URETTA Y SU VIAJE
+		// ** VEHICULO DEL CONDUCTOR JORGE URETTA Y SU VIAJE
 		// **************************************
 		c = buildConductor(111, "Uretta", "Jorge", 10111000, "Quintino Bocayuva 615", "4911-1000");
-		Taxi t = buildTaxi("TAXI01", "Renault", "19", "JUT 111", "El vehiculo de Jorge Uretta");
+		Vehiculo t = buildVehiculo("TAXI01", "Renault", "19", "JUT 111",
+				"El vehiculo de Jorge Uretta");
 		Viaje v = buildViaje(1);
-		c.setTaxi(t);
+		c.setVehiculo(t);
 		v.asignar(t);
 		list.add(c);
 
 		// **************************************
-		// ** TAXI DEL CONDUCTOR MARIO LEMIAUX Y SU VIAJE
+		// ** VEHICULO DEL CONDUCTOR MARIO LEMIAUX Y SU VIAJE
 		// **************************************
 		c = buildConductor(222, "Mario", "Lemiaux", 10222000, "Slapshot 3", "4922-2000");
-		t = buildTaxi("TAXI02", "Bauer", "Vapor XXX", "VAP 030", "El vehiculo de Mario Lemiaux");
+		t = buildVehiculo("TAXI02", "Bauer", "Vapor XXX", "VAP 030", "El vehiculo de Mario Lemiaux");
 		v = buildViaje(2);
-		c.setTaxi(t);
+		c.setVehiculo(t);
 		v.asignar(t);
 		list.add(c);
 
 		// **************************************
-		// ** TAXI DEL CONDUCTOR GUILLERMO MARIMON Y SU VIAJE
+		// ** VEHICULO DEL CONDUCTOR GUILLERMO MARIMON Y SU VIAJE
 		// **************************************
 		c = buildConductor(333, "Marimon", "Guillermo", 10333000, "Bañeros 3", "4933-3000");
-		t = buildTaxi("TAXI03", "Fiat", "128", "GUI 333", "El vehiculo de Guillermo Marimon");
+		t = buildVehiculo("TAXI03", "Fiat", "128", "GUI 333", "El vehiculo de Guillermo Marimon");
 		v = buildViaje(3);
-		c.setTaxi(t);
+		c.setVehiculo(t);
 		v.asignar(t);
 		list.add(c);
 
@@ -55,9 +56,9 @@ public class LoteDeConductoresTaxisYViajes implements Lote {
 	public void cargar() {
 		for (ObjetoDeDominio objetoDominio : getLote()) {
 			Conductor c = (Conductor) objetoDominio;
-			CentralTaxis.getInstance().addConductor(c);
-			CentralTaxis.getInstance().addTaxi(c.getTaxi());
-			CentralTaxis.getInstance().addViaje(c.getTaxi().getViajeEnCurso());
+			Central.getInstance().addConductor(c);
+			Central.getInstance().addVehiculo(c.getVehiculo());
+			Central.getInstance().addViaje(c.getVehiculo().getViajeEnCurso());
 		}
 	}
 
@@ -78,9 +79,9 @@ public class LoteDeConductoresTaxisYViajes implements Lote {
 		return c;
 	}
 
-	private Taxi buildTaxi(String trackerId, String marca, String modelo, String patente,
+	private Vehiculo buildVehiculo(String trackerId, String marca, String modelo, String patente,
 			String detalle) {
-		Taxi t = new Taxi();
+		Vehiculo t = new Vehiculo();
 		t.setPatente(patente);
 		t.setIdTracker(trackerId);
 		t.setMarca(marca);

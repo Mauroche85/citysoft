@@ -6,14 +6,14 @@ public class ItemDeListaSeguimiento extends Listitem {
 
 	private static final long serialVersionUID = -1886263131921940392L;
 
-	private int idTaxi;
+	private int idVehiculo;
 
-	public int getIdTaxi() {
-		return idTaxi;
+	public int getIdVehiculo() {
+		return idVehiculo;
 	}
 
-	public void setIdTaxi(int idTaxi) {
-		this.idTaxi = idTaxi;
+	public void setIdVehiculo(int idVehiculo) {
+		this.idVehiculo = idVehiculo;
 	}
 
 }

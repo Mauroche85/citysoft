@@ -11,7 +11,7 @@ import java.util.TreeSet;
  * @param <T>
  * @created 23-Jul-2009 10:54:52 p.m.
  */
-public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
+public class Vehiculo implements ObjetoDeDominio, Comparable<Vehiculo> {
 
 	private int idVehiculo;
 	// Datos del titular
@@ -37,8 +37,8 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 	// ** Constructor
 	// **************************************
 
-	public Taxi() {
-		this.setIdVehiculo(CentralTaxis.getInstance().getGeneradorDeIds().getProximoIdVehiculo());
+	public Vehiculo() {
+		this.setIdVehiculo(Central.getInstance().getGeneradorDeIds().getProximoIdVehiculo());
 	}
 
 	// **************************************
@@ -158,7 +158,7 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 	}
 
 	public void addViaje(Viaje viaje) {
-		viaje.setTaxi(this);
+		viaje.setVehiculo(this);
 		this.viajes.add(viaje);
 	}
 
@@ -175,12 +175,12 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 	}
 
 	/**
-	 * Para asignar un taxi a un viaje, no se debe llamar a este metodo, sino
-	 * recurrir a {@link Viaje#asignar(Taxi)}
+	 * Para asignar un vehiculo a un viaje, no se debe llamar a este metodo,
+	 * sino recurrir a {@link Viaje#asignar(Vehiculo)}
 	 */
 	public void setViajeEnCurso(Viaje viajeEnCurso) {
-		validarTaxiActivo();
-		validarTaxiLibre();
+		validarVehiculoActivo();
+		validarVehiculoLibre();
 		this.viajeEnCurso = viajeEnCurso;
 		this.viajes.add(viajeEnCurso);
 	}
@@ -214,23 +214,23 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 		// TODO ver que onda con el ID de track
 		t.setIdTrack(-1);
 		t.setInstante(new Date());
-		t.setTaxi(this);
+		t.setVehiculo(this);
 		t.setCoordenadas(new Coordenadas(lat, lng));
 		this.tracks.add(t);
 	}
 
 	public boolean estoyLibre() {
-		//validarTaxiActivo(); esto esta mal por que hace recursividad
+		// validarVehiculoActivo(); esto esta mal por que hace recursividad
 		return this.getViajeEnCurso() == null;
 	}
 
 	/*
-	 * @Override public int compareTo(Taxi theOtherTaxi) { return
-	 * this.patente.compareTo(theOtherTaxi.patente); }
+	 * @Override public int compareTo(Vehiculo theOtherVehiculo) { return
+	 * this.patente.compareTo(theOtherVehiculo.patente); }
 	 */
 
 	@Override
-	public int compareTo(Taxi theOther) {
+	public int compareTo(Vehiculo theOther) {
 		int thisId = this.idVehiculo;
 		int theOtherId = theOther.idVehiculo;
 		// Esto nos lo choriceamos de Integer!!!
@@ -241,14 +241,14 @@ public class Taxi implements ObjetoDeDominio, Comparable<Taxi> {
 	// ** Helpers
 	// **************************************
 
-	public void validarTaxiActivo() {
+	public void validarVehiculoActivo() {
 		if (!this.activado) {
 			throw new RuntimeException(
 					"No se le puede asignar viaje a un vehículo que no está en actividad");
 		}
 	}
 
-	public void validarTaxiLibre() {
+	public void validarVehiculoLibre() {
 		if (!estoyLibre()) {
 			throw new RuntimeException("No se puede asignar viaje a un vehículo asignado u ocupado");
 		}

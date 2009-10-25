@@ -12,8 +12,8 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Window;
 import org.zkoss.zul.api.Menupopup;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
-import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 
 public class VentanaInterfazOperador extends Window implements ConstantesInterfazOperador {
@@ -43,22 +43,23 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 	// **************************************
 
 	public Collection<Viaje> getListaViajesEnCurso() {
-		SortedSet<Viaje> lista = new TreeSet<Viaje>(CentralTaxis.getInstance().getViajesEnCurso());
+		SortedSet<Viaje> lista = new TreeSet<Viaje>(Central.getInstance().getViajesEnCurso());
 		return lista;
 	}
 
-	public Collection<Taxi> getListaVehiculosLibres() {
-		SortedSet<Taxi> lista = new TreeSet<Taxi>(CentralTaxis.getInstance().getTaxisLibres());
+	public Collection<Vehiculo> getListaVehiculosLibres() {
+		SortedSet<Vehiculo> lista = new TreeSet<Vehiculo>(Central.getInstance().getVehiculosLibres());
 		return lista;
 	}
 
 	public Collection<Viaje> getListaViajesPendientes() {
-		SortedSet<Viaje> lista = new TreeSet<Viaje>(CentralTaxis.getInstance().getViajesPendientes());
+		SortedSet<Viaje> lista = new TreeSet<Viaje>(Central.getInstance().getViajesPendientes());
 		return lista;
 	}
 
-	public Collection<Taxi> getListaVehiculosDesactivados() {
-		SortedSet<Taxi> lista = new TreeSet<Taxi>(CentralTaxis.getInstance().getTaxisDesactivados());
+	public Collection<Vehiculo> getListaVehiculosDesactivados() {
+		SortedSet<Vehiculo> lista = new TreeSet<Vehiculo>(Central.getInstance()
+				.getVehiculosDesactivados());
 		return lista;
 	}
 
@@ -67,22 +68,24 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 	// **************************************
 
 	public void abrirFinalizacionDeViaje(Menupopup popup) {
-		AsignarLiberarTaxi win = (AsignarLiberarTaxi) Executions.createComponents(ZUL__LIBERAR_TAXI,
-				null, null);
+		AsignarLiberarVehiculo win = (AsignarLiberarVehiculo) Executions.createComponents(
+				ZUL__LIBERAR_VEHICULO, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemIdTaxi().setValue((String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
+		win.elemIdVehiculo().setValue(
+				(String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
-	public void abrirAsignacionPorTaxiLibre(Menupopup popup) {
-		AsignarLiberarTaxi win = (AsignarLiberarTaxi) Executions.createComponents(ZUL__ASIGNAR_TAXI,
-				null, null);
+	public void abrirAsignacionPorVehiculoLibre(Menupopup popup) {
+		AsignarLiberarVehiculo win = (AsignarLiberarVehiculo) Executions.createComponents(
+				ZUL__ASIGNAR_VEHICULO, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemIdTaxi().setValue((String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
+		win.elemIdVehiculo().setValue(
+				(String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
 	public void abrirAsignacionPorViaje(Menupopup popup) {
-		AsignarLiberarTaxi win = (AsignarLiberarTaxi) Executions.createComponents(ZUL__ASIGNAR_TAXI,
-				null, null);
+		AsignarLiberarVehiculo win = (AsignarLiberarVehiculo) Executions.createComponents(
+				ZUL__ASIGNAR_VEHICULO, null, null);
 		agregarRefrescoAlCierre(win);
 		win.elemIdViajePendiente().setValue(
 				(String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
@@ -96,18 +99,20 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 				(String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
-	public void abrirActivacionTaxi(Menupopup popup) {
-		ActivarDesactivarTaxi win = (ActivarDesactivarTaxi) Executions.createComponents(
-				ZUL__ACTIVAR_TAXI, null, null);
+	public void abrirActivacionVehiculo(Menupopup popup) {
+		ActivarDesactivarVehiculo win = (ActivarDesactivarVehiculo) Executions.createComponents(
+				ZUL__ACTIVAR_VEHICULO, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemIdTaxi().setValue((String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
+		win.elemIdVehiculo().setValue(
+				(String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
-	public void abrirDesactivacionTaxi(Menupopup popup) {
-		ActivarDesactivarTaxi win = (ActivarDesactivarTaxi) Executions.createComponents(
-				"desactivarTaxi.zul", null, null);
+	public void abrirDesactivacionVehiculo(Menupopup popup) {
+		ActivarDesactivarVehiculo win = (ActivarDesactivarVehiculo) Executions.createComponents(
+				ZUL__DESACTIVAR_VEHICULO, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemIdTaxi().setValue((String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
+		win.elemIdVehiculo().setValue(
+				(String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
 	// **************************************
@@ -120,8 +125,8 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 	 * cierre la nueva ventana en cuestion.
 	 * 
 	 * Sirve, por ejemplo, para decir que cuando cierren la ventana
-	 * "desactivar taxi", entonces debe refrescarse la interfaz del operador. El
-	 * resultado, es que se actualizan las listas.
+	 * "desactivar vehiculo", entonces debe refrescarse la interfaz del
+	 * operador. El resultado, es que se actualizan las listas.
 	 */
 	private void agregarRefrescoAlCierre(Window win) {
 		win.addEventListener(Events.ON_CLOSE, new OnCloseRefrescarVentana(this));

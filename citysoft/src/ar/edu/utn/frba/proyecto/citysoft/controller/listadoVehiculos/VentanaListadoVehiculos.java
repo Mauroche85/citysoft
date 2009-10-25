@@ -12,8 +12,8 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Window;
 
 import ar.edu.utn.frba.proyecto.citysoft.controller.abmVehiculo.VentanaAbmVehiculo;
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
-import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
 
 public class VentanaListadoVehiculos extends Window {
 
@@ -23,14 +23,14 @@ public class VentanaListadoVehiculos extends Window {
 	// ** EJECUCION
 	// **************************************
 
-	public Collection<Taxi> getListaVehiculos() {
-		SortedSet<Taxi> lista = new TreeSet<Taxi>(CentralTaxis.getInstance().getTaxis());
+	public Collection<Vehiculo> getListaVehiculos() {
+		SortedSet<Vehiculo> lista = new TreeSet<Vehiculo>(Central.getInstance().getVehiculos());
 		return lista;
 	}
 
 	public void eliminar(int idVehiculo) {
-		Taxi c = CentralTaxis.getInstance().getTaxiPorIdVehiculo(idVehiculo);
-		CentralTaxis.getInstance().getTaxis().remove(c);
+		Vehiculo c = Central.getInstance().getVehiculoPorId(idVehiculo);
+		Central.getInstance().getVehiculos().remove(c);
 		this.refrescarTabla();
 	}
 

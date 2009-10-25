@@ -3,7 +3,7 @@ package ar.edu.utn.frba.proyecto.citysoft.modelo.lotes;
 import java.util.ArrayList;
 import java.util.List;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Cliente;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.ObjetoDeDominio;
 
@@ -24,7 +24,7 @@ public class LoteDeClientes implements Lote {
 	@Override
 	public void cargar() {
 		for (ObjetoDeDominio c : getLote()) {
-			CentralTaxis.getInstance().addCliente((Cliente) c);
+			Central.getInstance().addCliente((Cliente) c);
 		}
 	}
 

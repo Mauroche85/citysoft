@@ -12,8 +12,8 @@ import agwClient.Functions;
 import agwClient.Packet;
 import agwClient.PacketTransport;
 import agwClient.PacketUser;
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
-import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
 
 public class ReceptorAgwClient implements Runnable, PacketUser {
 
@@ -77,8 +77,8 @@ public class ReceptorAgwClient implements Runnable, PacketUser {
 		Logger.getLogger(this.getClass()).debug("Sentencia NMEA recibida: " + nmea);
 		try {
 			NmeaGeopos pos = NmeaGeoposParser.parse(nmea);
-			Taxi taxi = CentralTaxis.getInstance().getTaxiPorTrackerId(trackerId);
-			taxi.nuevoTrack(pos.lat, pos.lng);
+			Vehiculo v = Central.getInstance().getVehiculoPorTrackerId(trackerId);
+			v.nuevoTrack(pos.lat, pos.lng);
 		} catch (IndexOutOfBoundsException iobe) {
 			System.out.println("*** ERROR: No se pudo interpretar sentencia NMEA: " + nmea);
 		}
@@ -137,7 +137,7 @@ public class ReceptorAgwClient implements Runnable, PacketUser {
 		System.out.println("[AGW INTERFACE] " + dat);
 
 		String packetBody = Functions.atochar(dat, 0, dlen);
-		// Tomamos el taxi destino
+		// Tomamos el vehiculo destino
 		String positionSource = packetBody.substring(packetBody.indexOf(":Fm ") + 4, packetBody
 				.indexOf(" To "));
 		System.out.println("Fuente: " + positionSource);

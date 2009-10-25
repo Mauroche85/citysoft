@@ -8,30 +8,31 @@ import java.util.Map;
 import org.zkoss.gmaps.Gmaps;
 import org.zkoss.gmaps.Gmarker;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
+import ar.edu.utn.frba.proyecto.citysoft.controller.ConstantesGeneralesDeVentanas;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Coordenadas;
-import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
 
 public class FollowerMap extends Gmaps implements FollowerWindowComponents {
 
 	private static final long serialVersionUID = 4128949782922954635L;
 
-	private Map<Taxi, Gmarker> taxisEnSeguimiento = new HashMap<Taxi, Gmarker>();
+	private Map<Vehiculo, Gmarker> vehiculosEnSeguimiento = new HashMap<Vehiculo, Gmarker>();
 
 	// **************************************
 	// ** ACCESSORS
 	// **************************************
 
-	public Map<Taxi, Gmarker> getTaxisEnSeguimiento() {
-		return this.taxisEnSeguimiento;
+	public Map<Vehiculo, Gmarker> getVehiculosEnSeguimiento() {
+		return this.vehiculosEnSeguimiento;
 	}
 
 	/**
 	 * Para que la página pueda completar la lista de viajes en seguimiento con
-	 * los taxis que tiene registrado este googlemap
+	 * los vehiculos que tiene registrado este googlemap
 	 */
-	public List<Taxi> getTaxisSet() {
-		return new ArrayList<Taxi>(this.getTaxisEnSeguimiento().keySet());
+	public List<Vehiculo> getVehiculosSet() {
+		return new ArrayList<Vehiculo>(this.getVehiculosEnSeguimiento().keySet());
 	}
 
 	// **************************************
@@ -39,52 +40,51 @@ public class FollowerMap extends Gmaps implements FollowerWindowComponents {
 	// **************************************
 
 	public void actualizarVista() {
-		for (Taxi taxi : this.taxisEnSeguimiento.keySet()) {
-			Gmarker gm = this.taxisEnSeguimiento.get(taxi);
-			// gm.setIconImage("images/taxiOcupadoMarker.png");
-			gm.setIconImage("images/taxiMarker.png");
-			actualizarMarker(gm, taxi);
+		for (Vehiculo v : this.vehiculosEnSeguimiento.keySet()) {
+			Gmarker gm = this.vehiculosEnSeguimiento.get(v);
+			gm.setIconImage(ConstantesGeneralesDeVentanas.IMAGES__VEHICULO_MARKER);
+			actualizarMarker(gm, v);
 		}
 	}
 
-	private void actualizarMarker(Gmarker gm, Taxi taxi) {
-		Coordenadas ultimasCoordenadas = taxi.getUltimoTrack().getCoordenadas();
+	private void actualizarMarker(Gmarker gm, Vehiculo v) {
+		Coordenadas ultimasCoordenadas = v.getUltimoTrack().getCoordenadas();
 		gm.setLat(ultimasCoordenadas.getLatitud());
 		gm.setLng(ultimasCoordenadas.getLongitud());
 		// **************************************
 		// ** Centramos el mapa sobre el elemento si así se requiere
 		// **************************************
-		if (FollowerWindowUtils.seguimientoCentradoSobreTaxi(taxi, this)) {
+		if (FollowerWindowUtils.seguimientoCentradoSobreVehiculo(v, this)) {
 			this.setLat(ultimasCoordenadas.getLatitud());
 			this.setLng(ultimasCoordenadas.getLongitud());
 		}
 	}
 
 	// **************************************
-	// ** AGREGAR Y QUITAR TAXIS SEGUIDOS
+	// ** AGREGAR Y QUITAR VEHICULOS SEGUIDOS
 	// **************************************
 
-	public void agregarGmark(Taxi taxi) {
+	public void agregarGmark(Vehiculo v) {
 		// 1. Creo y configuro el marker
 		Gmarker gm = new Gmarker();
-		gm.setId(GMARK_PREFIX + taxi.getPatente());
-		gm.setIconImage("images/taxiMarker.png");
+		gm.setId(GMARK_PREFIX + v.getPatente());
+		gm.setIconImage(ConstantesGeneralesDeVentanas.IMAGES__VEHICULO_MARKER);
 		gm.setDraggable(null);
-		gm.setLat(taxi.getUltimoTrack().getCoordenadas().getLatitud());
-		gm.setLng(taxi.getUltimoTrack().getCoordenadas().getLongitud());
+		gm.setLat(v.getUltimoTrack().getCoordenadas().getLatitud());
+		gm.setLng(v.getUltimoTrack().getCoordenadas().getLongitud());
 		// 2. Agrego el marker a la lista
-		this.taxisEnSeguimiento.put(taxi, gm);
+		this.vehiculosEnSeguimiento.put(v, gm);
 		// 3. Renderizo el marker
 		gm.setParent(this);
 		// 4. Centro el mapa sobre el item recién ingresado
-		Coordenadas ultimasCoordenadas = taxi.getUltimoTrack().getCoordenadas();
+		Coordenadas ultimasCoordenadas = v.getUltimoTrack().getCoordenadas();
 		this.setLat(ultimasCoordenadas.getLatitud());
 		this.setLng(ultimasCoordenadas.getLongitud());
 	}
 
 	public void quitarGmark(String patente) {
-		Taxi taxi = CentralTaxis.getInstance().getTaxiPorPatente(patente);
-		Gmarker gm = this.taxisEnSeguimiento.remove(taxi);
+		Vehiculo v = Central.getInstance().getVehiculoPorPatente(patente);
+		Gmarker gm = this.vehiculosEnSeguimiento.remove(v);
 		this.removeChild(gm);
 	}
 

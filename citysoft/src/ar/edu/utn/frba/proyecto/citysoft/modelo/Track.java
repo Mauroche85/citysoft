@@ -10,7 +10,7 @@ import java.util.Date;
 public class Track implements ObjetoDeDominio, Comparable<Track> {
 
 	private int idTrack;
-	private Taxi taxi;
+	private Vehiculo vehiculo;
 	private Date instante;
 	private Coordenadas coordenadas;
 
@@ -26,12 +26,12 @@ public class Track implements ObjetoDeDominio, Comparable<Track> {
 		this.idTrack = idTrack;
 	}
 
-	public Taxi getTaxi() {
-		return taxi;
+	public Vehiculo getVehiculo() {
+		return vehiculo;
 	}
 
-	public void setTaxi(Taxi taxi) {
-		this.taxi = taxi;
+	public void setVehiculo(Vehiculo v) {
+		this.vehiculo = v;
 	}
 
 	public Date getInstante() {

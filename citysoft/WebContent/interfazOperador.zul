@@ -14,30 +14,30 @@
 	<borderlayout width="100%" height="100%">
 		<north>
 			<toolbar>
-				<toolbarbutton label="Activar Taxi" image="images/plug.png">
+				<toolbarbutton label="Activar Vehiculo" image="images/plug.png">
 					<attribute name="onClick">
-	Executions.createComponents("activarTaxi.zul", null, null);
+	Executions.createComponents("activarVehiculo.zul", null, null);
 </attribute>
 				</toolbarbutton>
 				<space />
 				<space />
-				<toolbarbutton label="Desactivar Taxi" image="images/unplug.png">
+				<toolbarbutton label="Desactivar Vehiculo" image="images/unplug.png">
 					<attribute name="onClick">
-	Executions.createComponents("desactivarTaxi.zul", null, null);
+	Executions.createComponents("desactivarVehiculo.zul", null, null);
 </attribute>
 				</toolbarbutton>
 				<space />
 				<space />
-				<toolbarbutton label="Asigna Taxi" image="images/link.png">
+				<toolbarbutton label="Asigna Vehiculo" image="images/link.png">
 					<attribute name="onClick">
-	Executions.createComponents("asignarTaxi.zul", null, null);
+	Executions.createComponents("asignarVehiculo.zul", null, null);
 </attribute>
 				</toolbarbutton>
 				<space />
 				<space />
-				<toolbarbutton label="Liberar Taxi" image="images/link_break.png">
+				<toolbarbutton label="Liberar Vehiculo" image="images/link_break.png">
 					<attribute name="onClick">
-	Executions.createComponents("liberarTaxi.zul", null, null);
+	Executions.createComponents("liberarVehiculo.zul", null, null);
 </attribute>
 				</toolbarbutton>
 				<space />
@@ -100,16 +100,16 @@
 								</listbox>
 								<menupopup id="menuContextViajes"
 									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
-									<menuitem label="Liberar Taxi" image="images/link_break.png"
+									<menuitem label="Liberar Vehiculo" image="images/link_break.png"
 										onClick="winOperador.abrirFinalizacionDeViaje((Menupopup) self.getParent());" />
 								</menupopup>
 							</panelchildren>
 						</panel>
 
-						<panel title="Taxis Libres" style="margin-bottom:10p" border="normal"
+						<panel title="Vehiculos Libres" style="margin-bottom:10p" border="normal"
 							collapsible="true">
 							<panelchildren>
-								<listbox id="listTaxisLibres"
+								<listbox id="listVehiculosLibres"
 									model="@{winOperador.getListaVehiculosLibres, load-after='winOperador.onChange'}">
 									<listitem self="@{each=tl}" height="20px">
 										<listcell context="menuContextLibre" value="@{tl}"
@@ -117,8 +117,8 @@
 											<hbox widths="130px" align="center">
 												<label value="@{tl.patente}" />
 												<checkbox
-													checked="@{self.parent.parent.estaSiendoSeguidoElTaxi, access='load'}"
-													onCheck="winOperador.elemMapa().setTaxiSeguido(self.getParent().getParent().getValue(), self.isChecked());" />
+													checked="@{self.parent.parent.estaSiendoSeguidoElVehiculo, access='load'}"
+													onCheck="winOperador.elemMapa().setVehiculoSeguido(self.getParent().getParent().getValue(), self.isChecked());" />
 												<radio
 													checked="@{self.parent.parent.mapaCentradoEnMi, access='load'}"
 													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().getValue());" />
@@ -128,10 +128,10 @@
 								</listbox>
 								<menupopup id="menuContextLibre"
 									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
-									<menuitem label="Asignar Taxi" image="images/link.png"
-										onClick="winOperador.abrirAsignacionPorTaxiLibre((Menupopup) self.getParent());" />
-									<menuitem label="Desactivar Taxi" image="images/unplug.png"
-										onClick="winOperador.abrirDesactivacionTaxi((Menupopup) self.getParent());" />
+									<menuitem label="Asignar Vehiculo" image="images/link.png"
+										onClick="winOperador.abrirAsignacionPorVehiculoLibre((Menupopup) self.getParent());" />
+									<menuitem label="Desactivar Vehiculo" image="images/unplug.png"
+										onClick="winOperador.abrirDesactivacionVehiculo((Menupopup) self.getParent());" />
 								</menupopup>
 							</panelchildren>
 						</panel>
@@ -158,7 +158,7 @@
 								</listbox>
 								<menupopup id="menuContextPendientes"
 									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
-									<menuitem label="Asignar Taxi" image="images/link.png"
+									<menuitem label="Asignar Vehiculo" image="images/link.png"
 										onClick="winOperador.abrirAsignacionPorViaje((Menupopup) self.getParent());" />
 									<menuitem label="Cancelar Viaje Pendiente"
 										image="images/cancel.png"
@@ -167,10 +167,10 @@
 							</panelchildren>
 						</panel>
 
-						<panel title="Taxis Desact." style="margin-bottom:10p" border="normal"
+						<panel title="Vehiculos Desact." style="margin-bottom:10p" border="normal"
 							collapsible="true">
 							<panelchildren>
-								<listbox id="listTaxisDesactivados"
+								<listbox id="listVehiculosDesactivados"
 									model="@{winOperador.getListaVehiculosDesactivados, load-after='winOperador.onChange'}">
 									<listitem self="@{each=t}" height="20px">
 										<listcell context="menuContextDesactivados">
@@ -182,8 +182,8 @@
 								</listbox>
 								<menupopup id="menuContextDesactivados"
 									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
-									<menuitem label="Activar Taxi" image="images/plug.png"
-										onClick="winOperador.abrirActivacionTaxi((Menupopup) self.getParent());" />
+									<menuitem label="Activar Vehiculo" image="images/plug.png"
+										onClick="winOperador.abrirActivacionVehiculo((Menupopup) self.getParent());" />
 								</menupopup>
 							</panelchildren>
 						</panel>

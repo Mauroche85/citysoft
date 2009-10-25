@@ -6,7 +6,7 @@ import java.util.Map;
 import org.zkoss.gmaps.Gmaps;
 import org.zkoss.gmaps.Gmarker;
 
-import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 
 public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
@@ -18,7 +18,7 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 	// **************************************
 
 	private Map<Viaje, Gmarker> mapViajesSeguidos = new HashMap<Viaje, Gmarker>();
-	private Map<Taxi, Gmarker> mapTaxisSeguidos = new HashMap<Taxi, Gmarker>();
+	private Map<Vehiculo, Gmarker> mapVehiculosSeguidos = new HashMap<Vehiculo, Gmarker>();
 	private Map<Viaje, Gmarker> mapViajesPendientesMarcados = new HashMap<Viaje, Gmarker>();
 	private Object mapaCentradoEn;
 
@@ -30,8 +30,8 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 		return this.mapaCentradoEn;
 	}
 
-	public void setMapaCentradoEn(Taxi taxiLibre) {
-		this.mapaCentradoEn = taxiLibre;
+	public void setMapaCentradoEn(Vehiculo vehiculoLibre) {
+		this.mapaCentradoEn = vehiculoLibre;
 		centrarMapa();
 		VentanaInterfazOperador.refrescarVentana(this);
 	}
@@ -45,8 +45,8 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 	public void centrarMapa() {
 		if (this.mapaCentradoEn == null)
 			return;
-		if (this.mapaCentradoEn.getClass().isAssignableFrom(Taxi.class)) {
-			Taxi t = (Taxi) this.mapaCentradoEn;
+		if (this.mapaCentradoEn.getClass().isAssignableFrom(Vehiculo.class)) {
+			Vehiculo t = (Vehiculo) this.mapaCentradoEn;
 			setLat(t.getLat());
 			setLng(t.getLng());
 		} else if (this.mapaCentradoEn.getClass().isAssignableFrom(Viaje.class)) {
@@ -55,8 +55,8 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 				setLat(v.getOrigenLatitud());
 				setLng(v.getOrigenLongitud());
 			} else {
-				setLat(v.getTaxi().getLat());
-				setLng(v.getTaxi().getLng());
+				setLat(v.getVehiculo().getLat());
+				setLng(v.getVehiculo().getLng());
 			}
 		} else {
 			throw new RuntimeException("Mapa centrado en algo desconocido (" + this.mapaCentradoEn
@@ -83,17 +83,17 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 		VentanaInterfazOperador.refrescarVentana(this);
 	}
 
-	public void setTaxiSeguido(Taxi t, boolean seguir) {
-		t.validarTaxiLibre();
+	public void setVehiculoSeguido(Vehiculo t, boolean seguir) {
+		t.validarVehiculoLibre();
 		if (seguir) {
 			Gmarker marker = buildMarker(t);
 			marker.setParent(this);
-			this.mapTaxisSeguidos.put(t, marker);
+			this.mapVehiculosSeguidos.put(t, marker);
 			setMapaCentradoEn(t);
 		} else {
 			if (t.equals(this.mapaCentradoEn))
 				this.mapaCentradoEn = null;
-			removeChild(this.mapTaxisSeguidos.remove(t));
+			removeChild(this.mapVehiculosSeguidos.remove(t));
 		}
 		VentanaInterfazOperador.refrescarVentana(this);
 	}
@@ -126,10 +126,10 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 	}
 
 	/**
-	 * Dice si el taxi libre en cuestion está siendo seguido en el mapa
+	 * Dice si el vehiculo libre en cuestion está siendo seguido en el mapa
 	 */
-	public boolean estaSiendoSeguidoElTaxi(Taxi t) {
-		return this.mapTaxisSeguidos.containsKey(t);
+	public boolean estaSiendoSeguidoElVehiculo(Vehiculo t) {
+		return this.mapVehiculosSeguidos.containsKey(t);
 	}
 
 	/**
@@ -149,9 +149,9 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 			Gmarker gm = this.mapViajesSeguidos.get(v);
 			actualizarMarker(gm, v);
 		}
-		// Taxis libres
-		for (Taxi t : this.mapTaxisSeguidos.keySet()) {
-			Gmarker gm = this.mapTaxisSeguidos.get(t);
+		// Vehiculos libres
+		for (Vehiculo t : this.mapVehiculosSeguidos.keySet()) {
+			Gmarker gm = this.mapVehiculosSeguidos.get(t);
 			actualizarMarker(gm, t);
 		}
 		// Viajes pendientes
@@ -168,14 +168,14 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 			gm.setLat(v.getOrigenLatitud());
 			gm.setLng(v.getOrigenLongitud());
 		} else {
-			gm.setLat(v.getTaxi().getLat());
-			gm.setLng(v.getTaxi().getLng());
+			gm.setLat(v.getVehiculo().getLat());
+			gm.setLng(v.getVehiculo().getLng());
 		}
 	}
 
-	private void actualizarMarker(Gmarker gm, Taxi taxi) {
-		gm.setLat(taxi.getLat());
-		gm.setLng(taxi.getLng());
+	private void actualizarMarker(Gmarker gm, Vehiculo v) {
+		gm.setLat(v.getLat());
+		gm.setLng(v.getLng());
 	}
 
 	// **************************************
@@ -185,7 +185,7 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 	/**
 	 * Crea un gmarker desde un viaje pendiente o en curso (asignado o en
 	 * transcurso). <li>Si el viaje esta pendiente, pongo casita fija <li>Si el
-	 * viaje esta en curso, pongo pinche de taxi
+	 * viaje esta en curso, pongo pinche de vehiculo
 	 */
 	private Gmarker buildMarker(Viaje v) {
 		Gmarker gmarker = new Gmarker();
@@ -198,25 +198,25 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 			gmarker.setLng(v.getOrigenLongitud());
 		} else if (v.estaAsignado() || v.estaTransportando()) {
 			// Siga ese vehiculo!!!
-			gmarker.setId(GMARK_PREFIX + v.getTaxi().getPatente());
-			gmarker.setIconImage(IMAGES__TAXI_OCUPADO_MARKER);
+			gmarker.setId(GMARK_PREFIX + v.getVehiculo().getPatente());
+			gmarker.setIconImage(IMAGES__VEHICULO_OCUPADO_MARKER);
 			gmarker.setDraggable(null);
-			gmarker.setLat(v.getTaxi().getLat());
-			gmarker.setLng(v.getTaxi().getLng());
+			gmarker.setLat(v.getVehiculo().getLat());
+			gmarker.setLng(v.getVehiculo().getLng());
 		}
 		return gmarker;
 	}
 
 	/**
-	 * Crea un gmarker para un taxi libre
+	 * Crea un gmarker para un vehiculo libre
 	 */
-	private Gmarker buildMarker(Taxi taxiLibre) {
+	private Gmarker buildMarker(Vehiculo vehiculoLibre) {
 		Gmarker gmarker = new Gmarker();
-		gmarker.setId(GMARK_PREFIX + taxiLibre.getPatente());
-		gmarker.setIconImage(IMAGES__TAXI_MARKER);
+		gmarker.setId(GMARK_PREFIX + vehiculoLibre.getPatente());
+		gmarker.setIconImage(IMAGES__VEHICULO_MARKER);
 		gmarker.setDraggable(null);
-		gmarker.setLat(taxiLibre.getLat());
-		gmarker.setLng(taxiLibre.getLng());
+		gmarker.setLat(vehiculoLibre.getLat());
+		gmarker.setLng(vehiculoLibre.getLng());
 		return gmarker;
 	}
 

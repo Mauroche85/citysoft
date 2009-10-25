@@ -24,7 +24,7 @@ public class Cliente extends Persona implements ObjetoDeDominio, Autenticable, C
 	// **************************************
 
 	public Cliente() {
-		this.idCliente = CentralTaxis.getInstance().getGeneradorDeIds().getProximoIdCliente();
+		this.idCliente = Central.getInstance().getGeneradorDeIds().getProximoIdCliente();
 	}
 
 	// **************************************

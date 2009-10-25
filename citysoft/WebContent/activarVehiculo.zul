@@ -1,0 +1,32 @@
+<?page title="Activar Vehiculo" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="winActivarVehiculo" title="Activar Vehiculo" border="normal" mode="modal"
+		width="400px" height="100px" sizable="false" closable="true"
+		use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.ActivarDesactivarVehiculo">
+		<borderlayout>
+			<center>
+				<grid width="300">
+					<columns>
+						<column></column>
+						<column></column>
+					</columns>
+					<rows>
+						<row>
+							<label value="Id de Vehiculo:" />
+							<textbox id="idVehiculo" />
+						</row>
+					</rows>
+
+				</grid>
+			</center>
+			<east>
+				<vbox align="center">
+					<button label="Aceptar" id="btnActivarVehiculo"
+						onClick="winActivarVehiculo.activarVehiculo();" />
+					<button label="Cancelar" onClick="winActivarVehiculo.cerrar()" />
+				</vbox>
+			</east>
+		</borderlayout>
+
+	</window>
+</zk>
