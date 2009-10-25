@@ -1,7 +1,7 @@
-<?page title="Liberar Taxi" contentType="text/html;charset=UTF-8"?>
+<?page title="Liberar Vehiculo" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window id="winLiberarTaxi" title="Liberar Taxi" border="normal" mode="modal" width="400px"
-		height="100px" sizable="false" closable="true"
+	<window id="winLiberarVehiculo" title="Liberar Vehiculo" border="normal" mode="modal"
+		width="400px" height="100px" sizable="false" closable="true"
 		use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.AsignarLiberarVehiculo">
 		<borderlayout>
 			<center>
@@ -12,8 +12,8 @@
 					</columns>
 					<rows>
 						<row>
-							<label value="Id de Taxi:" />
-							<textbox id="idTaxi" />
+							<label value="Id de Vehiculo:" />
+							<textbox id="idVehiculo" />
 						</row>
 					</rows>
 
@@ -21,9 +21,9 @@
 			</center>
 			<east>
 				<vbox align="center">
-					<button label="Aceptar" id="btnLiberarTaxi"
-						onClick="winLiberarTaxi.liberarTaxi();" />
-					<button label="Cancelar" onClick="winLiberarTaxi.cerrar()" />
+					<button label="Aceptar" id="btnLiberarVehiculo"
+						onClick="winLiberarVehiculo.liberarVehiculo();" />
+					<button label="Cancelar" onClick="winLiberarVehiculo.cerrar()" />
 				</vbox>
 			</east>
 		</borderlayout>
