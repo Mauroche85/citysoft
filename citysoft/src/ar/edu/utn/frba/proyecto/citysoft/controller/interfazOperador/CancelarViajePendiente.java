@@ -8,24 +8,21 @@ import org.zkoss.zul.api.Textbox;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 
-public class CancelarPedido extends Window {
+public class CancelarViajePendiente extends Window {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7385723048921493133L;
 
-	
-	public void cancelarPedidoPend(){
-		Viaje v = CentralTaxis.getInstance().getViaje(Integer.parseInt(elemNumPedido().getValue()));
-		
-		// Cancela Pedido
+	public void cancelarViajePendiente() {
+		Viaje v = CentralTaxis.getInstance().getViaje(
+				Integer.parseInt(elemIdViajePendiente().getValue()));
+
+		// Cancela viaje pendiente
 		v.cancelar();
 
 		CentralTaxis.getInstance().addViaje(v);
 		this.cerrar();
 
-	}	
+	}
 
 	public void cerrar() {
 		Events.postEvent(new Event(Events.ON_CLOSE, this));
@@ -34,9 +31,9 @@ public class CancelarPedido extends Window {
 	// **************************************
 	// ** Helpers
 	// **************************************
-	
-	public Textbox elemNumPedido() {
-		return (Textbox) this.getFellow("pedidoPendiente");
+
+	public Textbox elemIdViajePendiente() {
+		return (Textbox) this.getFellow("txtIdViaje");
 	}
 
 }

@@ -19,7 +19,7 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 
 	private Map<Viaje, Gmarker> mapViajesSeguidos = new HashMap<Viaje, Gmarker>();
 	private Map<Taxi, Gmarker> mapTaxisSeguidos = new HashMap<Taxi, Gmarker>();
-	private Map<Viaje, Gmarker> mapPedidosMarcados = new HashMap<Viaje, Gmarker>();
+	private Map<Viaje, Gmarker> mapViajesPendientesMarcados = new HashMap<Viaje, Gmarker>();
 	private Object mapaCentradoEn;
 
 	// **************************************
@@ -98,17 +98,17 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 		VentanaInterfazOperador.refrescarVentana(this);
 	}
 
-	public void setPedidoMarcado(Viaje v, boolean marcar) {
+	public void setViajePendienteMarcado(Viaje v, boolean marcar) {
 		v.validarViajePendiente();
 		if (marcar) {
 			Gmarker marker = buildMarker(v);
 			marker.setParent(this);
-			this.mapPedidosMarcados.put(v, marker);
+			this.mapViajesPendientesMarcados.put(v, marker);
 			setMapaCentradoEn(v);
 		} else {
 			if (v.equals(this.mapaCentradoEn))
 				this.mapaCentradoEn = null;
-			removeChild(this.mapPedidosMarcados.remove(v));
+			removeChild(this.mapViajesPendientesMarcados.remove(v));
 		}
 		VentanaInterfazOperador.refrescarVentana(this);
 	}
@@ -133,10 +133,10 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 	}
 
 	/**
-	 * Dice si el pedido pendiente está actualmente marcado en el mapa
+	 * Dice si el viaje pendiente está actualmente marcado en el mapa
 	 */
-	public boolean estaMarcadoElPedido(Viaje v) {
-		return this.mapPedidosMarcados.containsKey(v);
+	public boolean estaMarcadoElViajePendiente(Viaje v) {
+		return this.mapViajesPendientesMarcados.containsKey(v);
 	}
 
 	// **************************************
@@ -154,9 +154,9 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 			Gmarker gm = this.mapTaxisSeguidos.get(t);
 			actualizarMarker(gm, t);
 		}
-		// Pedidos pendientes
-		for (Viaje v : this.mapPedidosMarcados.keySet()) {
-			Gmarker gm = this.mapPedidosMarcados.get(v);
+		// Viajes pendientes
+		for (Viaje v : this.mapViajesPendientesMarcados.keySet()) {
+			Gmarker gm = this.mapViajesPendientesMarcados.get(v);
 			actualizarMarker(gm, v);
 		}
 		// Despues de actualizar todos los markers, recentramos el mapa

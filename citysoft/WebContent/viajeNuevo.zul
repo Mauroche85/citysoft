@@ -1,9 +1,8 @@
 <?page title="Viaje nuevo" contentType="text/html;charset=UTF-8"?>
 
-<window id="winNuevoViaje" title="Viaje Nuevo" border="normal"
-	width="100%" height="500px"
-	use="ar.edu.utn.frba.proyecto.citysoft.controller.bienvenidaCliente.pedidosCliente">
-	
+<window id="winNuevoViaje" title="Viaje Nuevo" border="normal" width="100%" height="500px"
+	use="ar.edu.utn.frba.proyecto.citysoft.controller.bienvenidaCliente.SolicitudNuevoViaje">
+
 	<!-- tutaxi.com.ar? src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA" -->
 	<script
 		src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhRzdWSuvxlSxMx33aEXsRZiewAFIxTyvaaXezhKd2-vbxqrWx_80Qz4dg"
@@ -22,9 +21,9 @@
 					<row>
 						<label value="Id cliente:" />
 						<!-- combobox model="@{orders}" selectedItem="@{selected}" value="@{selected.orderName}" -->
-	 					<!-- comboitem self="@{each=order}" label="@{order.orderName}" value="@{order.orderNumber}"/ -->
+						<!-- comboitem self="@{each=order}" label="@{order.orderName}" value="@{order.orderNumber}"/ -->
 						<!-- /combobox -->
-						<combobox id="stIdCliente" model="@{winNuevoViaje.getListaClientes, load-after='winNuevoViaje.onChange'}">
+						<combobox id="stIdCliente" model="@{winNuevoViaje.listaClientes}">
 							<comboitem self="@{each=cli}" label="@{cli.nombreUsuario}" />
 						</combobox>
 					</row>
@@ -52,13 +51,11 @@
 
 					<row>
 						<label value="Localidad Origen:" />
-						<textbox id="stOrigenLocalidad"
-							value="Capital Federal" readonly="true" />
+						<textbox id="stOrigenLocalidad" value="Capital Federal" readonly="true" />
 					</row>
 					<row>
 						<label value="Provincia Origen:" />
-						<textbox id="stOrigenProvincia"
-							value="Capital Federal" readonly="true" />
+						<textbox id="stOrigenProvincia" value="Capital Federal" readonly="true" />
 					</row>
 
 					<row>
@@ -77,13 +74,11 @@
 
 					<row>
 						<label value="Localidad Destino:" />
-						<textbox id="stDestinoLocalidad"
-							value="Capital Federal" readonly="true" />
+						<textbox id="stDestinoLocalidad" value="Capital Federal" readonly="true" />
 					</row>
 					<row>
 						<label value="Provincia Destino:" />
-						<textbox id="stDestinoProvincia"
-							value="Capital Federal" readonly="true" />
+						<textbox id="stDestinoProvincia" value="Capital Federal" readonly="true" />
 					</row>
 
 					<row>
@@ -94,9 +89,8 @@
 			</grid>
 		</west>
 		<center>
-			<gmaps id="gmapPedido" showZoomCtrl="true"
-				showOverviewCtrl="true" showTypeCtrl="true" lng="-58.42024"
-				lat="-34.59856" zoom="15">
+			<gmaps id="gmapViaje" showZoomCtrl="true" showOverviewCtrl="true" showTypeCtrl="true"
+				lng="-58.42024" lat="-34.59856" zoom="15">
 			</gmaps>
 		</center>
 		<south>

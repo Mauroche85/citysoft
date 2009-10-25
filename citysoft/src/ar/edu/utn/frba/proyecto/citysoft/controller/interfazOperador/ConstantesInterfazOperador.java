@@ -9,7 +9,7 @@ public interface ConstantesInterfazOperador extends ConstantesGeneralesDeVentana
 	// **************************************
 
 	String ZUL__ACTIVAR_TAXI = "/activarTaxi.zul";
-	String ZUL__CANCELAR_PEDIDO = "/cancelarPedido.zul";
+	String ZUL__CANCELAR_VIAJE = "/cancelarViaje.zul";
 	String ZUL__ASIGNAR_TAXI = "/asignarTaxi.zul";
 	String ZUL__LIBERAR_TAXI = "/liberarTaxi.zul";
 

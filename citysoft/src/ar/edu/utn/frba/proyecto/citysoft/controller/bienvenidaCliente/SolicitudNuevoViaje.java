@@ -18,12 +18,16 @@ import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 import com.blogspot.unserializableone.GAddress;
 import com.blogspot.unserializableone.GCoder;
 
-public class pedidosCliente extends Window implements ConstantesGeneralesDeVentanas {
-	/**
-	 * 
-	 */
+public class SolicitudNuevoViaje extends Window implements ConstantesGeneralesDeVentanas {
+
 	private static final long serialVersionUID = 691719919215219297L;
-	
+
+	// **************************************
+	// ** Constantes
+	// **************************************
+
+	private static final String GMAP_VIAJE = "gmapViaje";
+
 	Gmarker gm = new Gmarker();
 	Gmarker gmDestino = new Gmarker();
 
@@ -61,7 +65,7 @@ public class pedidosCliente extends Window implements ConstantesGeneralesDeVenta
 		// **************************************
 		// ** CENTRO MAPA
 		// **************************************
-		Gmaps map = (Gmaps) this.getFellow("gmapPedido");
+		Gmaps map = (Gmaps) this.getFellow(GMAP_VIAJE);
 		double latCentro = (origenLatitud + destinoLatitud) / 2;
 		double longCentro = (origenLongitud + destinoLongitud) / 2;
 
@@ -122,7 +126,7 @@ public class pedidosCliente extends Window implements ConstantesGeneralesDeVenta
 		// **************************************
 		Viaje v = new Viaje();
 		// v.setCliente(cliente) hay que asignarle un cliente!!
-		v.setHoraPedido((tbOrigenHora.getValue()));
+		v.setHoraRequerida((tbOrigenHora.getValue()));
 		v.setOrigenReferente(txtOrigenReferente.getValue());
 		v.setOrigenCalle(txtOrigenCalle.getValue());
 		v.setOrigenAltura(txtOrigenAltura.getValue());
@@ -162,12 +166,10 @@ public class pedidosCliente extends Window implements ConstantesGeneralesDeVenta
 		CentralTaxis.getInstance().addViaje(v);
 		System.out.println("id de viaje: " + v.getIdViaje());
 	}
-	
+
 	public Collection<Cliente> getListaClientes() {
 		SortedSet<Cliente> lista = new TreeSet<Cliente>(CentralTaxis.getInstance().getClientes());
 		return lista;
 	}
-	
-	
-	
+
 }

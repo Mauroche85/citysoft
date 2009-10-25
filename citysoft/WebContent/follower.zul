@@ -29,11 +29,11 @@
 			</gmaps>
 		</center>
 		<!-- *********************************************** -->
-		<!-- ********** LISTA DE PEDIDOS SEGUIDOS ********** -->
+		<!-- ********** LISTA DE VIAJES SEGUIDOS ********** -->
 		<east>
-			<listbox id="listPedidosSeguidos"
+			<listbox id="listViajesSeguidos"
 				use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.ListaSeguimientos" width="200px"
-				height="100%" vflex="true" model="@{gmap.taxisSet, load-after='listPedidosSeguidos.onChange'}">
+				height="100%" vflex="true" model="@{gmap.taxisSet, load-after='listViajesSeguidos.onChange'}">
 				<listhead>
 					<listheader label="Viajes en mapa" sort="auto" />
 				</listhead>
