@@ -6,8 +6,7 @@ import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 
 /**
- * Esta celda puede representar tanto a un viaje, como un pedido o incluso un
- * taxi!!!
+ * Esta celda puede representar tanto a un viaje como un taxi, o lo que sea!!!
  */
 public class CeldaQueSabeSiEstaSiendoSeguida extends Listcell implements ConstantesInterfazOperador {
 
@@ -39,8 +38,8 @@ public class CeldaQueSabeSiEstaSiendoSeguida extends Listcell implements Constan
 		return elemMapa().estaSiendoSeguidoElTaxi((Taxi) getValue());
 	}
 
-	public boolean estaMarcadoElPedido() {
-		return elemMapa().estaMarcadoElPedido((Viaje) getValue());
+	public boolean estaMarcadoElViajePendiente() {
+		return elemMapa().estaMarcadoElViajePendiente((Viaje) getValue());
 	}
 
 	// **************************************

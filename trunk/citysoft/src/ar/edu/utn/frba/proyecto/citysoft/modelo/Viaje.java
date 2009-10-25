@@ -21,11 +21,10 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	private int idViaje;
 	private Taxi taxi;
 	private Cliente cliente;
+	private Date horaRequerida;
 	private int horaEstimadaInicio;
 	private int horaRealInicio;
 	private int horaArriboDestino;
-	// agregados para almacenar viajes pedidos por UI (GD)
-	private Date horaPedido;
 	private String origenReferente;
 	private String origenCalle;
 	private String origenAltura;
@@ -81,6 +80,14 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 		this.cliente = cliente;
 	}
 
+	public Date getHoraRequerida() {
+		return horaRequerida;
+	}
+
+	public void setHoraRequerida(Date horaRequerida) {
+		this.horaRequerida = horaRequerida;
+	}
+
 	public int getHoraEstimadaInicio() {
 		return horaEstimadaInicio;
 	}
@@ -103,14 +110,6 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 
 	public void setHoraArriboDestino(int horaArriboDestino) {
 		this.horaArriboDestino = horaArriboDestino;
-	}
-
-	public Date getHoraPedido() {
-		return horaPedido;
-	}
-
-	public void setHoraPedido(Date horaPedido) {
-		this.horaPedido = horaPedido;
 	}
 
 	public String getOrigenReferente() {
@@ -275,7 +274,7 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 		t.setViajeEnCurso(this);
 		this.estado = ESTADO_ASIGNADO;
 	}
-	
+
 	public void cancelar() {
 		this.estado = ESTADO_CANCELADO;
 	}

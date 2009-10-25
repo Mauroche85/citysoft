@@ -11,7 +11,6 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Window;
 import org.zkoss.zul.api.Menupopup;
-import org.zkoss.zul.api.Textbox;
 
 import ar.edu.utn.frba.proyecto.citysoft.modelo.CentralTaxis;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Taxi;
@@ -53,7 +52,7 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 		return lista;
 	}
 
-	public Collection<Viaje> getListaPedidosPendientes() {
+	public Collection<Viaje> getListaViajesPendientes() {
 		SortedSet<Viaje> lista = new TreeSet<Viaje>(CentralTaxis.getInstance().getViajesPendientes());
 		return lista;
 	}
@@ -68,33 +67,33 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 	// **************************************
 
 	public void abrirFinalizacionDeViaje(Menupopup popup) {
-		// TODO la liberacion es la finalizcion del viaje. Ir por ese lado
-		Window win = (Window) Executions.createComponents(ZUL__LIBERAR_TAXI, null, null);
+		AsignarLiberarTaxi win = (AsignarLiberarTaxi) Executions.createComponents(ZUL__LIBERAR_TAXI,
+				null, null);
 		agregarRefrescoAlCierre(win);
-		((Textbox) win.getFellow("idTaxi")).setValue((String) popup
-				.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
+		win.elemIdTaxi().setValue((String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
 	public void abrirAsignacionPorTaxiLibre(Menupopup popup) {
-		AsignarLiberarTaxi win = (AsignarLiberarTaxi) Executions.createComponents(
-				ZUL__ASIGNAR_TAXI, null, null);
+		AsignarLiberarTaxi win = (AsignarLiberarTaxi) Executions.createComponents(ZUL__ASIGNAR_TAXI,
+				null, null);
 		agregarRefrescoAlCierre(win);
 		win.elemIdTaxi().setValue((String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
 	public void abrirAsignacionPorViaje(Menupopup popup) {
-		AsignarLiberarTaxi win = (AsignarLiberarTaxi) Executions.createComponents(
-				ZUL__ASIGNAR_TAXI, null, null);
+		AsignarLiberarTaxi win = (AsignarLiberarTaxi) Executions.createComponents(ZUL__ASIGNAR_TAXI,
+				null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemNumPedido().setValue((String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
+		win.elemIdViajePendiente().setValue(
+				(String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
 	public void abrirCancelacionViaje(Menupopup popup) {
-		// TODO hacer que esto funcione
-		Window win = (Window) Executions.createComponents(ZUL__CANCELAR_PEDIDO, null, null);
+		CancelarViajePendiente win = (CancelarViajePendiente) Executions.createComponents(
+				ZUL__CANCELAR_VIAJE, null, null);
 		agregarRefrescoAlCierre(win);
-		((Textbox) win.getFellow("pedidoPendiente")).setValue((String) popup
-				.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
+		win.elemIdViajePendiente().setValue(
+				(String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
 	public void abrirActivacionTaxi(Menupopup popup) {

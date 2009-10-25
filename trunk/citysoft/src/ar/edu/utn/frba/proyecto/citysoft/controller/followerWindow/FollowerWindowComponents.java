@@ -8,7 +8,7 @@ public interface FollowerWindowComponents extends ConstantesGeneralesDeVentanas 
 	final String TXT_ID_VIAJE = "txtIdViaje";
 	final String BTN_SEGUIR = "btnSeguir";
 	final String GMAP = "gmap";
-	final String LIST_PEDIDOS_SEGUIDOS = "listPedidosSeguidos";
+	final String LIST_VIAJES_SEGUIDOS = "listViajesSeguidos";
 	final String TIMER = "timer";
 
 }

@@ -37,7 +37,7 @@ public class FollowerWindowUtils {
 	// **************************************
 
 	private static Listbox obtenerComponenteListaDeSeguimiento(Component unComponente) {
-		return (Listbox) unComponente.getFellow(FollowerWindowComponents.LIST_PEDIDOS_SEGUIDOS);
+		return (Listbox) unComponente.getFellow(FollowerWindowComponents.LIST_VIAJES_SEGUIDOS);
 	}
 
 }
