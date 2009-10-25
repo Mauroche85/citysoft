@@ -28,12 +28,20 @@ public class VentanaListadoConductores extends Window {
 		return lista;
 	}
 
+/*	public void eliminar(int legajo) {
+		Conductor c = CentralTaxis.getInstance().getConductorPorId(legajo);
+		CentralTaxis.getInstance().getConductores().remove(c);
+		this.refrescarTabla();
+	}*/
+
 	public void eliminar(int legajo) {
 		Conductor c = CentralTaxis.getInstance().getConductorPorId(legajo);
 		CentralTaxis.getInstance().getConductores().remove(c);
 		this.refrescarTabla();
 	}
-
+	
+/*	Executions.createComponents("altaCliente.zul", null, null).abrirAlta();	
+	*/
 	public void modificar(int legajo) {
 		Component componenteAbmConductor = Executions.createComponents("altaConductor.zul", null, null);
 		VentanaAbmConductor win = (VentanaAbmConductor) componenteAbmConductor.getFellow("winAltaConductor");
