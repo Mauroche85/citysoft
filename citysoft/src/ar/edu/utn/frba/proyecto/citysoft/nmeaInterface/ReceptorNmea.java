@@ -61,9 +61,11 @@ public class ReceptorNmea implements Runnable {
 		// Le hardcodeamos la posicion a JUT
 		Vehiculo v = Central.getInstance().getVehiculoPorTrackerId("TAXI01");
 		v.nuevoTrack(pos.lat, pos.lng);
+		Central.getInstance().addVehiculo(v);
 		// Le hardcodeamos una posicion vecina a Lemiaux
 		v = Central.getInstance().getVehiculoPorTrackerId("TAXI02");
 		v.nuevoTrack(pos.lat, pos.lng - 0.01);
+		Central.getInstance().addVehiculo(v);
 	}
 
 }

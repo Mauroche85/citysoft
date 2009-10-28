@@ -1,5 +1,7 @@
 package ar.edu.utn.frba.proyecto.citysoft.config;
 
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
+
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
@@ -38,6 +40,8 @@ public class ContextoAplicacion {
 	// **************************************
 
 	public void abrirDb() {
+		// Db4o.newConfiguration().objectClass(Vehiculo.class).cascadeOnUpdate(true);
+		Db4o.configure().objectClass(Vehiculo.class).cascadeOnUpdate(true);
 		this.db = Db4o.openFile(DEVELOPMENT_DB_FILE);
 	}
 
