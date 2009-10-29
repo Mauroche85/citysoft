@@ -22,9 +22,9 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	private Vehiculo vehiculo;
 	private Cliente cliente;
 	private Date horaRequerida;
-	private int horaEstimadaInicio;
-	private int horaRealInicio;
-	private int horaArriboDestino;
+	private Date horaAsignado;
+	private Date horaComienzo;
+	private Date horaFin;
 	private String origenReferente;
 	private String origenCalle;
 	private String origenAltura;
@@ -88,30 +88,30 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 		this.horaRequerida = horaRequerida;
 	}
 
-	public int getHoraEstimadaInicio() {
-		return horaEstimadaInicio;
+	public void setHoraAsignado(Date horaAsignado) {
+		this.horaAsignado = horaAsignado;
 	}
 
-	public void setHoraEstimadaInicio(int horaEstimadaInicio) {
-		this.horaEstimadaInicio = horaEstimadaInicio;
+	public Date getHoraAsignado() {
+		return horaAsignado;
 	}
 
-	public int getHoraRealInicio() {
-		return horaRealInicio;
+	public void setHoraComienzo(Date horaComienzo) {
+		this.horaComienzo = horaComienzo;
 	}
 
-	public void setHoraRealInicio(int horaRealInicio) {
-		this.horaRealInicio = horaRealInicio;
+	public Date getHoraComienzo() {
+		return horaComienzo;
 	}
 
-	public int getHoraArriboDestino() {
-		return horaArriboDestino;
+	public void setHoraFin(Date horaFin) {
+		this.horaFin = horaFin;
 	}
 
-	public void setHoraArriboDestino(int horaArriboDestino) {
-		this.horaArriboDestino = horaArriboDestino;
+	public Date getHoraFin() {
+		return horaFin;
 	}
-
+	
 	public String getOrigenReferente() {
 		return origenReferente;
 	}
@@ -315,5 +315,7 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	public String toString() {
 		return "Viaje " + this.getIdViaje() + " - " + this.getVehiculo().getPatente();
 	}
+
+
 
 }
