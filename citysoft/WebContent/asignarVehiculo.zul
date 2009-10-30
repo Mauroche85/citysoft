@@ -16,8 +16,8 @@
 							<textbox id="idViajePendiente" />
 						</row>
 						<row>
-							<label value="Id de Vehiculo:" />
-							<textbox id="idVehiculo" />
+							<label value="Patente Vehiculo:" />
+							<textbox id="patVehiculo" />
 						</row>
 					</rows>
 

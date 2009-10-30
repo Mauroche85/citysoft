@@ -15,7 +15,7 @@ public class AsignarLiberarVehiculo extends Window {
 
 	public void asignarVehiculo() {
 		Viaje v = Central.getInstance().getViaje(Integer.parseInt(elemIdViajePendiente().getValue()));
-		Vehiculo t = Central.getInstance().getVehiculoPorPatente(elemIdVehiculo().getValue());
+		Vehiculo t = Central.getInstance().getVehiculoPorPatente(elemPatVehiculo().getValue());
 
 		// Setea vehiculo en el viaje
 		v.asignar(t);
@@ -29,7 +29,7 @@ public class AsignarLiberarVehiculo extends Window {
 	}
 
 	public void liberarVehiculo() {
-		Vehiculo t = Central.getInstance().getVehiculoPorPatente(elemIdVehiculo().getValue());
+		Vehiculo t = Central.getInstance().getVehiculoPorPatente(elemPatVehiculo().getValue());
 
 		// TODO: hay que trabajar la liberacion de vechiulos
 		// t.setActivado(false); << esto entiendo no es liberacion, sino
@@ -52,8 +52,8 @@ public class AsignarLiberarVehiculo extends Window {
 	// ** Helpers
 	// **************************************
 
-	public Textbox elemIdVehiculo() {
-		return (Textbox) this.getFellow("idVehiculo");
+	public Textbox elemPatVehiculo() {
+		return (Textbox) this.getFellow("patVehiculo");
 	}
 
 	public Textbox elemIdViajePendiente() {
