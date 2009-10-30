@@ -272,6 +272,8 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 		validarViajePendiente();
 		this.vehiculo = t;
 		t.setViajeEnCurso(this);
+		java.util.Date fecha = new Date();
+		this.setHoraAsignado(fecha);
 		this.estado = ESTADO_ASIGNADO;
 	}
 
