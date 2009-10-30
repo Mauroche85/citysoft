@@ -17,7 +17,7 @@ public class ActivarDesactivarVehiculo extends Window {
 	// **************************************
 
 	public void activarVehiculo() {
-		Vehiculo t = Central.getInstance().getVehiculoPorPatente(elemIdVehiculo().getValue());
+		Vehiculo t = Central.getInstance().getVehiculoPorPatente(elemPatVehiculo().getValue());
 		t.setActivado(true);
 		// Cuando se modifica alguna entidad, hay que volverla a agregar en la
 		// central
@@ -27,7 +27,7 @@ public class ActivarDesactivarVehiculo extends Window {
 	}
 
 	public void desactivarVehiculo() {
-		Vehiculo t = Central.getInstance().getVehiculoPorPatente(elemIdVehiculo().getValue());
+		Vehiculo t = Central.getInstance().getVehiculoPorPatente(elemPatVehiculo().getValue());
 		t.setActivado(false);
 		// Cuando se modifica alguna entidad, hay que volverla a agregar en la
 		// central
@@ -44,8 +44,8 @@ public class ActivarDesactivarVehiculo extends Window {
 	// ** Helpers
 	// **************************************
 
-	public Textbox elemIdVehiculo() {
-		return (Textbox) this.getFellow("idVehiculo");
+	public Textbox elemPatVehiculo() {
+		return (Textbox) this.getFellow("patVehiculo");
 	}
 
 }

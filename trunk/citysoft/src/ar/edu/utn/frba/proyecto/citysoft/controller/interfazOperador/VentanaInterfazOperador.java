@@ -71,7 +71,7 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 		AsignarLiberarVehiculo win = (AsignarLiberarVehiculo) Executions.createComponents(
 				ZUL__LIBERAR_VEHICULO, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemIdVehiculo().setValue(
+		win.elemPatVehiculo().setValue(
 				(String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
@@ -79,7 +79,7 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 		AsignarLiberarVehiculo win = (AsignarLiberarVehiculo) Executions.createComponents(
 				ZUL__ASIGNAR_VEHICULO, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemIdVehiculo().setValue(
+		win.elemPatVehiculo().setValue(
 				(String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
@@ -103,7 +103,7 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 		ActivarDesactivarVehiculo win = (ActivarDesactivarVehiculo) Executions.createComponents(
 				ZUL__ACTIVAR_VEHICULO, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemIdVehiculo().setValue(
+		win.elemPatVehiculo().setValue(
 				(String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
@@ -111,7 +111,7 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 		ActivarDesactivarVehiculo win = (ActivarDesactivarVehiculo) Executions.createComponents(
 				ZUL__DESACTIVAR_VEHICULO, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemIdVehiculo().setValue(
+		win.elemPatVehiculo().setValue(
 				(String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
 	}
 
