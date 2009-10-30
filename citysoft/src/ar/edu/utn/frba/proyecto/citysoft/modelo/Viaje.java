@@ -276,7 +276,22 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 		this.setHoraAsignado(fecha);
 		this.estado = ESTADO_ASIGNADO;
 	}
+	
+	public void comenzar() {
+		validarViajeAsignado();
+		java.util.Date fecha = new Date();
+		this.setHoraComienzo(fecha);
+		this.estado = ESTADO_TRANSPORTANDO;
+	}
+	
+	public void finalizar() {
+		validarViajeEnCurso();
+		java.util.Date fecha = new Date();
+		this.setHoraFin(fecha);
+		this.estado = ESTADO_COMPLETADO;
+	}
 
+	
 	public void cancelar() {
 		this.estado = ESTADO_CANCELADO;
 	}
@@ -287,16 +302,19 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 
 	public void validarViajePendiente() {
 		if (!this.estado.equals(ESTADO_PENDIENTE)) {
-			throw new RuntimeException("No se asignar un viaje que no está pendiente (" + this.estado
+			throw new RuntimeException("No se puede asignar un viaje que no está pendiente (" + this.estado
 					+ ")");
 		}
 	}
 
-	/**
-	 * Valida que el viaje este ASIGNADO o TRANSPORTANDO
-	 */
+	public void validarViajeAsignado() {
+		if (!this.estado.equals(ESTADO_ASIGNADO)) {
+			throw new RuntimeException("El viaje debería estar asignado (" + this.estado + ")");
+		}
+	}
+	
 	public void validarViajeEnCurso() {
-		if (!this.estado.equals(ESTADO_ASIGNADO) && !this.estado.equals(ESTADO_TRANSPORTANDO)) {
+		if (!this.estado.equals(ESTADO_TRANSPORTANDO)) {
 			throw new RuntimeException("El viaje debería estar en curso (" + this.estado + ")");
 		}
 	}
