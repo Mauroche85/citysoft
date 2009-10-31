@@ -123,9 +123,9 @@
 									<menuitem label="Comenzar Viaje"
 										image="@{winOperador.IMAGES__CHECK}"
 										onClick="winOperador.comenzarViaje((Menupopup) self.getParent());" />
-									<menuitem label="Cancelar Viaje Asignado..."
-										image="@{winOperador.IMAGES__CANCEL}"
-										onClick="winOperador.abrirCancelacionViaje((Menupopup) self.getParent());" />
+									<menuitem label="Liberar Vehiculo Asignado"
+										image="@{winOperador.IMAGES__LINK_BREAK}"
+										onClick="winOperador.liberarVehiculo((Menupopup) self.getParent());" />
 								</menupopup>
 							</panelchildren>
 						</panel>
@@ -156,7 +156,7 @@
 								<menupopup id="menuContextPendientes"
 									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
 									<menuitem label="Asignar Vehiculo..."
-										image="@{winOperador.IMAGES__LINK"
+										image="@{winOperador.IMAGES__LINK}"
 										onClick="winOperador.abrirAsignacionPorViaje((Menupopup) self.getParent());" />
 									<menuitem label="Cancelar Viaje Pendiente"
 										image="@{winOperador.IMAGES__CANCEL}"
@@ -191,7 +191,7 @@
 								<menupopup id="menuContextLibre"
 									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
 									<menuitem label="Asignar Vehiculo"
-										image="@{winOperador.IMAGES__LINK"
+										image="@{winOperador.IMAGES__LINK}"
 										onClick="winOperador.abrirAsignacionPorVehiculoLibre((Menupopup) self.getParent());" />
 									<menuitem label="Desactivar Vehiculo"
 										image="@{winOperador.IMAGES__UNPLUG}"

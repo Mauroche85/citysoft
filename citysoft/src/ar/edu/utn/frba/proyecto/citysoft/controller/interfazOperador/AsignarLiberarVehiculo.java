@@ -28,16 +28,6 @@ public class AsignarLiberarVehiculo extends Window {
 
 	}
 
-	public void liberarVehiculo() {
-		Vehiculo t = Central.getInstance().getVehiculoPorPatente(elemPatVehiculo().getValue());
-		t.getViajeEnCurso().finalizar();
-		// Cuando se modifica alguna entidad, hay que volverla a agregar en la
-		// central
-		Central.getInstance().addVehiculo(t);
-		this.cerrar();
-
-	}
-
 	public void cerrar() {
 		Events.postEvent(new Event(Events.ON_CLOSE, this));
 	}

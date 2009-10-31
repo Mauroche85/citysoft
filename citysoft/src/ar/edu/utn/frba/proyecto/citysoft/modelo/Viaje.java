@@ -289,10 +289,9 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 		this.estado = ESTADO_ASIGNADO;
 	}
 	
-	public void liberar(Vehiculo t) {
+	public void liberar() {
 		validarViajeAsignado();
-		this.vehiculo = t;
-		t.limpiarViajeEnCurso();
+		this.getVehiculo().limpiarViajeEnCurso();
 		this.setHoraAsignado(null);
 		this.estado = ESTADO_PENDIENTE;
 	}
