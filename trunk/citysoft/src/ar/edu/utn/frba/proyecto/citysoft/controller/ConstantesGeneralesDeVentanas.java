@@ -26,6 +26,7 @@ public interface ConstantesGeneralesDeVentanas {
 	String IMAGES__UNPLUG = "images/unplug.png";
 	String IMAGES__LINK = "images/link.png";
 	String IMAGES__LINK_BREAK = "images/link_break.png";
+	String IMAGES__FLAG_BLUE = "images/flag_blue.png";
 
 	// **************************************
 	// ** IMAGENES - Gmarkers
