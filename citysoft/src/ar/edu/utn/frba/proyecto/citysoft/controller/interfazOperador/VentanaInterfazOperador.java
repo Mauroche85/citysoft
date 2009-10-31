@@ -133,6 +133,26 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 		// central para que actualice la persistencia en la DB
 		Central.getInstance().addViaje(viaje);
 	}
+	
+	public void activarVehiculo(Menupopup popup) {
+		String patVehiculo = patenteDeVehiculoSeleccionado(popup);
+		Vehiculo t = Central.getInstance().getVehiculoPorPatente(patVehiculo);
+		t.setActivado(true);
+		// Cuando se modifica alguna entidad, hay que volverla a agregar en la
+		// central
+		Central.getInstance().addVehiculo(t);
+
+	}
+	
+	public void desactivarVehiculo(Menupopup popup) {
+		String patVehiculo = patenteDeVehiculoSeleccionado(popup);
+		Vehiculo t = Central.getInstance().getVehiculoPorPatente(patVehiculo);
+		t.setActivado(false);
+		// Cuando se modifica alguna entidad, hay que volverla a agregar en la
+		// central
+		Central.getInstance().addVehiculo(t);
+
+	}
 
 	// **************************************
 	// ** Helpers
