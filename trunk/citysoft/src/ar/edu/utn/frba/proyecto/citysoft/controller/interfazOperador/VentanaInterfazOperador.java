@@ -144,6 +144,19 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 
 		Central.getInstance().addViaje(v);
 	}
+	
+	public void liberarVehiculo(Menupopup popup) {
+		
+		int idViaje = idViajeSeleccionado(popup);
+		Viaje v = Central.getInstance().getViaje(idViaje);
+		
+		v.liberar();
+		
+		// Cuando se modifica alguna entidad, hay que volverla a agregar en la
+		// central
+		Central.getInstance().addViaje(v);
+
+	}
 
 	// **************************************
 	// ** Helpers
