@@ -17,9 +17,10 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 	// ** ATTRIBUTES
 	// **************************************
 
-	private Map<Viaje, Gmarker> mapViajesSeguidos = new HashMap<Viaje, Gmarker>();
-	private Map<Vehiculo, Gmarker> mapVehiculosSeguidos = new HashMap<Vehiculo, Gmarker>();
+	private Map<Viaje, Gmarker> mapViajesBajoTransporteSeguidos = new HashMap<Viaje, Gmarker>();
+	private Map<Viaje, Gmarker> mapViajesAsignadosSeguidos = new HashMap<Viaje, Gmarker>();
 	private Map<Viaje, Gmarker> mapViajesPendientesMarcados = new HashMap<Viaje, Gmarker>();
+	private Map<Vehiculo, Gmarker> mapVehiculosSeguidos = new HashMap<Vehiculo, Gmarker>();
 	private Object mapaCentradoEn;
 
 	// **************************************
@@ -68,32 +69,32 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 	// ** MARCAR/DESMARCAR EN MAPA
 	// **************************************
 
-	public void setViajeSeguido(Viaje v, boolean seguir) {
+	public void setViajeBajoTransporteSeguido(Viaje v, boolean seguir) {
 		v.validarViajeEnCurso();
 		if (seguir) {
 			Gmarker marker = buildMarker(v);
 			marker.setParent(this);
-			this.mapViajesSeguidos.put(v, marker);
+			this.mapViajesBajoTransporteSeguidos.put(v, marker);
 			setMapaCentradoEn(v);
 		} else {
 			if (v.equals(this.mapaCentradoEn))
 				this.mapaCentradoEn = null;
-			removeChild(this.mapViajesSeguidos.remove(v));
+			removeChild(this.mapViajesBajoTransporteSeguidos.remove(v));
 		}
 		VentanaInterfazOperador.refrescarVentana(this);
 	}
 
-	public void setVehiculoSeguido(Vehiculo t, boolean seguir) {
-		t.validarVehiculoLibre();
+	public void setViajeAsignadoSeguido(Viaje v, boolean seguir) {
+		v.validarViajeEnCurso();
 		if (seguir) {
-			Gmarker marker = buildMarker(t);
+			Gmarker marker = buildMarker(v);
 			marker.setParent(this);
-			this.mapVehiculosSeguidos.put(t, marker);
-			setMapaCentradoEn(t);
+			this.mapViajesAsignadosSeguidos.put(v, marker);
+			setMapaCentradoEn(v);
 		} else {
-			if (t.equals(this.mapaCentradoEn))
+			if (v.equals(this.mapaCentradoEn))
 				this.mapaCentradoEn = null;
-			removeChild(this.mapVehiculosSeguidos.remove(t));
+			removeChild(this.mapViajesAsignadosSeguidos.remove(v));
 		}
 		VentanaInterfazOperador.refrescarVentana(this);
 	}
@@ -113,6 +114,21 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 		VentanaInterfazOperador.refrescarVentana(this);
 	}
 
+	public void setVehiculoSeguido(Vehiculo t, boolean seguir) {
+		t.validarVehiculoLibre();
+		if (seguir) {
+			Gmarker marker = buildMarker(t);
+			marker.setParent(this);
+			this.mapVehiculosSeguidos.put(t, marker);
+			setMapaCentradoEn(t);
+		} else {
+			if (t.equals(this.mapaCentradoEn))
+				this.mapaCentradoEn = null;
+			removeChild(this.mapVehiculosSeguidos.remove(t));
+		}
+		VentanaInterfazOperador.refrescarVentana(this);
+	}
+
 	// **************************************
 	// ** PREGUNTAR SI ALGO ESTA MARCADO EN EL MAPA
 	// **************************************
@@ -121,15 +137,16 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 	 * Dice si el viaje asignado o en curso en cuestión, está siendo seguido en
 	 * el mapa
 	 */
-	public boolean estaSiendoSeguidoElViaje(Viaje v) {
-		return this.mapViajesSeguidos.containsKey(v);
+	public boolean estaSiendoSeguidoElViajeBajoTransporte(Viaje v) {
+		return this.mapViajesBajoTransporteSeguidos.containsKey(v);
 	}
 
 	/**
-	 * Dice si el vehiculo libre en cuestion está siendo seguido en el mapa
+	 * Dice si el viaje asignado o en curso en cuestión, está siendo seguido en
+	 * el mapa
 	 */
-	public boolean estaSiendoSeguidoElVehiculo(Vehiculo t) {
-		return this.mapVehiculosSeguidos.containsKey(t);
+	public boolean estaSiendoSeguidoElViajeAsignado(Viaje v) {
+		return this.mapViajesAsignadosSeguidos.containsKey(v);
 	}
 
 	/**
@@ -139,14 +156,26 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 		return this.mapViajesPendientesMarcados.containsKey(v);
 	}
 
+	/**
+	 * Dice si el vehiculo libre en cuestion está siendo seguido en el mapa
+	 */
+	public boolean estaSiendoSeguidoElVehiculo(Vehiculo t) {
+		return this.mapVehiculosSeguidos.containsKey(t);
+	}
+
 	// **************************************
 	// ** REFRESCAR!!! (Esta es la funcion mas importante)
 	// **************************************
 
 	public void actualizarPosicionMarkers() {
-		// Viajes en curso
-		for (Viaje v : this.mapViajesSeguidos.keySet()) {
-			Gmarker gm = this.mapViajesSeguidos.get(v);
+		// Viajes transportando
+		for (Viaje v : this.mapViajesBajoTransporteSeguidos.keySet()) {
+			Gmarker gm = this.mapViajesBajoTransporteSeguidos.get(v);
+			actualizarMarker(gm, v);
+		}
+		// Viajes asignados
+		for (Viaje v : this.mapViajesAsignadosSeguidos.keySet()) {
+			Gmarker gm = this.mapViajesAsignadosSeguidos.get(v);
 			actualizarMarker(gm, v);
 		}
 		// Vehiculos libres

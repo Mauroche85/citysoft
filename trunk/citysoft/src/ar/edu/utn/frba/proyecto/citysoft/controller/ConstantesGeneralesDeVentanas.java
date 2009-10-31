@@ -16,7 +16,19 @@ public interface ConstantesGeneralesDeVentanas {
 	String ZUL__BIENVENIDO = "/secure/bienvenido.zul";
 
 	// **************************************
-	// ** IMAGENES
+	// ** IMAGENES - Para items de listas
+	// **************************************
+
+	String IMAGES__ADD = "images/add.png";
+	String IMAGES__CHECK = "images/check.png";
+	String IMAGES__CANCEL = "images/cancel.png";
+	String IMAGES__PLUG = "images/plug.png";
+	String IMAGES__UNPLUG = "images/unplug.png";
+	String IMAGES__LINK = "images/link.png";
+	String IMAGES__LINK_BREAK = "images/link_break.png";
+
+	// **************************************
+	// ** IMAGENES - Gmarkers
 	// **************************************
 
 	String IMAGES__VEHICULO_MARKER = "/images/taxiMarker.png";

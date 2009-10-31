@@ -120,13 +120,25 @@ public class Central implements ObjetoDeDominio {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Collection<Viaje> getViajesEnCurso() {
+	public Collection<Viaje> getViajesBajoTransporte() {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
 		return (Collection<Viaje>) CollectionUtils.select(this.viajes, new Predicate() {
 			@Override
 			public boolean evaluate(Object arg0) {
 				Viaje v = (Viaje) arg0;
-				return v.estaAsignado() || v.estaTransportando();
+				return v.estaTransportando();
+			}
+		});
+	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<Viaje> getViajesAsignados() {
+		// TODO: que pasa si no lo encuentra??? devuelve null???
+		return (Collection<Viaje>) CollectionUtils.select(this.viajes, new Predicate() {
+			@Override
+			public boolean evaluate(Object arg0) {
+				Viaje v = (Viaje) arg0;
+				return v.estaAsignado();
 			}
 		});
 	}

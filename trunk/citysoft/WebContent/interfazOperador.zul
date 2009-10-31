@@ -13,58 +13,40 @@
 
 	<borderlayout width="100%" height="100%">
 		<north>
+			<!-- ************************************** -->
+			<!-- *** BARRA DE HERRAMIENTAS              -->
+			<!-- ************************************** -->
 			<toolbar>
-				<toolbarbutton label="Activar Vehiculo" image="images/plug.png">
-					<attribute name="onClick">
-	Executions.createComponents("activarVehiculo.zul", null, null);
-</attribute>
-				</toolbarbutton>
+				<toolbarbutton label="Activar Vehiculo" image="@{winOperador.IMAGES__PLUG}"
+					onClick="Executions.createComponents(winOperador.ZUL__ACTIVAR_VEHICULO, null, null);" />
 				<space />
 				<space />
-				<toolbarbutton label="Desactivar Vehiculo" image="images/unplug.png">
-					<attribute name="onClick">
-	Executions.createComponents("desactivarVehiculo.zul", null, null);
-</attribute>
-				</toolbarbutton>
+				<toolbarbutton label="Desactivar Vehiculo" image="@{winOperador.IMAGES__UNPLUG}"
+					onClick="Executions.createComponents(winOperador.ZUL__DESACTIVAR_VEHICULO, null, null);" />
 				<space />
 				<space />
-				<toolbarbutton label="Asigna Vehiculo" image="images/link.png">
-					<attribute name="onClick">
-	Executions.createComponents("asignarVehiculo.zul", null, null);
-</attribute>
-				</toolbarbutton>
+				<toolbarbutton label="Asigna Vehiculo" image="@{winOperador.IMAGES__LINK}"
+					onClick="Executions.createComponents(winOperador.ZUL__ASIGNAR_VEHICULO, null, null);" />
 				<space />
 				<space />
-				<toolbarbutton label="Liberar Vehiculo" image="images/link_break.png">
-					<attribute name="onClick">
-	Executions.createComponents("liberarVehiculo.zul", null, null);
-</attribute>
-				</toolbarbutton>
+				<toolbarbutton label="Liberar Vehiculo" image="@{winOperador.IMAGES__LINK_BREAK}"
+					onClick="Executions.createComponents(winOperador.ZUL__LIBERAR_VEHICULO, null, null);" />
 				<space />
 				<space />
-				<toolbarbutton label="Cancelar Viaje Pendiente" image="images/cancel.png">
-					<attribute name="onClick">
-	Executions.createComponents("cancelarViajePendiente.zul", null, null);
-</attribute>
-				</toolbarbutton>
+				<toolbarbutton label="Cancelar Viaje Pendiente" image="@{winOperador.IMAGES__CANCEL}"
+					onClick="Executions.createComponents(winOperador.ZUL__CANCELAR_VIAJE, null, null);" />
 				<space />
 				<space />
-				<toolbarbutton label="Viaje Nuevo" image="images/add.png">
-					<attribute name="onClick">
-	Component win = Executions.createComponents("viajeNuevo.zul", null, null);
-	win.setMode("modal");
-	win.setWidth("75%");
-	win.setHeight("90%");
-	win.setClosable(true);
-</attribute>
-				</toolbarbutton>
+				<toolbarbutton label="Viaje Nuevo" image="@{winOperador.IMAGES__ADD}"
+					onClick="winOperador.abrirNuevoViaje();" />
 				<space />
 				<space />
 			</toolbar>
 		</north>
 
-		<!-- ******************************** -->
-		<!-- ********** GOOGLE MAP ********** -->
+		<!-- ************************************** -->
+		<!-- *** GOOGLE MAP                         -->
+		<!-- ************************************** -->
 		<center flex="true">
 			<gmaps id="gmapOperador"
 				use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MapaOperador"
@@ -73,24 +55,30 @@
 			</gmaps>
 		</center>
 
-		<!-- *********************************************** -->
+		<!-- ************************************** -->
+		<!-- *** LISTAS                             -->
+		<!-- ************************************** -->
 		<east width="200px">
 			<vbox width="200px">
 				<columnlayout width="200px">
 					<columnchildren style="padding: 5px">
-						<panel title="Viajes en curso" style="margin-bottom:10p" border="normal"
+
+						<!-- ************************************** -->
+						<!-- *** VIAJES EN CURSO                    -->
+						<!-- ************************************** -->
+						<panel title="Viajes Transportando" style="margin-bottom:10px" border="normal"
 							collapsible="true">
 							<panelchildren>
 								<listbox id="listViajes"
-									model="@{winOperador.getListaViajesEnCurso, load-after='winOperador.onChange'}">
+									model="@{winOperador.getListaViajesBajoTransporte, load-after='winOperador.onChange'}">
 									<listitem self="@{each=v}" height="20px">
-										<listcell context="menuContextViajes" value="@{v}"
+										<listcell context="menuContextViajes" value="@{v.idViaje}"
 											use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.CeldaQueSabeSiEstaSiendoSeguida">
 											<hbox widths="130px" align="center">
 												<label value="@{v}" />
 												<checkbox
-													checked="@{self.parent.parent.estaSiendoSeguidoElViaje, access='load'}"
-													onCheck="winOperador.elemMapa().setViajeSeguido(self.getParent().getParent().getValue(), self.isChecked());" />
+													checked="@{self.parent.parent.estaSiendoSeguidoElViajeBajoTransporte, access='load'}"
+													onCheck="winOperador.elemMapa().setViajeBajoTransporteSeguido(self.getParent().getParent().getValue(), self.isChecked());" />
 												<radio
 													checked="@{self.parent.parent.mapaCentradoEnMi, access='load'}"
 													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().getValue());" />
@@ -100,25 +88,29 @@
 								</listbox>
 								<menupopup id="menuContextViajes"
 									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
-									<menuitem label="Liberar Vehiculo" image="images/link_break.png"
+									<menuitem label="Finalizar Viaje..."
+										image="@{winOperador.IMAGES__LINK_BREAK}"
 										onClick="winOperador.abrirFinalizacionDeViaje((Menupopup) self.getParent());" />
 								</menupopup>
 							</panelchildren>
 						</panel>
 
-						<panel title="Vehiculos Libres" style="margin-bottom:10p" border="normal"
+						<!-- ************************************** -->
+						<!-- *** VIAJES ASIGNADOS                   -->
+						<!-- ************************************** -->
+						<panel title="Viajes Asignados" style="margin-bottom:10px" border="normal"
 							collapsible="true">
 							<panelchildren>
-								<listbox id="listVehiculosLibres"
-									model="@{winOperador.getListaVehiculosLibres, load-after='winOperador.onChange'}">
-									<listitem self="@{each=tl}" height="20px">
-										<listcell context="menuContextLibre" value="@{tl}"
+								<listbox id="listVehiculosAsignados"
+									model="@{winOperador.getListaViajesAsignados, load-after='winOperador.onChange'}">
+									<listitem self="@{each=v}" height="20px">
+										<listcell context="menuContextAsignados" value="@{v.idViaje}"
 											use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.CeldaQueSabeSiEstaSiendoSeguida">
 											<hbox widths="130px" align="center">
-												<label value="@{tl.patente}" />
+												<label value="@{v}" />
 												<checkbox
-													checked="@{self.parent.parent.estaSiendoSeguidoElVehiculo, access='load'}"
-													onCheck="winOperador.elemMapa().setVehiculoSeguido(self.getParent().getParent().getValue(), self.isChecked());" />
+													checked="@{self.parent.parent.estaSiendoSeguidoElViajeAsignado, access='load'}"
+													onCheck="winOperador.elemMapa().setViajeAsignadoSeguido(self.getParent().getParent().getValue(), self.isChecked());" />
 												<radio
 													checked="@{self.parent.parent.mapaCentradoEnMi, access='load'}"
 													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().getValue());" />
@@ -126,23 +118,28 @@
 										</listcell>
 									</listitem>
 								</listbox>
-								<menupopup id="menuContextLibre"
+								<menupopup id="menuContextAsignados"
 									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
-									<menuitem label="Asignar Vehiculo" image="images/link.png"
-										onClick="winOperador.abrirAsignacionPorVehiculoLibre((Menupopup) self.getParent());" />
-									<menuitem label="Desactivar Vehiculo" image="images/unplug.png"
-										onClick="winOperador.abrirDesactivacionVehiculo((Menupopup) self.getParent());" />
+									<menuitem label="Comenzar Viaje"
+										image="@{winOperador.IMAGES__CHECK}"
+										onClick="winOperador.comenzarViaje((Menupopup) self.getParent());" />
+									<menuitem label="Cancelar Viaje Asignado..."
+										image="@{winOperador.IMAGES__CANCEL}"
+										onClick="winOperador.abrirCancelacionViaje((Menupopup) self.getParent());" />
 								</menupopup>
 							</panelchildren>
 						</panel>
 
-						<panel title="Viajes Pendientes" style="margin-bottom:10p" border="normal"
+						<!-- ************************************** -->
+						<!-- *** VIAJES PENDIENTES                  -->
+						<!-- ************************************** -->
+						<panel title="Viajes Pendientes" style="margin-bottom:10px" border="normal"
 							collapsible="true">
 							<panelchildren>
 								<listbox id="listViajesPendientes"
 									model="@{winOperador.getListaViajesPendientes, load-after='winOperador.onChange'}">
 									<listitem self="@{each=v}" height="20px">
-										<listcell context="menuContextPendientes" value="@{v}"
+										<listcell context="menuContextPendientes" value="@{v.idViaje}"
 											use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.CeldaQueSabeSiEstaSiendoSeguida">
 											<hbox widths="130px" align="center">
 												<label value="@{v.idViaje}" />
@@ -158,22 +155,62 @@
 								</listbox>
 								<menupopup id="menuContextPendientes"
 									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
-									<menuitem label="Asignar Vehiculo" image="images/link.png"
+									<menuitem label="Asignar Vehiculo..."
+										image="@{winOperador.IMAGES__LINK"
 										onClick="winOperador.abrirAsignacionPorViaje((Menupopup) self.getParent());" />
-									<menuitem label="Cancelar Viaje Pendiente"
-										image="images/cancel.png"
+									<menuitem label="Cancelar Viaje Pendiente..."
+										image="@{winOperador.IMAGES__CANCEL}"
 										onClick="winOperador.abrirCancelacionViaje((Menupopup) self.getParent());" />
 								</menupopup>
 							</panelchildren>
 						</panel>
 
-						<panel title="Vehiculos Desact." style="margin-bottom:10p" border="normal"
+						<!-- ************************************** -->
+						<!-- *** VEHICULOS LIBRES                   -->
+						<!-- ************************************** -->
+						<panel title="Vehiculos Libres" style="margin-bottom:10px" border="normal"
+							collapsible="true">
+							<panelchildren>
+								<listbox id="listVehiculosLibres"
+									model="@{winOperador.getListaVehiculosLibres, load-after='winOperador.onChange'}">
+									<listitem self="@{each=tl}" height="20px">
+										<listcell context="menuContextLibre" value="@{tl.patente}"
+											use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.CeldaQueSabeSiEstaSiendoSeguida">
+											<hbox widths="130px" align="center">
+												<label value="@{tl.patente}" />
+												<checkbox
+													checked="@{self.parent.parent.estaSiendoSeguidoElVehiculo, access='load'}"
+													onCheck="winOperador.elemMapa().setVehiculoSeguido(self.getParent().getParent().getValue(), self.isChecked());" />
+												<radio
+													checked="@{self.parent.parent.mapaCentradoEnMi, access='load'}"
+													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().getValue());" />
+											</hbox>
+										</listcell>
+									</listitem>
+								</listbox>
+								<menupopup id="menuContextLibre"
+									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
+									<menuitem label="Asignar Vehiculo"
+										image="@{winOperador.IMAGES__LINK"
+										onClick="winOperador.abrirAsignacionPorVehiculoLibre((Menupopup) self.getParent());" />
+									<menuitem label="Desactivar Vehiculo"
+										image="@{winOperador.IMAGES__UNPLUG}"
+										onClick="winOperador.abrirDesactivacionVehiculo((Menupopup) self.getParent());" />
+								</menupopup>
+							</panelchildren>
+						</panel>
+
+						<!-- ************************************** -->
+						<!-- *** VEHICULOS DESACTIVADOS             -->
+						<!-- ************************************** -->
+						<panel title="Vehiculos Desact." style="margin-bottom:10px" border="normal"
 							collapsible="true">
 							<panelchildren>
 								<listbox id="listVehiculosDesactivados"
 									model="@{winOperador.getListaVehiculosDesactivados, load-after='winOperador.onChange'}">
 									<listitem self="@{each=t}" height="20px">
-										<listcell context="menuContextDesactivados">
+										<listcell context="menuContextDesactivados"
+											value="@{t.patente}">
 											<hbox widths="130px" align="center">
 												<label value="@{t.patente}" />
 											</hbox>
@@ -182,7 +219,8 @@
 								</listbox>
 								<menupopup id="menuContextDesactivados"
 									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
-									<menuitem label="Activar Vehiculo" image="images/plug.png"
+									<menuitem label="Activar Vehiculo"
+										image="@{winOperador.IMAGES__PLUG}"
 										onClick="winOperador.abrirActivacionVehiculo((Menupopup) self.getParent());" />
 								</menupopup>
 							</panelchildren>
