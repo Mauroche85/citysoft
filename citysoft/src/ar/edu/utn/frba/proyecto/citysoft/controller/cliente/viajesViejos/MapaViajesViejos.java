@@ -1,4 +1,4 @@
-package ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow;
+package ar.edu.utn.frba.proyecto.citysoft.controller.cliente.viajesViejos;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,11 +9,12 @@ import org.zkoss.gmaps.Gmaps;
 import org.zkoss.gmaps.Gmarker;
 
 import ar.edu.utn.frba.proyecto.citysoft.controller.ConstantesGeneralesDeVentanas;
+import ar.edu.utn.frba.proyecto.citysoft.controller.cliente.follower.FollowerWindowUtils;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Coordenadas;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
 
-public class FollowerMap extends Gmaps implements FollowerWindowComponents {
+public class MapaViajesViejos extends Gmaps implements ConstantesGeneralesDeVentanas {
 
 	private static final long serialVersionUID = 4128949782922954635L;
 
@@ -42,7 +43,6 @@ public class FollowerMap extends Gmaps implements FollowerWindowComponents {
 	public void actualizarVista() {
 		for (Vehiculo v : this.vehiculosEnSeguimiento.keySet()) {
 			Gmarker gm = this.vehiculosEnSeguimiento.get(v);
-			gm.setIconImage(ConstantesGeneralesDeVentanas.IMAGES__VEHICULO_MARKER);
 			actualizarMarker(gm, v);
 		}
 	}
@@ -51,13 +51,6 @@ public class FollowerMap extends Gmaps implements FollowerWindowComponents {
 		Coordenadas ultimasCoordenadas = v.getUltimoTrack().getCoordenadas();
 		gm.setLat(ultimasCoordenadas.getLatitud());
 		gm.setLng(ultimasCoordenadas.getLongitud());
-		// **************************************
-		// ** Centramos el mapa sobre el elemento si así se requiere
-		// **************************************
-		if (FollowerWindowUtils.seguimientoCentradoSobreVehiculo(v, this)) {
-			this.setLat(ultimasCoordenadas.getLatitud());
-			this.setLng(ultimasCoordenadas.getLongitud());
-		}
 	}
 
 	// **************************************

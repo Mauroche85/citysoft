@@ -4,22 +4,23 @@
 <zk>
 	<window id="winCliente" border="normal" mode="modal" width="98%" height="98%" sizable="true"
 		closable="true"
-		use="ar.edu.utn.frba.proyecto.citysoft.controller.bienvenidaCliente.VentanaCliente">
+		use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.VentanaCliente">
 		<borderlayout>
 			<center flex="true">
 				<tabbox width="100%" height="100%" orient="vertical">
 					<tabs width="200px">
 						<tab label="Solicitar viaje nuevo" />
 						<tab id="tabSeguir" label="Seguir mi viaje" />
-						<tab label="Ver viajes viejos" />
+						<tab id="tabViajesViejos" label="Ver viajes viejos" />
 					</tabs>
 					<tabpanels>
 						<tabpanel height="100%">
-							<!-- ACA DEBE IR LA INCLUSION -->
 							<include src="../viajeNuevo.zul" />
 						</tabpanel>
-						<tabpanel height="100%">
+						<tabpanel height="100%" fulfill="tabSeguir.onSelect">
 							<include src="follower.zul" />
+						</tabpanel>
+						<tabpanel height="100%" fulfill="tabViajesViejos.onSelect">
 						</tabpanel>
 					</tabpanels>
 				</tabbox>

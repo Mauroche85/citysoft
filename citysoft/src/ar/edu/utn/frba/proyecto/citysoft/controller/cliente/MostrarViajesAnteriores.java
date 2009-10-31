@@ -1,4 +1,4 @@
-package ar.edu.utn.frba.proyecto.citysoft.controller.bienvenidaCliente;
+package ar.edu.utn.frba.proyecto.citysoft.controller.cliente;
 
 import org.zkoss.zul.Listbox;
 
