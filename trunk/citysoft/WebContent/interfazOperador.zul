@@ -195,7 +195,7 @@
 										onClick="winOperador.abrirAsignacionPorVehiculoLibre((Menupopup) self.getParent());" />
 									<menuitem label="Desactivar Vehiculo"
 										image="@{winOperador.IMAGES__UNPLUG}"
-										onClick="winOperador.abrirDesactivacionVehiculo((Menupopup) self.getParent());" />
+										onClick="winOperador.desactivarVehiculo((Menupopup) self.getParent());" />
 								</menupopup>
 							</panelchildren>
 						</panel>
@@ -221,7 +221,7 @@
 									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
 									<menuitem label="Activar Vehiculo"
 										image="@{winOperador.IMAGES__PLUG}"
-										onClick="winOperador.abrirActivacionVehiculo((Menupopup) self.getParent());" />
+										onClick="winOperador.activarVehiculo((Menupopup) self.getParent());" />
 								</menupopup>
 							</panelchildren>
 						</panel>
