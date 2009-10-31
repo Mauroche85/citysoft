@@ -8,6 +8,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
+import ar.edu.utn.frba.proyecto.citysoft.config.ArchivoDeConfiguracion;
 import ar.edu.utn.frba.proyecto.citysoft.controller.ConstantesGeneralesDeVentanas;
 import ar.edu.utn.frba.proyecto.citysoft.utils.WebUtils;
 
@@ -20,7 +21,8 @@ public class AuthenticationFilter implements Filter, ConstantesGeneralesDeVentan
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws java.io.IOException, javax.servlet.ServletException {
-		if (!UserContext.getUserContext().isUsuarioAutenticado()) {
+		if (ArchivoDeConfiguracion.getInstance().getAutenticacionActivada()
+				&& !UserContext.getUserContext().isUsuarioAutenticado()) {
 			((HttpServletResponse) res).sendRedirect(WebUtils.getContextPath(req) + ZUL__LOGIN
 					+ "?uri=" + WebUtils.getRequestUri(req));
 		} else {

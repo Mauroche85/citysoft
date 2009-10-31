@@ -4,7 +4,7 @@ import ar.edu.utn.frba.proyecto.citysoft.controller.ConstantesGeneralesDeVentana
 
 public interface FollowerWindowComponents extends ConstantesGeneralesDeVentanas {
 
-	final String WIN = "winFollower";
+	final String DIV = "winFollower";
 	final String TXT_ID_VIAJE = "txtIdViaje";
 	final String BTN_SEGUIR = "btnSeguir";
 	final String GMAP = "gmap";

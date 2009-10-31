@@ -7,6 +7,7 @@ import java.util.Properties;
 public class ArchivoDeConfiguracion {
 
 	private static final String ARCHIVO_CONFIGURACION = "citysoft.properties";
+	private static final String PROPIEDAD__AUTENTICACION_ACTIVADA = "gttr.autenticacionActivada";
 	private static final String PROPIEDAD__POBLAR_BASE = "gttr.poblarBase";
 
 	// **************************************
@@ -35,11 +36,22 @@ public class ArchivoDeConfiguracion {
 	private void InicializarConfiguracion() {
 		this.properties = new Properties();
 		try {
-			InputStream input = getClass().getClassLoader().getResourceAsStream(
-					ARCHIVO_CONFIGURACION);
+			InputStream input = getClass().getClassLoader()
+					.getResourceAsStream(ARCHIVO_CONFIGURACION);
 			properties.load(input);
 		} catch (IOException e) {
 			throw new RuntimeException("Error leyendo archivo de configuracion", e);
+		}
+	}
+
+	public boolean getAutenticacionActivada() {
+		String autenticacionActivada = this.properties.getProperty(PROPIEDAD__AUTENTICACION_ACTIVADA,
+				"true");
+		if (autenticacionActivada.equals("true") || autenticacionActivada.equals("false")) {
+			return Boolean.parseBoolean(autenticacionActivada);
+		} else {
+			throw new RuntimeException("El valor de configuracion para [autenticacion activada]"
+					+ " es incorrecto (" + autenticacionActivada + ")");
 		}
 	}
 
@@ -48,9 +60,8 @@ public class ArchivoDeConfiguracion {
 		if (poblarBase.equals("true") || poblarBase.equals("false")) {
 			return Boolean.parseBoolean(poblarBase);
 		} else {
-			throw new RuntimeException(
-					"El valor de configuracion para [poblar base] es incorrecto (" + poblarBase
-							+ ")");
+			throw new RuntimeException("El valor de configuracion para [poblar base] es incorrecto ("
+					+ poblarBase + ")");
 		}
 	}
 

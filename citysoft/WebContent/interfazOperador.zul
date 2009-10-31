@@ -1,5 +1,5 @@
 <?page title="Interfaz Operador" ?>
-<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="winOperador"?>
 
 <window id="winOperador" title="Interfaz Operador" border="normal" mode="modal"
 	use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.VentanaInterfazOperador"
