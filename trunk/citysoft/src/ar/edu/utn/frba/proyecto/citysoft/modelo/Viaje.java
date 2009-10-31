@@ -1,6 +1,8 @@
 package ar.edu.utn.frba.proyecto.citysoft.modelo;
 
 import java.util.Date;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * @version 1.0
@@ -111,7 +113,7 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	public Date getHoraFin() {
 		return horaFin;
 	}
-	
+
 	public String getOrigenReferente() {
 		return origenReferente;
 	}
@@ -276,14 +278,14 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 		this.setHoraAsignado(fecha);
 		this.estado = ESTADO_ASIGNADO;
 	}
-	
+
 	public void comenzar() {
 		validarViajeAsignado();
 		java.util.Date fecha = new Date();
 		this.setHoraComienzo(fecha);
 		this.estado = ESTADO_TRANSPORTANDO;
 	}
-	
+
 	public void finalizar() {
 		validarViajeEnCurso();
 		java.util.Date fecha = new Date();
@@ -291,9 +293,24 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 		this.estado = ESTADO_COMPLETADO;
 	}
 
-	
 	public void cancelar() {
 		this.estado = ESTADO_CANCELADO;
+	}
+
+	/**
+	 * @return lista de {@link Track} ordenada cronologicamente, con la posicion
+	 *         del taxi desde que el taxi comienza a transportar el pasajero
+	 *         hasta que finaliza el viajes
+	 */
+	public SortedSet<Track> getTracksDelViaje() {
+		SortedSet<Track> tracks = new TreeSet<Track>();
+		Vehiculo v = getVehiculo();
+		Track fromElement = new Track();
+		fromElement.setInstante(this.getHoraComienzo());
+		Track toElement = new Track();
+		toElement.setInstante(this.getHoraFin());
+		v.getTracks().subSet(fromElement, toElement);
+		return tracks;
 	}
 
 	// **************************************
@@ -302,8 +319,8 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 
 	public void validarViajePendiente() {
 		if (!this.estado.equals(ESTADO_PENDIENTE)) {
-			throw new RuntimeException("No se puede asignar un viaje que no está pendiente (" + this.estado
-					+ ")");
+			throw new RuntimeException("No se puede asignar un viaje que no está pendiente ("
+					+ this.estado + ")");
 		}
 	}
 
@@ -312,7 +329,7 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 			throw new RuntimeException("El viaje debería estar asignado (" + this.estado + ")");
 		}
 	}
-	
+
 	public void validarViajeEnCurso() {
 		if (!this.estado.equals(ESTADO_TRANSPORTANDO)) {
 			throw new RuntimeException("El viaje debería estar en curso (" + this.estado + ")");
@@ -335,7 +352,5 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	public String toString() {
 		return "Viaje " + this.getIdViaje() + " - " + this.getVehiculo().getPatente();
 	}
-
-
 
 }

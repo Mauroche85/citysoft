@@ -1,4 +1,4 @@
-package ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow;
+package ar.edu.utn.frba.proyecto.citysoft.controller.cliente.follower;
 
 import org.zkoss.zul.Listitem;
 

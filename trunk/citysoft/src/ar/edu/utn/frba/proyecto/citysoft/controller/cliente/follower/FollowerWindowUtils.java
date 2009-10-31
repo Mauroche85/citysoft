@@ -1,4 +1,4 @@
-package ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow;
+package ar.edu.utn.frba.proyecto.citysoft.controller.cliente.follower;
 
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Event;

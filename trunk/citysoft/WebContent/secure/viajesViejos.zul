@@ -1,7 +1,7 @@
-<?page title="Vehiculo Follower" ?>
-<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="divFollower"?>
+<?page title="Mis Viajes Viejos" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="divViajesViejos"?>
 
-<div id="divFollower" width="100%" height="100%">
+<div id="divViajesViejos" width="100%" height="100%">
 
 	<!-- tutaxi.com.ar? src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA" -->
 	<script
@@ -10,29 +10,18 @@
 	</script>
 
 	<borderlayout height="100%">
-		<north border="false">
-			<div>
-				<label value="Número de viaje" />
-				<intbox id="txtIdViaje" />
-				<button id="btnSeguir" label="Seguir" onClick="self.seguir();"
-					use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.follower.FollowButton" />
-				<separator orient="horizontal" />
-			</div>
-		</north>
 		<!-- ******************************** -->
 		<!-- ********** GOOGLE MAP ********** -->
 		<center flex="true">
 			<gmaps id="gmap"
-				use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.follower.FollowerMap" showZoomCtrl="true"
-				showOverviewCtrl="true" showTypeCtrl="true">
+				use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.follower.FollowerMap"
+				showZoomCtrl="true" showOverviewCtrl="true" showTypeCtrl="true">
 			</gmaps>
 		</center>
 		<!-- *********************************************** -->
 		<!-- ********** LISTA DE VIAJES SEGUIDOS ********** -->
 		<east>
-			<listbox id="listViajesSeguidos"
-				use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.follower.ListaSeguimientos" width="200px"
-				height="100%" vflex="true"
+			<listbox id="listViajesViejos" height="100%" width="200px" vflex="true"
 				model="@{gmap.vehiculosSet, load-after='listViajesSeguidos.onChange'}">
 				<listhead>
 					<listheader label="Viajes en mapa" sort="auto" />
@@ -54,9 +43,5 @@
 			</listbox>
 		</east>
 	</borderlayout>
-
-	<!-- Esto lo usamos para actualizar el mapa cada medio segundo -->
-	<timer id="t" use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.follower.FollowerTimer"
-		onTimer="self.ring();" repeats="true" delay="500" running="true" />
 </div>
 
