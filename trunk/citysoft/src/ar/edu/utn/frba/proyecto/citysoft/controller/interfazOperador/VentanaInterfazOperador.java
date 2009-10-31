@@ -111,20 +111,6 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 		win.elemIdViajePendiente().setValue(String.valueOf(idViajeSeleccionado(popup)));
 	}
 
-	public void abrirActivacionVehiculo(Menupopup popup) {
-		ActivarDesactivarVehiculo win = (ActivarDesactivarVehiculo) Executions.createComponents(
-				ZUL__ACTIVAR_VEHICULO, null, null);
-		agregarRefrescoAlCierre(win);
-		win.elemPatVehiculo().setValue(patenteDeVehiculoSeleccionado(popup));
-	}
-
-	public void abrirDesactivacionVehiculo(Menupopup popup) {
-		ActivarDesactivarVehiculo win = (ActivarDesactivarVehiculo) Executions.createComponents(
-				ZUL__DESACTIVAR_VEHICULO, null, null);
-		agregarRefrescoAlCierre(win);
-		win.elemPatVehiculo().setValue(patenteDeVehiculoSeleccionado(popup));
-	}
-
 	public void comenzarViaje(Menupopup popup) {
 		int idViaje = idViajeSeleccionado(popup);
 		Viaje viaje = Central.getInstance().getViaje(idViaje);
