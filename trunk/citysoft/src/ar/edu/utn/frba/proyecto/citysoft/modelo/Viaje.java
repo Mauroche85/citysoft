@@ -288,6 +288,14 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 		this.setHoraAsignado(new Date());
 		this.estado = ESTADO_ASIGNADO;
 	}
+	
+	public void liberar(Vehiculo t) {
+		validarViajeAsignado();
+		this.vehiculo = t;
+		t.limpiarViajeEnCurso();
+		this.setHoraAsignado(null);
+		this.estado = ESTADO_PENDIENTE;
+	}
 
 	public void comenzar() {
 		validarViajeAsignado();
@@ -296,14 +304,14 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	}
 
 	public void finalizar() {
-		validarViajeEnCurso();
+		validarViajeTransportando();
 		this.setHoraFin(new Date());
 		this.getVehiculo().limpiarViajeEnCurso();
 		this.estado = ESTADO_COMPLETADO;
 	}
 
 	public void cancelar() {
-		validarViajeAsignado();
+		validarViajePendiente();
 		this.getVehiculo().setViajeEnCurso(null);
 		this.estado = ESTADO_CANCELADO;
 	}
@@ -340,8 +348,14 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 		}
 	}
 
-	public void validarViajeEnCurso() {
+	public void validarViajeTransportando() {
 		if (!this.estado.equals(ESTADO_TRANSPORTANDO)) {
+			throw new RuntimeException("El viaje debería estar transportando (" + this.estado + ")");
+		}
+	}
+	
+	public void validarViajeEnCurso() {
+		if (!this.estado.equals(ESTADO_TRANSPORTANDO) || !this.estado.equals(ESTADO_ASIGNADO)) {
 			throw new RuntimeException("El viaje debería estar en curso (" + this.estado + ")");
 		}
 	}
