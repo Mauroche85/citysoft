@@ -30,6 +30,7 @@ public class Vehiculo implements ObjetoDeDominio, Comparable<Vehiculo> {
 	// Estado del vehículo
 	private Collection<Viaje> viajes = new ArrayList<Viaje>();
 	private SortedSet<Track> tracks = new TreeSet<Track>();
+	/** El viaje en curso YA ESTA contenido en la coleccion de viajes */
 	private Viaje viajeEnCurso;
 	private Boolean activado;
 
@@ -153,6 +154,9 @@ public class Vehiculo implements ObjetoDeDominio, Comparable<Vehiculo> {
 	// ** Accessors - ESTADO DEL VEHICULO
 	// **************************************
 
+	/**
+	 * El viaje en curso YA ESTA contenido en la coleccion de viajes
+	 */
 	public Collection<Viaje> getViajes() {
 		return viajes;
 	}
@@ -175,14 +179,33 @@ public class Vehiculo implements ObjetoDeDominio, Comparable<Vehiculo> {
 	}
 
 	/**
-	 * Para asignar un vehiculo a un viaje, no se debe llamar a este metodo,
-	 * sino recurrir a {@link Viaje#asignar(Vehiculo)}
+	 * <li>Para asignar un vehiculo a un viaje, no se debe llamar a este metodo,
+	 * sino recurrir a {@link Viaje#asignar(Vehiculo)}.
+	 * 
+	 * <li>Para liberar un vehiculo por viaje finalizado, no se debe llamar a
+	 * este metodo, sino recurrir a {@link Viaje#finalizar()}
+	 * 
+	 * <li>Para liberar un vehiculo por viaje cancelado, no se debe llamar a
+	 * este metodo, sino recurrir a {@link Viaje#cancelar()}
 	 */
 	public void setViajeEnCurso(Viaje viajeEnCurso) {
 		validarVehiculoActivo();
 		validarVehiculoLibre();
 		this.viajeEnCurso = viajeEnCurso;
 		this.viajes.add(viajeEnCurso);
+	}
+
+	/**
+	 * <li>Para liberar un vehiculo por viaje finalizado, no se debe llamar a
+	 * este metodo, sino recurrir a {@link Viaje#finalizar()}
+	 * 
+	 * <li>Para liberar un vehiculo por viaje cancelado, no se debe llamar a
+	 * este metodo, sino recurrir a {@link Viaje#cancelar()}
+	 */
+	public void limpiarViajeEnCurso() {
+		validarVehiculoActivo();
+		validarVehiculoEnCurso();
+		this.viajeEnCurso = null;
 	}
 
 	public Boolean getActivado() {
@@ -250,6 +273,12 @@ public class Vehiculo implements ObjetoDeDominio, Comparable<Vehiculo> {
 
 	public void validarVehiculoLibre() {
 		if (!estoyLibre()) {
+			throw new RuntimeException("No se puede asignar viaje a un vehículo asignado u ocupado");
+		}
+	}
+
+	public void validarVehiculoEnCurso() {
+		if (estoyLibre()) {
 			throw new RuntimeException("No se puede asignar viaje a un vehículo asignado u ocupado");
 		}
 	}

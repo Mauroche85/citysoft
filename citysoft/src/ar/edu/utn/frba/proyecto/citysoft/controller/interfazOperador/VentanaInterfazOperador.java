@@ -42,18 +42,25 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 	// ** MODELOS
 	// **************************************
 
-	public Collection<Viaje> getListaViajesEnCurso() {
-		SortedSet<Viaje> lista = new TreeSet<Viaje>(Central.getInstance().getViajesEnCurso());
+	// Viajes
+	public Collection<Viaje> getListaViajesBajoTransporte() {
+		SortedSet<Viaje> lista = new TreeSet<Viaje>(Central.getInstance().getViajesBajoTransporte());
 		return lista;
 	}
 
-	public Collection<Vehiculo> getListaVehiculosLibres() {
-		SortedSet<Vehiculo> lista = new TreeSet<Vehiculo>(Central.getInstance().getVehiculosLibres());
+	public Collection<Viaje> getListaViajesAsignados() {
+		SortedSet<Viaje> lista = new TreeSet<Viaje>(Central.getInstance().getViajesAsignados());
 		return lista;
 	}
 
 	public Collection<Viaje> getListaViajesPendientes() {
 		SortedSet<Viaje> lista = new TreeSet<Viaje>(Central.getInstance().getViajesPendientes());
+		return lista;
+	}
+
+	// Vehiculos
+	public Collection<Vehiculo> getListaVehiculosLibres() {
+		SortedSet<Vehiculo> lista = new TreeSet<Vehiculo>(Central.getInstance().getVehiculosLibres());
 		return lista;
 	}
 
@@ -67,52 +74,64 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 	// ** ACCIONES SOBRE LISTAS
 	// **************************************
 
+	public void abrirNuevoViaje() throws InterruptedException {
+		Window win = (Window) Executions.createComponents(ZUL__NUEVO_VIAJE, null, null);
+		win.setMode("modal");
+		win.setWidth("75%");
+		win.setHeight("90%");
+		win.setClosable(true);
+	}
+
 	public void abrirFinalizacionDeViaje(Menupopup popup) {
 		AsignarLiberarVehiculo win = (AsignarLiberarVehiculo) Executions.createComponents(
 				ZUL__LIBERAR_VEHICULO, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemPatVehiculo().setValue(
-				(String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
+		Viaje viaje = Central.getInstance().getViaje(idViajeSeleccionado(popup));
+		win.elemPatVehiculo().setValue(viaje.getVehiculo().getPatente());
 	}
 
 	public void abrirAsignacionPorVehiculoLibre(Menupopup popup) {
 		AsignarLiberarVehiculo win = (AsignarLiberarVehiculo) Executions.createComponents(
 				ZUL__ASIGNAR_VEHICULO, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemPatVehiculo().setValue(
-				(String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
+		win.elemPatVehiculo().setValue(String.valueOf(idViajeSeleccionado(popup)));
 	}
 
 	public void abrirAsignacionPorViaje(Menupopup popup) {
 		AsignarLiberarVehiculo win = (AsignarLiberarVehiculo) Executions.createComponents(
 				ZUL__ASIGNAR_VEHICULO, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemIdViajePendiente().setValue(
-				(String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
+		win.elemIdViajePendiente().setValue(String.valueOf(idViajeSeleccionado(popup)));
 	}
 
 	public void abrirCancelacionViaje(Menupopup popup) {
 		CancelarViajePendiente win = (CancelarViajePendiente) Executions.createComponents(
 				ZUL__CANCELAR_VIAJE, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemIdViajePendiente().setValue(
-				(String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
+		win.elemIdViajePendiente().setValue(String.valueOf(idViajeSeleccionado(popup)));
 	}
 
 	public void abrirActivacionVehiculo(Menupopup popup) {
 		ActivarDesactivarVehiculo win = (ActivarDesactivarVehiculo) Executions.createComponents(
 				ZUL__ACTIVAR_VEHICULO, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemPatVehiculo().setValue(
-				(String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
+		win.elemPatVehiculo().setValue(patenteDeVehiculoSeleccionado(popup));
 	}
 
 	public void abrirDesactivacionVehiculo(Menupopup popup) {
 		ActivarDesactivarVehiculo win = (ActivarDesactivarVehiculo) Executions.createComponents(
 				ZUL__DESACTIVAR_VEHICULO, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemPatVehiculo().setValue(
-				(String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP));
+		win.elemPatVehiculo().setValue(patenteDeVehiculoSeleccionado(popup));
+	}
+
+	public void comenzarViaje(Menupopup popup) {
+		int idViaje = idViajeSeleccionado(popup);
+		Viaje viaje = Central.getInstance().getViaje(idViaje);
+		viaje.comenzar();
+		// Siempre que modificamos algun objeto, tenemos que avisarle a la
+		// central para que actualice la persistencia en la DB
+		Central.getInstance().addViaje(viaje);
 	}
 
 	// **************************************
@@ -152,6 +171,26 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 			Event event = new Event(Events.ON_CHANGE, this.win);
 			Events.sendEvent(event);
 		}
+	}
+
+	// **************************************
+	// ** HELPERS
+	// **************************************
+
+	/**
+	 * Seleccionado en el sentido de que le hicieron click derecho y estamos en
+	 * el menu contextual de este viaje
+	 */
+	public int idViajeSeleccionado(Menupopup popup) {
+		return (Integer) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP);
+	}
+
+	/**
+	 * Seleccionado en el sentido de que le hicieron click derecho y estamos en
+	 * el menu contextual de este vehiculo
+	 */
+	public String patenteDeVehiculoSeleccionado(Menupopup popup) {
+		return (String) popup.getAttribute(CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP);
 	}
 
 	// **************************************

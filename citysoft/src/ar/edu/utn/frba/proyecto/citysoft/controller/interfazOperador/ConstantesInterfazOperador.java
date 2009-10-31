@@ -8,9 +8,10 @@ public interface ConstantesInterfazOperador extends ConstantesGeneralesDeVentana
 	// ** ARCHIVOS ZUL
 	// **************************************
 
+	String ZUL__NUEVO_VIAJE = "/viajeNuevo.zul";
 	String ZUL__ACTIVAR_VEHICULO = "/activarVehiculo.zul";
 	String ZUL__DESACTIVAR_VEHICULO = "/desactivarVehiculo.zul";
-	String ZUL__CANCELAR_VIAJE = "/cancelarViaje.zul";
+	String ZUL__CANCELAR_VIAJE = "/cancelarViajePendiente.zul";
 	String ZUL__ASIGNAR_VEHICULO = "/asignarVehiculo.zul";
 	String ZUL__LIBERAR_VEHICULO = "/liberarVehiculo.zul";
 

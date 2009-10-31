@@ -30,13 +30,7 @@ public class AsignarLiberarVehiculo extends Window {
 
 	public void liberarVehiculo() {
 		Vehiculo t = Central.getInstance().getVehiculoPorPatente(elemPatVehiculo().getValue());
-
-		// TODO: hay que trabajar la liberacion de vechiulos
-		// t.setActivado(false); << esto entiendo no es liberacion, sino
-		// desactivacion
-
-		// TODO la liberacion es la finalizcion del viaje. Ir por ese lado
-
+		t.getViajeEnCurso().finalizar();
 		// Cuando se modifica alguna entidad, hay que volverla a agregar en la
 		// central
 		Central.getInstance().addVehiculo(t);

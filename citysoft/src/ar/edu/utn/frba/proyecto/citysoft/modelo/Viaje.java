@@ -5,6 +5,17 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
+ * <li>Viaje EN CURSO: es un viaje TRANSPORTANDO o ASIGNADO
+ * 
+ * <li>Viaje TRANSPORTANDO: cuando la personita esta arriba del vehiculo
+ * 
+ * <li>Viaje ASIGNADO: cuando hay una solicitud de viaje y le asignaron un
+ * vehiculo pero el vehiculo todavia no llego a recoger al cliente
+ * 
+ * <li>Viaje PENDIENTE: cuando hay una solicitud de viaje y todavia no le
+ * asignaron un vehiculo
+ * 
+ * 
  * @version 1.0
  * @created 23-Jul-2009 10:54:53 p.m.
  */
@@ -274,26 +285,26 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 		validarViajePendiente();
 		this.vehiculo = t;
 		t.setViajeEnCurso(this);
-		java.util.Date fecha = new Date();
-		this.setHoraAsignado(fecha);
+		this.setHoraAsignado(new Date());
 		this.estado = ESTADO_ASIGNADO;
 	}
 
 	public void comenzar() {
 		validarViajeAsignado();
-		java.util.Date fecha = new Date();
-		this.setHoraComienzo(fecha);
+		this.setHoraComienzo(new Date());
 		this.estado = ESTADO_TRANSPORTANDO;
 	}
 
 	public void finalizar() {
 		validarViajeEnCurso();
-		java.util.Date fecha = new Date();
-		this.setHoraFin(fecha);
+		this.setHoraFin(new Date());
+		this.getVehiculo().limpiarViajeEnCurso();
 		this.estado = ESTADO_COMPLETADO;
 	}
 
 	public void cancelar() {
+		validarViajeAsignado();
+		this.getVehiculo().setViajeEnCurso(null);
 		this.estado = ESTADO_CANCELADO;
 	}
 
@@ -319,8 +330,7 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 
 	public void validarViajePendiente() {
 		if (!this.estado.equals(ESTADO_PENDIENTE)) {
-			throw new RuntimeException("No se puede asignar un viaje que no está pendiente ("
-					+ this.estado + ")");
+			throw new RuntimeException("El viaje deberia estar pendiente (" + this.estado + ")");
 		}
 	}
 

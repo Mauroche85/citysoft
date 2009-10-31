@@ -6,6 +6,7 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.event.OpenEvent;
 import org.zkoss.zul.Menupopup;
 import org.zkoss.zul.api.Label;
+import org.zkoss.zul.api.Listcell;
 
 public class MenupopupParaInterfazOperador extends Menupopup {
 
@@ -24,8 +25,8 @@ public class MenupopupParaInterfazOperador extends Menupopup {
 		public void onEvent(Event event) throws Exception {
 			OpenEvent openEvent = (OpenEvent) event;
 			if (openEvent.isOpen()) {
-				Label lblWithValue = (Label) openEvent.getReference().getFirstChild().getFirstChild();
-				openEvent.getTarget().setAttribute("quienAbrioElPopup", lblWithValue.getValue());
+				Listcell cellWithValue = (Listcell) openEvent.getReference();
+				openEvent.getTarget().setAttribute("quienAbrioElPopup", cellWithValue.getValue());
 			}
 		}
 	}
