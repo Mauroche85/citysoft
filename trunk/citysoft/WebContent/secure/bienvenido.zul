@@ -1,142 +1,29 @@
 <?page title="GTTR - Gestion de Taxis en tiempo real" contentType="text/html;charset=UTF-8"?>
-<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="winCliente"?>
+
 <zk>
-	<zscript>
-	import ar.edu.utn.frba.proyecto.citysoft.user.UserContext;
-	UserContext ctx = UserContext.getUserContext();
-</zscript>
-	<window title="@{ctx.getUsername}" border="normal">
-		<tabbox>
-			<tabs>
-				<tab label="Mi viaje actual" selected="true" />
-				<tab id="tab2" label="Mi GTTR" />
-			</tabs>
-			<tabpanels>
-				<tabpanel height="500px">
-					<window id="viajeActual" title="Mi viaje actual" border="normal" width="100%"
-						height="100%">
-						<label value="Código de Viaje:" />
-						<combobox>
-							<comboitem label="1" />
-							<comboitem label="2" />
-						</combobox>
-						<window id="viajeActualMapa" title="Mapa" border="normal" width="100%"
-							height="83%">
-							<!-- tutaxi.com.ar? src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA" -->
-							<script
-								src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhRzdWSuvxlSxMx33aEXsRZiewAFIxTyvaaXezhKd2-vbxqrWx_80Qz4dg"
-								type="text/javascript">
-							</script>
-							<gmaps id="gmapViajesAnteriores" showZoomCtrl="true"
-								showOverviewCtrl="true" showTypeCtrl="true" lng="-58.42024" lat="-34.59856" zoom="15">
-							</gmaps>
-						</window>
-						<window id="winDatosViajeActual" title="Detalles del viaje" border="normal"
-							width="100%">
-							<grid>
-								<columns>
-									<column></column>
-									<column></column>
-									<column></column>
-									<column></column>
-									<column></column>
-									<column></column>
-								</columns>
-								<rows>
-									<row>
-										<label value="Hora de solicitud:" />
-										<timebox name="stOrigenHora" />
-										<label value="Persona Referente:" />
-										<textbox name="stOrigenReferente" />
-										<label value="Observaciones:" />
-										<textbox name="stOrigenObservaciones" />
-									</row>
-								</rows>
-							</grid>
-						</window>
-					</window>
-				</tabpanel>
-
-				<tabpanel fulfill="tab2.onSelect">
-					<tabbox width="100%" height="500px" orient="vertical">
-						<tabs width="20%">
-							<tab label="Solicitar viaje nuevo" />
-							<tab label="Mis viajes anteriores" />
-						</tabs>
-						<tabpanels>
-							<tabpanel height="500px">
-								<!-- ACA DEBE IR LA INCLUSION -->
-								<include src="../viajeNuevo.zul" />
-							</tabpanel>
-							<tabpanel>
-								<listbox id="listViajesAnteriores" width="200px" height="25%">
-									<listhead>
-										<listheader label="Viajes anteriores" sort="auto" />
-									</listhead>
-									<listitem>
-										<listcell context="menuContextViajesAnteriores">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "54334");
-</attribute>
-											<label value="54334" />
-										</listcell>
-									</listitem>
-									<listitem>
-										<listcell context="menuContextViajesAnteriores">
-
-
-
-											<attribute name="onRightClick">
-	pageScope.put("valor", "34768");
-</attribute>
-
-											<label value="34768" />
-										</listcell>
-									</listitem>
-									<listitem>
-										<listcell context="menuContextViajesAnteriores">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "95746");
-</attribute>
-
-											<label value="95746" />
-										</listcell>
-									</listitem>
-									<listitem>
-										<listcell context="menuContextViajesAnteriores">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "73659");
-</attribute>
-
-											<label value="73659" />
-										</listcell>
-									</listitem>
-									<listitem>
-										<listcell context="menuContextViajesAnteriores">
-											<attribute name="onRightClick">
-	pageScope.put("valor", "93265");
-</attribute>
-
-											<label value="93265" />
-										</listcell>
-									</listitem>
-								</listbox>
-
-								<menupopup id="menuContextViajesAnteriores">
-									<menuitem label="Mostrar Detalles">
-										<attribute name="onClick">
-<!-- 	Executions.createComponents("detallesViajeAnterior.zul", null, null);
- -->
-	Component h = Executions.createComponents("detallesViajeAnterior.zul", null, null);
-	h.getFellow("idViaje").setValue(page.getAttribute("valor"));
-</attribute>
-									</menuitem>
-								</menupopup>
-							</tabpanel>
-						</tabpanels>
-					</tabbox>
-				</tabpanel>
-			</tabpanels>
-		</tabbox>
+	<window id="winCliente" border="normal" mode="modal" width="98%" height="98%" sizable="true"
+		closable="true"
+		use="ar.edu.utn.frba.proyecto.citysoft.controller.bienvenidaCliente.VentanaCliente">
+		<borderlayout>
+			<center flex="true">
+				<tabbox width="100%" height="100%" orient="vertical">
+					<tabs width="200px">
+						<tab label="Solicitar viaje nuevo" />
+						<tab id="tabSeguir" label="Seguir mi viaje" />
+						<tab label="Ver viajes viejos" />
+					</tabs>
+					<tabpanels>
+						<tabpanel height="100%">
+							<!-- ACA DEBE IR LA INCLUSION -->
+							<include src="../viajeNuevo.zul" />
+						</tabpanel>
+						<tabpanel height="100%">
+							<include src="follower.zul" />
+						</tabpanel>
+					</tabpanels>
+				</tabbox>
+			</center>
+		</borderlayout>
 	</window>
 </zk>

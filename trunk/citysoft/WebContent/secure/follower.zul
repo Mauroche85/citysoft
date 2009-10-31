@@ -1,8 +1,7 @@
 <?page title="Vehiculo Follower" ?>
-<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="divFollower"?>
 
-<window id="winFollower" title="Follower" border="normal" mode="modal" width="95%" height="95%"
-	sizable="true">
+<div id="divFollower" width="100%" height="100%">
 
 	<!-- tutaxi.com.ar? src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA" -->
 	<script
@@ -59,5 +58,5 @@
 	<!-- Esto lo usamos para actualizar el mapa cada medio segundo -->
 	<timer id="t" use="ar.edu.utn.frba.proyecto.citysoft.controller.followerWindow.FollowerTimer"
 		onTimer="self.ring();" repeats="true" delay="500" running="true" />
-</window>
+</div>
 
