@@ -158,9 +158,9 @@
 									<menuitem label="Asignar Vehiculo..."
 										image="@{winOperador.IMAGES__LINK"
 										onClick="winOperador.abrirAsignacionPorViaje((Menupopup) self.getParent());" />
-									<menuitem label="Cancelar Viaje Pendiente..."
+									<menuitem label="Cancelar Viaje Pendiente"
 										image="@{winOperador.IMAGES__CANCEL}"
-										onClick="winOperador.abrirCancelacionViaje((Menupopup) self.getParent());" />
+										onClick="winOperador.cancelarViajePendiente((Menupopup) self.getParent());" />
 								</menupopup>
 							</panelchildren>
 						</panel>

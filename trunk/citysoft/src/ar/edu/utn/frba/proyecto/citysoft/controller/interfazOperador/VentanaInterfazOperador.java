@@ -94,7 +94,8 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 		AsignarLiberarVehiculo win = (AsignarLiberarVehiculo) Executions.createComponents(
 				ZUL__ASIGNAR_VEHICULO, null, null);
 		agregarRefrescoAlCierre(win);
-		win.elemPatVehiculo().setValue(String.valueOf(idViajeSeleccionado(popup)));
+		win.elemPatVehiculo().setValue(String.valueOf(patenteDeVehiculoSeleccionado(popup)));
+
 	}
 
 	public void abrirAsignacionPorViaje(Menupopup popup) {
@@ -104,12 +105,6 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 		win.elemIdViajePendiente().setValue(String.valueOf(idViajeSeleccionado(popup)));
 	}
 
-	public void abrirCancelacionViaje(Menupopup popup) {
-		CancelarViajePendiente win = (CancelarViajePendiente) Executions.createComponents(
-				ZUL__CANCELAR_VIAJE, null, null);
-		agregarRefrescoAlCierre(win);
-		win.elemIdViajePendiente().setValue(String.valueOf(idViajeSeleccionado(popup)));
-	}
 
 	public void comenzarViaje(Menupopup popup) {
 		int idViaje = idViajeSeleccionado(popup);
@@ -138,6 +133,16 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 		// central
 		Central.getInstance().addVehiculo(t);
 
+	}
+	
+	public void cancelarViajePendiente(Menupopup popup) {
+		int idViaje = idViajeSeleccionado(popup);
+		Viaje v = Central.getInstance().getViaje(idViaje);
+
+		// Cancela viaje pendiente
+		v.cancelar();
+
+		Central.getInstance().addViaje(v);
 	}
 
 	// **************************************

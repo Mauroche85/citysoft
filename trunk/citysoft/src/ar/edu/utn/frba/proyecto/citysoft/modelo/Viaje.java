@@ -312,7 +312,6 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 
 	public void cancelar() {
 		validarViajePendiente();
-		this.getVehiculo().setViajeEnCurso(null);
 		this.estado = ESTADO_CANCELADO;
 	}
 
