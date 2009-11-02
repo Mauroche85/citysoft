@@ -3,6 +3,7 @@ package ar.edu.utn.frba.proyecto.citysoft.controller.abmVehiculo;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Button;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Window;
 import org.zkoss.zul.api.Intbox;
 import org.zkoss.zul.api.Textbox;
@@ -159,38 +160,56 @@ public class VentanaAbmVehiculo extends Window {
 	public void altaVehiculo() {
 		// Creo el vehiculo!!!
 		Vehiculo c = new Vehiculo();
-		c.setIdVehiculo(elemIdVehiculo().getValue());
-		c.setPatente(elemPatente().getValue());
-		c.setApellido(elemApellido().getValue());
-		c.setNombre(elemNombres().getValue());
-		// c.setTipoDocumento(elemTipoDocumento().getValue());
-		c.setDni(elemNroDocumento().getValue());
-		c.setPoliza(elemPoliza().getValue());
-		c.setMarca(elemMarca().getValue());
-		c.setModelo(elemModelo().getValue());
 
-		// Guardo el cliente en la central!!!!
-		Central.getInstance().addVehiculo(c);
+		try {  // si retorna 0x0010 es 'YES', 0x0020 es 'NO'
+			 if(Messagebox.show("¿Confirma el alta?", "Mensaje de confirmación", Messagebox.YES | Messagebox.NO ,
+			    Messagebox.QUESTION)==16)  
+			    {
+				c.setIdVehiculo(elemIdVehiculo().getValue());
+				c.setPatente(elemPatente().getValue());
+				c.setApellido(elemApellido().getValue());
+				c.setNombre(elemNombres().getValue());
+				// c.setTipoDocumento(elemTipoDocumento().getValue());
+				c.setDni(elemNroDocumento().getValue());
+				c.setPoliza(elemPoliza().getValue());
+				c.setMarca(elemMarca().getValue());
+				c.setModelo(elemModelo().getValue());
 
+				// Guardo el cliente en la central!!!!
+				Central.getInstance().addVehiculo(c);
+   			    }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			 e.printStackTrace();
+		}							
 		// Cierro la ventana
 		this.cerrar();
 	}
 
 	public void modifVehiculo() {
-		// Creo el vehiculo!!!
+		// Levanto los datos del vehiculo!!!
 		Vehiculo c = Central.getInstance().getVehiculoPorId(elemIdVehiculo().getValue());
-		c.setPatente(elemPatente().getValue());
-		c.setApellido(elemApellido().getValue());
-		c.setNombre(elemNombres().getValue());
-		// c.setTipoDocumento(elemTipoDocumento().getValue());
-		c.setDni(elemNroDocumento().getValue());
-		c.setPoliza(elemPoliza().getValue());
-		c.setMarca(elemMarca().getValue());
-		c.setModelo(elemModelo().getValue());
 
-		// Actualizo el cliente en la central!!!!
-		Central.getInstance().addVehiculo(c);
+		try {  // si retorna 0x0010 es 'YES', 0x0020 es 'NO'
+			 if(Messagebox.show("¿Confirma la modificación?", "Mensaje de confirmación", Messagebox.YES | Messagebox.NO ,
+			    Messagebox.QUESTION)==16)  
+			    {		
+				c.setPatente(elemPatente().getValue());
+				c.setApellido(elemApellido().getValue());
+				c.setNombre(elemNombres().getValue());
+				// c.setTipoDocumento(elemTipoDocumento().getValue());
+				c.setDni(elemNroDocumento().getValue());
+				c.setPoliza(elemPoliza().getValue());
+				c.setMarca(elemMarca().getValue());
+				c.setModelo(elemModelo().getValue());
 
+				// Actualizo el cliente en la central!!!!
+				Central.getInstance().addVehiculo(c);
+   			    }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			 e.printStackTrace();
+		}							
 		// Cierro la ventana
 		this.cerrar();
 	}

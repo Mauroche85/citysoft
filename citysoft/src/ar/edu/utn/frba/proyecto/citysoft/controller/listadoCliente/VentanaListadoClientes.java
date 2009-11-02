@@ -9,6 +9,7 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Window;
 
 import ar.edu.utn.frba.proyecto.citysoft.controller.abmCliente.VentanaAbmCliente;
@@ -28,17 +29,24 @@ public class VentanaListadoClientes extends Window {
 		return lista;
 	}
 
-	public void eliminar(int legajo) {
-		Cliente c = Central.getInstance().getClientePorId(legajo);
-		Central.getInstance().getClientes().remove(c);
+	public void eliminar(int nroCliente) {
+		Cliente c = Central.getInstance().getClientePorId(nroCliente);
+		try {  // si retorna 0x0010 es 'YES', 0x0020 es 'NO'
+			 if(Messagebox.show("¿Confirma la baja?", "Mensaje de confirmación", Messagebox.YES | Messagebox.NO ,
+			    Messagebox.QUESTION)==16)  
+			    {Central.getInstance().getClientes().remove(c);}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			 e.printStackTrace();
+		}					
 		this.refrescarTabla();
 	}
 
-	public void modificar(int legajo) {
+	public void modificar(int nroCliente) {
 		Component componenteAbmCliente = Executions.createComponents("altaCliente.zul", null, null);
 		VentanaAbmCliente win = (VentanaAbmCliente) componenteAbmCliente.getFellow("winAltaCliente");
 		win.addEventListener(Events.ON_CLOSE, new OnCloseRefrescarTabla(this));
-		win.abrirModificacion(legajo);
+		win.abrirModificacion(nroCliente);
 	}
 
 	public void refrescarTabla() {

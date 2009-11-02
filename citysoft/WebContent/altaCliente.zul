@@ -1,16 +1,20 @@
 <?page title="Alta Cliente" contentType="text/html;charset=UTF-8"?>
 
 <zk>
-	<window id="winAltaCliente" title="Alta Cliente" border="normal" mode="modal" width="420px"
-		height="240px" sizable="false" closable="true"
+	<window id="winAltaCliente" title="Alta Cliente" border="normal" mode="modal" width="32%"
+		height="42%" sizable="false" closable="true"
 		use="ar.edu.utn.frba.proyecto.citysoft.controller.abmCliente.VentanaAbmCliente">
 		<borderlayout>
 			<center>
 				<grid width="300">
 					<rows>
 						<row>
-							<label value="Legajo:" />
-							<intbox id="intLegajo" />
+							<label value="Nro. de cliente:" />
+							<intbox id="intNroCliente" />
+						</row>
+						<row>
+							<label value="Nombre de usuario:" />
+							<textbox id="txtNombreUsuario" />
 						</row>
 						<row>
 							<label value="Nombres:" />

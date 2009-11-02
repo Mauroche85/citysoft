@@ -3,7 +3,7 @@
 <zk>
 	<window id="winListadoVehiculos" title="Listado de Vehiculos" border="normal" mode="modal"
 		use="ar.edu.utn.frba.proyecto.citysoft.controller.listadoVehiculos.VentanaListadoVehiculos"
-		width="1000px" height="410px" sizable="false" closable="true">
+		width="80%" height="30%" sizable="true" closable="true">
 		<borderlayout>
 			<center>
 				<grid id="grid"
