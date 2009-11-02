@@ -9,6 +9,7 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Window;
 
 import ar.edu.utn.frba.proyecto.citysoft.controller.abmVehiculo.VentanaAbmVehiculo;
@@ -30,7 +31,14 @@ public class VentanaListadoVehiculos extends Window {
 
 	public void eliminar(int idVehiculo) {
 		Vehiculo c = Central.getInstance().getVehiculoPorId(idVehiculo);
-		Central.getInstance().getVehiculos().remove(c);
+		try {  // si retorna 0x0010 es 'YES', 0x0020 es 'NO'
+			 if(Messagebox.show("¿Confirma la baja?", "Mensaje de confirmación", Messagebox.YES | Messagebox.NO ,
+			    Messagebox.QUESTION)==16)  
+			    {Central.getInstance().getVehiculos().remove(c);}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			 e.printStackTrace();
+		}					
 		this.refrescarTabla();
 	}
 

@@ -7,6 +7,7 @@ import org.apache.commons.collections.Predicate;
 
 import ar.edu.utn.frba.proyecto.citysoft.modelo.persistencia.ColeccionPersistente;
 
+
 public class Central implements ObjetoDeDominio {
 
 	// **************************************
@@ -83,6 +84,7 @@ public class Central implements ObjetoDeDominio {
 		});
 	}
 
+		
 	public void addVehiculo(Vehiculo v) {
 		this.vehiculos.add(v);
 	}
@@ -95,10 +97,10 @@ public class Central implements ObjetoDeDominio {
 		return conductores;
 	}
 
-	public void addConductor(Conductor conductor) {
-		this.conductores.add(conductor);
+	public void addConductor(Conductor conductor) {		
+		 this.conductores.add(conductor);
 	}
-
+	
 	public void updateConductor(Conductor conductor) {
 		this.conductores.add(conductor);
 	}

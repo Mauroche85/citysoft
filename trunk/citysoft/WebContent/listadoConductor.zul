@@ -4,7 +4,7 @@
 <zk>
 	<window id="winListadoConductores" title="Listado de Conductores" border="normal" mode="modal"
 		use="ar.edu.utn.frba.proyecto.citysoft.controller.listadoConductores.VentanaListadoConductores"
-		width="1000px" height="210px" sizable="false" closable="true">
+		width="80%" height="30%" sizable="true" closable="true">
 		<borderlayout>
 			<center>
 				<grid id="grid"

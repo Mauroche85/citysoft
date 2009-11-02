@@ -3,6 +3,7 @@ package ar.edu.utn.frba.proyecto.citysoft.controller.abmCliente;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Button;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Window;
 import org.zkoss.zul.api.Intbox;
 import org.zkoss.zul.api.Textbox;
@@ -42,8 +43,12 @@ public class VentanaAbmCliente extends Window {
 		return (Textbox) this.getFellow("txtNombres");
 	}
 
-	private Intbox elemLegajo() {
-		return (Intbox) this.getFellow("intLegajo");
+	private Textbox elemNombreUsuario() {
+		return (Textbox) this.getFellow("txtNombreUsuario");
+	}
+	
+	private Intbox elemNroCliente() {
+		return (Intbox) this.getFellow("intNroCliente");
 	}
 
 	// **************************************
@@ -90,7 +95,8 @@ public class VentanaAbmCliente extends Window {
 
 	public void abrirDetalle(int idCliente) {
 		// Primero deshabilitamos los campos
-		elemLegajo().setReadonly(true);
+		elemNroCliente().setReadonly(true);
+		elemNombreUsuario().setReadonly(true);
 		elemNombres().setReadonly(true);
 		elemApellido().setReadonly(true);
 		elemNroDocumento().setReadonly(true);
@@ -112,7 +118,8 @@ public class VentanaAbmCliente extends Window {
 
 	public void abrirModificacion() {
 		// Habilitamos los campos pertientes
-		elemLegajo().setReadonly(true);
+		elemNroCliente().setReadonly(true);
+		elemNombreUsuario().setReadonly(false);
 		elemNombres().setReadonly(false);
 		elemApellido().setReadonly(false);
 		elemNroDocumento().setReadonly(false);
@@ -153,43 +160,62 @@ public class VentanaAbmCliente extends Window {
 	public void altaCliente() {
 		// Creo el cliente!!!
 		Cliente c = new Cliente();
-		c.setIdCliente(elemLegajo().getValue());
-		c.setApellido(elemApellido().getValue());
-		c.setNombre(elemNombres().getValue());
-		// c.setTipoDocumento(elemTipoDocumento().getValue());
-		c.setDni(elemNroDocumento().getValue());
-		c.setDireccion(elemDireccion().getValue());
-		c.setLocalidad(elemLocalidad().getValue());
-		c.setTelefono(elemTelefono().getValue());
 
-		// Guardo el cliente en la central!!!!
-		Central.getInstance().addCliente(c);
+		try {  // si retorna 0x0010 es 'YES', 0x0020 es 'NO'
+			 if(Messagebox.show("¿Confirma el alta?", "Mensaje de confirmación", Messagebox.YES | Messagebox.NO ,
+			    Messagebox.QUESTION)==16)  
+			    {		
+				c.setIdCliente(elemNroCliente().getValue());
+				c.setApellido(elemApellido().getValue());
+				c.setNombre(elemNombres().getValue());
+				c.setNombreUsuario(elemNombreUsuario().getValue());
+				// c.setTipoDocumento(elemTipoDocumento().getValue());
+				c.setDni(elemNroDocumento().getValue());
+				c.setDireccion(elemDireccion().getValue());
+				c.setLocalidad(elemLocalidad().getValue());
+				c.setTelefono(elemTelefono().getValue());
 
+				// Guardo el cliente en la central!!!!
+				Central.getInstance().addCliente(c);
+   			    }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			 e.printStackTrace();
+		}							
 		// Cierro la ventana
 		this.cerrar();
 	}
 
 	public void modifCliente() {
-		// Creo el cliente!!!
-		Cliente c = Central.getInstance().getClientePorId(elemLegajo().getValue());
+		//Levanto los datos del cliente!!!
+		Cliente c = Central.getInstance().getClientePorId(elemNroCliente().getValue());
 
-		c.setApellido(elemApellido().getValue());
-		c.setNombre(elemNombres().getValue());
-		// c.setTipoDocumento(elemTipoDocumento().getValue());
-		c.setDni(elemNroDocumento().getValue());
-		c.setDireccion(elemDireccion().getValue());
-		c.setLocalidad(elemLocalidad().getValue());
-		c.setTelefono(elemTelefono().getValue());
+		try {  // si retorna 0x0010 es 'YES', 0x0020 es 'NO'
+			 if(Messagebox.show("¿Confirma la modificación?", "Mensaje de confirmación", Messagebox.YES | Messagebox.NO ,
+			    Messagebox.QUESTION)==16)  
+			    {		
+				c.setApellido(elemApellido().getValue());
+				c.setNombre(elemNombres().getValue());
+				c.setNombreUsuario(elemNombreUsuario().getValue());
+				// c.setTipoDocumento(elemTipoDocumento().getValue());
+				c.setDni(elemNroDocumento().getValue());
+				c.setDireccion(elemDireccion().getValue());
+				c.setLocalidad(elemLocalidad().getValue());
+				c.setTelefono(elemTelefono().getValue());
 
-		// Actualizo el cliente en la central!!!!
-		Central.getInstance().addCliente(c);
-
+				// Actualizo el cliente en la central!!!!
+				Central.getInstance().addCliente(c);
+   			    }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			 e.printStackTrace();
+		}							
 		// Cierro la ventana
 		this.cerrar();
 	}
 
 	public void eliminarCliente() {
-		int idCliente = elemLegajo().intValue();
+		int idCliente = elemNroCliente().intValue();
 		Cliente c = Central.getInstance().getClientePorId(idCliente);
 		Central.getInstance().getClientes().remove(c);
 		this.cerrar();
@@ -201,7 +227,8 @@ public class VentanaAbmCliente extends Window {
 
 	private void traerDetalleCliente(int idCliente) {
 		Cliente c = Central.getInstance().getClientePorId(idCliente);
-		elemLegajo().setValue(idCliente);
+		elemNroCliente().setValue(idCliente);
+		elemNombreUsuario().setValue(c.getNombreUsuario());
 		elemNombres().setValue(c.getNombre());
 		elemApellido().setValue(c.getApellido());
 		elemNroDocumento().setValue(c.getDni());
@@ -211,7 +238,7 @@ public class VentanaAbmCliente extends Window {
 	}
 
 	private void limpiarCampos() {
-		elemLegajo().setValue(null);
+		elemNroCliente().setValue(null);
 		elemNombres().setValue(null);
 		elemApellido().setValue(null);
 		elemNroDocumento().setValue(null);

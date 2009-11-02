@@ -3,6 +3,7 @@ package ar.edu.utn.frba.proyecto.citysoft.controller.abmConductor;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Button;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Window;
 import org.zkoss.zul.api.Intbox;
 import org.zkoss.zul.api.Textbox;
@@ -147,43 +148,60 @@ public class VentanaAbmConductor extends Window {
 	}
 
 	// **************************************
-	// ** Ejecucion
+	// ** Ejecución
 	// **************************************
 
 	public void altaConductor() {
 		// Creo el conductor!!!
 		Conductor c = new Conductor();
-		c.setIdConductor(elemLegajo().getValue());
-		c.setApellido(elemApellido().getValue());
-		c.setNombre(elemNombres().getValue());
-		// c.setTipoDocumento(elemTipoDocumento().getValue());
-		c.setDni(elemNroDocumento().getValue());
-		c.setDireccion(elemDireccion().getValue());
-		c.setLocalidad(elemLocalidad().getValue());
-		c.setTelefono(elemTelefono().getValue());
 
-		// Guardo el cliente en la central!!!!
-		Central.getInstance().addConductor(c);
+		try {  // si retorna 0x0010 es 'YES', 0x0020 es 'NO'
+			 if(Messagebox.show("¿Confirma el alta?", "Mensaje de confirmación", Messagebox.YES | Messagebox.NO ,
+			    Messagebox.QUESTION)==16)  
+			    {
+				c.setIdConductor(elemLegajo().getValue());
+		        c.setApellido(elemApellido().getValue());
+		        c.setNombre(elemNombres().getValue());
+		        // c.setTipoDocumento(elemTipoDocumento().getValue());
+		        c.setDni(elemNroDocumento().getValue());
+		        c.setDireccion(elemDireccion().getValue());
+		        c.setLocalidad(elemLocalidad().getValue());
+		        c.setTelefono(elemTelefono().getValue());
 
+		        // Guardo el cliente en la central!!!!
+		        Central.getInstance().addConductor(c);
+   			    }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			 e.printStackTrace();
+		}							
 		// Cierro la ventana
 		this.cerrar();
 	}
 
 	public void modifConductor() {
-		// Creo el conductor!!!
+		// Levanto los datos del conductor!!!
 		Conductor c = Central.getInstance().getConductorPorId(elemLegajo().getValue());
+				
+		try {  // si retorna 0x0010 es 'YES', 0x0020 es 'NO'
+			 if(Messagebox.show("¿Confirma la modificación?", "Mensaje de confirmación", Messagebox.YES | Messagebox.NO ,
+			    Messagebox.QUESTION)==16)  
+			    {
+				c.setApellido(elemApellido().getValue());
+				c.setNombre(elemNombres().getValue());
+				// c.setTipoDocumento(elemTipoDocumento().getValue());
+				c.setDni(elemNroDocumento().getValue());
+				c.setDireccion(elemDireccion().getValue());
+				c.setLocalidad(elemLocalidad().getValue());
+				c.setTelefono(elemTelefono().getValue());
 
-		c.setApellido(elemApellido().getValue());
-		c.setNombre(elemNombres().getValue());
-		// c.setTipoDocumento(elemTipoDocumento().getValue());
-		c.setDni(elemNroDocumento().getValue());
-		c.setDireccion(elemDireccion().getValue());
-		c.setLocalidad(elemLocalidad().getValue());
-		c.setTelefono(elemTelefono().getValue());
-
-		// Actualizo el cliente en la central!!!!
-		Central.getInstance().addConductor(c);
-
+				// Actualizo el cliente en la central!!!!		 
+   			    Central.getInstance().addConductor(c);
+   			    }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			 e.printStackTrace();
+		}							
 		// Cierro la ventana
 		this.cerrar();
 	}

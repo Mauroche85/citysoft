@@ -4,13 +4,13 @@
 <zk>
 	<window id="winListadoCliente" title="Listado de Clientes" border="normal"
 		use="ar.edu.utn.frba.proyecto.citysoft.controller.listadoCliente.VentanaListadoClientes"
-		mode="modal" width="900px" height="210px" sizable="false" closable="true">
+		mode="modal" width="80%" height="30%" sizable="true" closable="true">
 		<borderlayout>
 			<center>
 				<grid id="grid"
 					model="@{winListadoCliente.getListaClientes, load-after='self.onChange'}">
 					<columns>
-						<column width="100px" label="Legajo" align="center" />
+						<column width="100px" label="Nro. de cliente" align="center" />
 						<column width="150px" label="Apellido" />
 						<column width="150px" label="Nombres" />
 						<column width="150px" label="Documento" align="center" />
