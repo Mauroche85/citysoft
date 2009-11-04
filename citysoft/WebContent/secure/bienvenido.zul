@@ -3,24 +3,24 @@
 
 <zk>
 	<window id="winCliente" border="normal" mode="modal" width="98%" height="98%" sizable="true"
-		closable="true"
-		use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.VentanaCliente">
+		closable="true" use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.VentanaCliente">
 		<borderlayout>
 			<center flex="true">
 				<tabbox width="100%" height="100%" orient="vertical">
 					<tabs width="200px">
 						<tab label="Solicitar viaje nuevo" />
-						<tab id="tabSeguir" label="Seguir mi viaje" />
-						<tab id="tabViajesViejos" label="Ver viajes viejos" />
+						<tab label="Seguir mi viaje" />
+						<tab label="Ver viajes viejos" />
 					</tabs>
 					<tabpanels>
 						<tabpanel height="100%">
-							<include src="../viajeNuevo.zul" />
+							<include src="@{winCliente.ZUL__NUEVO_VIAJE}" />
 						</tabpanel>
-						<tabpanel height="100%" fulfill="tabSeguir.onSelect">
-							<include src="follower.zul" />
+						<tabpanel height="100%">
+							<include src="@{winCliente.ZUL__SEGUIDOR}" />
 						</tabpanel>
-						<tabpanel height="100%" fulfill="tabViajesViejos.onSelect">
+						<tabpanel height="100%">
+							<include src="@{winCliente.ZUL__SEGUIDOR_VIAJES_VIEJOS}" />
 						</tabpanel>
 					</tabpanels>
 				</tabbox>
