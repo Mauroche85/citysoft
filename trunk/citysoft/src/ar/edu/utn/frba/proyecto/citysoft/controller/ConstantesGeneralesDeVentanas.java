@@ -14,6 +14,9 @@ public interface ConstantesGeneralesDeVentanas {
 
 	String ZUL__LOGIN = "/login.zul";
 	String ZUL__BIENVENIDO = "/secure/bienvenido.zul";
+	String ZUL__SEGUIDOR = "/secure/follower.zul";
+	String ZUL__SEGUIDOR_VIAJES_VIEJOS = "/secure/seguidorDeViajesViejos.zul";
+	String ZUL__NUEVO_VIAJE = "/viajeNuevo.zul";
 
 	// **************************************
 	// ** IMAGENES - Para items de listas
