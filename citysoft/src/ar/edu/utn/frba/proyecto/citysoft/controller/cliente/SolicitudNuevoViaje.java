@@ -47,6 +47,7 @@ public class SolicitudNuevoViaje extends Window implements ConstantesGeneralesDe
 		GAddress gaOrigen = new GAddress();
 		String gOrigen = txtOrigenCalle.getValue() + " " + txtOrigenAltura.getValue() + ", "
 				+ txtOrigenProvincia.getValue() + ", Argentina";
+		System.out.println("gOrigen: " + gOrigen);
 		gaOrigen = GCoder.geocode(gOrigen);
 		double origenLatitud = gaOrigen.getLat();
 		double origenLongitud = gaOrigen.getLng();
@@ -85,9 +86,11 @@ public class SolicitudNuevoViaje extends Window implements ConstantesGeneralesDe
 		}
 		gm.setLat(origenLatitud);
 		gm.setLng(origenLongitud);
-		gm.setTooltiptext("Origen: " + gOrigen);
+		gm.setTooltiptext("Origen: " + gOrigen);				
+		System.out.println("padre: " + gm.getParent());		
+		gm.setParent(null);
 		gm.setParent(map);
-
+		
 		// **************************************
 		// ** MARKER DESTINO
 		// **************************************
@@ -102,6 +105,7 @@ public class SolicitudNuevoViaje extends Window implements ConstantesGeneralesDe
 		gmDestino.setLat(destinoLatitud);
 		gmDestino.setLng(destinoLongitud);
 		gmDestino.setTooltiptext("Destino: " + gDestino);
+		gmDestino.setParent(null);
 		gmDestino.setParent(map);
 
 	}
