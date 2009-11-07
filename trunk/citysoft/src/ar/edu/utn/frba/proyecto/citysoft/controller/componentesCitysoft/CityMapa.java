@@ -27,4 +27,11 @@ public class CityMapa extends Gmaps {
 		return this.marcadorQueMeCentra;
 	}
 
+	public void actualizarPosicionCentral() {
+		if (this.marcadorQueMeCentra != null) {
+			setLat(this.marcadorQueMeCentra.getLat());
+			setLng(this.marcadorQueMeCentra.getLng());
+		}
+	}
+
 }

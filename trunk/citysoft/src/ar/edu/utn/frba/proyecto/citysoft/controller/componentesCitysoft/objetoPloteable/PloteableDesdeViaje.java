@@ -85,6 +85,14 @@ public class PloteableDesdeViaje extends ObjetoPlotteable {
 	private CityMarcador marcadorTransportando;
 
 	// **************************************
+	// ** CONSTRUCTOR
+	// **************************************
+
+	public PloteableDesdeViaje(Viaje v) {
+		this.viaje = v;
+	}
+
+	// **************************************
 	// ** EJECUCION
 	// **************************************
 

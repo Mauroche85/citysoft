@@ -3,6 +3,7 @@ package ar.edu.utn.frba.proyecto.citysoft.modelo;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.NoSuchElementException;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -229,7 +230,11 @@ public class Vehiculo implements ObjetoDeDominio, Comparable<Vehiculo> {
 	}
 
 	public Track getUltimoTrack() {
-		return this.getTracks().last();
+		try {
+			return this.getTracks().last();
+		} catch (NoSuchElementException e) {
+			throw new RuntimeException("No se encontró la última posición del vehículo", e);
+		}
 	}
 
 	public void nuevoTrack(double lat, double lng) {

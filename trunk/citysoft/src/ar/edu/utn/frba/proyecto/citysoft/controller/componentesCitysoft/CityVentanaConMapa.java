@@ -48,7 +48,7 @@ import ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.objetoPl
  * @see CityMapa
  * @see CityMarcador
  */
-public class CityVentanaConMapa extends Window implements ConstantesCityVentanaConMapa {
+public abstract class CityVentanaConMapa extends Window {
 
 	private Map<String, List<ObjetoPlotteable>> listas;
 	private CityMapa mapa;
@@ -59,7 +59,7 @@ public class CityVentanaConMapa extends Window implements ConstantesCityVentanaC
 
 	public CityMapa elemMapa() {
 		if (this.mapa == null) {
-			this.mapa = (CityMapa) getFellow(COMP__CITYMAPA);
+			this.mapa = (CityMapa) getFellow(getIdMapa());
 		}
 		return this.mapa;
 	}
@@ -67,6 +67,8 @@ public class CityVentanaConMapa extends Window implements ConstantesCityVentanaC
 	// **************************************
 	// ** INTERFAZ
 	// **************************************
+
+	public abstract String getIdMapa();
 
 	public void registrarLista(String nombreLista, List<ObjetoPlotteable> lista) {
 		getListas().put(nombreLista, lista);
