@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Cliente;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Conductor;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.ObjetoDeDominio;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
@@ -94,8 +95,13 @@ public class LoteDeConductoresVehiculosYViajes implements Lote {
 
 	private Viaje buildViaje(int idViaje) {
 		Viaje v = new Viaje();
+		v.setCliente(findCliente());
 		v.setIdViaje(idViaje);
 		return v;
+	}
+
+	private Cliente findCliente() {
+		return Central.getInstance().getCliente("adelrio");
 	}
 
 }
