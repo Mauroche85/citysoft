@@ -2,13 +2,15 @@ package ar.edu.utn.frba.proyecto.citysoft.config;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class ArchivoDeConfiguracion {
 
 	private static final String ARCHIVO_CONFIGURACION = "citysoft.properties";
 	private static final String PROPIEDAD__AUTENTICACION_ACTIVADA = "gttr.autenticacionActivada";
-	private static final String PROPIEDAD__POBLAR_BASE = "gttr.poblarBase";
+	private static final String PROPIEDAD__POBLAR_BASE = "gttr.simulacion";
 
 	// **************************************
 	// ** Constructors
@@ -63,6 +65,18 @@ public class ArchivoDeConfiguracion {
 			throw new RuntimeException("El valor de configuracion para [poblar base] es incorrecto ("
 					+ poblarBase + ")");
 		}
+	}
+
+	public List<Integer> getIdsVehiculosSimulados(String nombreSimulacion) {
+		String vehiculosSimulados = this.properties.getProperty(PROPIEDAD__POBLAR_BASE + "."
+				+ nombreSimulacion, "");
+
+		List<Integer> l = new ArrayList<Integer>();
+		String[] split = vehiculosSimulados.split(",");
+		for (int i = 0; i < split.length; i++) {
+			l.add(i, Integer.parseInt(split[i]));
+		}
+		return l;
 	}
 
 }

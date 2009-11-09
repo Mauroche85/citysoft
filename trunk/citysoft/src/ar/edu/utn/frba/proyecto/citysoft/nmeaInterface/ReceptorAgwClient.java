@@ -79,6 +79,9 @@ public class ReceptorAgwClient implements Runnable, PacketUser {
 			NmeaGeopos pos = NmeaGeoposParser.parse(nmea);
 			Vehiculo v = Central.getInstance().getVehiculoPorTrackerId(trackerId);
 			v.nuevoTrack(pos.lat, pos.lng);
+			// Siempre que modificamos algo del vehiculo tenemos que
+			// re-guardarlo para actualizra la DB
+			Central.getInstance().addVehiculo(v);
 		} catch (IndexOutOfBoundsException iobe) {
 			System.out.println("*** ERROR: No se pudo interpretar sentencia NMEA: " + nmea);
 		}

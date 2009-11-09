@@ -44,8 +44,16 @@ public class Conductor extends Persona implements ObjetoDeDominio, Comparable<Co
 		return vehiculo;
 	}
 
+	/**
+	 * Hay doble conocimiento. El vehiculo sabe de su conductor, asi como que el
+	 * conductor sabe de su vehiculo. Por eso, se puede realizar en enlace de
+	 * cualquiera de los 2 lados, pues ambos le informaran al otro de la nueva
+	 * relacion
+	 */
 	public void setVehiculo(Vehiculo v) {
 		this.vehiculo = v;
+		if (v.getConductor() != null && !v.getConductor().equals(this))
+			v.setConductor(this);
 	}
 
 	public int compareTo(Conductor theOther) {
