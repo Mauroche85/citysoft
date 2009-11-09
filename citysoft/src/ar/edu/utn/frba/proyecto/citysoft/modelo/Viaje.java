@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import com.blogspot.unserializableone.GAddress;
+import com.blogspot.unserializableone.GCoder;
+
 /**
  * <li>Viaje EN CURSO: es un viaje TRANSPORTANDO o ASIGNADO
  * 
@@ -62,6 +65,14 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 
 	public Viaje() {
 		this.idViaje = Central.getInstance().getGeneradorDeIds().getProximoIdViaje();
+		this.estado = ESTADO_PENDIENTE;
+	}
+
+	public Viaje(int idViaje) {
+		if (Central.getInstance().getViaje(idViaje) != null) {
+			throw new RuntimeException("Ya existe un viaje con el id " + idViaje);
+		}
+		this.idViaje = idViaje;
 		this.estado = ESTADO_PENDIENTE;
 	}
 
@@ -226,6 +237,8 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	}
 
 	public double getOrigenLatitud() {
+		if (this.origenLatitud == 0)
+			reconocerCoordenadas();
 		return origenLatitud;
 	}
 
@@ -234,6 +247,8 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	}
 
 	public double getOrigenLongitud() {
+		if (this.origenLongitud == 0)
+			reconocerCoordenadas();
 		return origenLongitud;
 	}
 
@@ -242,6 +257,8 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	}
 
 	public double getDestinoLatitud() {
+		if (this.destinoLatitud == 0)
+			reconocerCoordenadas();
 		return destinoLatitud;
 	}
 
@@ -250,6 +267,8 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	}
 
 	public double getDestinoLongitud() {
+		if (this.destinoLongitud == 0)
+			reconocerCoordenadas();
 		return destinoLongitud;
 	}
 
@@ -288,7 +307,7 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 		this.setHoraAsignado(new Date());
 		this.estado = ESTADO_ASIGNADO;
 	}
-	
+
 	public void liberar() {
 		validarViajeAsignado();
 		this.getVehiculo().limpiarViajeEnCurso();
@@ -330,6 +349,27 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 		return tracks;
 	}
 
+	public void reconocerCoordenadas() {
+		String strAddress;
+		GAddress googleAddress = new GAddress();
+		// **************************************
+		// ** Busco cordenadas origen
+		// **************************************
+		strAddress = this.origenCalle + " " + this.origenAltura + ", " + this.origenProvincia
+				+ ", Argentina";
+		googleAddress = GCoder.geocode(strAddress);
+		this.origenLatitud = googleAddress.getLat();
+		this.origenLongitud = googleAddress.getLng();
+		// **************************************
+		// ** Busco cordenadas destino
+		// **************************************
+		strAddress = this.destinoCalle + " " + this.destinoAltura + ", " + this.destinoProvincia
+				+ ", Argentina";
+		googleAddress = GCoder.geocode(strAddress);
+		this.destinoLatitud = googleAddress.getLat();
+		this.destinoLongitud = googleAddress.getLng();
+	}
+
 	// **************************************
 	// ** Helpers
 	// **************************************
@@ -351,9 +391,9 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 			throw new RuntimeException("El viaje debería estar transportando (" + this.estado + ")");
 		}
 	}
-	
+
 	public void validarViajeEnCurso() {
-		if (!this.estado.equals(ESTADO_TRANSPORTANDO) || !this.estado.equals(ESTADO_ASIGNADO)) {
+		if (!this.estado.equals(ESTADO_TRANSPORTANDO) && !this.estado.equals(ESTADO_ASIGNADO)) {
 			throw new RuntimeException("El viaje debería estar en curso (" + this.estado + ")");
 		}
 	}

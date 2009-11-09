@@ -7,6 +7,8 @@ import java.util.NoSuchElementException;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import ar.edu.utn.frba.proyecto.citysoft.excepciones.ExcepcionDeObjetoInexistente;
+
 /**
  * @version 1.0
  * @param <T>
@@ -41,6 +43,16 @@ public class Vehiculo implements ObjetoDeDominio, Comparable<Vehiculo> {
 
 	public Vehiculo() {
 		this.setIdVehiculo(Central.getInstance().getGeneradorDeIds().getProximoIdVehiculo());
+	}
+
+	public Vehiculo(int idVehiculo) {
+		try {
+			Central.getInstance().getVehiculoPorId(idVehiculo);
+			throw new RuntimeException("Ya existe un vehiculo con el id " + idVehiculo);
+		} catch (ExcepcionDeObjetoInexistente e) {
+			// Todo bien
+			this.idVehiculo = idVehiculo;
+		}
 	}
 
 	// **************************************
@@ -147,8 +159,16 @@ public class Vehiculo implements ObjetoDeDominio, Comparable<Vehiculo> {
 		return conductor;
 	}
 
-	public void setConductor(Conductor conductor) {
-		this.conductor = conductor;
+	/**
+	 * Hay doble conocimiento. El vehiculo sabe de su conductor, asi como que el
+	 * conductor sabe de su vehiculo. Por eso, se puede realizar en enlace de
+	 * cualquiera de los 2 lados, pues ambos le informaran al otro de la nueva
+	 * relacion
+	 */
+	public void setConductor(Conductor c) {
+		this.conductor = c;
+		if (c.getVehiculo() != null && !c.getVehiculo().equals(this))
+			c.setVehiculo(this);
 	}
 
 	// **************************************

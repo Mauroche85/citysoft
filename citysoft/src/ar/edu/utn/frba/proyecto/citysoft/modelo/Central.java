@@ -5,8 +5,8 @@ import java.util.Collection;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 
+import ar.edu.utn.frba.proyecto.citysoft.excepciones.ExcepcionDeObjetoInexistente;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.persistencia.ColeccionPersistente;
-
 
 public class Central implements ObjetoDeDominio {
 
@@ -84,7 +84,6 @@ public class Central implements ObjetoDeDominio {
 		});
 	}
 
-		
 	public void addVehiculo(Vehiculo v) {
 		this.vehiculos.add(v);
 	}
@@ -97,10 +96,10 @@ public class Central implements ObjetoDeDominio {
 		return conductores;
 	}
 
-	public void addConductor(Conductor conductor) {		
-		 this.conductores.add(conductor);
+	public void addConductor(Conductor conductor) {
+		this.conductores.add(conductor);
 	}
-	
+
 	public void updateConductor(Conductor conductor) {
 		this.conductores.add(conductor);
 	}
@@ -231,15 +230,23 @@ public class Central implements ObjetoDeDominio {
 		});
 	}
 
+	/**
+	 * @throws ExcepcionDeObjetoInexistente
+	 *             si el vehiculo no existe
+	 */
 	public Vehiculo getVehiculoPorId(final int idVehiculo) {
-		// TODO: que pasa si no lo encuentra??? devuelve null???
-		return (Vehiculo) CollectionUtils.find(this.vehiculos, new Predicate() {
+		Vehiculo vehiculo = (Vehiculo) CollectionUtils.find(this.vehiculos, new Predicate() {
 			@Override
 			public boolean evaluate(Object arg0) {
 				Vehiculo c = (Vehiculo) arg0;
 				return c.getIdVehiculo() == idVehiculo;
 			}
 		});
+		if (vehiculo == null)
+			throw new ExcepcionDeObjetoInexistente("No se pudo encontrar vehiculo con el id "
+					+ idVehiculo);
+		else
+			return vehiculo;
 	}
 
 	public Vehiculo getVehiculoPorPatente(final String patente) {

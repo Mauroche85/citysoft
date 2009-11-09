@@ -70,7 +70,7 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 	// **************************************
 
 	public void setViajeBajoTransporteSeguido(Viaje v, boolean seguir) {
-		v.validarViajeEnCurso();
+		v.validarViajeTransportando();
 		if (seguir) {
 			Gmarker marker = buildMarker(v);
 			marker.setParent(this);
@@ -85,7 +85,7 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 	}
 
 	public void setViajeAsignadoSeguido(Viaje v, boolean seguir) {
-		v.validarViajeEnCurso();
+		v.validarViajeAsignado();
 		if (seguir) {
 			Gmarker marker = buildMarker(v);
 			marker.setParent(this);

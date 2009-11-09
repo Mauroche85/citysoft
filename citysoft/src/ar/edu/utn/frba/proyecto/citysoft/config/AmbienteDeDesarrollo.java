@@ -8,6 +8,10 @@ import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.Lote;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.LoteDeClientes;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.LoteDeConductoresVehiculosYViajes;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.LoteDeVehiculosDesactivados;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.entrega.LoteDeEntregaClientes;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.entrega.LoteDeEntregaVehiculoReal;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.entrega.LoteDeEntregaVehiculosSimulados;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.entrega.LoteDeEntregaViajeReal;
 
 /**
  * Ver el javadoc de {@link Lote}.
@@ -44,9 +48,22 @@ public class AmbienteDeDesarrollo {
 	private void configure() {
 		// TODO mantener la configuración actualizada. Ir completando con los
 		// sucesivos lotes
+		//
+		// configureLoteDeDesarrollo();
+		configureLoteDeEntrega();
+	}
+
+	private void configureLoteDeDesarrollo() {
 		this.lotes.add(new LoteDeClientes());
 		this.lotes.add(new LoteDeConductoresVehiculosYViajes());
 		this.lotes.add(new LoteDeVehiculosDesactivados());
+	}
+
+	private void configureLoteDeEntrega() {
+		this.lotes.add(new LoteDeEntregaClientes());
+		this.lotes.add(new LoteDeEntregaVehiculosSimulados());
+		this.lotes.add(new LoteDeEntregaVehiculoReal());
+		this.lotes.add(new LoteDeEntregaViajeReal());
 	}
 
 	// ***************************************

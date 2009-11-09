@@ -51,10 +51,10 @@
 												<label value="@{v}" />
 												<checkbox
 													checked="@{self.parent.parent.estaSiendoSeguidoElViajeBajoTransporte, access='load'}"
-													onCheck="winOperador.elemMapa().setViajeBajoTransporteSeguido(self.getParent().getParent().getValue(), self.isChecked());" />
+													onCheck="winOperador.elemMapa().setViajeBajoTransporteSeguido(self.getParent().getParent().viajeSeleccionado(), self.isChecked());" />
 												<radio
 													checked="@{self.parent.parent.mapaCentradoEnMi, access='load'}"
-													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().getValue());" />
+													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().viajeSeleccionado());" />
 											</hbox>
 										</listcell>
 									</listitem>
@@ -83,10 +83,10 @@
 												<label value="@{v}" />
 												<checkbox
 													checked="@{self.parent.parent.estaSiendoSeguidoElViajeAsignado, access='load'}"
-													onCheck="winOperador.elemMapa().setViajeAsignadoSeguido(self.getParent().getParent().getValue(), self.isChecked());" />
+													onCheck="winOperador.elemMapa().setViajeAsignadoSeguido(self.getParent().getParent().viajeSeleccionado(), self.isChecked());" />
 												<radio
 													checked="@{self.parent.parent.mapaCentradoEnMi, access='load'}"
-													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().getValue());" />
+													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().viajeSeleccionado());" />
 											</hbox>
 										</listcell>
 									</listitem>
@@ -118,10 +118,10 @@
 												<label value="@{v.idViaje}" />
 												<checkbox
 													checked="@{self.parent.parent.estaMarcadoElViajePendiente, access='load'}"
-													onCheck="winOperador.elemMapa().setViajePendienteMarcado(self.getParent().getParent().getValue(), self.isChecked());" />
+													onCheck="winOperador.elemMapa().setViajePendienteMarcado(self.getParent().getParent().viajeSeleccionado(), self.isChecked());" />
 												<radio
 													checked="@{self.parent.parent.mapaCentradoEnMi, access='load'}"
-													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().getValue());" />
+													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().viajeSeleccionado());" />
 											</hbox>
 										</listcell>
 									</listitem>
@@ -153,10 +153,10 @@
 												<label value="@{tl.patente}" />
 												<checkbox
 													checked="@{self.parent.parent.estaSiendoSeguidoElVehiculo, access='load'}"
-													onCheck="winOperador.elemMapa().setVehiculoSeguido(self.getParent().getParent().getValue(), self.isChecked());" />
+													onCheck="winOperador.elemMapa().setVehiculoSeguido(self.getParent().getParent().vehiculoSeleccionado(), self.isChecked());" />
 												<radio
 													checked="@{self.parent.parent.mapaCentradoEnMi, access='load'}"
-													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().getValue());" />
+													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().vehiculoSeleccionado());" />
 											</hbox>
 										</listcell>
 									</listitem>

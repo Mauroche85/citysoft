@@ -36,7 +36,15 @@ public class VentanaViajesViejos extends CityVentanaConMapa implements Constante
 	}
 
 	// **************************************
-	// ** EXECUTION
+	// ** INTERFAZ PARA ZUL
+	// **************************************
+
+	public Collection<ObjetoPlotteable> getHistorialDeViajes() {
+		return obtenerLista(LISTA_VIAJES_VIEJOS);
+	}
+
+	// **************************************
+	// ** SINCRONIZACION
 	// **************************************
 
 	public void sincronizarListaViajesViejos() {
