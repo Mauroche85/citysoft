@@ -2,7 +2,6 @@ package ar.edu.utn.frba.proyecto.citysoft.modelo;
 
 import java.util.Date;
 import java.util.SortedSet;
-import java.util.TreeSet;
 
 import com.blogspot.unserializableone.GAddress;
 import com.blogspot.unserializableone.GCoder;
@@ -301,13 +300,22 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	// **************************************
 
 	public void asignar(Vehiculo t) {
+		asignar(t, new Date());
+	}
+
+	public void asignar(Vehiculo t, Date horaAsignacion) {
 		validarViajePendiente();
 		this.vehiculo = t;
 		t.setViajeEnCurso(this);
-		this.setHoraAsignado(new Date());
+		this.setHoraAsignado(horaAsignacion);
 		this.estado = ESTADO_ASIGNADO;
 	}
 
+	/**
+	 * Esta accion retrodece el estado del taxi. Es como si le hubiesen asignado
+	 * un chofer y luego cambiado por otro, o desasignado chofer para luego
+	 * cancelar el viaje.
+	 */
 	public void liberar() {
 		validarViajeAsignado();
 		this.getVehiculo().limpiarViajeEnCurso();
@@ -316,14 +324,22 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	}
 
 	public void comenzar() {
+		comenzar(new Date());
+	}
+
+	public void comenzar(Date horaComienzo) {
 		validarViajeAsignado();
-		this.setHoraComienzo(new Date());
+		this.setHoraComienzo(horaComienzo);
 		this.estado = ESTADO_TRANSPORTANDO;
 	}
 
 	public void finalizar() {
+		finalizar(new Date());
+	}
+
+	public void finalizar(Date horaFinalizacion) {
 		validarViajeTransportando();
-		this.setHoraFin(new Date());
+		this.setHoraFin(horaFinalizacion);
 		this.getVehiculo().limpiarViajeEnCurso();
 		this.estado = ESTADO_COMPLETADO;
 	}
@@ -339,14 +355,14 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	 *         hasta que finaliza el viajes
 	 */
 	public SortedSet<Track> getTracksDelViaje() {
-		SortedSet<Track> tracks = new TreeSet<Track>();
 		Vehiculo v = getVehiculo();
-		Track fromElement = new Track();
-		fromElement.setInstante(this.getHoraComienzo());
-		Track toElement = new Track();
-		toElement.setInstante(this.getHoraFin());
-		v.getTracks().subSet(fromElement, toElement);
-		return tracks;
+		// Desde (intervalo cerrado)
+		Track fromElement = new Track(this.getHoraComienzo());
+		// Hasta (intervalo abierto ==> sumarle un cachitin)
+		Date hasta = new Date(this.getHoraFin().getTime() + 1);
+		Track toElement = new Track(hasta);
+		// Tomamos el subconjunto y lo devolvemos!!!
+		return v.getTracks().subSet(fromElement, toElement);
 	}
 
 	public void reconocerCoordenadas() {

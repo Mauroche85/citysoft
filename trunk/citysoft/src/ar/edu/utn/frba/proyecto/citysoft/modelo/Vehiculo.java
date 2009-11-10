@@ -258,10 +258,12 @@ public class Vehiculo implements ObjetoDeDominio, Comparable<Vehiculo> {
 	}
 
 	public void nuevoTrack(double lat, double lng) {
+		nuevoTrack(lat, lng, new Date());
+	}
+
+	public void nuevoTrack(double lat, double lng, Date instanteOrigenDelTrack) {
 		Track t = new Track();
-		// TODO ver que onda con el ID de track
-		t.setIdTrack(-1);
-		t.setInstante(new Date());
+		t.setInstante(instanteOrigenDelTrack);
 		t.setVehiculo(this);
 		t.setCoordenadas(new Coordenadas(lat, lng));
 		this.tracks.add(t);

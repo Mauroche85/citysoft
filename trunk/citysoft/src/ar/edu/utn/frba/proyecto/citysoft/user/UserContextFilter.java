@@ -9,6 +9,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import ar.edu.utn.frba.proyecto.citysoft.config.ArchivoDeConfiguracion;
 import ar.edu.utn.frba.proyecto.citysoft.controller.ConstantesGeneralesDeVentanas;
 
 public class UserContextFilter implements ConstantesGeneralesDeVentanas, Filter {
@@ -30,11 +31,24 @@ public class UserContextFilter implements ConstantesGeneralesDeVentanas, Filter 
 		}
 		// Ahora, ponemos a disponibilidad del thread el userContext posta
 		UserContext.setUserContext(userContext);
+		// Previo a seguir, hacemos el login automatico
+		doAutoLogin();
 		chain.doFilter(req, res);
 	}
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
+	}
+
+	// **************************************
+	// ** Helpers
+	// **************************************
+
+	private void doAutoLogin() {
+		if (ArchivoDeConfiguracion.getInstance().getLoginAutomatico()
+				&& !UserContext.getUserContext().isUsuarioAutenticado()) {
+			UserContext.getUserContext().login("ctomassino", "citysoft");
+		}
 	}
 
 }

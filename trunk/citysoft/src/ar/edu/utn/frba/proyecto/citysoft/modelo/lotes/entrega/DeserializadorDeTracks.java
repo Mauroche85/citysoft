@@ -1,22 +1,24 @@
-package ar.edu.utn.frba.proyecto.citysoft.nmeaInterface;
+package ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.entrega;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
 
 import ar.edu.utn.frba.proyecto.citysoft.config.ArchivoDeConfiguracion;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Coordenadas;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
-import ar.edu.utn.frba.proyecto.citysoft.utils.CoordenadasUtils;
 
 /**
- * El simulador NMEA GTTR es nuestro simulador. Sirve para generar tramas en
- * base a un recorrido particular, que serán inyectadas a diferentes vehiculos.
- * 
- * La misma simulación puede ser usada para diferentes vehiculos. La unica
- * diferencia es que algunos comienzan a simular unos segundos mas tarde.
+ * El deserializador de tracks es parecido al simulador interno solo que se
+ * utiliza para generar los lotes.
  */
-public class SimuladorNmeaGttr implements Runnable {
+public class DeserializadorDeTracks implements Runnable {
 
 	// **************************************
 	// ** Atributos
@@ -30,7 +32,7 @@ public class SimuladorNmeaGttr implements Runnable {
 	// ** Constructor
 	// **************************************
 
-	public SimuladorNmeaGttr(String nombreSimulacion, String archivoSimulacion) {
+	public DeserializadorDeTracks(String nombreSimulacion, String archivoSimulacion) {
 		this.nombreSimulacion = nombreSimulacion;
 		this.archivoSimulacion = archivoSimulacion;
 	}
@@ -44,9 +46,11 @@ public class SimuladorNmeaGttr implements Runnable {
 	 */
 	@Override
 	public void run() {
-		ArchivoDeConfiguracion cfg = ArchivoDeConfiguracion.getInstance();
-		List<Integer> idsVehiculosSimulados = cfg.getIdsVehiculosSimulados(this.nombreSimulacion);
-		this.listaCoordenadas = CoordenadasUtils.leerCoordenadas(this.archivoSimulacion);
+		List<Integer> idsVehiculosSimulados = ArchivoDeConfiguracion.getInstance()
+				.getIdsVehiculosSimulados(this.nombreSimulacion);
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(
+				this.archivoSimulacion);
+		cargarCoordenadas(new BufferedReader(new InputStreamReader(inputStream)));
 		while (true) {
 			doSleep();
 			inyectarCoordenadasDeMentiritas(idsVehiculosSimulados);
@@ -56,6 +60,22 @@ public class SimuladorNmeaGttr implements Runnable {
 	// **************************************
 	// ** HELPERS
 	// **************************************
+
+	private void cargarCoordenadas(BufferedReader reader) {
+		try {
+			while (reader.ready()) {
+				String coordenadas = reader.readLine();
+				String[] split = coordenadas.split(",");
+				double lat = Double.parseDouble(split[0]);
+				double lng = Double.parseDouble(split[1]);
+				Coordenadas c = new Coordenadas(lat, lng);
+				this.listaCoordenadas.add(c);
+			}
+		} catch (IOException e) {
+			Logger.getLogger(this.getClass()).error("No se puede leer coordenadas", e);
+			throw new RuntimeException(e);
+		}
+	}
 
 	private void doSleep() {
 		try {

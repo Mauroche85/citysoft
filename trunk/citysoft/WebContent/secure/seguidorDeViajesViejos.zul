@@ -1,5 +1,5 @@
 <?page title="Mis Viajes Viejos" ?>
-<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="winViajesViejos"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="winViajesViejos" ?>
 
 <window id="winViajesViejos" width="100%" height="100%"
 	use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.viajesViejos.VentanaViajesViejos">
@@ -15,6 +15,7 @@
 		<!-- ********** GOOGLE MAP ********** -->
 		<center flex="true">
 			<gmaps id="cityMapa" showZoomCtrl="true" showTypeCtrl="true" showOverviewCtrl="true"
+				lat="-34.596741" lng="-58.425829"
 				use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.viajesViejos.MapaViajesViejos">
 			</gmaps>
 		</center>
@@ -26,20 +27,8 @@
 				<listhead>
 					<listheader label="Viajes en mapa" sort="auto" />
 				</listhead>
-				<listitem
-					use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.follower.ItemDeListaSeguimiento"
-					self="@{each=v}" idVehiculo="@{v.idVehiculo}">
-					<listcell>
-						<label value="Viaje" />
-						<label value="@{v.viajeEnCurso.idViaje}" />
-						<image src="/images/pin.png" align="absbottom" visible="false" />
-					</listcell>
-					<listcell>
-						<image
-							use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.follower.ImagenRemoverVehiculoSeguido"
-							src="/images/cross.png" align="absbottom" onClick="self.removerVehiculo();" />
-					</listcell>
-				</listitem>
+				<listitem self="@{each=op}" ventana="${winViajesViejos}" objetoPloteable="@{op}"
+					use="ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.objetoPloteable.ListitemPloteable" />
 			</listbox>
 		</east>
 	</borderlayout>

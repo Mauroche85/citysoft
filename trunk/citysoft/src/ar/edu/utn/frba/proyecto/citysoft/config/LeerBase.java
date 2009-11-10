@@ -37,6 +37,8 @@ public class LeerBase {
 	// **************************************
 
 	public static void main(String[] args) {
+		AmbienteDeDesarrollo.getInstance().crearAmbiente();
+		// Empezamos de 0
 		ContextoAplicacion.getInstance().abrirDb();
 		// Central.getInstance().initialize();
 		LeerBase.getInstance().mostrarObjetos();

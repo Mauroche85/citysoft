@@ -14,7 +14,7 @@ import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 import ar.edu.utn.frba.proyecto.citysoft.user.UserContext;
 
-public class VentanaViajesViejos extends CityVentanaConMapa implements ConstantesViajesViejos {
+public class VentanaViajesViejos extends CityVentanaConMapa implements ConstantesHistorialDeViajes {
 
 	private static final String LISTA_VIAJES_VIEJOS = "listaViajesViejos";
 

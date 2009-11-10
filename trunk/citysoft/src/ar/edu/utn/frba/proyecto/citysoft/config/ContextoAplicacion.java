@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.proyecto.citysoft.config;
 
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
 
 import com.db4o.Db4o;
@@ -50,6 +51,7 @@ public class ContextoAplicacion {
 		while (result.hasNext()) {
 			db.delete(result.next());
 		}
+		Central.reset();
 	}
 
 	public ObjectContainer obtenerDb() {
