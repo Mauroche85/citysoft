@@ -38,7 +38,12 @@ public class Central implements ObjetoDeDominio {
 		this.viajes = new ColeccionPersistente<Viaje>(Viaje.class);
 	}
 
-	public void terminate() {
+	public static void reset() {
+		terminate();
+		getInstance().initialize();
+	}
+
+	private static void terminate() {
 		thiz = new Central();
 	}
 
@@ -215,17 +220,6 @@ public class Central implements ObjetoDeDominio {
 			public boolean evaluate(Object arg0) {
 				Vehiculo t = (Vehiculo) arg0;
 				return t.getIdTracker().equals(idTracker);
-			}
-		});
-	}
-
-	public Vehiculo getVehiculo(final String usuario) {
-		// TODO: que pasa si no lo encuentra??? devuelve null???
-		return (Vehiculo) CollectionUtils.find(this.vehiculos, new Predicate() {
-			@Override
-			public boolean evaluate(Object arg0) {
-				Vehiculo c = (Vehiculo) arg0;
-				return c.getNombreUsuario().equals(usuario);
 			}
 		});
 	}

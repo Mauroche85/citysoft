@@ -44,7 +44,7 @@ public class CityMarcador extends Gmarker {
 	@Override
 	public void setLat(double lat) {
 		super.setLat(lat);
-		if (soyCentroDelMapa()) {
+		if (tengoMapa() && soyCentroDelMapa()) {
 			getMapa().setLat(lat);
 		}
 	}
@@ -52,7 +52,7 @@ public class CityMarcador extends Gmarker {
 	@Override
 	public void setLng(double lng) {
 		super.setLng(lng);
-		if (soyCentroDelMapa()) {
+		if (tengoMapa() && soyCentroDelMapa()) {
 			getMapa().setLng(lng);
 		}
 	}
@@ -65,8 +65,12 @@ public class CityMarcador extends Gmarker {
 		return (CityMapa) this.getParent();
 	}
 
+	private boolean tengoMapa() {
+		return getMapa() != null;
+	}
+
 	private boolean soyCentroDelMapa() {
-		return getMapa().quienMeCentra().equals(this);
+		return this.equals(getMapa().quienMeCentra());
 	}
 
 }

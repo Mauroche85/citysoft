@@ -55,4 +55,12 @@ public class LoteDeEntregaVehiculoReal implements Lote {
 		return c;
 	}
 
+	// **************************************
+	// ** Object
+	// **************************************
+
+	public String toString() {
+		return "Lote de vehiculo de nico para entrega final";
+	}
+
 }

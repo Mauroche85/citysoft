@@ -61,4 +61,12 @@ public class LoteDeEntregaVehiculosSimulados implements Lote {
 		return c;
 	}
 
+	// **************************************
+	// ** Object
+	// **************************************
+
+	public String toString() {
+		return "Lote de vehiculos simulados para entrega final";
+	}
+
 }

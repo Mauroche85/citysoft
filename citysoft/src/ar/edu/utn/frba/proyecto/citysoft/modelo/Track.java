@@ -15,6 +15,19 @@ public class Track implements ObjetoDeDominio, Comparable<Track> {
 	private Coordenadas coordenadas;
 
 	// **************************************
+	// ** Constructor
+	// **************************************
+
+	public Track() {
+		this.idTrack = Central.getInstance().getGeneradorDeIds().getProximoIdTrack();
+	}
+
+	public Track(Date origenDelTrack) {
+		this.idTrack = Central.getInstance().getGeneradorDeIds().getProximoIdTrack();
+		this.instante = origenDelTrack;
+	}
+
+	// **************************************
 	// ** Accessors
 	// **************************************
 

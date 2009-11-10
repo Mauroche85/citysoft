@@ -3,9 +3,13 @@ package ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.objetoP
 import java.util.ArrayList;
 import java.util.List;
 
+import org.zkoss.gmaps.Gpolyline;
+
 import ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.CityMapa;
 import ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.CityMarcador;
 import ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.CityMarcadorFactory;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Coordenadas;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.Track;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 
 /**
@@ -32,12 +36,18 @@ public class PloteableDesdeViaje extends ObjetoPlotteable {
 			this.marcadorDestino.detach();
 			if (this.viaje.estaTransportando())
 				this.marcadorTransportando.detach();
+			else if (this.viaje.fueCompletado()) {
+				this.polilineaRuta.detach();
+			}
 		}
 		// Si no existen los marcadores, se crean solos
 		getMarcadorOrigen().setParent(nuevoMapa);
 		getMarcadorDestino().setParent(nuevoMapa);
 		if (this.viaje.estaTransportando())
 			getMarcadorTransportando().setParent(nuevoMapa);
+		else if (this.viaje.fueCompletado()) {
+			getPolilinea().setParent(nuevoMapa);
+		}
 		// Ahora si... declaramos el nuevo mapa!
 		this.mapa = nuevoMapa;
 	}
@@ -50,11 +60,20 @@ public class PloteableDesdeViaje extends ObjetoPlotteable {
 	public void quitarMarcadoresDelMapa() {
 		this.marcadorOrigen.detach();
 		this.marcadorDestino.detach();
-		this.marcadorTransportando.detach();
+		if (this.viaje.estaTransportando())
+			this.marcadorTransportando.detach();
+		else if (this.viaje.fueCompletado()) {
+			this.polilineaRuta.detach();
+		}
 		// Perdemos las referencias a lo que creiamos era importante
 		this.marcadorOrigen = null;
 		this.marcadorDestino = null;
-		this.marcadorTransportando = null;
+		if (this.viaje.estaTransportando())
+			this.marcadorTransportando = null;
+		else if (this.viaje.fueCompletado()) {
+			this.polilineaRuta = null;
+		}
+		// Chau mapa
 		this.mapa = null;
 	}
 
@@ -83,6 +102,7 @@ public class PloteableDesdeViaje extends ObjetoPlotteable {
 	private CityMarcador marcadorOrigen;
 	private CityMarcador marcadorDestino;
 	private CityMarcador marcadorTransportando;
+	private Gpolyline polilineaRuta;
 
 	// **************************************
 	// ** CONSTRUCTOR
@@ -108,25 +128,38 @@ public class PloteableDesdeViaje extends ObjetoPlotteable {
 		return false;
 	}
 
-	public CityMarcador getMarcadorOrigen() {
+	private CityMarcador getMarcadorOrigen() {
 		if (this.marcadorOrigen == null) {
 			this.marcadorOrigen = CityMarcadorFactory.buildMarcadorOrigen(this.viaje);
 		}
 		return this.marcadorOrigen;
 	}
 
-	public CityMarcador getMarcadorDestino() {
-		if (this.marcadorOrigen == null) {
-			this.marcadorOrigen = CityMarcadorFactory.buildMarcadorDestino(this.viaje);
+	private CityMarcador getMarcadorDestino() {
+		if (this.marcadorDestino == null) {
+			this.marcadorDestino = CityMarcadorFactory.buildMarcadorDestino(this.viaje);
 		}
-		return this.marcadorOrigen;
+		return this.marcadorDestino;
 	}
 
-	public CityMarcador getMarcadorTransportando() {
-		if (this.marcadorOrigen == null) {
-			this.marcadorOrigen = CityMarcadorFactory.buildMarcadorTransportando(this.viaje);
+	private CityMarcador getMarcadorTransportando() {
+		if (this.marcadorTransportando == null) {
+			this.marcadorTransportando = CityMarcadorFactory.buildMarcadorTransportando(this.viaje);
 		}
-		return this.marcadorOrigen;
+		return this.marcadorTransportando;
+	}
+
+	private Gpolyline getPolilinea() {
+		if (this.polilineaRuta == null) {
+			this.polilineaRuta = new Gpolyline();
+			this.polilineaRuta.setOpacity(50);
+			this.polilineaRuta.setColor("#0000FF");
+			for (Track track : this.viaje.getTracksDelViaje()) {
+				Coordenadas c = track.getCoordenadas();
+				this.polilineaRuta.addPoint(c.getLatitud(), c.getLongitud(), 3);
+			}
+		}
+		return this.polilineaRuta;
 	}
 
 	// **************************************

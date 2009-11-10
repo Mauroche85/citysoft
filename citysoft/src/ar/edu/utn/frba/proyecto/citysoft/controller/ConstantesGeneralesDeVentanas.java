@@ -22,6 +22,7 @@ public interface ConstantesGeneralesDeVentanas {
 	// ** IMAGENES - Para items de listas
 	// **************************************
 
+	String IMAGES__PIN = "/images/pin.png";
 	String IMAGES__ADD = "images/add.png";
 	String IMAGES__CHECK = "images/check.png";
 	String IMAGES__CANCEL = "images/cancel.png";

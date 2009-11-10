@@ -20,6 +20,7 @@ public class GeneradorDeIds {
 	private int idConductor;
 	private int idVehiculo;
 	private int idViaje;
+	private int idTrack;
 
 	// **************************************
 	// ** Constructor
@@ -41,6 +42,7 @@ public class GeneradorDeIds {
 		this.idConductor = 1000;
 		this.idViaje = 1000;
 		this.idVehiculo = 1000;
+		this.idTrack = 1000;
 		getDb().store(this);
 	}
 
@@ -68,6 +70,12 @@ public class GeneradorDeIds {
 
 	public int getProximoIdVehiculo() {
 		int i = this.idVehiculo++;
+		getDb().store(this);
+		return i;
+	}
+
+	public int getProximoIdTrack() {
+		int i = this.idTrack++;
 		getDb().store(this);
 		return i;
 	}

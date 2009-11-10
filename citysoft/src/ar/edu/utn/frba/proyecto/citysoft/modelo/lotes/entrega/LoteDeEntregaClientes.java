@@ -13,6 +13,12 @@ import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.Lote;
  */
 public class LoteDeEntregaClientes implements Lote {
 
+	/**
+	 * A Tomassino le creamos un viaje pendiente para la prueba, y un viaje
+	 * viejo para ver el historial de viajes.
+	 * 
+	 * @see LoteDeEntregaViajes
+	 */
 	@Override
 	public List<ObjetoDeDominio> getLote() {
 		List<ObjetoDeDominio> l = new ArrayList<ObjetoDeDominio>();
@@ -43,6 +49,14 @@ public class LoteDeEntregaClientes implements Lote {
 		cliente.setTelefono(telefono);
 
 		l.add(cliente);
+	}
+
+	// **************************************
+	// ** Object
+	// **************************************
+
+	public String toString() {
+		return "Lote de clientes para entrega final";
 	}
 
 }

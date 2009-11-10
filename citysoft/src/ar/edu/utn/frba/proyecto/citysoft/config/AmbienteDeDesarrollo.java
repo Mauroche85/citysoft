@@ -3,6 +3,9 @@ package ar.edu.utn.frba.proyecto.citysoft.config;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.Lote;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.LoteDeClientes;
@@ -11,7 +14,7 @@ import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.LoteDeVehiculosDesactivado
 import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.entrega.LoteDeEntregaClientes;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.entrega.LoteDeEntregaVehiculoReal;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.entrega.LoteDeEntregaVehiculosSimulados;
-import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.entrega.LoteDeEntregaViajeReal;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.lotes.entrega.LoteDeEntregaViajes;
 
 /**
  * Ver el javadoc de {@link Lote}.
@@ -63,7 +66,7 @@ public class AmbienteDeDesarrollo {
 		this.lotes.add(new LoteDeEntregaClientes());
 		this.lotes.add(new LoteDeEntregaVehiculosSimulados());
 		this.lotes.add(new LoteDeEntregaVehiculoReal());
-		this.lotes.add(new LoteDeEntregaViajeReal());
+		this.lotes.add(new LoteDeEntregaViajes());
 	}
 
 	// ***************************************
@@ -72,21 +75,31 @@ public class AmbienteDeDesarrollo {
 
 	public void cargar() {
 		for (Lote lote : this.lotes) {
+			getLog().info("Cargando lote: " + lote);
 			lote.cargar();
+			getLog().info("Lote cargado exitosamente");
 		}
+		// Re-inicializamos la central
+		Central.reset();
 	}
 
 	public void crearAmbiente() {
 		ContextoAplicacion.getInstance().abrirDb();
 		borrarYPoblarBase();
 		ContextoAplicacion.getInstance().cerrarDd();
-		Central.getInstance().terminate();
 	}
 
 	public void borrarYPoblarBase() {
 		ContextoAplicacion.getInstance().borrarDb();
-		Central.getInstance().initialize();
 		AmbienteDeDesarrollo.getInstance().cargar();
+	}
+
+	// **************************************
+	// ** Helpers
+	// **************************************
+
+	private Log getLog() {
+		return LogFactory.getLog(this.getClass());
 	}
 
 }
