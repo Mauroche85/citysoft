@@ -18,18 +18,17 @@
 					<column></column>
 				</columns>
 				<rows>
-					<row>
+					<row id="filaCliente" use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.ManipularComboUsuario">
 						<label value="Id cliente:" />
 						<!-- combobox model="@{orders}" selectedItem="@{selected}" value="@{selected.orderName}" -->
 						<!-- comboitem self="@{each=order}" label="@{order.orderName}" value="@{order.orderNumber}"/ -->
 						<!-- /combobox -->
-						<combobox id="stIdCliente" model="@{winNuevoViaje.listaClientes}"
-							use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.ManipularComboUsuario">
+						<combobox id="stIdCliente" model="@{winNuevoViaje.listaClientes}">
 							<comboitem self="@{each=cli}" label="@{cli.nombreUsuario}" />
 						</combobox>
 						<zscript>
-stIdCliente.cargarUsuario()
-</zscript>
+						filaCliente.cargarUsuario()
+						</zscript>
 					</row>
 					<row>
 						<label value="Hora de solicitud:" />
