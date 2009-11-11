@@ -105,7 +105,6 @@ public class UserContext {
 	public void logout() {
 		this.cliente = null;
 		this.usuarioAutenticado = false;
-		((HttpSession) Sessions.getCurrent().getNativeSession()).invalidate();
 		Sessions.getCurrent().invalidate();
 		Executions.sendRedirect(ConstantesGeneralesDeVentanas.ZUL__LOGIN);
 	}

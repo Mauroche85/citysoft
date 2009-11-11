@@ -29,7 +29,10 @@ public class Login extends Window implements ConstantesGeneralesDeVentanas {
 			if (forwardUri.startsWith(contextPath))
 				forwardUri = forwardUri.substring(contextPath.length());
 		} else {
-			forwardUri = ZUL__BIENVENIDO;
+			if (UserContext.getUserContext().isUsuarioOperador())
+				forwardUri = ZUL__MENU_OPERADOR;
+			else
+				forwardUri = ZUL__BIENVENIDO;
 		}
 		Executions.getCurrent().sendRedirect(forwardUri);
 	}
