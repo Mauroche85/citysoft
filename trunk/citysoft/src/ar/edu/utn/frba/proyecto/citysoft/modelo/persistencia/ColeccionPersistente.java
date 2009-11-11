@@ -1,9 +1,8 @@
 package ar.edu.utn.frba.proyecto.citysoft.modelo.persistencia;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
+import java.util.TreeSet;
 
 import ar.edu.utn.frba.proyecto.citysoft.config.ContextoAplicacion;
 
@@ -32,7 +31,7 @@ public class ColeccionPersistente<E> implements Collection<E> {
 	// ** Underlying collection
 	// **************************************
 
-	private List<E> l = new ArrayList<E>();
+	private TreeSet<E> l = new TreeSet<E>();
 
 	private ObjectContainer db;
 
