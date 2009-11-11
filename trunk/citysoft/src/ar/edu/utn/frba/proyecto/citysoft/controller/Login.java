@@ -10,12 +10,20 @@ import ar.edu.utn.frba.proyecto.citysoft.user.UserContext;
 
 public class Login extends Window implements ConstantesGeneralesDeVentanas {
 
+	// **************************************
+	// ** COMPOSICION DE PAGINA
+	// **************************************
+
 	public void onLoad() {
 		if (UserContext.getUserContext().isUsuarioAutenticado()) {
 			getFellow("boxLogin").setVisible(false);
 			getFellow("boxLogout").setVisible(true);
 		}
 	}
+
+	// **************************************
+	// ** EJECUCION
+	// **************************************
 
 	public void login(String forwardUri) throws IOException {
 		Textbox txtUsuario = (Textbox) this.getFellow("txtUsuario");

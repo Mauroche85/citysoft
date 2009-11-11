@@ -9,6 +9,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
+
 import ar.edu.utn.frba.proyecto.citysoft.config.ArchivoDeConfiguracion;
 import ar.edu.utn.frba.proyecto.citysoft.controller.ConstantesGeneralesDeVentanas;
 
@@ -21,9 +23,11 @@ public class UserContextFilter implements ConstantesGeneralesDeVentanas, Filter 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws java.io.IOException, javax.servlet.ServletException {
-		HttpSession session = ((HttpServletRequest) req).getSession(true);
+		HttpServletRequest request = (HttpServletRequest) req;
+		HttpSession session = request.getSession(true);
 		UserContext userContext = (UserContext) session.getAttribute(SESSION__USER_CONTEXT);
-		// Si es la primera vez que pasa por aca, el userContext es nulo. Por
+		// Si es la primera vez que pasa por aca, el userContext es nulo.
+		// Por
 		// tanto, lo creamos
 		if (userContext == null) {
 			userContext = new UserContext();
@@ -32,7 +36,7 @@ public class UserContextFilter implements ConstantesGeneralesDeVentanas, Filter 
 		// Ahora, ponemos a disponibilidad del thread el userContext posta
 		UserContext.setUserContext(userContext);
 		// Previo a seguir, hacemos el login automatico
-		doAutoLogin();
+		doAutoLogin(request);
 		chain.doFilter(req, res);
 	}
 
@@ -44,8 +48,20 @@ public class UserContextFilter implements ConstantesGeneralesDeVentanas, Filter 
 	// ** Helpers
 	// **************************************
 
-	private void doAutoLogin() {
-		if (ArchivoDeConfiguracion.getInstance().getLoginAutomatico()
+	/**
+	 * Filtramos del proceso de autologin, la pagina de login propiamente dicha.
+	 * Para ello, debemos filtrar todos los requests al motor ZUL porque no
+	 * sabemos que consultas a dicho motor son para el login.zul y cuales no!!!
+	 */
+	private void doAutoLogin(HttpServletRequest request) {
+		String uri = request.getRequestURI();
+
+		boolean requestAlLogin = StringUtils.equals(uri, request.getContextPath() + ZUL__LOGIN);
+		boolean requestParaElMotorZul = StringUtils.equals(uri, request.getContextPath() + "/zkau")
+				|| uri.startsWith(request.getContextPath() + "/zkau/");
+
+		if (!requestAlLogin && !requestParaElMotorZul
+				&& ArchivoDeConfiguracion.getInstance().getLoginAutomatico()
 				&& !UserContext.getUserContext().isUsuarioAutenticado()) {
 			UserContext.getUserContext().login("ctomassino", "citysoft");
 		}
