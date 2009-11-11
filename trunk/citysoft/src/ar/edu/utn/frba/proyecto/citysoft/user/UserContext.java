@@ -13,7 +13,9 @@ import ar.edu.utn.frba.proyecto.citysoft.modelo.Cliente;
  */
 public class UserContext {
 
-	private static final String USER_ANONYMOUS = "(Anónimo)";
+	private static final String USER_ANONYMOUS__DISPLAY_NAME = "(Anónimo)";
+	private static final String USER_OPERADOR = "operador";
+	private static final String PASS_OPERADOR = "operador";
 
 	private static ThreadLocal<UserContext> tlUserContext = new ThreadLocal<UserContext>();
 
@@ -37,6 +39,8 @@ public class UserContext {
 	// ** Attributes
 	// **************************************
 
+	private boolean usuarioAutenticado;
+	private boolean usuarioOperador;
 	private Cliente cliente;
 
 	// **************************************
@@ -44,7 +48,7 @@ public class UserContext {
 	// **************************************
 
 	public String getUsername() {
-		return (cliente != null) ? cliente.getNombreUsuario() : USER_ANONYMOUS;
+		return (cliente != null) ? cliente.getNombreUsuario() : USER_ANONYMOUS__DISPLAY_NAME;
 	}
 
 	public Cliente getCliente() {
@@ -60,24 +64,34 @@ public class UserContext {
 	// **************************************
 
 	public boolean isUsuarioAutenticado() {
-		return this.cliente != null;
+		return this.usuarioAutenticado;
 	}
 
-	// TODO: ver si este metodo devuelve autenticable. Ver tambien si el login
-	// setea el cliente, un objeto autenticable, o un cliente/operador segun
-	// quien se haya logueado
-	public Autenticable login(String usuario, String password) {
+	public boolean isUsuarioOperador() {
+		return this.usuarioOperador;
+	}
+
+	public void login(String usuario, String password) {
 		if (this.isUsuarioAutenticado()) {
 			throw new RuntimeException("Ya existe sesión (" + this.getUsername() + ")");
 		} else {
-			Cliente c = Central.getInstance().getCliente(usuario);
-			if (c == null) {
-				throw new RuntimeException("Usuario inválido (" + usuario + ")");
-			} else if (!password.equals(c.getPassword())) {
-				throw new RuntimeException("Password inválida (" + password + ")");
+			if (usuario.equals(USER_OPERADOR)) {
+				if (password.equals(PASS_OPERADOR)) {
+					this.usuarioAutenticado = true;
+					this.usuarioOperador = true;
+				} else {
+					throw new RuntimeException("Password inválida (" + password + ")");
+				}
 			} else {
-				this.cliente = c;
-				return c;
+				Cliente c = Central.getInstance().getCliente(usuario);
+				if (c == null) {
+					throw new RuntimeException("Usuario inválido (" + usuario + ")");
+				} else if (!password.equals(c.getPassword())) {
+					throw new RuntimeException("Password inválida (" + password + ")");
+				} else {
+					this.usuarioAutenticado = true;
+					this.cliente = c;
+				}
 			}
 		}
 	}
