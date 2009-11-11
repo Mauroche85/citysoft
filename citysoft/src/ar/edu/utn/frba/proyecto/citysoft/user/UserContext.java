@@ -1,7 +1,5 @@
 package ar.edu.utn.frba.proyecto.citysoft.user;
 
-import javax.servlet.http.HttpSession;
-
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Sessions;
 
@@ -80,30 +78,31 @@ public class UserContext {
 	public void login(String usuario, String password) {
 		if (this.isUsuarioAutenticado()) {
 			throw new RuntimeException("Ya existe sesión (" + this.getUsername() + ")");
-		} else {
-			if (usuario.equals(USER_OPERADOR)) {
-				if (password.equals(PASS_OPERADOR)) {
-					this.usuarioAutenticado = true;
-					this.usuarioOperador = true;
-				} else {
-					throw new RuntimeException("Password inválida (" + password + ")");
-				}
+		}
+		// LOGUEARSE COMO OPERADOR
+		else if (usuario.equals(USER_OPERADOR)) {
+			if (password.equals(PASS_OPERADOR)) {
+				this.usuarioAutenticado = true;
+				this.usuarioOperador = true;
 			} else {
-				Cliente c = Central.getInstance().getCliente(usuario);
-				if (c == null) {
-					throw new RuntimeException("Usuario inválido (" + usuario + ")");
-				} else if (!password.equals(c.getPassword())) {
-					throw new RuntimeException("Password inválida (" + password + ")");
-				} else {
-					this.usuarioAutenticado = true;
-					this.cliente = c;
-				}
+				throw new RuntimeException("Password inválida (" + password + ")");
+			}
+		}
+		// LOGUEARSE COMO CLIENTE
+		else {
+			Cliente c = Central.getInstance().getCliente(usuario);
+			if (c == null) {
+				throw new RuntimeException("Usuario inválido (" + usuario + ")");
+			} else if (!password.equals(c.getPassword())) {
+				throw new RuntimeException("Password inválida (" + password + ")");
+			} else {
+				this.usuarioAutenticado = true;
+				this.cliente = c;
 			}
 		}
 	}
 
 	public void logout() {
-		this.cliente = null;
 		this.usuarioAutenticado = false;
 		Sessions.getCurrent().invalidate();
 		Executions.sendRedirect(ConstantesGeneralesDeVentanas.ZUL__LOGIN);
