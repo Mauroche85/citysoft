@@ -24,12 +24,12 @@
 						<!-- comboitem self="@{each=order}" label="@{order.orderName}" value="@{order.orderNumber}"/ -->
 						<!-- /combobox -->
 						<combobox id="stIdCliente" model="@{winNuevoViaje.listaClientes}"
-						use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.ManipularComboUsuario">
+							use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.ManipularComboUsuario">
 							<comboitem self="@{each=cli}" label="@{cli.nombreUsuario}" />
 						</combobox>
 						<zscript>
-						stIdCliente.cargarUsuario()
-						</zscript>
+stIdCliente.cargarUsuario()
+</zscript>
 					</row>
 					<row>
 						<label value="Hora de solicitud:" />

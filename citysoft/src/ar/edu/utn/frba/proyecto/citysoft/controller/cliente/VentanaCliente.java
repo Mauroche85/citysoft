@@ -9,7 +9,10 @@ public class VentanaCliente extends Window implements ConstantesGeneralesDeVenta
 
 	public String getTitle() {
 		if (UserContext.getUserContext().isUsuarioAutenticado())
-			return "Bienvenido " + UserContext.getUserContext().getCliente().getNombre();
+			if (UserContext.getUserContext().isUsuarioOperador())
+				return "Bienvenido Operador";
+			else
+				return "Bienvenido " + UserContext.getUserContext().getCliente().getNombre();
 		else {
 			return "Bienvenido señor anónimo";
 		}

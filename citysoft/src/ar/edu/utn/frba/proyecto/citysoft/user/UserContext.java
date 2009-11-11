@@ -1,5 +1,11 @@
 package ar.edu.utn.frba.proyecto.citysoft.user;
 
+import javax.servlet.http.HttpSession;
+
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Sessions;
+
+import ar.edu.utn.frba.proyecto.citysoft.controller.ConstantesGeneralesDeVentanas;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Cliente;
 
@@ -94,6 +100,14 @@ public class UserContext {
 				}
 			}
 		}
+	}
+
+	public void logout() {
+		this.cliente = null;
+		this.usuarioAutenticado = false;
+		((HttpSession) Sessions.getCurrent().getNativeSession()).invalidate();
+		Sessions.getCurrent().invalidate();
+		Executions.sendRedirect(ConstantesGeneralesDeVentanas.ZUL__LOGIN);
 	}
 
 }
