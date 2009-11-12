@@ -225,6 +225,7 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 			gmarker.setDraggable(null);
 			gmarker.setLat(v.getOrigenLatitud());
 			gmarker.setLng(v.getOrigenLongitud());
+			gmarker.setTooltiptext(String.valueOf("Viaje: " + v.getIdViaje()));
 		} else if (v.estaAsignado() || v.estaTransportando()) {
 			// Siga ese vehiculo!!!
 			gmarker.setId(GMARK_PREFIX + v.getVehiculo().getPatente());
@@ -232,6 +233,7 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 			gmarker.setDraggable(null);
 			gmarker.setLat(v.getVehiculo().getLat());
 			gmarker.setLng(v.getVehiculo().getLng());
+			gmarker.setTooltiptext(String.valueOf("Viaje: " + v.getIdViaje()));
 		}
 		return gmarker;
 	}
@@ -246,6 +248,7 @@ public class MapaOperador extends Gmaps implements ConstantesInterfazOperador {
 		gmarker.setDraggable(null);
 		gmarker.setLat(vehiculoLibre.getLat());
 		gmarker.setLng(vehiculoLibre.getLng());
+		gmarker.setTooltiptext(vehiculoLibre.getPatente());
 		return gmarker;
 	}
 
