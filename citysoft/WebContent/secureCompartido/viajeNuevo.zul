@@ -102,7 +102,7 @@
 	winNuevoViaje.previewViaje();
 </attribute>
 				</button>
-				<button label="Aceptar">
+				<button id="botonAceptar" label="Aceptar">
 					<attribute name="onClick">
 	winNuevoViaje.addViaje();
 </attribute>
