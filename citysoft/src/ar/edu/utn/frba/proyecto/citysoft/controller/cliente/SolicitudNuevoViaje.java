@@ -8,6 +8,7 @@ import org.zkoss.gmaps.Gmaps;
 import org.zkoss.gmaps.Gmarker;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Combobox;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Row;
 import org.zkoss.zul.Window;
 import org.zkoss.zul.api.Textbox;
@@ -182,15 +183,34 @@ public class SolicitudNuevoViaje extends Window implements ConstantesGeneralesDe
 		v.setDestinoLatitud(gaDestino.getLat());
 		v.setDestinoLongitud(gaDestino.getLng());
 
-		// **************************************
-		// ** ANULAMOS EL BOTON ACEPTAR
-		// **************************************
-		btnAceptar.setDisabled(true);
+
 
 		// **************************************
 		// ** GUARDAMOS EL VIAJE EN LA CENTRAL
 		// **************************************
 		Central.getInstance().addViaje(v);	
+		
+		try {
+	
+			Messagebox.show("Su numero de viaje es: "+ v.getIdViaje(),"Nuevo Viaje Solicitado", 1, "Aceptar");
+
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+ 
+		tbOrigenHora.setValue(null);
+		txtOrigenReferente.setValue(null);
+		txtOrigenCalle.setValue(null);
+		txtOrigenAltura.setValue(null);
+		txtOrigenPisoDepto.setValue(null);
+		txtDestinoCalle.setValue(null);
+		txtDestinoAltura.setValue(null);
+		txtDestinoPisoDepto.setValue(null);
+		txtOrigenObservaciones.setValue(null);
+		
+
+		
 		System.out.println("id de viaje: " + v.getIdViaje());
 	}
 
