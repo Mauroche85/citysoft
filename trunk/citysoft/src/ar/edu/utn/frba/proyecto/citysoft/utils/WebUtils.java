@@ -5,7 +5,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.zkoss.zk.ui.Executions;
 
-public class WebUtils {
+import ar.edu.utn.frba.proyecto.citysoft.controller.ConstantesGeneralesDeVentanas;
+
+public class WebUtils implements ConstantesGeneralesDeVentanas {
+
+	// **************************************
+	// ** DENTRO DEL AMBIENTE DE FILTERS
+	// **************************************
 
 	public static String getContextPath(ServletRequest request) {
 		HttpServletRequest req = (HttpServletRequest) request;
@@ -16,6 +22,20 @@ public class WebUtils {
 		HttpServletRequest req = (HttpServletRequest) request;
 		return req.getRequestURI();
 	}
+
+	public static boolean sePidioUnaPaginaDeCliente(ServletRequest request) {
+		HttpServletRequest req = (HttpServletRequest) request;
+		return req.getRequestURI().startsWith(req.getContextPath() + ZUL__SECURE_CLIENTE);
+	}
+
+	public static boolean sePidioUnaPaginaDeOperador(ServletRequest request) {
+		HttpServletRequest req = (HttpServletRequest) request;
+		return req.getRequestURI().startsWith(req.getContextPath() + ZUL__SECURE_OPERADOR);
+	}
+
+	// **************************************
+	// ** DENTRO DEL AMBIENTE ZK
+	// **************************************
 
 	/**
 	 * Devuelve la URI (como URL pero sin http://www.sigaEseTaxi.com.ar) para el
