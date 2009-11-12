@@ -12,13 +12,12 @@ import ar.edu.utn.frba.proyecto.citysoft.modelo.Cliente;
 
 public class ComboBoxClientes extends Combobox {
 
-	/*
 	public Collection<Cliente> getClientes() {
 		TreeSet<Cliente> c = new TreeSet<Cliente>(Central.getInstance().getClientes());
 		return c;
 	}
-	*/
 	
+	/*
 	public Collection<String> getNombresUsuarios() {
 		final TreeSet<String> c = new TreeSet<String>();
 		Collection<Cliente> clientes = Central.getInstance().getClientes();
@@ -31,5 +30,6 @@ public class ComboBoxClientes extends Combobox {
 		});
 		return c;
 	}
+	*/
 	
 }
