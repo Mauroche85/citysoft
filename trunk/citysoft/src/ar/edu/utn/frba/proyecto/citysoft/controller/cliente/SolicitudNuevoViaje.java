@@ -6,6 +6,9 @@ import java.util.TreeSet;
 
 import org.zkoss.gmaps.Gmaps;
 import org.zkoss.gmaps.Gmarker;
+import org.zkoss.zul.Button;
+import org.zkoss.zul.Combobox;
+import org.zkoss.zul.Row;
 import org.zkoss.zul.Window;
 import org.zkoss.zul.api.Textbox;
 import org.zkoss.zul.api.Timebox;
@@ -14,6 +17,7 @@ import ar.edu.utn.frba.proyecto.citysoft.controller.ConstantesGeneralesDeVentana
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Cliente;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
+import ar.edu.utn.frba.proyecto.citysoft.user.UserContext;
 
 import com.blogspot.unserializableone.GAddress;
 import com.blogspot.unserializableone.GCoder;
@@ -111,6 +115,7 @@ public class SolicitudNuevoViaje extends Window implements ConstantesGeneralesDe
 	}
 
 	public void addViaje() {
+		Combobox cbxCliente = (Combobox) this.getFellow("stOrigenHora"); 
 		Timebox tbOrigenHora = (Timebox) this.getFellow("stOrigenHora");
 		Textbox txtOrigenReferente = (Textbox) this.getFellow("stOrigenReferente");
 		Textbox txtOrigenCalle = (Textbox) this.getFellow("stOrigenCalle");
@@ -124,12 +129,24 @@ public class SolicitudNuevoViaje extends Window implements ConstantesGeneralesDe
 		Textbox txtDestinoLocalidad = (Textbox) this.getFellow("stDestinoLocalidad");
 		Textbox txtDestinoProvincia = (Textbox) this.getFellow("stDestinoProvincia");
 		Textbox txtOrigenObservaciones = (Textbox) this.getFellow("stOrigenObservaciones");
+		Button btnAceptar = (Button) this.getFellow("botonAceptar");
 
+		
 		// **************************************
 		// ** CREO VIAJE
 		// **************************************
 		Viaje v = new Viaje();
-		// v.setCliente(cliente) hay que asignarle un cliente!!
+/*		if (!(UserContext.getUserContext().isUsuarioOperador())){
+			Cliente vCliente = UserContext.getUserContext().getCliente();
+			v.setCliente(vCliente);
+			}
+		else 
+			{ 
+			String stUsuario = cbxCliente.getValue();
+			int intUsuario = stUsuario.
+			Cliente vCliente = Central.getInstance().getClientePorId( );
+			}
+		*/
 		v.setHoraRequerida((tbOrigenHora.getValue()));
 		v.setOrigenReferente(txtOrigenReferente.getValue());
 		v.setOrigenCalle(txtOrigenCalle.getValue());
@@ -165,9 +182,14 @@ public class SolicitudNuevoViaje extends Window implements ConstantesGeneralesDe
 		v.setDestinoLongitud(gaDestino.getLng());
 
 		// **************************************
+		// ** ANULAMOS EL BOTON ACEPTAR
+		// **************************************
+		btnAceptar.setDisabled(true);
+
+		// **************************************
 		// ** GUARDAMOS EL VIAJE EN LA CENTRAL
 		// **************************************
-		Central.getInstance().addViaje(v);
+		Central.getInstance().addViaje(v);	
 		System.out.println("id de viaje: " + v.getIdViaje());
 	}
 
