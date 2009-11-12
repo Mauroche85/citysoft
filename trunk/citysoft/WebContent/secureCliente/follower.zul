@@ -58,8 +58,8 @@
 		</east>
 	</borderlayout>
 
-	<!-- Esto lo usamos para actualizar el mapa cada medio segundo -->
+	<!-- Esto lo usamos para actualizar el mapa periodicamente -->
 	<timer id="t" use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.follower.FollowerTimer"
-		onTimer="self.ring();" repeats="true" delay="500" running="true" />
+		onTimer="self.ring();" repeats="true" delay="5000" running="true" />
 </window>
 
