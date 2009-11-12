@@ -13,9 +13,7 @@ public class ManipularComboUsuario extends Row implements ConstantesGeneralesDeV
 	System.out.println("Cargar Usuario"); 
 	String vUsuario = null;
 
-	if (UserContext.getUserContext().isUsuarioAutenticado())
-		vUsuario= UserContext.getUserContext().getCliente().getNombre();
-	System.out.println("Usuario:" +vUsuario);	
+
 	if (!(UserContext.getUserContext().isUsuarioOperador())){
 			Row cbUsuario = (Row) this.getFellow("filaCliente");
 			cbUsuario.setVisible(false);
