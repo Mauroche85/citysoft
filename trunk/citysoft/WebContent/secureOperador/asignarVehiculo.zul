@@ -1,4 +1,4 @@
-<?page title="Asignar Vehiculo" contentType="text/html;charset=UTF-8"?>
+<?page title="Asignar Vehiculo" ?>
 <zk>
 	<window id="winAsignarVehiculo" title="Asignar Vehiculo" border="normal"
 		use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.AsignarLiberarVehiculo"
@@ -13,11 +13,11 @@
 					<rows>
 						<row>
 							<label value="Id de Viaje Pendiente:" />
-							<textbox id="idViajePendiente" />
+							<textbox id="idViajePendiente" value="" />
 						</row>
 						<row>
 							<label value="Patente Vehiculo:" />
-							<textbox id="patVehiculo" />
+							<textbox id="patVehiculo" value="" />
 						</row>
 					</rows>
 

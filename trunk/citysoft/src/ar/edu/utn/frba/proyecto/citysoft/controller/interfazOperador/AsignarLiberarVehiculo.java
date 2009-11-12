@@ -14,9 +14,10 @@ public class AsignarLiberarVehiculo extends Window {
 	private static final long serialVersionUID = -30629984537535030L;
 
 	public void asignarVehiculo() {
+		
 		Viaje v = Central.getInstance().getViaje(Integer.parseInt(elemIdViajePendiente().getValue()));
 		Vehiculo t = Central.getInstance().getVehiculoPorPatente(elemPatVehiculo().getValue());
-
+		
 		// Setea vehiculo en el viaje
 		v.asignar(t);
 
