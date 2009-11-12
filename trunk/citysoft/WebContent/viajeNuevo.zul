@@ -23,7 +23,7 @@
 						<label value="Id cliente:" />
 						<combobox id="stIdCliente" model="@{self.getClientes}"
 							use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.ComboBoxClientes">
-							<comboitem self="@{each=c}" value="@{c}" label="@{c.nombreUsuario}" />
+							<comboitem self="@{each=c}" value="@{c.idCliente}" label="@{c.nombreUsuario}" />
 						</combobox>
 						<zscript>
 						filaCliente.cargarUsuario()
