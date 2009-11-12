@@ -9,9 +9,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang.StringUtils;
-
-import ar.edu.utn.frba.proyecto.citysoft.config.ArchivoDeConfiguracion;
 import ar.edu.utn.frba.proyecto.citysoft.controller.ConstantesGeneralesDeVentanas;
 
 public class UserContextFilter implements ConstantesGeneralesDeVentanas, Filter {
@@ -34,35 +31,11 @@ public class UserContextFilter implements ConstantesGeneralesDeVentanas, Filter 
 		}
 		// Ahora, ponemos a disponibilidad del thread el userContext posta
 		UserContext.setUserContext(userContext);
-		// Previo a seguir, hacemos el login automatico
-		doAutoLogin(request);
 		chain.doFilter(req, res);
 	}
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-	}
-
-	// **************************************
-	// ** Helpers
-	// **************************************
-
-	/**
-	 * Filtramos del proceso de autologin, la pagina de login propiamente dicha.
-	 * Para ello, debemos filtrar todos los requests al motor ZUL porque no
-	 * sabemos que consultas a dicho motor son para el login.zul y cuales no!!!
-	 */
-	private void doAutoLogin(HttpServletRequest request) {
-		String uri = request.getRequestURI();
-		if (!sePidioLaPaginaDeLogin(request, uri)
-				&& ArchivoDeConfiguracion.getInstance().getLoginAutomatico()
-				&& !UserContext.getUserContext().isUsuarioAutenticado()) {
-			UserContext.getUserContext().login("ctomassino", "citysoft");
-		}
-	}
-
-	private boolean sePidioLaPaginaDeLogin(HttpServletRequest request, String uri) {
-		return StringUtils.equals(uri, request.getContextPath() + ZUL__LOGIN);
 	}
 
 }
