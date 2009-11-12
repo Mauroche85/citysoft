@@ -3,8 +3,7 @@
 
 <zk>
 	<window id="winCliente" border="normal" mode="modal" width="98%" height="98%" sizable="true"
-		closable="true"
-		use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.VentanaCliente">
+		closable="true" use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.VentanaCliente">
 		<borderlayout>
 			<center flex="true">
 				<tabbox>
@@ -85,8 +84,6 @@
 										<menupopup id="menuContextViajesAnteriores">
 											<menuitem label="Mostrar Detalles">
 												<attribute name="onClick">
-<!-- 	Executions.createComponents("detallesViajeAnterior.zul", null, null);
- -->
 	Component h = Executions.createComponents("detallesViajeAnterior.zul", null, null);
 	h.getFellow("idViaje").setValue(page.getAttribute("valor"));
 </attribute>
