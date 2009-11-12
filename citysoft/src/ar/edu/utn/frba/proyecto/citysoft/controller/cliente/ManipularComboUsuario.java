@@ -1,9 +1,6 @@
 package ar.edu.utn.frba.proyecto.citysoft.controller.cliente;
 
 import org.zkoss.zul.Row;
-import org.zkoss.zul.Window;
-import org.zkoss.zul.Combobox;
-import org.zkoss.zul.api.Textbox;
 
 import ar.edu.utn.frba.proyecto.citysoft.controller.ConstantesGeneralesDeVentanas;
 import ar.edu.utn.frba.proyecto.citysoft.user.UserContext;
