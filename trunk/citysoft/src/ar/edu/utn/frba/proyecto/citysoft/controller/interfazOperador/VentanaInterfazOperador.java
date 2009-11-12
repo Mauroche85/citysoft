@@ -82,14 +82,6 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 		win.setClosable(true);
 	}
 
-	public void abrirFinalizacionDeViaje(Menupopup popup) {
-		AsignarLiberarVehiculo win = (AsignarLiberarVehiculo) Executions.createComponents(
-				ZUL__LIBERAR_VEHICULO, null, null);
-		agregarRefrescoAlCierre(win);
-		Viaje viaje = Central.getInstance().getViaje(idViajeSeleccionado(popup));
-		win.elemPatVehiculo().setValue(viaje.getVehiculo().getPatente());
-	}
-
 	public void abrirAsignacionPorVehiculoLibre(Menupopup popup) {
 		AsignarLiberarVehiculo win = (AsignarLiberarVehiculo) Executions.createComponents(
 				ZUL__ASIGNAR_VEHICULO, null, null);
@@ -105,29 +97,28 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 		win.elemIdViajePendiente().setValue(String.valueOf(idViajeSeleccionado(popup)));
 	}
 
-
 	public void comenzarViaje(Menupopup popup) {
 		int idViaje = idViajeSeleccionado(popup);
 		Viaje viaje = Central.getInstance().getViaje(idViaje);
-		
+
 		viaje.comenzar();
-		
+
 		// Siempre que modificamos algun objeto, tenemos que avisarle a la
 		// central para que actualice la persistencia en la DB
 		Central.getInstance().addViaje(viaje);
 	}
-	
+
 	public void finalizarViaje(Menupopup popup) {
 		int idViaje = idViajeSeleccionado(popup);
 		Viaje viaje = Central.getInstance().getViaje(idViaje);
-		
+
 		viaje.finalizar();
-		
+
 		// Siempre que modificamos algun objeto, tenemos que avisarle a la
 		// central para que actualice la persistencia en la DB
 		Central.getInstance().addViaje(viaje);
 	}
-	
+
 	public void activarVehiculo(Menupopup popup) {
 		String patVehiculo = patenteDeVehiculoSeleccionado(popup);
 		Vehiculo t = Central.getInstance().getVehiculoPorPatente(patVehiculo);
@@ -137,7 +128,7 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 		Central.getInstance().addVehiculo(t);
 
 	}
-	
+
 	public void desactivarVehiculo(Menupopup popup) {
 		String patVehiculo = patenteDeVehiculoSeleccionado(popup);
 		Vehiculo t = Central.getInstance().getVehiculoPorPatente(patVehiculo);
@@ -147,7 +138,7 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 		Central.getInstance().addVehiculo(t);
 
 	}
-	
+
 	public void cancelarViajePendiente(Menupopup popup) {
 		int idViaje = idViajeSeleccionado(popup);
 		Viaje v = Central.getInstance().getViaje(idViaje);
@@ -157,14 +148,14 @@ public class VentanaInterfazOperador extends Window implements ConstantesInterfa
 
 		Central.getInstance().addViaje(v);
 	}
-	
+
 	public void liberarVehiculo(Menupopup popup) {
-		
+
 		int idViaje = idViajeSeleccionado(popup);
 		Viaje v = Central.getInstance().getViaje(idViaje);
-		
+
 		v.liberar();
-		
+
 		// Cuando se modifica alguna entidad, hay que volverla a agregar en la
 		// central
 		Central.getInstance().addViaje(v);

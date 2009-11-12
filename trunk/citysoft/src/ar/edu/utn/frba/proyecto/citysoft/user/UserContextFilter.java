@@ -26,8 +26,7 @@ public class UserContextFilter implements ConstantesGeneralesDeVentanas, Filter 
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpSession session = request.getSession(true);
 		UserContext userContext = (UserContext) session.getAttribute(SESSION__USER_CONTEXT);
-		// Si es la primera vez que pasa por aca, el userContext es nulo.
-		// Por
+		// Si es la primera vez que pasa por aca, el userContext es nulo. Por
 		// tanto, lo creamos
 		if (userContext == null) {
 			userContext = new UserContext();
@@ -55,16 +54,15 @@ public class UserContextFilter implements ConstantesGeneralesDeVentanas, Filter 
 	 */
 	private void doAutoLogin(HttpServletRequest request) {
 		String uri = request.getRequestURI();
-
-		boolean requestAlLogin = StringUtils.equals(uri, request.getContextPath() + ZUL__LOGIN);
-		boolean requestParaElMotorZul = StringUtils.equals(uri, request.getContextPath() + "/zkau")
-				|| uri.startsWith(request.getContextPath() + "/zkau/");
-
-		if (!requestAlLogin && !requestParaElMotorZul
+		if (!sePidioLaPaginaDeLogin(request, uri)
 				&& ArchivoDeConfiguracion.getInstance().getLoginAutomatico()
 				&& !UserContext.getUserContext().isUsuarioAutenticado()) {
 			UserContext.getUserContext().login("ctomassino", "citysoft");
 		}
+	}
+
+	private boolean sePidioLaPaginaDeLogin(HttpServletRequest request, String uri) {
+		return StringUtils.equals(uri, request.getContextPath() + ZUL__LOGIN);
 	}
 
 }

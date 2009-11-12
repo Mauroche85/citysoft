@@ -5,16 +5,6 @@ import ar.edu.utn.frba.proyecto.citysoft.controller.ConstantesGeneralesDeVentana
 public interface ConstantesInterfazOperador extends ConstantesGeneralesDeVentanas {
 
 	// **************************************
-	// ** ARCHIVOS ZUL
-	// **************************************
-
-	String ZUL__ACTIVAR_VEHICULO = "/activarVehiculo.zul";
-	String ZUL__DESACTIVAR_VEHICULO = "/desactivarVehiculo.zul";
-	String ZUL__CANCELAR_VIAJE = "/cancelarViajePendiente.zul";
-	String ZUL__ASIGNAR_VEHICULO = "/asignarVehiculo.zul";
-	String ZUL__LIBERAR_VEHICULO = "/liberarVehiculo.zul";
-
-	// **************************************
 	// ** COMPONENTES
 	// **************************************
 
