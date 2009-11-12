@@ -115,7 +115,7 @@ public class SolicitudNuevoViaje extends Window implements ConstantesGeneralesDe
 	}
 
 	public void addViaje() {
-		Combobox cbxCliente = (Combobox) this.getFellow("stOrigenHora"); 
+		Combobox cbxCliente = (Combobox) this.getFellow("stIdCliente"); 
 		Timebox tbOrigenHora = (Timebox) this.getFellow("stOrigenHora");
 		Textbox txtOrigenReferente = (Textbox) this.getFellow("stOrigenReferente");
 		Textbox txtOrigenCalle = (Textbox) this.getFellow("stOrigenCalle");
@@ -135,18 +135,19 @@ public class SolicitudNuevoViaje extends Window implements ConstantesGeneralesDe
 		// **************************************
 		// ** CREO VIAJE
 		// **************************************
+		Cliente vCliente;
 		Viaje v = new Viaje();
-/*		if (!(UserContext.getUserContext().isUsuarioOperador())){
-			Cliente vCliente = UserContext.getUserContext().getCliente();
-			v.setCliente(vCliente);
+		if (!(UserContext.getUserContext().isUsuarioOperador())){
+			 vCliente = UserContext.getUserContext().getCliente();
+			
 			}
 		else 
 			{ 
 			String stUsuario = cbxCliente.getValue();
-			int intUsuario = stUsuario.
-			Cliente vCliente = Central.getInstance().getClientePorId( );
+			vCliente = Central.getInstance().getCliente(stUsuario);
 			}
-		*/
+		System.out.println("idCliente: " + vCliente.getNombreUsuario());
+		v.setCliente(vCliente);
 		v.setHoraRequerida((tbOrigenHora.getValue()));
 		v.setOrigenReferente(txtOrigenReferente.getValue());
 		v.setOrigenCalle(txtOrigenCalle.getValue());
