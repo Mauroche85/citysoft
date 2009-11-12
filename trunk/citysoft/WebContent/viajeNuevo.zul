@@ -21,7 +21,7 @@
 				<rows>
 					<row id="filaCliente" use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.ManipularComboUsuario">
 						<label value="Id cliente:" />
-						<combobox id="stIdCliente" model="@{self.getClientes}"
+						<combobox id="stIdCliente" model="@{self.getClientes}" 
 							use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.ComboBoxClientes">
 							<comboitem self="@{each=c}" value="@{c.nombreUsuario}" label="@{c.nombreUsuario}" />
 						</combobox>
