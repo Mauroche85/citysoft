@@ -1,0 +1,55 @@
+<?page title="GTTR: Gestión de Taxis en Tiempo Real" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="winMenu"?>
+
+<window id="winMenu" title="Bienvenido Operador" border="normal" mode="modal" width="365px"
+	height="225px" sizable="false" closable="false"
+	use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.VentanaMenuOperador">
+
+	<borderlayout>
+
+		<west>
+			<vbox align="center">
+				<menubar orient="vertical">
+					<menu label="Clientes" image="@{winMenu.IMAGES__CLIENTE}">
+						<menupopup>
+							<menuitem label="Listado" image="@{winMenu.IMAGES__LISTA}"
+								onClick="winMenu.abrirListaClientes();" />
+							<menuitem label="Alta" image="@{winMenu.IMAGES__ADD}"
+								onClick="winMenu.abrirAltaCliente();" />
+						</menupopup>
+					</menu>
+					<menu label="Conductores" image="@{winMenu.IMAGES__CONDUCTOR}">
+						<menupopup>
+							<menuitem label="Listado" image="@{winMenu.IMAGES__LISTA}"
+								onClick="winMenu.abrirListaConductores();" />
+							<menuitem label="Alta" image="@{winMenu.IMAGES__ADD}"
+								onClick="winMenu.abrirAltaConductor();" />
+						</menupopup>
+					</menu>
+					<menu label="Vehiculos" image="@{winMenu.IMAGES__VEHICULO}">
+						<menupopup>
+							<menuitem label="Listado" image="@{winMenu.IMAGES__LISTA}"
+								onClick="winMenu.abrirListaVehiculos();" />
+							<menuitem label="Alta" image="@{winMenu.IMAGES__ADD}"
+								onClick="winMenu.abrirAltaVehiculo();" />
+						</menupopup>
+					</menu>
+					<menuitem label="Operador" image="@{winMenu.IMAGES__OPERADOR}"
+						onClick="winMenu.abrirInterfazOperador();" />
+					<menuitem label="Resetear base" image="@{winMenu.IMAGES__REFRESCAR}"
+						onClick="winMenu.resetearBase();" />
+				</menubar>
+				<image src="@{winMenu.IMAGES__CITYSOFT_LOGO}" width="80px" height="64px"
+					align="middle" />
+			</vbox>
+		</west>
+
+		<center>
+			<vbox align="center">
+				<image src="@{winMenu.IMAGES__GTTR_LOGO}" width="225px" height="188px" align="middle" />
+			</vbox>
+		</center>
+
+	</borderlayout>
+
+</window>

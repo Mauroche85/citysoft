@@ -1,0 +1,213 @@
+<?page title="Interfaz Operador" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="winOperador"?>
+
+<window id="winOperador" title="Interfaz Operador" border="normal" mode="modal"
+	use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.VentanaInterfazOperador"
+	width="98%" height="98%" sizable="true" closable="true">
+
+	<!-- tutaxi.com.ar? sigaesetaxi.com.ar? src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA" -->
+	<!-- citysoft.dyndns.org: src="ABQIAAAAxPbpriJFATP1kV4Jfg7FrhRzdWSuvxlSxMx33aEXsRZiewAFIxTyvaaXezhKd2-vbxqrWx_80Qz4dg" -->
+	<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;"
+		type="text/javascript">
+	</script>
+
+	<borderlayout width="100%" height="100%">
+
+		<!-- ************************************** -->
+		<!-- *** GOOGLE MAP                         -->
+		<!-- ************************************** -->
+		<center flex="true">
+			<gmaps id="gmapOperador"
+				use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MapaOperador"
+				showZoomCtrl="true" showOverviewCtrl="true" showTypeCtrl="true" lng="-58.42024" lat="-34.59856"
+				zoom="15">
+			</gmaps>
+		</center>
+
+		<!-- ************************************** -->
+		<!-- *** LISTAS                             -->
+		<!-- ************************************** -->
+		<east width="200px">
+			<vbox width="200px">
+				<toolbar>
+					<toolbarbutton label="Viaje Nuevo" image="@{winOperador.IMAGES__ADD}"
+						onClick="winOperador.abrirNuevoViaje();" />
+				</toolbar>
+				<columnlayout width="200px">
+					<columnchildren style="padding: 5px">
+
+						<!-- ************************************** -->
+						<!-- *** VIAJES EN CURSO                    -->
+						<!-- ************************************** -->
+						<panel title="Viajes Transportando" style="margin-bottom:10px" border="normal"
+							collapsible="true">
+							<panelchildren>
+								<listbox id="listViajes"
+									model="@{winOperador.getListaViajesBajoTransporte, load-after='winOperador.onChange'}">
+									<listitem self="@{each=v}" height="20px">
+										<listcell context="menuContextViajes" value="@{v.idViaje}"
+											use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.CeldaQueSabeSiEstaSiendoSeguida">
+											<hbox widths="130px" align="center">
+												<label value="@{v}" />
+												<checkbox
+													checked="@{self.parent.parent.estaSiendoSeguidoElViajeBajoTransporte, access='load'}"
+													onCheck="winOperador.elemMapa().setViajeBajoTransporteSeguido(self.getParent().getParent().viajeSeleccionado(), self.isChecked());" />
+												<radio
+													checked="@{self.parent.parent.mapaCentradoEnMi, access='load'}"
+													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().viajeSeleccionado());" />
+											</hbox>
+										</listcell>
+									</listitem>
+								</listbox>
+								<menupopup id="menuContextViajes"
+									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
+									<menuitem label="Finalizar Viaje"
+										image="@{winOperador.IMAGES__FLAG_BLUE}"
+										onClick="winOperador.finalizarViaje((Menupopup) self.getParent());" />
+								</menupopup>
+							</panelchildren>
+						</panel>
+
+						<!-- ************************************** -->
+						<!-- *** VIAJES ASIGNADOS                   -->
+						<!-- ************************************** -->
+						<panel title="Viajes Asignados" style="margin-bottom:10px" border="normal"
+							collapsible="true">
+							<panelchildren>
+								<listbox id="listVehiculosAsignados"
+									model="@{winOperador.getListaViajesAsignados, load-after='winOperador.onChange'}">
+									<listitem self="@{each=v}" height="20px">
+										<listcell context="menuContextAsignados" value="@{v.idViaje}"
+											use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.CeldaQueSabeSiEstaSiendoSeguida">
+											<hbox widths="130px" align="center">
+												<label value="@{v}" />
+												<checkbox
+													checked="@{self.parent.parent.estaSiendoSeguidoElViajeAsignado, access='load'}"
+													onCheck="winOperador.elemMapa().setViajeAsignadoSeguido(self.getParent().getParent().viajeSeleccionado(), self.isChecked());" />
+												<radio
+													checked="@{self.parent.parent.mapaCentradoEnMi, access='load'}"
+													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().viajeSeleccionado());" />
+											</hbox>
+										</listcell>
+									</listitem>
+								</listbox>
+								<menupopup id="menuContextAsignados"
+									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
+									<menuitem label="Comenzar Viaje"
+										image="@{winOperador.IMAGES__CHECK}"
+										onClick="winOperador.comenzarViaje((Menupopup) self.getParent());" />
+									<menuitem label="Liberar Vehiculo Asignado"
+										image="@{winOperador.IMAGES__LINK_BREAK}"
+										onClick="winOperador.liberarVehiculo((Menupopup) self.getParent());" />
+								</menupopup>
+							</panelchildren>
+						</panel>
+
+						<!-- ************************************** -->
+						<!-- *** VIAJES PENDIENTES                  -->
+						<!-- ************************************** -->
+						<panel title="Viajes Pendientes" style="margin-bottom:10px" border="normal"
+							collapsible="true">
+							<panelchildren>
+								<listbox id="listViajesPendientes"
+									model="@{winOperador.getListaViajesPendientes, load-after='winOperador.onChange'}">
+									<listitem self="@{each=v}" height="20px">
+										<listcell context="menuContextPendientes" value="@{v.idViaje}"
+											use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.CeldaQueSabeSiEstaSiendoSeguida">
+											<hbox widths="130px" align="center">
+												<label value="@{v.idViaje}" />
+												<checkbox
+													checked="@{self.parent.parent.estaMarcadoElViajePendiente, access='load'}"
+													onCheck="winOperador.elemMapa().setViajePendienteMarcado(self.getParent().getParent().viajeSeleccionado(), self.isChecked());" />
+												<radio
+													checked="@{self.parent.parent.mapaCentradoEnMi, access='load'}"
+													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().viajeSeleccionado());" />
+											</hbox>
+										</listcell>
+									</listitem>
+								</listbox>
+								<menupopup id="menuContextPendientes"
+									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
+									<menuitem label="Asignar Vehiculo..."
+										image="@{winOperador.IMAGES__LINK}"
+										onClick="winOperador.abrirAsignacionPorViaje((Menupopup) self.getParent());" />
+									<menuitem label="Cancelar Viaje Pendiente"
+										image="@{winOperador.IMAGES__CANCEL}"
+										onClick="winOperador.cancelarViajePendiente((Menupopup) self.getParent());" />
+								</menupopup>
+							</panelchildren>
+						</panel>
+
+						<!-- ************************************** -->
+						<!-- *** VEHICULOS LIBRES                   -->
+						<!-- ************************************** -->
+						<panel title="Vehiculos Libres" style="margin-bottom:10px" border="normal"
+							collapsible="true">
+							<panelchildren>
+								<listbox id="listVehiculosLibres"
+									model="@{winOperador.getListaVehiculosLibres, load-after='winOperador.onChange'}">
+									<listitem self="@{each=tl}" height="20px">
+										<listcell context="menuContextLibre" value="@{tl.patente}"
+											use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.CeldaQueSabeSiEstaSiendoSeguida">
+											<hbox widths="130px" align="center">
+												<label value="@{tl.patente}" />
+												<checkbox
+													checked="@{self.parent.parent.estaSiendoSeguidoElVehiculo, access='load'}"
+													onCheck="winOperador.elemMapa().setVehiculoSeguido(self.getParent().getParent().vehiculoSeleccionado(), self.isChecked());" />
+												<radio
+													checked="@{self.parent.parent.mapaCentradoEnMi, access='load'}"
+													onCheck="gmapOperador.setMapaCentradoEn(self.getParent().getParent().vehiculoSeleccionado());" />
+											</hbox>
+										</listcell>
+									</listitem>
+								</listbox>
+								<menupopup id="menuContextLibre"
+									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
+									<menuitem label="Asignar Vehiculo..."
+										image="@{winOperador.IMAGES__LINK}"
+										onClick="winOperador.abrirAsignacionPorVehiculoLibre((Menupopup) self.getParent());" />
+									<menuitem label="Desactivar Vehiculo"
+										image="@{winOperador.IMAGES__UNPLUG}"
+										onClick="winOperador.desactivarVehiculo((Menupopup) self.getParent());" />
+								</menupopup>
+							</panelchildren>
+						</panel>
+
+						<!-- ************************************** -->
+						<!-- *** VEHICULOS DESACTIVADOS             -->
+						<!-- ************************************** -->
+						<panel title="Vehiculos Desact." style="margin-bottom:10px" border="normal"
+							collapsible="true">
+							<panelchildren>
+								<listbox id="listVehiculosDesactivados"
+									model="@{winOperador.getListaVehiculosDesactivados, load-after='winOperador.onChange'}">
+									<listitem self="@{each=t}" height="20px">
+										<listcell context="menuContextDesactivados"
+											value="@{t.patente}">
+											<hbox widths="130px" align="center">
+												<label value="@{t.patente}" />
+											</hbox>
+										</listcell>
+									</listitem>
+								</listbox>
+								<menupopup id="menuContextDesactivados"
+									use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.MenupopupParaInterfazOperador">
+									<menuitem label="Activar Vehiculo"
+										image="@{winOperador.IMAGES__PLUG}"
+										onClick="winOperador.activarVehiculo((Menupopup) self.getParent());" />
+								</menupopup>
+							</panelchildren>
+						</panel>
+
+					</columnchildren>
+				</columnlayout>
+
+			</vbox>
+		</east>
+	</borderlayout>
+
+	<!-- Esto lo usamos para que se actualicen los viajes pendientes -->
+	<timer id="t"
+		use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.InterfazOperadorTimer"
+		onTimer="self.ring();" repeats="true" delay="5000" running="true" />
+</window>

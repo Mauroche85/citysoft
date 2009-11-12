@@ -1,0 +1,40 @@
+<?page title="Listado de Clientes" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="winListadoCliente"?>
+
+<zk>
+	<window id="winListadoCliente" title="Listado de Clientes" border="normal"
+		use="ar.edu.utn.frba.proyecto.citysoft.controller.listadoCliente.VentanaListadoClientes"
+		mode="modal" width="80%" height="30%" sizable="true" closable="true">
+		<borderlayout>
+			<center>
+				<grid id="grid"
+					model="@{winListadoCliente.getListaClientes, load-after='self.onChange'}">
+					<columns>
+						<column width="100px" label="Nro. de cliente" align="center" />
+						<column width="150px" label="Apellido" />
+						<column width="150px" label="Nombres" />
+						<column width="150px" label="Documento" align="center" />
+						<column width="100px" label="Modificación" align="center" />
+						<column width="100px" label="Baja" align="center" />
+					</columns>
+					<rows>
+						<row self="@{each=cli}">
+							<label value="@{cli.idCliente.toString}"></label>
+							<label value="@{cli.apellido}"></label>
+							<label value="@{cli.nombre}"></label>
+							<label value="@{cli.dni}" />
+							<image src="images/tag_blue.png" idNegocio="@{cli.idCliente}"
+								use="ar.edu.utn.frba.proyecto.citysoft.controller.ImagenConIdDeNegocio"
+								onClick="winListadoCliente.modificar(self.getIdNegocio());">
+							</image>
+							<image src="images/delete.png" idNegocio="@{cli.idCliente}"
+								use="ar.edu.utn.frba.proyecto.citysoft.controller.ImagenConIdDeNegocio"
+								onClick="winListadoCliente.eliminar(self.getIdNegocio());">
+							</image>
+						</row>
+					</rows>
+				</grid>
+			</center>
+		</borderlayout>
+	</window>
+</zk>

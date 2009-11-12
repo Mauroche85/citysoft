@@ -1,0 +1,36 @@
+<?page title="Asignar Vehiculo" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="winAsignarVehiculo" title="Asignar Vehiculo" border="normal"
+		use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.AsignarLiberarVehiculo"
+		mode="modal" width="400px" height="100px" sizable="false" closable="true">
+		<borderlayout>
+			<center>
+				<grid width="300">
+					<columns>
+						<column></column>
+						<column></column>
+					</columns>
+					<rows>
+						<row>
+							<label value="Id de Viaje Pendiente:" />
+							<textbox id="idViajePendiente" />
+						</row>
+						<row>
+							<label value="Patente Vehiculo:" />
+							<textbox id="patVehiculo" />
+						</row>
+					</rows>
+
+				</grid>
+			</center>
+			<east>
+				<vbox align="center">
+					<button label="Aceptar" id="btnAsignarVehiculo"
+						onClick="winAsignarVehiculo.asignarVehiculo();" />
+					<button label="Cancelar" onClick="winAsignarVehiculo.cerrar()" />
+				</vbox>
+			</east>
+		</borderlayout>
+
+	</window>
+</zk>
