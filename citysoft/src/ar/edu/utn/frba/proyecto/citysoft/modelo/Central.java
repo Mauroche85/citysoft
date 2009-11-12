@@ -249,7 +249,7 @@ public class Central implements ObjetoDeDominio {
 			@Override
 			public boolean evaluate(Object arg0) {
 				Vehiculo c = (Vehiculo) arg0;
-				return c.getPatente() == patente;
+				return c.getPatente().equals(patente);
 			}
 		});
 	}
