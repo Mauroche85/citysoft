@@ -1,7 +1,20 @@
-<window width="80%" title="Session Timeout" border="normal">
-	<vbox>
-The page or component you request is no longer available.
-This is normally caused by timeout, opening too many Web pages, or rebooting
-the server.
-	</vbox>
+<window width="400px" title="Session Timeout" border="normal" mode="modal">
+	<borderlayout height="100px" >
+		<west width="125px">
+			<image src="images/LogoGTTR.jpg" width="120px" height="100px" />
+		</west>
+		<center >
+			<hbox>
+				<space width="8px"/>
+				<vbox>
+					<space height="8px"/>
+					La página a la que está intentando acceder no está disponible.
+					<space height="3px"/>
+					Por favor vuelva a loguearse.
+					<space height="8px"/>
+				</vbox>
+				<space width="8px"/>
+			</hbox>
+		</center>
+	</borderlayout>
 </window>
