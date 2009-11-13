@@ -26,10 +26,10 @@
 							<label value="@{c.marca}"></label>
 							<label value="@{c.modelo}"></label>
 							<label value="@{c.poliza}"></label>
-							<image src="images/tag_blue.png" idNegocio="@{c.idVehiculo}"
+							<image src="/images/tag_blue.png" idNegocio="@{c.idVehiculo}"
 								use="ar.edu.utn.frba.proyecto.citysoft.controller.ImagenConIdDeNegocio"
 								onClick="winListadoVehiculos.modificar(self.getIdNegocio());" />
-							<image src="images/delete.png" idNegocio="@{c.idVehiculo}"
+							<image src="/images/delete.png" idNegocio="@{c.idVehiculo}"
 								use="ar.edu.utn.frba.proyecto.citysoft.controller.ImagenConIdDeNegocio"
 								onClick="winListadoVehiculos.eliminar(self.getIdNegocio());" />
 						</row>
