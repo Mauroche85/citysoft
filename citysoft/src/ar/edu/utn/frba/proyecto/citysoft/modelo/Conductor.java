@@ -6,7 +6,7 @@ package ar.edu.utn.frba.proyecto.citysoft.modelo;
  * @created 10-Oct-2009 2:28:49 p.m.
  */
 
-public class Conductor extends Persona implements ObjetoDeDominio, Comparable<Conductor> {
+public class Conductor extends Persona implements ObjetoDeDominio {
 
 	private String nombreUsuario;
 	private int idConductor;
@@ -56,9 +56,14 @@ public class Conductor extends Persona implements ObjetoDeDominio, Comparable<Co
 			v.setConductor(this);
 	}
 
-	public int compareTo(Conductor theOther) {
+	// **************************************
+	// ** Interfaces
+	// **************************************
+
+	@Override
+	public int compareTo(ObjetoDeDominio theOther) {
 		int thisId = this.idConductor;
-		int theOtherId = theOther.idConductor;
+		int theOtherId = ((Conductor) theOther).idConductor;
 		// Esto nos lo choriceamos de Integer!!!
 		return (thisId < theOtherId ? -1 : (thisId == theOtherId ? 0 : 1));
 	}

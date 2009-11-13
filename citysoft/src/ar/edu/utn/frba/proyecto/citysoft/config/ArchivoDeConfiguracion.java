@@ -1,10 +1,15 @@
 package ar.edu.utn.frba.proyecto.citysoft.config;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+
+import org.apache.commons.logging.LogFactory;
 
 public class ArchivoDeConfiguracion {
 
@@ -13,6 +18,7 @@ public class ArchivoDeConfiguracion {
 	private static final String PROPIEDAD__POBLAR_BASE = "gttr.poblarBase";
 	private static final String PROPIEDAD__LOGIN_AUTOMATICO = "gttr.loginAutomatico";
 	private static final String PROPIEDAD__SIMULACION = "gttr.simulacion";
+	private static final String PROPIEDAD__INTERFAZ_OPERADOR_NUEVA = "gttr.interfazOperadorNueva";
 
 	// **************************************
 	// ** Constructors
@@ -63,6 +69,9 @@ public class ArchivoDeConfiguracion {
 		String poblarBase = this.properties.getProperty(PROPIEDAD__POBLAR_BASE, "false");
 		if (poblarBase.equals("true") || poblarBase.equals("false")) {
 			return Boolean.parseBoolean(poblarBase);
+		} else if (poblarBase.equals("once")) {
+			desactivarPoblarBase();
+			return true;
 		} else {
 			throw new RuntimeException("El valor de configuracion para [poblar base] es incorrecto ("
 					+ poblarBase + ")");
@@ -90,6 +99,35 @@ public class ArchivoDeConfiguracion {
 			l.add(i, Integer.parseInt(split[i]));
 		}
 		return l;
+	}
+
+	public boolean getInterfazOperadorNueva() {
+		String nueva = this.properties.getProperty(PROPIEDAD__INTERFAZ_OPERADOR_NUEVA, "true");
+		if (nueva.equals("true") || nueva.equals("false")) {
+			return Boolean.parseBoolean(nueva);
+		} else {
+			throw new RuntimeException(
+					"El valor de configuracion para [interfaz operador nueva] es incorrecto ("
+							+ nueva + ")");
+		}
+	}
+
+	// **************************************
+	// ** HELPERS
+	// **************************************
+
+	private void desactivarPoblarBase() {
+		try {
+			this.properties.setProperty(PROPIEDAD__POBLAR_BASE, "false");
+			URL url = getClass().getClassLoader().getResource(ARCHIVO_CONFIGURACION);
+			LogFactory.getLog(this.getClass()).info("Vamos a desactivar el poblar base en " + url);
+			OutputStream out = new FileOutputStream(url.getFile());
+			properties.store(out, "Se cambio poblarBase=once por poblarBase=false");
+			out.close();
+		} catch (Exception e) {
+			LogFactory.getLog(this.getClass()).error("Error actualizando configuración poblarBase");
+			throw new RuntimeException(e);
+		}
 	}
 
 }

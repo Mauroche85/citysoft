@@ -11,10 +11,4 @@ public interface ConstantesInterfazOperador extends ConstantesGeneralesDeVentana
 	String COMP__WIN_OPERADOR = "winOperador";
 	String COMP__GMAP_OPERADOR = "gmapOperador";
 
-	// **************************************
-	// ** PARAMETROS (?)
-	// **************************************
-
-	String CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP = "quienAbrioElPopup";
-
 }

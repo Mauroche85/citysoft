@@ -1,22 +1,28 @@
 package ar.edu.utn.frba.proyecto.citysoft.controller.cliente.viajesViejos;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.collections.Closure;
 import org.apache.commons.collections.CollectionUtils;
 
 import ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.CityVentanaConMapa;
 import ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.objetoPloteable.ObjetoPlotteable;
-import ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.objetoPloteable.PloteableDesdeViaje;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.ObjetoDeDominio;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 import ar.edu.utn.frba.proyecto.citysoft.user.UserContext;
 
 public class VentanaViajesViejos extends CityVentanaConMapa implements ConstantesHistorialDeViajes {
 
-	private static final String LISTA_VIAJES_VIEJOS = "listaViajesViejos";
+	private static final long serialVersionUID = 5218186036412956715L;
+
+	// **************************************
+	// ** ATRIBUTOS
+	// **************************************
+
+	public static final String LISTA_VIAJES_VIEJOS = "listaViajesViejos";
 
 	// **************************************
 	// ** INTERFAZ
@@ -26,50 +32,19 @@ public class VentanaViajesViejos extends CityVentanaConMapa implements Constante
 		return COMP__GMAP_VIAJES_VIEJOS;
 	}
 
-	// **************************************
-	// ** CONSTRUCTOR
-	// **************************************
-
-	public VentanaViajesViejos() {
-		registrarLista(LISTA_VIAJES_VIEJOS, new ArrayList<ObjetoPlotteable>());
-		sincronizarListaViajesViejos();
+	public List<ObjetoDeDominio> obtenerListaFuenteDe(String nombreLista) {
+		if (nombreLista.equals(LISTA_VIAJES_VIEJOS))
+			return (List<ObjetoDeDominio>) getViajesViejos();
+		else
+			throw new RuntimeException("No existe lista fuente para: " + nombreLista);
 	}
 
 	// **************************************
-	// ** INTERFAZ PARA ZUL
+	// ** HELPERS
 	// **************************************
 
-	public Collection<ObjetoPlotteable> getHistorialDeViajes() {
-		return obtenerLista(LISTA_VIAJES_VIEJOS);
-	}
-
-	// **************************************
-	// ** SINCRONIZACION
-	// **************************************
-
-	public void sincronizarListaViajesViejos() {
-		List<ObjetoPlotteable> listaDeLaVentana = obtenerLista(LISTA_VIAJES_VIEJOS);
-		Collection<Viaje> viajesViejos = getViajesViejos();
-
-		// Quitamos los viajes que ya no deben estar en la lista del usuario
-		for (ObjetoPlotteable objetoPlotteable : listaDeLaVentana) {
-			if (!viajesViejos.contains(objetoPlotteable.getObjetoDelModelo())) {
-				objetoPlotteable.quitarMarcadoresDelMapa();
-				listaDeLaVentana.remove(objetoPlotteable);
-			} else {
-				viajesViejos.remove(objetoPlotteable.getObjetoDelModelo());
-			}
-		}
-		// Ahora, el viajesViejos solo tenemos los nuevos (ya que los repetidos
-		// los ibamos quitabamos)
-		for (Viaje v : viajesViejos) {
-			ObjetoPlotteable objetoPlotteable = new PloteableDesdeViaje(v);
-			listaDeLaVentana.add(objetoPlotteable);
-		}
-	}
-
-	private Collection<Viaje> getViajesViejos() {
-		final Collection<Viaje> viajesViejos = new ArrayList<Viaje>();
+	private List<ObjetoDeDominio> getViajesViejos() {
+		final List<ObjetoDeDominio> viajesViejos = new ArrayList<ObjetoDeDominio>();
 		CollectionUtils.forAllDo(Central.getInstance().getViajes(), new Closure() {
 			@Override
 			public void execute(Object arg0) {
@@ -82,6 +57,14 @@ public class VentanaViajesViejos extends CityVentanaConMapa implements Constante
 			}
 		});
 		return viajesViejos;
+	}
+
+	// **************************************
+	// ** MODELOS ZUL
+	// **************************************
+
+	public Set<ObjetoPlotteable> getHistorialDeViajes() {
+		return obtenerLista(LISTA_VIAJES_VIEJOS);
 	}
 
 }

@@ -2,6 +2,7 @@
 <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="winViajesViejos" ?>
 
 <window id="winViajesViejos" width="100%" height="100%"
+	onCreate="self.sincronizarLista(self.LISTA_VIAJES_VIEJOS);"
 	use="ar.edu.utn.frba.proyecto.citysoft.controller.cliente.viajesViejos.VentanaViajesViejos">
 
 	<!-- tutaxi.com.ar? src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA" -->
@@ -23,7 +24,7 @@
 		<!-- ********** LISTA DE VIAJES SEGUIDOS ********** -->
 		<east>
 			<listbox id="listHistorial" height="100%" width="200px" vflex="true"
-				model="@{winViajesViejos.getHistorialDeViajes}">
+				model="@{winViajesViejos.getHistorialDeViajes, load-after='winViajesViejos.onCreate'}">
 				<listhead>
 					<listheader label="Viajes en mapa" sort="auto" />
 				</listhead>

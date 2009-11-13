@@ -213,6 +213,17 @@ public class Central implements ObjetoDeDominio {
 		});
 	}
 
+	public Conductor getConductorPorDni(final int dni) {
+		// TODO: que pasa si no lo encuentra??? devuelve null???
+		return (Conductor) CollectionUtils.find(this.conductores, new Predicate() {
+			@Override
+			public boolean evaluate(Object arg0) {
+				Conductor c = (Conductor) arg0;
+				return c.getDni() == dni;
+			}
+		});
+	}
+
 	public Vehiculo getVehiculoPorTrackerId(final String idTracker) {
 		// TODO: que pasa si no lo encuentra??? devuelve null???
 		return (Vehiculo) CollectionUtils.find(this.vehiculos, new Predicate() {
@@ -271,6 +282,15 @@ public class Central implements ObjetoDeDominio {
 
 	public GeneradorDeIds getGeneradorDeIds() {
 		return generadorDeIds;
+	}
+
+	// **************************************
+	// ** INTERFAZ OBJECT
+	// **************************************
+
+	@Override
+	public int compareTo(ObjetoDeDominio theOther) {
+		return 0;
 	}
 
 }

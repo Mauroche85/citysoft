@@ -5,6 +5,11 @@
 	height="225px" sizable="false" closable="false"
 	use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.VentanaMenuOperador">
 
+	<!-- tutaxi.com.ar? sigaesetaxi.com.ar? src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAxPbpriJFATP1kV4Jfg7FrhTHx8S3jtCwO1hw0XE3N9WOac4cqRQ8_vMKB22No44yFau5GRY7TcCHZA" -->
+	<!-- citysoft.dyndns.org: src="ABQIAAAAxPbpriJFATP1kV4Jfg7FrhRzdWSuvxlSxMx33aEXsRZiewAFIxTyvaaXezhKd2-vbxqrWx_80Qz4dg" -->
+	<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;"
+		type="text/javascript">
+	</script>
 	<borderlayout>
 
 		<west>

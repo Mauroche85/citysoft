@@ -7,7 +7,7 @@ import java.util.Date;
  * @version 1.0
  * @created 23-Jul-2009 10:54:52 p.m.
  */
-public class Track implements ObjetoDeDominio, Comparable<Track> {
+public class Track implements ObjetoDeDominio {
 
 	private int idTrack;
 	private Vehiculo vehiculo;
@@ -68,8 +68,8 @@ public class Track implements ObjetoDeDominio, Comparable<Track> {
 	// **************************************
 
 	@Override
-	public int compareTo(Track o) {
-		return this.getInstante().compareTo(o.getInstante());
+	public int compareTo(ObjetoDeDominio o) {
+		return this.getInstante().compareTo(((Track) o).getInstante());
 	}
 
 }

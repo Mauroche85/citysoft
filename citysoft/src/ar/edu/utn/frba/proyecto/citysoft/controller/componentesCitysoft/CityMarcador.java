@@ -33,14 +33,6 @@ public class CityMarcador extends Gmarker {
 	// ** INTERFAZ
 	// **************************************
 
-	public void setMapa(CityMapa miMapa) {
-		setParent(miMapa);
-	}
-
-	public void serasCentro(CityMapa mapa) {
-		mapa.tendrasComoCentroA(this);
-	}
-
 	@Override
 	public void setLat(double lat) {
 		super.setLat(lat);
@@ -55,6 +47,22 @@ public class CityMarcador extends Gmarker {
 		if (tengoMapa() && soyCentroDelMapa()) {
 			getMapa().setLng(lng);
 		}
+	}
+
+	// **************************************
+	// ** ESPECIALIZAZCION
+	// **************************************
+
+	private boolean isDirty;
+
+	@Override
+	public void detach() {
+		super.detach();
+		this.isDirty = true;
+	}
+
+	public boolean isDirty() {
+		return this.isDirty;
 	}
 
 	// **************************************

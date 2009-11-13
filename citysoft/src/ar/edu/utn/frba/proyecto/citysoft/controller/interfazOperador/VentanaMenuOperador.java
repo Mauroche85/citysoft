@@ -1,9 +1,12 @@
 package ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador;
 
+import java.io.IOException;
+
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zul.Window;
 
 import ar.edu.utn.frba.proyecto.citysoft.config.AmbienteDeDesarrollo;
+import ar.edu.utn.frba.proyecto.citysoft.config.ArchivoDeConfiguracion;
 import ar.edu.utn.frba.proyecto.citysoft.controller.abmCliente.VentanaAbmCliente;
 import ar.edu.utn.frba.proyecto.citysoft.controller.abmConductor.VentanaAbmConductor;
 import ar.edu.utn.frba.proyecto.citysoft.controller.abmVehiculo.VentanaAbmVehiculo;
@@ -24,8 +27,11 @@ public class VentanaMenuOperador extends Window implements ConstantesInterfazOpe
 	// ** ACCIONES
 	// **************************************
 
-	public void abrirInterfazOperador() {
-		Executions.createComponents(ZUL__INTERFAZ_OPERADOR, null, null);
+	public void abrirInterfazOperador() throws IOException {
+		if (ArchivoDeConfiguracion.getInstance().getInterfazOperadorNueva())
+			Executions.createComponents(ZUL__CONTROL_OPERADOR, null, null);
+		else
+			Executions.sendRedirect(ZUL__INTERFAZ_OPERADOR);
 	}
 
 	public void resetearBase() {

@@ -1,4 +1,4 @@
-<?page title="Asignar Vehiculo" ?>
+<?page title="Asignar Vehiculo" contentType="text/html;charset=UTF-8"?>
 <zk>
 	<window id="winAsignarVehiculo" title="Asignar Vehiculo" border="normal"
 		use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.AsignarLiberarVehiculo"
