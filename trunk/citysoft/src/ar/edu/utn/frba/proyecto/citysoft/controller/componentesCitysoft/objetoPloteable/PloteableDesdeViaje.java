@@ -3,12 +3,11 @@ package ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.objetoP
 import java.util.ArrayList;
 import java.util.List;
 
-import org.zkoss.gmaps.Gpolyline;
-
-import ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.CityMapa;
 import ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.CityMarcador;
 import ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.CityMarcadorFactory;
+import ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.CityPolilinea;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Coordenadas;
+import ar.edu.utn.frba.proyecto.citysoft.modelo.ObjetoDeDominio;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Track;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
 
@@ -17,92 +16,46 @@ import ar.edu.utn.frba.proyecto.citysoft.modelo.Viaje;
  * que se relacionen con dicho viaje. Sirve para dibujar un origen, destino, y
  * el vehiculo si es necesario
  */
-public class PloteableDesdeViaje extends ObjetoPlotteable {
+public abstract class PloteableDesdeViaje extends ObjetoPlotteable {
 
 	// **************************************
 	// ** INTERFAZ
 	// **************************************
 
 	@Override
-	public Object getObjetoDelModelo() {
+	public ObjetoDeDominio getObjetoDelModelo() {
 		return this.viaje;
-	}
-
-	@Override
-	public void mostrarMarcadores(CityMapa nuevoMapa) {
-		// Si tengo un mapa viejo, quito los markers
-		if (this.tengoMapa()) {
-			this.marcadorOrigen.detach();
-			this.marcadorDestino.detach();
-			if (this.viaje.estaTransportando())
-				this.marcadorTransportando.detach();
-			else if (this.viaje.fueCompletado()) {
-				this.polilineaRuta.detach();
-			}
-		}
-		// Si no existen los marcadores, se crean solos
-		getMarcadorOrigen().setParent(nuevoMapa);
-		getMarcadorDestino().setParent(nuevoMapa);
-		if (this.viaje.estaTransportando())
-			getMarcadorTransportando().setParent(nuevoMapa);
-		else if (this.viaje.fueCompletado()) {
-			getPolilinea().setParent(nuevoMapa);
-		}
-		// Ahora si... declaramos el nuevo mapa!
-		this.mapa = nuevoMapa;
-	}
-
-	/**
-	 * La interfaz nos dice bien clarito que debemos perder el rastro de los
-	 * marcadores
-	 */
-	@Override
-	public void quitarMarcadoresDelMapa() {
-		this.marcadorOrigen.detach();
-		this.marcadorDestino.detach();
-		if (this.viaje.estaTransportando())
-			this.marcadorTransportando.detach();
-		else if (this.viaje.fueCompletado()) {
-			this.polilineaRuta.detach();
-		}
-		// Perdemos las referencias a lo que creiamos era importante
-		this.marcadorOrigen = null;
-		this.marcadorDestino = null;
-		if (this.viaje.estaTransportando())
-			this.marcadorTransportando = null;
-		else if (this.viaje.fueCompletado()) {
-			this.polilineaRuta = null;
-		}
-		// Chau mapa
-		this.mapa = null;
 	}
 
 	@Override
 	public List<CityMarcador> getMarcadores() {
 		List<CityMarcador> l = new ArrayList<CityMarcador>();
-		l.add(this.marcadorOrigen);
-		l.add(this.marcadorDestino);
-		l.add(this.marcadorTransportando);
+		l.add(getMarcadorOrigen());
+		l.add(getMarcadorDestino());
+		return l;
+	}
+
+	@Override
+	public List<CityPolilinea> getPolilineas() {
+		List<CityPolilinea> l = new ArrayList<CityPolilinea>();
 		return l;
 	}
 
 	@Override
 	public void actualizarPlotting() {
 		actualizarPlottingOrigenDestino();
-		if (this.viaje.estaTransportando())
-			actualizarPlottingTransportando();
 	}
 
 	// **************************************
 	// ** ATRIBUTOS
 	// **************************************
 
-	private CityMapa mapa;
-	private Viaje viaje;
-	private CityMarcador marcadorOrigen;
-	private CityMarcador marcadorDestino;
-	private CityMarcador marcadorTransportando;
-	private Gpolyline polilineaRuta;
+	protected Viaje viaje;
+	protected CityMarcador marcadorOrigen;
+	protected CityMarcador marcadorDestino;
+	protected CityMarcador marcadorAsignado;
+	protected CityMarcador marcadorTransportando;
+	protected CityPolilinea polilineaRuta;
 
 	// **************************************
 	// ** CONSTRUCTOR
@@ -116,42 +69,37 @@ public class PloteableDesdeViaje extends ObjetoPlotteable {
 	// ** EJECUCION
 	// **************************************
 
-	/**
-	 * O tenemos el conjunto correspondiente de marcadores y el mapa, o no
-	 * tenemos nada!!!
-	 */
-	private boolean tengoMapa() {
-		if (this.mapa != null) {
-			validarQueExistenLosMarcadoresYElMapa();
-			return true;
-		}
-		return false;
-	}
-
-	private CityMarcador getMarcadorOrigen() {
-		if (this.marcadorOrigen == null) {
+	protected CityMarcador getMarcadorOrigen() {
+		if (this.marcadorOrigen == null || this.marcadorOrigen.isDirty()) {
 			this.marcadorOrigen = CityMarcadorFactory.buildMarcadorOrigen(this.viaje);
 		}
 		return this.marcadorOrigen;
 	}
 
-	private CityMarcador getMarcadorDestino() {
-		if (this.marcadorDestino == null) {
+	protected CityMarcador getMarcadorDestino() {
+		if (this.marcadorDestino == null || this.marcadorDestino.isDirty()) {
 			this.marcadorDestino = CityMarcadorFactory.buildMarcadorDestino(this.viaje);
 		}
 		return this.marcadorDestino;
 	}
 
-	private CityMarcador getMarcadorTransportando() {
-		if (this.marcadorTransportando == null) {
+	protected CityMarcador getMarcadorAsignado() {
+		if (this.marcadorAsignado == null || this.marcadorAsignado.isDirty()) {
+			this.marcadorAsignado = CityMarcadorFactory.buildMarcadorTransportando(this.viaje);
+		}
+		return this.marcadorAsignado;
+	}
+
+	protected CityMarcador getMarcadorTransportando() {
+		if (this.marcadorTransportando == null || this.marcadorTransportando.isDirty()) {
 			this.marcadorTransportando = CityMarcadorFactory.buildMarcadorTransportando(this.viaje);
 		}
 		return this.marcadorTransportando;
 	}
 
-	private Gpolyline getPolilinea() {
-		if (this.polilineaRuta == null) {
-			this.polilineaRuta = new Gpolyline();
+	protected CityPolilinea getPolilineaRuta() {
+		if (this.polilineaRuta == null || this.polilineaRuta.isDirty()) {
+			this.polilineaRuta = new CityPolilinea();
 			this.polilineaRuta.setOpacity(50);
 			this.polilineaRuta.setColor("#0000FF");
 			for (Track track : this.viaje.getTracksDelViaje()) {
@@ -172,35 +120,11 @@ public class PloteableDesdeViaje extends ObjetoPlotteable {
 	 * al tomar los datos o el cliente arrepentirse y rectificar el destino del
 	 * viaje, por ejemplo
 	 */
-	private void actualizarPlottingOrigenDestino() {
+	protected void actualizarPlottingOrigenDestino() {
 		this.marcadorOrigen.setLat(this.viaje.getOrigenLatitud());
 		this.marcadorOrigen.setLng(this.viaje.getOrigenLongitud());
 		this.marcadorDestino.setLat(this.viaje.getDestinoLatitud());
 		this.marcadorDestino.setLng(this.viaje.getDestinoLongitud());
-	}
-
-	private void actualizarPlottingTransportando() {
-		this.marcadorTransportando.setLat(this.viaje.getVehiculo().getLat());
-		this.marcadorTransportando.setLng(this.viaje.getVehiculo().getLng());
-	}
-
-	/**
-	 * O tenemos el conjunto correspondiente de marcadores y el mapa, o no
-	 * tenemos nada!!! Con esto le ponemos la firma. Sirve para asegurarse de
-	 * que no ocurra ninguna situacion anomala
-	 */
-	private void validarQueExistenLosMarcadoresYElMapa() {
-		if (this.mapa == null) {
-			throw new RuntimeException("El objeto ploteable correspondiente al viaje"
-					+ " carece de mapa");
-		} else if (this.marcadorOrigen == null || this.marcadorDestino == null) {
-			throw new RuntimeException("El objeto ploteable correspondiente al viaje"
-					+ " carece del marcador de origen o destino");
-		} else if (this.viaje.estaTransportando() && this.marcadorTransportando == null) {
-			throw new RuntimeException(
-					"El objeto ploteable correspondiente al viaje carece del marcador"
-							+ " de transporte");
-		}
 	}
 
 }

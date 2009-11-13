@@ -1,0 +1,154 @@
+<?page title="Interfaz Operador" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="winControl"?>
+
+<window id="winControl" title="Interfaz Operador" border="normal" mode="modal"
+	use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.control.VentanaControlDeViajes"
+	width="98%" height="98%" sizable="true" closable="true" onCreate="self.sincronizarListas();">
+
+
+	<borderlayout width="100%" height="100%">
+
+		<!-- ************************************** -->
+		<!-- *** GOOGLE MAP                         -->
+		<!-- ************************************** -->
+		<center flex="true">
+			<gmaps id="${winControl.idMapa}"
+				use="ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.CityMapa"
+				showZoomCtrl="true" showOverviewCtrl="true" showTypeCtrl="true" lng="-58.42024" lat="-34.59856"
+				zoom="15">
+			</gmaps>
+		</center>
+
+		<!-- ************************************** -->
+		<!-- *** LISTAS                             -->
+		<!-- ************************************** -->
+		<east width="220px">
+			<vbox width="220px">
+				<toolbar>
+					<toolbarbutton label="Viaje Nuevo" image="@{winControl.IMAGES__ADD}"
+						onClick="winControl.abrirNuevoViaje();" />
+				</toolbar>
+				<radiogroup>
+					<columnlayout width="220px">
+						<columnchildren style="padding: 5px">
+
+							<!-- ************************************** -->
+							<!-- *** VIAJES EN CURSO                    -->
+							<!-- ************************************** -->
+							<panel title="Viajes Transportando" style="margin-bottom:10px"
+								border="normal" collapsible="true">
+								<panelchildren>
+									<listbox id="listTransp" height="100%"
+										model="@{winControl.getModeloViajesTransportando, load-after='winControl.onCreate,listTransp.onChange'}">
+										<listitem self="@{each=v}" ventana="${winControl}"
+											objetoPloteable="@{v}" context="ctxmTransportando"
+											use="ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.objetoPloteable.ListitemOperadorPloteable" />
+									</listbox>
+								</panelchildren>
+							</panel>
+
+							<!-- ************************************** -->
+							<!-- *** VIAJES ASIGNADOS                   -->
+							<!-- ************************************** -->
+							<panel title="Viajes Asignados" style="margin-bottom:10px" border="normal"
+								collapsible="true">
+								<panelchildren>
+									<listbox id="listAsig" height="100%"
+										model="@{winControl.getModeloViajesAsignados, load-after='winControl.onCreate,listAsig.onChange'}">
+										<listitem self="@{each=v}" ventana="${winControl}"
+											objetoPloteable="@{v}" context="ctxmAsignados"
+											use="ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.objetoPloteable.ListitemOperadorPloteable" />
+									</listbox>
+								</panelchildren>
+							</panel>
+
+							<!-- ************************************** -->
+							<!-- *** VIAJES PENDIENTES                  -->
+							<!-- ************************************** -->
+							<panel title="Viajes Pendientes" style="margin-bottom:10px"
+								border="normal" collapsible="true">
+								<panelchildren>
+									<listbox id="listPend" height="100%"
+										model="@{winControl.getModeloViajesPendientes, load-after='winControl.onCreate,listPend.onChange'}">
+										<listitem self="@{each=v}" ventana="${winControl}"
+											objetoPloteable="@{v}" context="ctxmPendientes"
+											use="ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.objetoPloteable.ListitemOperadorPloteable" />
+									</listbox>
+								</panelchildren>
+							</panel>
+
+							<!-- ************************************** -->
+							<!-- *** VEHICULOS LIBRES                   -->
+							<!-- ************************************** -->
+							<panel title="Vehiculos Libres" style="margin-bottom:10px" border="normal"
+								collapsible="true">
+								<panelchildren>
+									<listbox id="listLibres" height="100%"
+										model="@{winControl.getModeloVehiculosLibres, load-after='winControl.onCreate,listLibres.onChange'}">
+										<listitem self="@{each=v}" ventana="${winControl}"
+											objetoPloteable="@{v}" context="ctxmLibres"
+											use="ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.objetoPloteable.ListitemOperadorPloteable" />
+									</listbox>
+								</panelchildren>
+							</panel>
+
+							<!-- ************************************** -->
+							<!-- *** VEHICULOS DESACTIVADOS             -->
+							<!-- ************************************** -->
+							<panel title="Vehiculos Desact." style="margin-bottom:10px"
+								border="normal" collapsible="true">
+								<panelchildren>
+									<listbox id="listDesact"
+										model="@{winControl.getModeloVehiculosDesactivados, load-after='winControl.onCreate,listDesact.onChange'}">
+										<listitem self="@{each=v}" ventana="${winControl}"
+											objetoPloteable="@{v}" context="ctxmDesactivados"
+											use="ar.edu.utn.frba.proyecto.citysoft.controller.componentesCitysoft.objetoPloteable.ListitemOperadorPloteableBasico" />
+									</listbox>
+								</panelchildren>
+							</panel>
+
+						</columnchildren>
+					</columnlayout>
+				</radiogroup>
+			</vbox>
+		</east>
+	</borderlayout>
+
+	<!-- ************************************** -->
+	<!-- *** TIMER PARA REFRESCAR MAPA          -->
+	<!-- ************************************** -->
+	<timer id="t" repeats="true" delay="5000" running="true" onTimer="winControl.actualizarPagina();" />
+
+	<menupopup id="ctxmTransportando"
+		use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.control.MenupopupParaControlOperador">
+		<menuitem label="Finalizar Viaje" image="@{winControl.IMAGES__FLAG_BLUE}"
+			onClick="winControl.finalizarViaje();" />
+	</menupopup>
+	<menupopup id="ctxmAsignados"
+		use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.control.MenupopupParaControlOperador">
+		<menuitem label="Comenzar Viaje" image="@{winControl.IMAGES__CHECK}"
+			onClick="winControl.comenzarViaje();" />
+		<menuitem label="Liberar Vehiculo Asignado" image="@{winControl.IMAGES__LINK_BREAK}"
+			onClick="winControl.liberarVehiculo();" />
+	</menupopup>
+	<menupopup id="ctxmPendientes"
+		use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.control.MenupopupParaControlOperador">
+		<menuitem label="Asignar Vehiculo..." image="@{winControl.IMAGES__LINK}"
+			onClick="winControl.abrirAsignacionPorViaje();" />
+		<menuitem label="Cancelar Viaje Pendiente" image="@{winControl.IMAGES__CANCEL}"
+			onClick="winControl.cancelarViajePendiente();" />
+	</menupopup>
+	<menupopup id="ctxmLibres"
+		use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.control.MenupopupParaControlOperador">
+		<menuitem label="Asignar Vehiculo..." image="@{winControl.IMAGES__LINK}"
+			onClick="winControl.abrirAsignacionPorVehiculoLibre();" />
+		<menuitem label="Desactivar Vehiculo" image="@{winControl.IMAGES__UNPLUG}"
+			onClick="winControl.activarVehiculo(false);" />
+	</menupopup>
+	<menupopup id="ctxmDesactivados"
+		use="ar.edu.utn.frba.proyecto.citysoft.controller.interfazOperador.control.MenupopupParaControlOperador">
+		<menuitem label="Activar Vehiculo" image="@{winControl.IMAGES__PLUG}"
+			onClick="winControl.activarVehiculo(true);" />
+	</menupopup>
+
+</window>

@@ -16,11 +16,13 @@ public class CityMapa extends Gmaps {
 	// ** EXECUTION
 	// **************************************
 
-	/**
-	 * NO USAR. Usar en cambio {@link CityMarcador#serasCentro(CityMapa)}
-	 */
 	public void tendrasComoCentroA(CityMarcador marca) {
 		this.marcadorQueMeCentra = marca;
+		actualizarPosicionCentral();
+	}
+
+	public void descentrar() {
+		this.marcadorQueMeCentra = null;
 	}
 
 	public CityMarcador quienMeCentra() {

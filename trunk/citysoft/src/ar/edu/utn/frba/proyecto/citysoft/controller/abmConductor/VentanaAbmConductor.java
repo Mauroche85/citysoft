@@ -46,7 +46,7 @@ public class VentanaAbmConductor extends Window {
 	private Intbox elemLegajo() {
 		return (Intbox) this.getFellow("intLegajo");
 	}
-	
+
 	// **************************************
 	// ** ELEMENTOS - BOTONES
 	// **************************************
@@ -155,48 +155,10 @@ public class VentanaAbmConductor extends Window {
 		// Creo el conductor!!!
 		Conductor c = new Conductor();
 
-		try {  // si retorna 0x0010 es 'YES', 0x0020 es 'NO'
-			 if(Messagebox.show("¿Confirma el alta?", "Mensaje de confirmación", Messagebox.YES | Messagebox.NO ,
-			    Messagebox.QUESTION)==16)  
-			    {
+		try { // si retorna 0x0010 es 'YES', 0x0020 es 'NO'
+			if (Messagebox.show("¿Confirma el alta?", "Mensaje de confirmación", Messagebox.YES
+					| Messagebox.NO, Messagebox.QUESTION) == 16) {
 				c.setIdConductor(elemLegajo().getValue());
-		        c.setApellido(elemApellido().getValue());
-		        c.setNombre(elemNombres().getValue());
-		        // c.setTipoDocumento(elemTipoDocumento().getValue());
-		        c.setDni(elemNroDocumento().getValue());
-		        c.setDireccion(elemDireccion().getValue());
-		        c.setLocalidad(elemLocalidad().getValue());
-		        c.setTelefono(elemTelefono().getValue());
-
-				try {  // si retorna 0x0010 es 'YES', 0x0020 es 'NO'
-					 if(Conductor.getDni = c.setDni(elemNroDocumento().getValue()))  
-					    {
-						 Messagebox.show("El DNI ya está registrado", "Mensaje de confirmación", Messagebox.YES | Messagebox.NO ,
-								    Messagebox.INFORMATION);}
-					    } catch (Exception e) {
-							// TODO Auto-generated catch block
-							 e.printStackTrace();
-						}							
-
-		        // Guardo el cliente en la central!!!!
-		        Central.getInstance().addConductor(c);
-   			    }
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			 e.printStackTrace();
-		}							
-		// Cierro la ventana
-		this.cerrar();
-	}
-
-	public void modifConductor() {
-		// Levanto los datos del conductor!!!
-		Conductor c = Central.getInstance().getConductorPorId(elemLegajo().getValue());
-				
-		try {  // si retorna 0x0010 es 'YES', 0x0020 es 'NO'
-			 if(Messagebox.show("¿Confirma la modificación?", "Mensaje de confirmación", Messagebox.YES | Messagebox.NO ,
-			    Messagebox.QUESTION)==16)  
-			    {
 				c.setApellido(elemApellido().getValue());
 				c.setNombre(elemNombres().getValue());
 				// c.setTipoDocumento(elemTipoDocumento().getValue());
@@ -205,13 +167,49 @@ public class VentanaAbmConductor extends Window {
 				c.setLocalidad(elemLocalidad().getValue());
 				c.setTelefono(elemTelefono().getValue());
 
-				// Actualizo el cliente en la central!!!!		 
-   			    Central.getInstance().addConductor(c);
-   			    }
+				try { // si retorna 0x0010 es 'YES', 0x0020 es 'NO'
+					if (Central.getInstance().getConductorPorDni(c.getDni()) != null) {
+						Messagebox.show("El DNI ya está registrado", "Mensaje de confirmación",
+								Messagebox.YES | Messagebox.NO, Messagebox.INFORMATION);
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				// Guardo el cliente en la central!!!!
+				Central.getInstance().addConductor(c);
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			 e.printStackTrace();
-		}							
+			e.printStackTrace();
+		}
+		// Cierro la ventana
+		this.cerrar();
+	}
+
+	public void modifConductor() {
+		// Levanto los datos del conductor!!!
+		Conductor c = Central.getInstance().getConductorPorId(elemLegajo().getValue());
+
+		try { // si retorna 0x0010 es 'YES', 0x0020 es 'NO'
+			if (Messagebox.show("¿Confirma la modificación?", "Mensaje de confirmación",
+					Messagebox.YES | Messagebox.NO, Messagebox.QUESTION) == 16) {
+				c.setApellido(elemApellido().getValue());
+				c.setNombre(elemNombres().getValue());
+				// c.setTipoDocumento(elemTipoDocumento().getValue());
+				c.setDni(elemNroDocumento().getValue());
+				c.setDireccion(elemDireccion().getValue());
+				c.setLocalidad(elemLocalidad().getValue());
+				c.setTelefono(elemTelefono().getValue());
+
+				// Actualizo el cliente en la central!!!!
+				Central.getInstance().addConductor(c);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// Cierro la ventana
 		this.cerrar();
 	}

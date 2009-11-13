@@ -49,9 +49,9 @@ public class ListitemPloteable extends Listitem implements ConstantesGeneralesDe
 
 	public void mostrarOcultarObjetoPloteable(boolean mostrar) {
 		if (mostrar)
-			this.objetoPloteable.mostrarMarcadores(getVentana().elemMapa());
+			this.objetoPloteable.mostrarEnMapa(getVentana().elemMapa());
 		else
-			this.objetoPloteable.quitarMarcadoresDelMapa();
+			this.objetoPloteable.quitarDelMapa();
 	}
 
 	// **************************************

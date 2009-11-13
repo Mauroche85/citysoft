@@ -74,8 +74,16 @@ public class Coordenadas implements ObjetoDeDominio {
 	}
 
 	// **************************************
-	// ** Helpers
+	// ** Interfaces
 	// **************************************
+
+	@Override
+	public int compareTo(ObjetoDeDominio theOther) {
+		Coordenadas o = (Coordenadas) theOther;
+		Double d = new Double(this.latitud + this.longitud);
+		Double d2 = new Double(o.latitud + o.longitud);
+		return d.compareTo(d2);
+	}
 
 	public String toString() {
 		return "Localización geográfica: latitud " + this.getLatInDegMinDec() + ", longitud "

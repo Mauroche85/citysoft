@@ -21,7 +21,7 @@ import com.blogspot.unserializableone.GCoder;
  * @version 1.0
  * @created 23-Jul-2009 10:54:53 p.m.
  */
-public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
+public class Viaje implements ObjetoDeDominio {
 
 	public static final String ESTADO_PENDIENTE = "PENDIENTE";
 	public static final String ESTADO_ASIGNADO = "ASIGNADO";
@@ -319,6 +319,7 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	public void liberar() {
 		validarViajeAsignado();
 		this.getVehiculo().limpiarViajeEnCurso();
+		this.setVehiculo(null);
 		this.setHoraAsignado(null);
 		this.estado = ESTADO_PENDIENTE;
 	}
@@ -415,20 +416,35 @@ public class Viaje implements ObjetoDeDominio, Comparable<Viaje> {
 	}
 
 	// **************************************
+	// ** Miscelanea
+	// **************************************
+
+	public String getDescripcionOrigen() {
+		return getOrigenCalle() + " " + getOrigenAltura() + ", " + getOrigenProvincia()
+				+ ", Argentina";
+	}
+
+	public String getDescripcionDesitno() {
+		return getDestinoCalle() + " " + getDestinoAltura() + ", " + getDestinoProvincia()
+				+ ", Argentina";
+	}
+
+	// **************************************
 	// ** Interfaces
 	// **************************************
 
 	@Override
-	public int compareTo(Viaje theOther) {
+	public int compareTo(ObjetoDeDominio theOther) {
 		int thisId = this.idViaje;
-		int theOtherId = theOther.idViaje;
+		int theOtherId = ((Viaje) theOther).idViaje;
 		// Esto nos lo choriceamos de Integer!!!
 		return (thisId < theOtherId ? -1 : (thisId == theOtherId ? 0 : 1));
 	}
 
 	@Override
 	public String toString() {
-		return "Viaje " + this.getIdViaje() + " - " + this.getVehiculo().getPatente();
+		return (getVehiculo() == null) ? "" + getIdViaje() : getVehiculo().getPatente() + " - "
+				+ getIdViaje();
 	}
 
 }

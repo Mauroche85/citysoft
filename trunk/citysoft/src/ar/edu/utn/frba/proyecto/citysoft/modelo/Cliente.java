@@ -10,7 +10,7 @@ import ar.edu.utn.frba.proyecto.citysoft.user.Autenticable;
  * @version 1.0
  * @created 23-Jul-2009 10:54:49 p.m.
  */
-public class Cliente extends Persona implements ObjetoDeDominio, Autenticable, Comparable<Cliente> {
+public class Cliente extends Persona implements ObjetoDeDominio, Autenticable {
 
 	private String nombreUsuario;
 	private String password;
@@ -71,9 +71,14 @@ public class Cliente extends Persona implements ObjetoDeDominio, Autenticable, C
 		this.viajeEnCurso = viajeEnCurso;
 	}
 
-	public int compareTo(Cliente theOther) {
+	// **************************************
+	// ** Interfaces
+	// **************************************
+
+	@Override
+	public int compareTo(ObjetoDeDominio theOther) {
 		int thisId = this.idCliente;
-		int theOtherId = theOther.idCliente;
+		int theOtherId = ((Cliente) theOther).idCliente;
 		// Esto nos lo choriceamos de Integer!!!
 		return (thisId < theOtherId ? -1 : (thisId == theOtherId ? 0 : 1));
 	}

@@ -14,7 +14,7 @@ import ar.edu.utn.frba.proyecto.citysoft.excepciones.ExcepcionDeObjetoInexistent
  * @param <T>
  * @created 23-Jul-2009 10:54:52 p.m.
  */
-public class Vehiculo implements ObjetoDeDominio, Comparable<Vehiculo> {
+public class Vehiculo implements ObjetoDeDominio {
 
 	private int idVehiculo;
 	// Datos del titular
@@ -274,19 +274,6 @@ public class Vehiculo implements ObjetoDeDominio, Comparable<Vehiculo> {
 		return this.getViajeEnCurso() == null;
 	}
 
-	/*
-	 * @Override public int compareTo(Vehiculo theOtherVehiculo) { return
-	 * this.patente.compareTo(theOtherVehiculo.patente); }
-	 */
-
-	@Override
-	public int compareTo(Vehiculo theOther) {
-		int thisId = this.idVehiculo;
-		int theOtherId = theOther.idVehiculo;
-		// Esto nos lo choriceamos de Integer!!!
-		return (thisId < theOtherId ? -1 : (thisId == theOtherId ? 0 : 1));
-	}
-
 	// **************************************
 	// ** Helpers
 	// **************************************
@@ -308,6 +295,28 @@ public class Vehiculo implements ObjetoDeDominio, Comparable<Vehiculo> {
 		if (estoyLibre()) {
 			throw new RuntimeException("No se puede asignar viaje a un vehículo asignado u ocupado");
 		}
+	}
+
+	// **************************************
+	// ** INTERFAZ OBJECT
+	// **************************************
+
+	/*
+	 * @Override public int compareTo(Vehiculo theOtherVehiculo) { return
+	 * this.patente.compareTo(theOtherVehiculo.patente); }
+	 */
+
+	@Override
+	public int compareTo(ObjetoDeDominio theOther) {
+		int thisId = this.idVehiculo;
+		int theOtherId = ((Vehiculo) theOther).idVehiculo;
+		// Esto nos lo choriceamos de Integer!!!
+		return (thisId < theOtherId ? -1 : (thisId == theOtherId ? 0 : 1));
+	}
+
+	@Override
+	public String toString() {
+		return getPatente();
 	}
 
 }

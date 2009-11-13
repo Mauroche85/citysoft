@@ -25,6 +25,7 @@ public interface ConstantesGeneralesDeVentanas {
 
 	// EXCLUSIVAS OPERADOR
 	String ZUL__MENU_OPERADOR = ZUL__SECURE_OPERADOR + "barraMenu.zul";
+	String ZUL__CONTROL_OPERADOR = ZUL__SECURE_OPERADOR + "controlOperador.zul";
 	String ZUL__INTERFAZ_OPERADOR = ZUL__SECURE_OPERADOR + "interfazOperador.zul";
 	String ZUL__ASIGNAR_VEHICULO = ZUL__SECURE_OPERADOR + "asignarVehiculo.zul";
 	// EXCLUSIVSA OPERADOR: ALTAS
@@ -77,5 +78,11 @@ public interface ConstantesGeneralesDeVentanas {
 	// **************************************
 
 	String GMARK_PREFIX = "gmark";
+
+	// **************************************
+	// ** PARAMETROS (?)
+	// **************************************
+
+	String CONTEXT_PARAM__QUIEN_ABRIO_EL_POPUP = "quienAbrioElPopup";
 
 }
