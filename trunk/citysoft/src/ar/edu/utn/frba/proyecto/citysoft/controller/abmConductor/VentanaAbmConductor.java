@@ -168,6 +168,16 @@ public class VentanaAbmConductor extends Window {
 		        c.setLocalidad(elemLocalidad().getValue());
 		        c.setTelefono(elemTelefono().getValue());
 
+				try {  // si retorna 0x0010 es 'YES', 0x0020 es 'NO'
+					 if(Conductor.getDni = c.setDni(elemNroDocumento().getValue()))  
+					    {
+						 Messagebox.show("El DNI ya está registrado", "Mensaje de confirmación", Messagebox.YES | Messagebox.NO ,
+								    Messagebox.INFORMATION);}
+					    } catch (Exception e) {
+							// TODO Auto-generated catch block
+							 e.printStackTrace();
+						}							
+
 		        // Guardo el cliente en la central!!!!
 		        Central.getInstance().addConductor(c);
    			    }
