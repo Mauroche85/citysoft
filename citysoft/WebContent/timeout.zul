@@ -1,7 +1,7 @@
 <window width="400px" title="Session Timeout" border="normal" mode="modal">
 	<borderlayout height="100px" >
 		<west width="125px">
-			<image src="images/LogoGTTR.jpg" width="120px" height="100px" />
+			<image src="/images/LogoGTTR.jpg" width="120px" height="100px" />
 		</west>
 		<center >
 			<hbox>
