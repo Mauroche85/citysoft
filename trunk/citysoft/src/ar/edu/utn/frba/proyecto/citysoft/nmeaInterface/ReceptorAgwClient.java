@@ -12,18 +12,18 @@ import agwClient.Functions;
 import agwClient.Packet;
 import agwClient.PacketTransport;
 import agwClient.PacketUser;
+import ar.edu.utn.frba.proyecto.citysoft.config.ArchivoDeConfiguracion;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Central;
 import ar.edu.utn.frba.proyecto.citysoft.modelo.Vehiculo;
 
 public class ReceptorAgwClient implements Runnable, PacketUser {
 
-	// private static final String MONITOR_HOSTNAME = "201.234.168.167";
-	private static final String MONITOR_HOSTNAME = "192.168.1.100";
-	private static final int MONITOR_PORT = 8000;
-
 	// **************************************
 	// ** Attributes
 	// **************************************
+
+	String hostname;
+	int port;
 
 	PacketTransport remote; // NIO support
 	Controller controller;
@@ -47,7 +47,9 @@ public class ReceptorAgwClient implements Runnable, PacketUser {
 		controller = new Controller(); // runs the NIO select
 		controller.start(true); // start NIO select as a separate thread
 		remote = new PacketTransport(controller);
-		if (remote.connect(this, MONITOR_HOSTNAME, MONITOR_PORT))
+		hostname = ArchivoDeConfiguracion.getInstance().getReceptorHostname();
+		port = ArchivoDeConfiguracion.getInstance().getReceptorPuerto();
+		if (remote.connect(this, hostname, port))
 			setSockState(Packet.OPENING);
 		else
 			remote = null;
@@ -193,7 +195,7 @@ public class ReceptorAgwClient implements Runnable, PacketUser {
 			switch (state) {
 			case Packet.OPENED:
 				// startItem.setText("Disconnect");
-				setStatus("Connected to " + MONITOR_HOSTNAME);
+				setStatus("Connected to " + hostname);
 				break;
 			case Packet.CLOSED:
 				// startItem.setText("Connect");
@@ -205,12 +207,12 @@ public class ReceptorAgwClient implements Runnable, PacketUser {
 					System.exit(0);
 				break;
 			case Packet.OPENING:
-				setStatus("Connecting to " + MONITOR_HOSTNAME);
+				setStatus("Connecting to " + hostname);
 				// startItem.setText("Abort");
 				break;
 
 			case Packet.CLOSING:
-				setStatus("Disconnecting from " + MONITOR_HOSTNAME);
+				setStatus("Disconnecting from " + hostname);
 				// startItem.setText("Abort");
 				break;
 			}
