@@ -20,6 +20,10 @@ public class ArchivoDeConfiguracion {
 	private static final String PROPIEDAD__SIMULACION = "gttr.simulacion";
 	private static final String PROPIEDAD__INTERFAZ_OPERADOR_NUEVA = "gttr.interfazOperadorNueva";
 
+	private static final String PROPIEDAD__RECEPTOR_HABILITADO = "gttr.receptor.enabled";
+	private static final String PROPIEDAD__RECEPTOR_HOSTNAME = "gttr.receptor.hostname";
+	private static final String PROPIEDAD__RECEPTOR_PUERTO = "gttr.receptor.port";
+
 	// **************************************
 	// ** Constructors
 	// **************************************
@@ -110,6 +114,31 @@ public class ArchivoDeConfiguracion {
 					"El valor de configuracion para [interfaz operador nueva] es incorrecto ("
 							+ nueva + ")");
 		}
+	}
+
+	// **************************************
+	// ** RECEPTOR
+	// **************************************
+
+	public boolean getReceptorHabilitado() {
+		String habilitado = this.properties.getProperty(PROPIEDAD__RECEPTOR_HABILITADO,
+				"NO CONFIGURO RECEPTOR");
+		if (habilitado.equals("true") || habilitado.equals("false")) {
+			return Boolean.parseBoolean(habilitado);
+		} else {
+			throw new RuntimeException(
+					"El valor de configuracion para [receptor habilitado] es incorrecto ("
+							+ habilitado + ")");
+		}
+	}
+
+	public String getReceptorHostname() {
+		return this.properties.getProperty(PROPIEDAD__RECEPTOR_HOSTNAME, "NO CONFIGURO HOSTNAME");
+	}
+
+	public int getReceptorPuerto() {
+		return Integer.parseInt(this.properties.getProperty(PROPIEDAD__RECEPTOR_PUERTO,
+				"-1 (No configuro puerto)"));
 	}
 
 	// **************************************

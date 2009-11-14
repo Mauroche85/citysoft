@@ -40,7 +40,7 @@ public class CityMarcadorFactory implements ConstantesGeneralesDeVentanas {
 			m.setIconImage(IMAGES__VEHICULO_MARKER);
 		else
 			m.setIconImage(IMAGES__VEHICULO_OCUPADO_MARKER);
-		m.setTooltip(v.getPatente());
+		m.setTooltiptext(v.getPatente());
 		return m;
 	}
 
